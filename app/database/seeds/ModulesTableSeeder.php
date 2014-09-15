@@ -28,14 +28,6 @@ class ModulesTableSeeder extends Seeder{
 			'order'=> 0
 		));
 
-        /*
-		Module::create(array(
-			'name' => 'tags',
-			'on' => 1,
-			'order'=> 0
-		));
-        */
-
 		Module::create(array(
 			'name' => 'seo',
 			'on' => 1,
@@ -48,11 +40,6 @@ class ModulesTableSeeder extends Seeder{
 			'order'=> 0
 		));
 
-        Module::create(array(
-            'name' => 'education',
-            'on' => 1,
-            'order'=> 0
-        ));
 	}
 
 }
