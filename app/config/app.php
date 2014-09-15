@@ -26,7 +26,7 @@ return array(
 	'locale' => 'ru',
 
 
-	'key' => 'OZiBhRszadigD4T5mGDoCdPfne2pzDNa',
+	'key' => 'S2IgteaZdojZPYppPPYikcfMJfZgrLSb',
 	'providers' => array(
 		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
