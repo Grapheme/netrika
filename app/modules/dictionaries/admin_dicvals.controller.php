@@ -95,15 +95,45 @@ class AdminDicvalsController extends BaseController {
         #Helper::dd($dic_id);
 
         $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)->first();
-        if (!is_object($dic))
+        if (!$this->checkDicPermission($dic))
             App::abort(404);
+
         #Helper::tad($dic);
+        #dd($dic);
 
         $elements = DicVal::where('dic_id', $dic->id);
-        $elements = $elements->orderBy('order', 'ASC')->orderBy('name', 'ASC')->paginate(30);
+
+        ## Ordering
+        $sort_order = $dic->sort_order_reverse ? 'DESC' : 'ASC';
+        switch ($dic->sort_by) {
+            case '':
+                $elements = $elements->orderBy('order', $sort_order)->orderBy('name', $sort_order);
+                break;
+            case 'name':
+                $elements = $elements->orderBy('name', $sort_order);
+                break;
+            case 'slug':
+                $elements = $elements->orderBy('slug', $sort_order);
+                break;
+            case 'created_at':
+                $elements = $elements->orderBy('created_at', $sort_order);
+                break;
+            case 'updated_at':
+                $elements = $elements->orderBy('updated_at', $sort_order);
+                break;
+        }
+
+        ## Pagination
+        if ($dic->pagination > 0)
+            $elements = $elements->paginate($dic->pagination);
+        else
+            $elements = $elements->get();
+
+        $sortable = ($dic->sortable && $dic->pagination == 0 && $dic->sort_by == NULL) ? true : false;
+
         #Helper::dd($elements);
 
-		return View::make($this->module['tpl'].'index', compact('elements', 'dic', 'dic_id'));
+		return View::make($this->module['tpl'].'index', compact('elements', 'dic', 'dic_id', 'sortable'))->render();
 	}
 
     /************************************************************************************/
@@ -114,16 +144,17 @@ class AdminDicvalsController extends BaseController {
         Allow::permission($this->module['group'], 'dicval');
 
         $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)->first();
-        if (!is_object($dic))
+        if (!$this->checkDicPermission($dic))
             App::abort(404);
 
         $locales = $this->locales;
+        #Helper::dd($dic);
 
         $fields = Config::get('dic.fields.' . $dic->slug);
 
         $element = new Dictionary;
 
-		return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'locales', 'fields', 'dic_id'));
+        return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'dic_id', 'locales', 'fields'));
 	}
     
 
@@ -133,7 +164,7 @@ class AdminDicvalsController extends BaseController {
         Allow::permission($this->module['group'], 'dicval');
 
         $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)->first();
-        if (!is_object($dic))
+        if (!$this->checkDicPermission($dic))
             App::abort(404);
         #Helper::tad($dic);
 
@@ -152,7 +183,7 @@ class AdminDicvalsController extends BaseController {
 
         #Helper::tad($element);
 
-		return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'locales', 'fields', 'dic_id'));
+		return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'dic_id', 'locales', 'fields'));
 	}
 
 
@@ -181,7 +212,7 @@ class AdminDicvalsController extends BaseController {
             App::abort(404);
 
         $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)->first();
-        if (!is_object($dic))
+        if (!$this->checkDicPermission($dic))
             App::abort(404);
 
         #Helper::tad($dic);
@@ -190,6 +221,9 @@ class AdminDicvalsController extends BaseController {
         $locales = Input::get('locales');
         $fields = Helper::withdraw($input, 'fields'); #Input::get('fields');
         $fields_i18n = Input::get('fields_i18n');
+
+        if (!@$input['slug'] && $dic->make_slug_from_name)
+            $input['slug'] = Helper::translit($input['name']);
 
         $json_request['responseText'] = "<pre>" . print_r($_POST, 1) . "</pre>";
         #return Response::json($json_request,200);
@@ -224,14 +258,28 @@ class AdminDicvalsController extends BaseController {
                 $redirect = true;
             }
 
+            $element_fields = Config::get('dic.fields.' . $dic->slug);
+            #Helper::d($element_fields);
+
             ## FIELDS
-            if (@is_array($fields) && count($fields)) {
+            if (@is_array($element_fields['general']) && count($element_fields['general'])) {
+
                 #Helper::d($fields);
-                foreach ($fields as $key => $value) {
+                foreach ($element_fields['general'] as $key => $_value) {
+
+                    if (is_numeric($key))
+                        continue;
+
+                    #Helper::d($key);
+
+                    $value = @$fields[$key];
+
+                    #Helper::d($value);
+                    #continue;
 
                     ## If handler of field is defined
                     if (is_callable($handler = Config::get('dic.fields.' . $dic->slug . '.general.' . $key . '.handler'))) {
-                        #Helper::dd($handler);
+                        #Helper::d($handler);
                         $value = $handler($value, $element);
                     }
 
@@ -248,12 +296,23 @@ class AdminDicvalsController extends BaseController {
             }
 
             ## FIELDS I18N
-            if (@is_array($fields_i18n) && count($fields_i18n)) {
-                #Helper::d($fields_i18n);
-                foreach ($fields_i18n as $locale_sign => $locale_values) {
-                    #Helper::d($locale_values);
-                    foreach ($locale_values as $key => $value) {
+            #if (@is_array($fields_i18n) && count($fields_i18n)) {
+            if (@is_array($element_fields['i18n']) && count($element_fields['i18n'])) {
 
+                #Helper::d($fields_i18n);
+
+                #foreach ($fields_i18n as $locale_sign => $locale_values) {
+                foreach ($element_fields['i18n'] as $locale_sign => $locale_values) {
+                    #Helper::d($locale_values);
+                    foreach ($locale_values as $key => $_value) {
+
+                        if (is_numeric($key))
+                            continue;
+
+                        ##
+                        ## Need to testing!!!
+                        ##
+                        $value = @$fields_i18n[$locale_sign][$key];
                         #Helper::d($value);
 
                         ## If handler of field is defined
@@ -309,7 +368,7 @@ class AdminDicvalsController extends BaseController {
             App::abort(404);
 
         $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)->first();
-        if (!is_object($dic))
+        if (!$this->checkDicPermission($dic))
             App::abort(404);
 
 		$json_request = array('status' => FALSE, 'responseText' => '');
@@ -350,6 +409,25 @@ class AdminDicvalsController extends BaseController {
         }
 
         return Response::make('1');
+    }
+
+    private function checkDicPermission($dic) {
+
+        if (!is_object($dic))
+            return false;
+
+        $return = true;
+
+        if ($dic->view_access === 0)
+            $return = true;
+        elseif ($dic->view_access === 1 && !Allow::superuser())
+            $return = false;
+        elseif ($dic->view_access === 2 && !Allow::action($this->module['group'], 'hidden'))
+            $return = false;
+
+        #Helper::dd($return);
+
+        return $return;
     }
 
 }

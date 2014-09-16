@@ -7,14 +7,14 @@
 @section('keywords')
 {{{ isset($page_keywords) ? $page_keywords : Config::get('app.default_page_keywords') }}}
 @stop
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>@yield('title')</title>
-<meta name="description" content="@yield('description')">
-<meta name="keywords" content="@yield('keywords')">
-{{ HTML::style('theme/css/normalize.css') }}
-{{ HTML::style('theme/css/main.css') }}
-{{ HTML::style('css/font-awesome.min.css') }}
-@if(Config::get('app.use_googlefonts'))
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,400italic&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
-@endif
+	    <title>@yield('title')</title>
+        <meta name="description" content="@yield('description')">
+        <meta name="keywords" content="@yield('keywords')">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        {{ HTML::style('static/css/normalize.css') }}
+        {{ HTML::style('static/css/main.css') }}
+        {{ HTML::style('static/css/fotorama/fotorama.css') }}
+
+        {{ HTML::script('static/js/vendor/modernizr-2.6.2.min.js') }}

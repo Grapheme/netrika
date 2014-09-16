@@ -32,10 +32,12 @@
  * - gallery (использует ExtForm::gallery() + доп. JS, нужен handler для обработки)
  * - upload
  * - video
+ * - select
+ * - checkboxes (замена select-multiple)
+ * - checkbox
  *
  * Типы полей, запланированных к разработке:
- * - select
- * - checkbox
+ * - select-multiple
  * - radio
  * - upload-group
  * - video-group
@@ -51,46 +53,84 @@ return array(
 
     'fields' => array(
 
-        'actions_history' => array(
-
+        'solutions' => array(
             'general' => array(
-
-                'user_id' => array(
-                    'title' => 'ID пользователя',
-                    'type' => 'text',
+                'description_target_audience' => array(
+                    'title' => 'Описание целевой аудитории',
+                    'type' => 'textarea_redactor',
                 ),
-                'action_id' => array(
-                    'title' => 'Событие',
-                    'type' => 'select',
-                    'values' => function(){
-                        return Dic::valuesBySlug('actions_types')->lists('name','id');
-                    }
+                'describes_purpose_decision' => array(
+                    'title' => 'Описание назначения решения',
+                    'type' => 'textarea_redactor',
                 ),
-                'title' => array(
-                    'title' => 'Название',
-                    'type' => 'text',
+                'description_advantages_solution' => array(
+                    'title' => 'Описание преимущества решения',
+                    'type' => 'textarea_redactor',
                 ),
-                'link' => array(
-                    'title' => 'Ссылка на событие',
-                    'type' => 'text',
+                'image_schemes_work' => array(
+                    'title' => 'Изображение схемы работы',
+                    'type' => 'image',
                 ),
-                'created_time' => array(
-                    'title' => 'Дата создания',
-                    'type' => 'date',
-                    'others' => array(
-                        'class' => 'text-center',
-                        'style' => 'width: 221px',
-                        'placeholder' => 'Нажмите для выбора'
-                    ),
-                    'handler' => function($value) {
-                            return $value ? @date('Y-m-d', strtotime($value)) : $value;
+                'identify_features_solution' => array(
+                    'title' => 'Описание возможности решения',
+                    'type' => 'textarea_redactor',
+                ),
+                'description_integration' => array(
+                    'title' => 'Описание интеграции',
+                    'type' => 'textarea_redactor',
+                ),
+                'description_plans' => array(
+                    'title' => 'Описание планов',
+                    'type' => 'textarea_redactor',
+                ),
+                'description_components' => array(
+                    'title' => 'Описание компонентов решения',
+                    'type' => 'textarea_redactor',
+                ),
+                'description_partners' => array(
+                    'title' => 'Список партнеров',
+                    'type' => 'textarea_redactor',
+                ),
+                'availability_demonstrate' => array(
+                    'no_label' => true,
+                    'title' => 'Доступность демонстрации решения',
+                    'type' => 'checkbox',
+                    'label_class' => 'normal_checkbox',
+                ),
+                'link_to_file_presentation' => array(
+                    'title' => 'Добавить файл презентации',
+                    'type' => 'upload',
+                    'accept' => 'application/pdf,application/x-download', # .exe,image/*,video/*,audio/*
+                    'label_class' => 'input-file',
+                    'handler' => function($value, $element = false) {
+                            if (@is_object($element) && @is_array($value)) {
+                                $value['module'] = 'dicval';
+                                $value['unit_id'] = $element->id;
+                            }
+                            return ExtForm::process('upload', $value);
                         },
-                    'value_modifier' => function($value) {
-                            return $value ? @date('d.m.Y', strtotime($value)) : $value;
+                ),
+                'tags_id' => array(
+                    'title' => 'Список тегов',
+                    'type' => 'select-multiple',
+                    'values' => Dic::valuesBySlug('entities_tags')->lists('name', 'id'),
+                    'handler' => function($value, $element) {
+                            $value = (array)$value;
+                            $value = array_flip($value);
+                            foreach ($value as $v => $null)
+                                $value[$v] = array('dicval_child_dic' => 'entities_tags');
+                            $element->relations()->sync($value);
+                            return @count($value);
+                        },
+                    'value_modifier' => function($value, $element) {
+                            $return = (is_object($element) && $element->id)
+                                ? $element->relations()->get()->lists('id')
+                                : $return = array()
+                            ;
+                            return $return;
                         },
                 ),
             ),
         ),
-
     ),
 );

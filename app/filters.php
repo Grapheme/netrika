@@ -31,9 +31,8 @@ App::missing(function ($exception) {
 });
 
 Route::filter('auth', function(){
-
 	if(Auth::guest()):
-		return App::abort(404);
+		App::abort(404);
 	endif;
 });
 
@@ -55,7 +54,6 @@ Route::filter('admin.auth', function(){
 });
 
 Route::filter('user.auth', function(){
-
 	if(!AuthAccount::isUserLoggined()):
 		return Redirect::to('/');
 	endif;
@@ -80,6 +78,16 @@ Route::filter('guest', function(){
 	if(Auth::check()):
 		return Redirect::to('/');
 	endif;
+});
+
+Route::filter('auth2login', function(){
+    if(Auth::check()) {
+        #Helper::dd(Request::path() . ' != ' . AuthAccount::getStartPage());
+        if (Request::path() != AuthAccount::getStartPage())
+            return Redirect::to(AuthAccount::getStartPage());
+    } else {
+        return Redirect::route('login');
+    }
 });
 
 /*
