@@ -15,7 +15,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'netrika',
 			'username'  => 'root',
-			'password'  => 'perl03',
+			'password'  => 'perl031',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
