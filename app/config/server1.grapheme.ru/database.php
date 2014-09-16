@@ -6,7 +6,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'shveinaya-lavka',
+			'database'  => 'netrika',
 			'username'  => 'root',
 			'password'  => 'perl03',
 			'charset'   => 'utf8',

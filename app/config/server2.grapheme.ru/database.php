@@ -6,7 +6,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'quest_zenit',
+			'database'  => 'netrika',
 			'username'  => 'root',
 			'password'  => 'k.,jdmythtdyetnyfghfcyj',
 			'charset'   => 'utf8',
