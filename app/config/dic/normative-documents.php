@@ -17,7 +17,25 @@ return array(
             'solution_id' => array(
                 'title' => 'Решение',
                 'type' => 'select',
-                'values' => $lists['solutions']
+                'values' => $lists['solutions'],
+                'default' => (int)Input::get('filter.fields.solution_id')
+            ),
+            'description_document' => array(
+                'title' => 'Описание',
+                'type' => 'textarea_redactor',
+            ),
+            'link_document' => array(
+                'title' => 'Добавить файл',
+                'type' => 'upload',
+                'accept' => 'application/pdf,application/x-download', # .exe,image/*,video/*,audio/*
+                'label_class' => 'input-file',
+                'handler' => function($value, $element = false) {
+                    if (@is_object($element) && @is_array($value)) {
+                        $value['module'] = 'dicval';
+                        $value['unit_id'] = $element->id;
+                    }
+                    return ExtForm::process('upload', $value);
+                },
             ),
         );
 
