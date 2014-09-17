@@ -52,31 +52,39 @@
 
                 </fieldset>
 
-                {{ Helper::dd_($fields['general']) }}
+                {{ Helper::dd_($dic_settings) }}
 
-                @if (@count($fields['general']))
+                @if (@is_callable($dic_settings['fields']) && NULL !== ($fields_general = $dic_settings['fields']()))
                 <?
+                #Helper::ta($element);
                 $onsuccess_js = array();
-                $element_fields = @is_object($element->fields) ? $element->fields->lists('value', 'key') : array();
+                if (isset($element->fields) && is_object($element->fields) && count($element->fields)) {
+                    $element_fields = $element->fields->lists('value', 'key');
+                } elseif (isset($element->allfields) && is_object($element->allfields) && count($element->allfields)) {
+                    $element_fields = $element->allfields->lists('value', 'key');
+                } else {
+                    $element_fields = array();
+                }
                 #Helper::d($element_fields);
+                #$fields_general = $dic_settings['fields'];
                 ?>
-                <fieldset class="padding-top-10 clearfix">
-                    @foreach ($fields['general'] as $field_name => $field)
-                    <?
-                    $field['_name'] = $field_name;
-                    if (@$field['after_save_js'])
-                        $onsuccess_js[] = $field['after_save_js'];
-                    ?>
-                    <section>
-                        @if (!@$field['no_label'])
-                        <label class="label">{{ @$field['title'] }}</label>
-                        @endif
-                        <div class="input {{ @$field['type'] }} {{ @$field['label_class'] }}">
-                            {{ Helper::formField('fields[' . @$field_name . ']', @$field, @$element_fields[$field_name], $element) }}
-                        </div>
-                    </section>
-                    @endforeach
-                </fieldset>
+                    <fieldset class="padding-top-10 clearfix">
+                        @foreach ($fields_general as $field_name => $field)
+                        <?
+                        $field['_name'] = $field_name;
+                        if (@$field['after_save_js'])
+                            $onsuccess_js[] = $field['after_save_js'];
+                        ?>
+                        <section>
+                            @if (!@$field['no_label'])
+                            <label class="label">{{ @$field['title'] }}</label>
+                            @endif
+                            <div class="input {{ @$field['type'] }} {{ @$field['label_class'] }}">
+                                {{ Helper::formField('fields[' . @$field_name . ']', @$field, @$element_fields[$field_name], $element) }}
+                            </div>
+                        </section>
+                        @endforeach
+                    </fieldset>
                 @endif
 
                 @if (count($locales) > 1)

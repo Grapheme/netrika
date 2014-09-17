@@ -101,7 +101,39 @@ class AdminDicvalsController extends BaseController {
         #Helper::tad($dic);
         #dd($dic);
 
-        $elements = DicVal::where('dic_id', $dic->id);
+        $this->callHook('before_all', $dic);
+        $this->callHook('before_index', $dic);
+
+        ## Get element
+        $elements = new DicVal;
+        $tbl_dicval = $elements->getTable();
+        $elements = $elements->where('dic_id', $dic->id)->select($tbl_dicval . '.*')->with('fields');
+        #$elements = DB::table('dictionary_values')->where('dic_id', $dic->id)->select('dictionary_values.*');
+
+        if (NULL !== ($filter = Input::get('filter'))) {
+
+            #Helper::d($filter);
+            if (isset($filter['fields']) && is_array($filter) && count($filter)) {
+
+                $tbl_fields = new DicFieldVal();
+                $tbl_fields = $tbl_fields->getTable();
+
+                #Helper::d($filter['fields']);
+                foreach ($filter['fields'] as $key => $value) {
+                    $rand_tbl_alias = md5(rand(99999, 999999));
+                    $elements = $elements
+                        ->join($tbl_fields . ' AS ' . $rand_tbl_alias, function ($join) use ($tbl_dicval, $tbl_fields, $key, $value, $rand_tbl_alias) {
+                            $join
+                                ->on($rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+                                ->where($rand_tbl_alias . '.key', '=', $key)
+                                ->where($rand_tbl_alias . '.value', '=', $value)
+                            ;
+                        })
+                        ->addSelect($rand_tbl_alias . '.value AS ' . $key)
+                    ;
+                }
+            }
+        }
 
         ## Ordering
         $sort_order = $dic->sort_order_reverse ? 'DESC' : 'ASC';
@@ -131,9 +163,16 @@ class AdminDicvalsController extends BaseController {
 
         $sortable = ($dic->sortable && $dic->pagination == 0 && $dic->sort_by == NULL) ? true : false;
 
-        #Helper::dd($elements);
+        DicVal::extracts($elements, true);
+        #Helper::tad($elements);
 
-		return View::make($this->module['tpl'].'index', compact('elements', 'dic', 'dic_id', 'sortable'))->render();
+        $dic_settings = Config::get('dic/' . $dic->slug);
+        #Helper::dd($dic_settings);
+
+        $this->callHook('before_index_view', $dic, $elements);
+
+        #return View::make(Helper::acclayout());
+        return View::make($this->module['tpl'].'index', compact('elements', 'dic', 'dic_id', 'sortable', 'dic_settings'));
 	}
 
     /************************************************************************************/
@@ -147,14 +186,19 @@ class AdminDicvalsController extends BaseController {
         if (!$this->checkDicPermission($dic))
             App::abort(404);
 
+        $this->callHook('before_all', $dic);
+        $this->callHook('before_create_edit', $dic);
+        $this->callHook('before_create', $dic);
+
         $locales = $this->locales;
         #Helper::dd($dic);
 
-        $fields = Config::get('dic.fields.' . $dic->slug);
+        $dic_settings = Config::get('dic/' . $dic->slug);
+        #Helper::dd($dic_settings);
 
         $element = new Dictionary;
 
-        return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'dic_id', 'locales', 'fields'));
+        return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'dic_id', 'locales', 'dic_settings'))->render();
 	}
     
 
@@ -170,8 +214,8 @@ class AdminDicvalsController extends BaseController {
 
         $locales = $this->locales;
 
-        $fields = Config::get('dic.fields.' . $dic->slug);
-        #Helper::dd($fields);
+        $dic_settings = Config::get('dic/' . $dic->slug);
+        #Helper::dd($dic_settings);
 
         $element = DicVal::where('id', $id)
             ->with('metas')
@@ -181,9 +225,13 @@ class AdminDicvalsController extends BaseController {
             #->extract(1)
         ;
 
+        $this->callHook('before_all', $dic);
+        $this->callHook('before_create_edit', $dic, $element);
+        $this->callHook('before_create', $dic, $element);
+
         #Helper::tad($element);
 
-		return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'dic_id', 'locales', 'fields'));
+		return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'dic_id', 'locales', 'dic_settings'));
 	}
 
 
@@ -215,6 +263,9 @@ class AdminDicvalsController extends BaseController {
         if (!$this->checkDicPermission($dic))
             App::abort(404);
 
+        $this->callHook('before_all', $dic);
+        $this->callHook('before_store_update', $dic);
+
         #Helper::tad($dic);
 
         $input = Input::all();
@@ -238,10 +289,14 @@ class AdminDicvalsController extends BaseController {
 
             if ($id > 0 && NULL !== ($element = DicVal::find($id))) {
 
+                $this->callHook('before_update', $dic, $element);
+
                 ## UPDATE DICVAL
                 $element->update($input);
 
             } else {
+
+                $this->callHook('before_store', $dic);
 
                 if (@!$input['dic_id'])
                     $input['dic_id'] = $dic->id;
@@ -258,14 +313,16 @@ class AdminDicvalsController extends BaseController {
                 $redirect = true;
             }
 
-            $element_fields = Config::get('dic.fields.' . $dic->slug);
-            #Helper::d($element_fields);
+            $element_fields = Config::get('dic/' . $dic->slug . '.fields');
+            if (isset($element_fields) && is_callable($element_fields))
+                $element_fields = $element_fields();
+            #Helper::dd($element_fields);
 
             ## FIELDS
-            if (@is_array($element_fields['general']) && count($element_fields['general'])) {
+            if (isset($element_fields) && is_array($element_fields) && count($element_fields)) {
 
                 #Helper::d($fields);
-                foreach ($element_fields['general'] as $key => $_value) {
+                foreach ($element_fields as $key => $_value) {
 
                     if (is_numeric($key))
                         continue;
@@ -278,7 +335,7 @@ class AdminDicvalsController extends BaseController {
                     #continue;
 
                     ## If handler of field is defined
-                    if (is_callable($handler = Config::get('dic.fields.' . $dic->slug . '.general.' . $key . '.handler'))) {
+                    if (is_callable($handler = @$element_fields[$key]['handler'])) {
                         #Helper::d($handler);
                         $value = $handler($value, $element);
                     }
@@ -295,14 +352,19 @@ class AdminDicvalsController extends BaseController {
                 }
             }
 
+            $element_fields_i18n = Config::get('dic/' . $dic->slug . '.fields_i18n');
+            if (isset($element_fields_i18n) && is_callable($element_fields_i18n))
+                $element_fields_i18n = $element_fields_i18n();
+            #Helper::dd($element_fields_i18n);
+
             ## FIELDS I18N
             #if (@is_array($fields_i18n) && count($fields_i18n)) {
-            if (@is_array($element_fields['i18n']) && count($element_fields['i18n'])) {
+            if (isset($element_fields_i18n) && is_array($element_fields_i18n) && count($element_fields_i18n)) {
 
                 #Helper::d($fields_i18n);
 
                 #foreach ($fields_i18n as $locale_sign => $locale_values) {
-                foreach ($element_fields['i18n'] as $locale_sign => $locale_values) {
+                foreach ($element_fields_i18n as $locale_sign => $locale_values) {
                     #Helper::d($locale_values);
                     foreach ($locale_values as $key => $_value) {
 
@@ -316,7 +378,7 @@ class AdminDicvalsController extends BaseController {
                         #Helper::d($value);
 
                         ## If handler of field is defined
-                        if (is_callable($handler = Config::get('dic.fields.' . $dic->slug . '.i18n.' . $key . '.handler'))) {
+                        if (is_callable($handler = @$element_fields[$key]['handler'])) {
                             #Helper::dd($handler);
                             $value = $handler($value);
                         }
@@ -371,9 +433,13 @@ class AdminDicvalsController extends BaseController {
         if (!$this->checkDicPermission($dic))
             App::abort(404);
 
-		$json_request = array('status' => FALSE, 'responseText' => '');
+        $json_request = array('status' => FALSE, 'responseText' => '');
 
         $element = DicVal::where('id', $id)->with('allfields', 'metas')->first();
+
+        $this->callHook('before_all', $dic);
+        $this->callHook('before_destroy', $dic, $element);
+
         if (is_object($element)) {
 
             #Helper::tad($element);
@@ -428,6 +494,15 @@ class AdminDicvalsController extends BaseController {
         #Helper::dd($return);
 
         return $return;
+    }
+
+    private function callHook($hook_name = '', $dic = false, $dicval = false) {
+        if (!$hook_name)
+            return false;
+        $hook = Config::get('dic/' . $dic->slug . '.hooks.' . $hook_name);
+        if (@$hook && @is_callable($hook))
+            $hook($dic, $dicval);
+
     }
 
 }

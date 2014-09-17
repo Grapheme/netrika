@@ -8,7 +8,6 @@
 	{{HTML::script('js/vendor/SmartNotification.min.js');}}
 	{{HTML::script('js/vendor/jquery.validate.min.js');}}
 	{{HTML::script('js/system/app.js');}}
-	{{HTML::script('theme/js/main.js');}}
 	<script type="text/javascript">
 		if(typeof runFormValidation === 'function'){
 			loadScript("{{asset('js/vendor/jquery-form.min.js');}}",runFormValidation);
