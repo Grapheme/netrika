@@ -5,7 +5,8 @@ return array(
     'fields' => function () {
 
         $dics_slugs = array(
-            'entities-tags',
+            'solutions',
+            'projects',
         );
         $dics = Dic::whereIn('slug', $dics_slugs)->with('values')->get();
         $dics = Dic::modifyKeys($dics, 'slug');
@@ -14,70 +15,67 @@ return array(
         #Helper::dd($lists);
 
         return array(
-            'description_target_audience' => array(
-                'title' => 'Описание целевой аудитории',
-                'type' => 'textarea_redactor',
-            ),
-            'describes_purpose_decision' => array(
-                'title' => 'Описание назначения решения',
-                'type' => 'textarea_redactor',
-            ),
-            'description_advantages_solution' => array(
-                'title' => 'Описание преимущества решения',
-                'type' => 'textarea_redactor',
-            ),
-            'image_schemes_work' => array(
-                'title' => 'Изображение схемы работы',
-                'type' => 'image',
-            ),
-            'identify_features_solution' => array(
-                'title' => 'Описание возможности решения',
-                'type' => 'textarea_redactor',
-            ),
-            'description_integration' => array(
-                'title' => 'Описание интеграции',
-                'type' => 'textarea_redactor',
-            ),
-            'description_plans' => array(
-                'title' => 'Описание планов',
-                'type' => 'textarea_redactor',
-            ),
-            'description_components' => array(
-                'title' => 'Описание компонентов решения',
-                'type' => 'textarea_redactor',
-            ),
-            'description_partners' => array(
-                'title' => 'Список партнеров',
-                'type' => 'textarea_redactor',
-            ),
-            'availability_demonstrate' => array(
-                'no_label' => true,
-                'title' => 'Доступность демонстрации решения',
-                'type' => 'checkbox',
-                'label_class' => 'normal_checkbox',
-            ),
-            'link_to_file_presentation' => array(
-                'title' => 'Добавить файл презентации',
-                'type' => 'upload',
-                'accept' => 'application/pdf,application/x-download', # .exe,image/*,video/*,audio/*
-                'label_class' => 'input-file',
-                'handler' => function($value, $element = false) {
-                    if (@is_object($element) && @is_array($value)) {
-                        $value['module'] = 'dicval';
-                        $value['unit_id'] = $element->id;
-                    }
-                    return ExtForm::process('upload', $value);
-                },
-            ),
-            'tags_id' => array(
-                'title' => 'Список тегов',
-                'type' => 'select-multiple',
-                'values' => $lists['entities-tags'],
+            'solution_id' => array(
+                'title' => 'Категория проекта',
+                'type' => 'select',
+                'values' => $lists['solutions'],
                 'handler' => function($value, $element) {
                     $value = (array)$value;
                     $value = array_flip($value);
                     foreach ($value as $v => $null)
-                        $value[$v] = array('dicval_child_dic' => 'entities-tags');
+                        $value[$v] = array('dicval_child_dic' => 'solutions');
+                    $element->relations()->sync($value);
+                    return @count($value);
+                },
+                'value_modifier' => function($value, $element) {
+                    $return = (is_object($element) && $element->id)
+                        ? $element->relations()->get()->lists('id')
+                        : $return = array()
+                    ;
+                    return $return;
+                },
+            ),
+            'link_to_project' => array(
+                'title' => 'Ссылка на реализованный проект',
+                'type' => 'text',
+            ),
+            'description_objectives' => array(
+                'title' => 'Описание целей и задач',
+                'type' => 'textarea_redactor',
+            ),
+            'description_results' => array(
+                'title' => 'Описание результатов',
+                'type' => 'textarea_redactor',
+            ),
+            'gallery' => array(
+                'title' => 'Изображения',
+                'type' => 'gallery',
+                'handler' => function($array, $element) {
+                    return ExtForm::process('gallery', array(
+                        'module'  => 'dicval_meta',
+                        'unit_id' => $element->id,
+                        'gallery' => $array,
+                        'single'  => true,
+                    ));
+                }
+            ),
+            'description_advantages' => array(
+                'title' => 'Описание преимуществ',
+                'type' => 'textarea_redactor',
+            ),
+            'description_features' => array(
+                'title' => 'Описание особенностей проекта',
+                'type' => 'textarea_redactor',
+            ),
+            'similar_projects_ids' => array(
+                'title' => 'Список похожих проектов',
+                'type' => 'select-multiple',
+                'values' => $lists['projects'],
+                'handler' => function($value, $element) {
+                    $value = (array)$value;
+                    $value = array_flip($value);
+                    foreach ($value as $v => $null)
+                        $value[$v] = array('dicval_child_dic' => 'projects');
                     $element->relations()->sync($value);
                     return @count($value);
                 },
@@ -103,11 +101,11 @@ return array(
     'actions' => function($dic, $dicval) {
         ## Data from hook: before_index_view
         $dics = Config::get('temp.index_dics');
-        $dic_documents = $dics['solution-documents'];
+        $dic_documents = $dics['project-documents'];
         $counts = Config::get('temp.index_counts');
         return '
             <span class="block_ margin-bottom-5_">
-                <a href="' . URL::route('entity.index', array('solution-documents', 'filter[fields][solution_id]' => $dicval->id)) . '" class="btn btn-default">
+                <a href="' . URL::route('entity.index', array('project-documents', 'filter[fields][project_id]' => $dicval->id)) . '" class="btn btn-default">
                     Документы (' . @(int)$counts[$dicval->id][$dic_documents->id] . ')
                 </a>
             </span>
@@ -124,7 +122,7 @@ return array(
 
         'before_index_view' => function ($dic, $dicvals) {
             $dics_slugs = array(
-                'solution-documents',
+                'project-documents',
             );
             $dics = Dic::whereIn('slug', $dics_slugs)->get();
             $dics = Dic::modifyKeys($dics, 'slug');
