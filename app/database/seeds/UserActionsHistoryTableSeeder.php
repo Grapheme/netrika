@@ -31,7 +31,6 @@ class UserActionsHistoryTableSeeder extends Seeder{
         DicVal::create(array('dic_id'=>10,'slug'=>'dobavlena-vakansiya','name'=>'Добавлена вакансия','order'=>22));
         DicVal::create(array('dic_id'=>10,'slug'=>'otredaktirovana-vakansiya','name'=>'Отредактирована вакансия','order'=>23));
         DicVal::create(array('dic_id'=>10,'slug'=>'udalena-vakansiya','name'=>'Удалена вакансия','order'=>24));
-
     }
 
 }
