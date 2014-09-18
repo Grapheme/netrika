@@ -12,7 +12,7 @@
     $create_title = "Редактировать запись:";
     $edit_title   = "Добавить запись:";
 
-    $url        = 
+    $url =
         @$element->id
         ? action(is_numeric($dic_id) ? 'dicval.update' : 'entity.update', array('dic_id' => $dic_id, 'id' => $element->id))
         : action(is_numeric($dic_id) ? 'dicval.store'  : 'entity.store',  array('dic_id' => $dic_id));
@@ -22,7 +22,7 @@
 
     @include($module['tpl'].'/menu')
 
-    {{ Form::model($element, array('url'=>$url, 'class'=>'smart-form', 'id'=>$module['entity'].'-form', 'role'=>'form', 'method'=>$method)) }}
+    {{ Form::model($element, array('url' => $url, 'class' => 'smart-form', 'id' => $module['entity'].'-form', 'role' => 'form', 'method' => $method, 'files' => true)) }}
 
     <!-- Fields -->
 	<div class="row">

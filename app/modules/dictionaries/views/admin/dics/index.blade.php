@@ -25,20 +25,20 @@
 						<td>
                             {{ $element->entity ? '<a href="' . URL::route('entity.index', $element->slug) . '" title="Вынесено в отдельную сущность">' . $element->name . '</a>' : $element->name }}
                             <br/>
-                            <span style="color:#aaa">
+                            <span class="note dic_note">
                                 {{  $element->slug }}
                             </span>
 						</td>
 						<td class="text-center" style="white-space:nowrap;">
 
         					@if(Allow::action($module['group'], 'edit'))
-                            <a href="{{ action('dic.edit', array('id' => $element->id)) }}" class="btn btn-success margin-right-10">
+                            <a href="{{ action('dic.edit', array('id' => $element->id)) }}" class="btn btn-success">
                                 Изменить
                             </a>
                     		@endif
 
-        					@if(Allow::action($module['group'], 'dicval'))
-                            <a href="{{ action('dicval.index', array('dic_id' => $element->id)) }}" class="btn btn-warning margin-right-10">
+        					@if(Allow::action($module['group'], 'dicval_view'))
+                            <a href="{{ action('dicval.index', array('dic_id' => $element->id)) }}" class="btn btn-warning">
                                 Содержимое ({{ $element->values_count() }})
                             </a>
                     		@endif

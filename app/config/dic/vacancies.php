@@ -44,7 +44,6 @@ return array(
         },
         'before_edit' => function ($dic, $dicval) {
         },
-
         'before_store_update' => function ($dic) {
         },
         'before_store' => function ($dic) {

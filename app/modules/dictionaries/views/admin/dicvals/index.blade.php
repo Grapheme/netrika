@@ -29,8 +29,21 @@
                                 {{ $e+1 }}
                             </td>
                             <td>
-                                {{ $element->name }}
-                                <br/><span style="color:#aaa">{{ $element->slug }}</span>
+                                <?
+                                $line = $element->name;
+                                if (isset($dic_settings['first_line_modifier']) && is_callable($dic_settings['first_line_modifier']))
+                                    $line = $dic_settings['first_line_modifier']($line, $dic, $element);
+                                ?>
+                                {{ $line }}
+                                <br/>
+                                <span class="note dicval_note">
+                                <?
+                                $line = $element->slug;
+                                if (isset($dic_settings['second_line_modifier']) && is_callable($dic_settings['second_line_modifier']))
+                                    $line = $dic_settings['second_line_modifier']($line, $dic, $element);
+                                ?>
+                                {{ $line }}
+                                </span>
                             </td>
 
                             <td class="text-center" style="white-space:nowrap;">
@@ -39,11 +52,13 @@
                                     {{ $actions($dic, $element) }}
                                 @endif
 
-                                @if(Allow::action($module['group'], 'dicval'))
+                                @if(Allow::action($module['group'], 'dicval_edit'))
                                 <a href="{{ action(is_numeric($dic_id) ? 'dicval.edit' : 'entity.edit', array('dic_id' => $dic_id, 'id' => $element->id)) }}" class="btn btn-success">
                                     Изменить
                                 </a>
+                                @endif
 
+                                @if(Allow::action($module['group'], 'dicval_delete'))
                                 <form method="POST" action="{{ action(is_numeric($dic_id) ? 'dicval.destroy' : 'entity.destroy', array('dic_id' => $dic_id, 'id' => $element->id)) }}" style="display:inline-block">
                                     <button type="submit" class="btn btn-danger remove-record">
                                         Удалить
