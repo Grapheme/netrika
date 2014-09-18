@@ -10,7 +10,7 @@ return array(
                 'type' => 'textarea_redactor',
             ),
             'link_to_vacancy' => array(
-                'title' => 'Ссылка на вакансию на ресурсе hh.ru',
+                'title' => 'Ссылка на ресурс hh.ru',
                 'type' => 'text',
             ),
         );
