@@ -70,6 +70,15 @@ return array(
         },
         'before_store_update' => function ($dic) {
         },
+        'after_store' => function ($dic, $dicval) {
+            Event::fire('klient-sozdano-uchrejdenie', array(array('title'=>$dicval->name)));
+        },
+        'after_update' => function ($dic, $dicval) {
+            Event::fire('klient-otredaktirovano-uchrejdenie', array(array('title'=>$dicval->name)));
+        },
+        'after_destroy' => function ($dic, $dicval) {
+            Event::fire('klient-udaleno-uchrejdenie', array(array('title'=>$dicval->name)));
+        },
         'before_store' => function ($dic) {
         },
         'before_update' => function ($dic, $dicval) {

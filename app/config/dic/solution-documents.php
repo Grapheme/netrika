@@ -86,7 +86,15 @@ return array(
         },
         'before_edit' => function ($dic, $dicval) {
         },
-
+        'after_store' => function ($dic, $dicval) {
+            Event::fire('reshenie-sozdan-normativnyy-dokument', array(array('title'=>$dicval->name)));
+        },
+        'after_update' => function ($dic, $dicval) {
+            Event::fire('reshenie-otredaktirovan-normativnyy-dokument', array(array('title'=>$dicval->name)));
+        },
+        'after_destroy' => function ($dic, $dicval) {
+            Event::fire('reshenie-udalen-normativnyy-dokument', array(array('title'=>$dicval->name)));
+        },
         'before_store_update' => function ($dic) {
         },
         'before_store' => function ($dic) {

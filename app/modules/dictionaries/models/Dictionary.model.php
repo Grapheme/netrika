@@ -46,6 +46,10 @@ class Dictionary extends BaseModel {
         return DicVal::where('dic_id', $this->id)->count();
     }
 
+    public function values_count2() {
+        return $this->hasMany('DicVal', 'dic_id', 'id'); #->select(DB::raw('COUNT(*) as count'));
+    }
+
     public function value() {
         return $this->hasOne('DicVal', 'dic_id', 'id');
     }
@@ -66,14 +70,14 @@ class Dictionary extends BaseModel {
      * @author Alexander Zelensky
      */
     public static function modifyKeys($collection, $key = 'slug') {
-        #Helper::tad($collection);
-        foreach ($collection as $c => $col) {
-            if (NULL !== ($current_key = $col->$key)) {
-                $collection[$current_key] = $col;
-                unset($collection[$c]);
-            }
-        }
-        return $collection;
+        $array = array();
+        foreach ($collection as $c => $col):
+            if (isset($col->$key)):
+                $array[$col->$key] = $col;
+//                unset($array[$col->$key][$key]);
+            endif;
+        endforeach;
+        return $array;
     }
 
     /**

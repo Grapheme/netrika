@@ -116,12 +116,8 @@ return array(
 
     'hooks' => array(
 
-        'before_all' => function ($dic) {
-        },
-
-        'before_index' => function ($dic) {
-        },
-
+        'before_all' => function ($dic) {},
+        'before_index' => function ($dic) {},
         'before_index_view' => function ($dic, $dicvals) {
             $dics_slugs = array(
                 'solution-documents',
@@ -142,23 +138,22 @@ return array(
             #Helper::dd($counts);
             Config::set('temp.index_counts', $counts);
         },
-
-        'before_create_edit' => function ($dic) {
+        'before_create_edit' => function ($dic) {},
+        'before_create' => function ($dic) {},
+        'after_store' => function ($dic, $dicval) {
+            Event::fire('dobavleno-reshenie', array(array('title'=>$dicval->name)));
         },
-        'before_create' => function ($dic) {
+        'after_update' => function ($dic, $dicval) {
+            Event::fire('otredaktirovano-reshenie', array(array('title'=>$dicval->name)));
         },
-        'before_edit' => function ($dic, $dicval) {
+        'after_destroy' => function ($dic, $dicval) {
+            Event::fire('udaleno-reshenie', array(array('title'=>$dicval->name)));
         },
-
-        'before_store_update' => function ($dic) {
-        },
-        'before_store' => function ($dic) {
-        },
-        'before_update' => function ($dic, $dicval) {
-        },
-
-        'before_destroy' => function ($dic, $dicval) {
-        },
+        'before_edit' => function ($dic, $dicval) {},
+        'before_store_update' => function ($dic) {},
+        'before_store' => function ($dic) {},
+        'before_update' => function ($dic, $dicval) {},
+        'before_destroy' => function ($dic, $dicval) {},
     ),
 
     'seo' => false,

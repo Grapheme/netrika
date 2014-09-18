@@ -85,7 +85,15 @@ return array(
         },
         'before_edit' => function ($dic, $dicval) {
         },
-
+        'after_store' => function ($dic, $dicval) {
+            Event::fire('dobavlena-kompaniya', array(array('title'=>$dicval->name)));
+        },
+        'after_update' => function ($dic, $dicval) {
+            Event::fire('otredaktirovana-kompaniya', array(array('title'=>$dicval->name)));
+        },
+        'after_destroy' => function ($dic, $dicval) {
+            Event::fire('udalena-kompaniya', array(array('title'=>$dicval->name)));
+        },
         'before_store_update' => function ($dic) {
         },
         'before_store' => function ($dic) {

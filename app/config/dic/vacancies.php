@@ -37,7 +37,15 @@ return array(
 
         'before_index_view' => function ($dic, $dicvals) {
         },
-
+        'after_store' => function ($dic, $dicval) {
+            Event::fire('dobavlena-vakansiya', array(array('title'=>$dicval->name)));
+        },
+        'after_update' => function ($dic, $dicval) {
+            Event::fire('otredaktirovana-vakansiya', array(array('title'=>$dicval->name)));
+        },
+        'after_destroy' => function ($dic, $dicval) {
+            Event::fire('udalena-vakansiya', array(array('title'=>$dicval->name)));
+        },
         'before_create_edit' => function ($dic) {
         },
         'before_create' => function ($dic) {
