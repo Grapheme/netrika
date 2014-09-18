@@ -9,6 +9,10 @@ return array(
                 'title' => 'Описание вакансии',
                 'type' => 'textarea_redactor',
             ),
+            'link_to_vacancy' => array(
+                'title' => 'Ссылка на вакансию на ресурсе hh.ru',
+                'type' => 'text',
+            ),
         );
 
     },
