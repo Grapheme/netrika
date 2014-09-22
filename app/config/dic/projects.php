@@ -35,8 +35,8 @@ return array(
                     return $return;
                 },
             ),
-            'link_to_product' => array(
-                'title' => 'Ссылка на разработанный продукт',
+            'link_to_project' => array(
+                'title' => 'Ссылка на реализованный проект',
                 'type' => 'text',
             ),
             'description_objectives' => array(
