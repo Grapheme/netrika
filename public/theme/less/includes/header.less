@@ -1,0 +1,125 @@
+.main-header {
+	height: 90rem / @hfs;
+	line-height: 90rem / @hfs;
+
+	.logo {
+		display: inline-block;
+		width: 120rem / @hfs;
+		height: 28rem / @hfs;
+		background-image: url(../img/header/logo.png);
+	}
+
+	.main-nav {
+		display: inline-block;
+		float: right;
+
+		ul {
+			display: inline-block;
+			.list-unstyled;
+		
+			li {
+				display: inline-block;
+				margin-left: 45rem / @hfs;
+				line-height: normal;
+
+				a {
+					color: #fff;
+					text-decoration: none;
+					color: #babcbc;
+
+					&:hover {
+						color: @green-link;
+					}
+				}
+
+				&.active a {
+					color: #1dcba4;
+				}
+
+				&.optional {
+					margin: 0;
+					display: none;
+				}
+
+				&.menu-icon {
+					cursor: pointer;
+					width: 35rem / @hfs;
+					text-align: center;
+					
+					span {
+						position: relative;
+						display: inline-block;
+						vertical-align: middle;
+						width: 4px;
+						height: 4px;
+						border-radius: 4px;
+						border: 1px solid #fff;
+						transition: all .2s ease;
+
+						&:before, &:after {
+							content: "";
+							position: absolute;
+							top: -1px;
+							left: -1px;
+							width: 4px;
+							height: 4px;
+							border-radius: 4px;
+							border: 1px solid #fff;
+							transition: inherit;
+						}
+
+						&:before { transform: translateX(-200%); }
+						&:after { transform: translateX(200%); }
+					}
+
+					&.active, &:hover {
+						span {
+							background: #fff;
+							&:before, &:after { background-color: #fff; }
+							&:before { transform: translateX(200%); }
+						&:after { transform: translateX(-200%); }
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.title-block {
+	position: relative;
+	background-size: cover;
+	color: #fff;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0; right: 0; left: 0; bottom: 0;
+		background: #4c5865;
+		z-index: 1;
+		opacity: .7;
+	}
+
+	&.title-main {
+		background-image: url(../img/header/title-main.jpg);
+	}
+
+	.container_12 {
+		position: relative;
+		z-index: 2;
+	}
+
+	.title-content {
+		&.max-pad {
+			padding: 60rem / @hfs 0 100rem / @hfs;
+		}
+
+		h1 {
+			margin: 0;
+		}
+
+		.title-btn {
+			margin-top: 30rem / @hfs;
+		}
+	}
+}

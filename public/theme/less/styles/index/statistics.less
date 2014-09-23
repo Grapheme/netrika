@@ -1,0 +1,52 @@
+.main-stat {
+	padding-top: 10rem / @hfs;
+
+	.stat-desc {
+
+		p {
+			color: #7f8281;
+			font-size: 18em / @hfs;
+			font-weight: 300;
+			line-height: 30rem / @hfs;
+		}
+	}
+
+	.stat-ul {
+		.list-unstyled;
+		margin-top: 90rem / @hfs;
+
+		li {
+			margin-bottom: 30rem / @hfs;
+
+			.title {
+				font-size: 36em / @hfs;
+				font-weight: 300;
+				color: #74ce76;
+
+				&:before {
+					content: "";
+					position: relative;
+					display: inline-block;
+					vertical-align: middle;
+					top: -.05em;
+					width: 10rem / @hfs;
+					height: 10rem / @hfs;
+					border-radius: 10rem / @hfs;
+					margin-right: 20rem / @hfs;
+				}
+			}
+
+			p {
+				margin-top: 5rem / @hfs;
+			}
+		}
+	}
+
+	.type-health {
+		.stat-ul .title {
+			&.normal:before { background: @color-health; }
+			&.light:before { background: lighten(@color-health, @color-light); }
+			&.lighter:before { background: lighten(@color-health, @color-lighter); }
+		}
+	}
+}
