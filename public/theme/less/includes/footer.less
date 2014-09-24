@@ -14,14 +14,37 @@
 	.footer-list {
 		.list-unstyled;
 		margin-bottom: 35rem / @hfs;
+		line-height: 30rem / @hfs;
+		color: #8a8d8e;
 
 		li {
 			a {
-				color: inherit;
-				line-height: 30rem / @hfs;
+				color:  #babcbc;
 				text-decoration: none;
 			}
+
+			.phone-link {
+				color: inherit;
+			}
+
+			.min-line {
+				display: inline-block;
+				width: 80rem / @hfs;
+				height: 1px;
+				background: #3f494c;
+			}
 		}
+	}
+
+	.search-input {
+		background: transparent;
+		outline: 0 none;
+		border: 0 none;
+		border-bottom: 1px solid #3a424b;
+		height: 40rem / @hfs;
+		width: 100%;
+		color: #babcbc;
+		font-weight: 400;
 	}
 
 	.footer-line {

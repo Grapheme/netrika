@@ -1,5 +1,9 @@
 .main-stat {
-	padding-top: 10rem / @hfs;
+	padding: 30rem / @hfs 0 20rem / @hfs;
+
+	h1 {
+		margin-top: 0;
+	}
 
 	.stat-desc {
 
@@ -42,11 +46,48 @@
 		}
 	}
 
-	.type-health {
-		.stat-ul .title {
-			&.normal:before { background: @color-health; }
-			&.light:before { background: lighten(@color-health, @color-light); }
-			&.lighter:before { background: lighten(@color-health, @color-lighter); }
+	.canvas-cirs {
+		height: 360rem / @hfs;
+		margin-top: 90rem / @hfs;
+
+		canvas {
+			position: absolute;
+		}
+	}
+}
+
+.stat-nav {
+	position: relative;
+	height: 170rem / @hfs;
+	background: #f5f5f5;
+
+	.stat-items {
+		.stat-item {
+			position: relative;
+			height: 100%;
+			text-align: center;
+			text-decoration: none;
+			text-transform: uppercase;
+			font-size: 14em / @hfs;
+			color: #454f52;
+			transition: color .1s ease;
+
+			padding-top: 40rem / @hfs;
+
+			&.active {
+				&:before {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 50%;
+					margin-left: -10px;
+					width: 0;
+					height: 0;
+					border-style: solid;
+					border-width: 10px 10px 0 10px;
+					border-color: #fff transparent transparent transparent;
+				}
+			}
 		}
 	}
 }
