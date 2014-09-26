@@ -1,5 +1,9 @@
 .map-container {
-	padding: 40rem / @hfs 0;
+
+	.container_12 {
+		padding: 40rem / @hfs 0;
+		position: relative;
+	}
 
 	.map-block {
 		position: relative;
@@ -34,12 +38,52 @@
 			opacity: .2;
 		}
 
-		&:hover {
+		&:hover, &.active {
 			background: #1dcba4;
 
 			.map-rad {
 				background: #1dcba4;
 			}
+		}
+	}
+
+	.map-desc {
+		position: absolute;
+		box-sizing: border-box;
+		top: 0;
+		right: 0;
+		width: 50%;
+		height: 100%;
+		background: #fff;
+		padding: 40rem / @hfs 30rem / @hfs 40rem / @hfs 60rem / @hfs;
+
+		.desc-icon {
+			margin-right: 20rem / @hfs;
+
+			&:last-child {
+				margin: 0;
+			}
+		}
+
+		.title {
+			text-transform: uppercase;
+			font-size: 20em / @hfs;
+			margin-top: 35rem / @hfs;
+		}
+
+		.map-items {
+			.list-unstyled;
+			margin-top: 35rem / @hfs;
+
+			li {
+				margin-bottom: 10rem / @hfs;
+				color: #7f8281;
+			}
+		}
+
+		.sol-dots {
+			position: absolute;
+			bottom: 40rem / @hfs;
 		}
 	}
 }

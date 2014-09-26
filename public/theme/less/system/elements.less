@@ -10,6 +10,20 @@ h2 {
 	font-weight: 400;
 	font-size: 24em / @hfs;
 	text-transform: uppercase;
+	margin: 20rem / @hfs 0;
+}
+
+h1, h2 {
+	color: #313736;
+}
+
+p {
+	margin-top: 0;
+}
+
+section a {
+	color: @black-link;
+	text-decoration: none;
 }
 
 // CUSTOM ELEMENTS
@@ -28,9 +42,8 @@ h2 {
 	font-weight: 500;
 }
 
-// ICONS
-
 .us-icon {
+	font-family: "elements";
 	display: inline-block;
 	vertical-align: middle;
 	width: 20rem / @hfs;
@@ -60,6 +73,117 @@ h2 {
 .icon-tourism {
 	background-image: url(../img/projects/icons/tourism.png);
 }
-.icon-projects {
-	background-image: url(../img/projects/icons/all.png);
+
+.lit-icon {
+	position: relative;
+	font-family: "elements";
+	font-style: normal;
+	font-size: 11em / @hfs;
+	margin-right: 5rem / @hfs;
+	top: -.01em;
+
+	&.icon-projects:before {
+		content: "\e606";
+	}
+
+	&.icon-download:before {
+		content: "\e805";
+	}
+}
+
+.desc-icon {
+	font-family: 'elements';
+	display: inline-block;
+	width: 30rem / @hfs;
+	height: 30rem / @hfs;
+	color: @green-link;
+	transition: color .2s ease;
+	margin-right: 20rem / @hfs;
+	text-decoration: none;
+	font-size: 30rem / @hfs;
+
+	&:hover {
+		color: @gray-link;
+	}
+
+	&.disable {
+		color: @gray-link;
+	}
+
+	&.prev:before { content: "\e605"; }
+	&.next:before { content: "\e604"; }
+	&.close:before { content: "\e603"; }
+}
+
+.sol-dots {
+	.list-unstyled;
+	margin-left: -3rem / @hfs;
+
+	li {
+		position: relative;
+		display: inline-block;
+		width: 15rem / @hfs;
+		height: 15rem / @hfs;
+		margin-right: 25rem / @hfs;
+		cursor: pointer;
+
+		&:before {
+			content: "";
+			box-sizing: border-box;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-top: -8px / 2;
+			margin-left: -8px / 2;
+			width: 8px;
+			height: 8px;
+			border-radius: 10px;
+			background: #babcbc;
+			border: 1px solid transparent;
+		}
+
+		&:hover {
+			&:before {
+				background: #22cca6 !important;
+			}
+		}
+
+		&.active {
+			&:before {
+				margin-top: -10px / 2;
+				margin-left: -10px / 2;
+				width: 10px;
+				height: 10px;
+				background: transparent !important;
+				border-color: #22cca6;
+			}
+		}
+	}
+}
+
+.bul-ul {
+	.list-unstyled;
+
+	li {
+		position: relative;
+		padding-left: 30rem / @hfs;
+		margin-bottom: 15rem / @hfs;
+
+		&:before {
+			content: "";
+			position: absolute;
+			display: inline-block;
+			left: 0;
+			top: .4em;
+			width: 7rem / @hfs;
+			height: 7rem / @hfs;
+			border-radius: 7rem / @hfs;
+			border-width: 1px;
+			border-style: solid;
+		}
+	}
+}
+
+.comp-ul {
+	.list-unstyled;
 }
