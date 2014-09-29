@@ -53,7 +53,5 @@ $.fn.canvas_draw = function() {
 	
 }
 
-$(document).canvas_draw();
-
 $('.js-hover').jshover('js-circle');
 

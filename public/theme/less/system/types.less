@@ -1,10 +1,10 @@
 .type-class(@color, @icon) {
-	&.stat-item.active, &.stat-item:hover { color: @color !important; }
-	.stat-ul .title { color: @color; }
+	&.stat-item.active, &.stat-item:hover, &:hover .us-icon { color: @color !important; }
+	.stat-ul .title, .icons-ul li:before, .us-icon, .aim:before { color: @color; }
 	.hover-circle, .color-0, .stat-ul .title.normal:before { background: @color; }
 	.color-1, .stat-ul .title.light:before { background: lighten(@color, @color-light); }
 	.color-2, .stat-ul .title.lighter:before { background: lighten(@color, @color-lighter); }
-	.aud-text:before, .bul-ul li:before, .comps-ul li .title:before { border-color: @color; }
+	.aud-text:before, .bul-ul li:before, .comps-ul li .title:before, .aim:before { border-color: @color; }
 	.sol-icon:before { content: @icon; }
 }
 

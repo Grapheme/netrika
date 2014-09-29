@@ -136,3 +136,37 @@
 		}
 	}
 }
+
+.head-nav {
+	margin-top: 10rem / @hfs;
+
+	a {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	a:not(.desc-icon) {
+		color: #fff;
+		margin-left: 10rem / @hfs;
+		transition: color .2s ease;
+
+		&:hover {
+			color: @gray-link;
+		}
+	}
+}
+
+.head-info {
+	margin-top: 20rem / @hfs;
+
+	.head-type {
+		margin-right: 40rem / @hfs;
+		text-transform: uppercase;
+		font-size: 14em / @hfs;
+
+		.us-icon {
+			font-size: 16em / @hfs;
+			margin-right: 10rem / @hfs;
+		}
+	}
+}

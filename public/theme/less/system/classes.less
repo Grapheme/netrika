@@ -26,7 +26,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-.us-section, .gray-section {
+.us-section, .gray-section, .dark-section {
     padding: 40rem / @hfs 0;
 
     h2:first-child {
@@ -35,4 +35,11 @@
 }
 .gray-section {
     background: @normal-gray;
+}
+.dark-section {
+    background: @dark-section;
+
+    h1, h2, .us-desc {
+        color: #fff;
+    }
 }
