@@ -2163,14 +2163,16 @@ section a {
   margin-top: 2.5rem;
 }
 .vacancy-block {
-  position: relative;
   overflow: hidden;
 }
-.vacancy-block:before {
+.vacancy-block .container_12 {
+  position: relative;
+}
+.vacancy-block .container_12:before {
   content: "";
   position: absolute;
-  left: 45rem;
-  top: -7.8125rem;
+  left: 35.625rem;
+  top: -11.25rem;
   width: 65.3125rem;
   height: 14.75rem;
   background: url(../img/svg/netrica-white.svg);
