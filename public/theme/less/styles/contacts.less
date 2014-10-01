@@ -1,0 +1,71 @@
+.contact-ul {
+	.list-unstyled;
+	line-height: 43rem / @hfs;
+}
+
+.contact-link {
+	font-size: 24rem / @hfs;
+}
+
+.contact-block {
+	position: relative;
+
+	&:before {
+		content: "";
+		position: absolute;
+		left: 500rem / @hfs;
+		top: -65rem / @hfs;
+		width: 1045rem / @hfs;
+		height: 236rem / @hfs;
+		z-index: -1;
+		background: url(../img/svg/netrika.svg);
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+
+	.us-desc {
+		margin-bottom: 0;
+	}
+
+	.contact-map {
+		width: 100%;
+		height: 470rem / @hfs;
+		margin-top: 40rem / @hfs;
+	}
+}
+
+.vacancy-block {
+	position: relative;
+	overflow: hidden;
+
+	&:before {
+		content: "";
+		position: absolute;
+		left: 720rem / @hfs;
+		top: -125rem / @hfs;
+		width: 1045rem / @hfs;
+		height: 236rem / @hfs;
+		background: url(../img/svg/netrica-white.svg);
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+}
+
+.vacancy-list {
+	.list-unstyled;
+	margin-top: 40rem / @hfs;
+	margin-bottom: -10rem / @hfs;
+
+	li {
+		display: inline-block;
+		margin: 0 0 10rem / @hfs 190rem / @hfs;
+
+		&:first-child {
+			margin-left: 0;
+		}
+
+		a {
+			font-size: 24em / @hfs;
+		}
+	}
+}

@@ -1,0 +1,60 @@
+.tag-color-class(@color) {
+
+	&:before {
+		border-color: @color;
+	}
+	&.active:before {
+		background: @color;
+	}
+}
+
+.tag-hover(@color) {
+	&:hover { 
+		&:before { background: rgba(red(@color), green(@color), blue(@color), .25); }
+	}
+}
+
+.tags-ul {
+	.list-unstyled;
+
+	li {
+		position: relative;
+		padding-left: 30rem / @hfs;
+
+		&:before {
+			content: "";
+			position: absolute;
+			box-sizing: border-box;
+			left: 0;
+			top: 50%;
+			width: 8rem / @hfs;
+			height: 8rem / @hfs;
+			margin-top: -8rem / 2 / @hfs;
+			border-radius: 8rem / @hfs;
+			border-width: 1px;
+			border-style: solid;
+		}
+
+		&.tag-all {
+			&:before {
+				width: 14rem / @hfs;
+				height: 14rem / @hfs;
+				border: 2px solid @gray-link;
+				border-radius: 2px;
+				margin-top: -14rem / 2 / @hfs;
+			}
+		}
+
+		&.tag-auto { .tag-color-class(#7fe898); }
+		&.tag-stat { .tag-color-class(#ffd75f); }
+		&.tag-event { .tag-color-class(#ff9381); }
+		&.tag-int { .tag-color-class(#9cb9fc); }
+	}
+
+	&.tags-hover {
+		li.tag-auto { .tag-hover(#7fe898); }
+		li.tag-stat { .tag-hover(#ffd75f); }
+		li.tag-event { .tag-hover(#ff9381); }
+		li.tag-int { .tag-hover(#9cb9fc); }
+	}
+}
