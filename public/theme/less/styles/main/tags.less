@@ -9,6 +9,7 @@
 }
 
 .tag-hover(@color) {
+
 	&:hover { 
 		&:before { background: rgba(red(@color), green(@color), blue(@color), .25); }
 	}
@@ -56,5 +57,9 @@
 		li.tag-stat { .tag-hover(#ffd75f); }
 		li.tag-event { .tag-hover(#ff9381); }
 		li.tag-int { .tag-hover(#9cb9fc); }
+
+		li {
+			cursor: pointer;
+		}
 	}
 }

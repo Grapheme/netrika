@@ -1415,6 +1415,9 @@ section a {
 .tags-ul.tags-hover li.tag-int:hover:before {
   background: rgba(156, 185, 252, 0.25);
 }
+.tags-ul.tags-hover li {
+  cursor: pointer;
+}
 .main-stat {
   padding: 1.875rem 0 1.25rem;
 }
