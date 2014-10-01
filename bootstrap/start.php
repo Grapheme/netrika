@@ -18,12 +18,10 @@ $app = new Illuminate\Foundation\Application;
 ########################################################################
 
 $env = $app->detectEnvironment(array(
-	'vkharseev' => array('DNS'),
 	'az' => array('Acer_5742G'),
+	'vkharseev' => array('DNS'),
 	'kd' => array('DobriyMac.local'),
-	'sc' => array('MAC-PC'),
-	'server1.grapheme.ru' => array('www.grapheme.ru'),
-	'server2.grapheme.ru' => array('grapheme'),
+	'at' => array('MacBook-Pro-Tommy.local'),
 ));
 $app->bindInstallPaths(require __DIR__.'/paths.php');
 $framework = $app['path.base'].'/vendor/laravel/framework/src';
