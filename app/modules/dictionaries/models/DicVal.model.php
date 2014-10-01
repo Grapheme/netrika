@@ -46,7 +46,22 @@ class DicVal extends BaseModel {
     }
 
     public function fields() {
-        return $this->hasMany('DicFieldVal', 'dicval_id', 'id')->where('language', Config::get('app.locale'))->orWhere('language', NULL);
+        return $this
+            ->hasMany('DicFieldVal', 'dicval_id', 'id')->where('language', Config::get('app.locale'))->orWhere('language', NULL)
+        ;
+    }
+
+    /**
+     * Need to TEST
+     */
+    public function seo() {
+        return $this->hasOne('Seo', 'unit_id', 'id')->where('module', 'dicval')
+            ->where('language', Config::get('app.locale'))
+            #->where('language', NULL)
+            ;
+    }
+    public function seos() {
+        return $this->hasMany('Seo', 'unit_id', 'id')->where('module', 'dicval');
     }
 
 
@@ -115,7 +130,7 @@ class DicVal extends BaseModel {
         $result = $result->select($tbl_dicfieldval.'.*', $tbl_dicval.'.dic_id')->get();
 
         ## DEBUG
-        $queries = DB::getQueryLog();
+        #$queries = DB::getQueryLog();
         #Helper::smartQuery(end($queries), 1);
         #Helper::ta($result);
         #Helper::smartQueries(1);
@@ -175,10 +190,25 @@ class DicVal extends BaseModel {
 
         }
 
-        #Helper::ta($this);
+        ## Extract SEO
+        if (isset($this->seos)) {
+            foreach ($this->seos as $s => $seo) {
+                $this->seos[$seo->language] = $seo;
+                if ($s != $seo->language || $s === 0)
+                    unset($this->seos[$s]);
+            }
+        }
 
         ## Extract metas
-        ## ...
+        if (isset($this->metas)) {
+            foreach ($this->metas as $m => $meta) {
+                $this->metas[$meta->language] = $meta;
+                if ($m != $meta->language || $m === 0)
+                    unset($this->metas[$m]);
+            }
+        }
+
+        #Helper::ta($this);
 
         ## Extract meta
         ## ...

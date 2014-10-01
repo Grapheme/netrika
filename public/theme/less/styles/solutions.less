@@ -1,0 +1,130 @@
+.solutions {
+	background: #f5f5f5;
+	padding: 40rem / @hfs 0 60rem / @hfs;
+
+	.solution {
+		position: relative;
+		height: 300rem / @hfs;
+		margin-bottom: 40rem / @hfs;
+		background: #fff;
+
+		.solution-left {
+			position: absolute;
+			top: 0; left: 0;
+			display: inline-block;
+			width: 400rem / @hfs;
+			height: 100%;
+			overflow: hidden;
+			background-size: cover;
+			background-position: center center;
+
+			&:before {
+				content: "";
+				position: absolute;
+				z-index: 1;
+				top: 0; left: 0; right: 0; bottom: 0;
+				background: #4c5865;
+				opacity: .9;
+			}
+
+			.solution-hover {
+				position: absolute;
+				z-index: 4;
+				opacity: 0;
+				text-align: center;
+				top: 0; left: 0; right: 0; bottom: 0;
+				line-height: 300rem / @hfs;
+
+				.hover-content {
+					display: inline-block;
+					line-height: 80rem / @hfs;
+					vertical-align: middle;
+
+					a {
+						color: #fff;
+						text-decoration: none;
+						border-color: #fff;
+					}
+				}
+			}
+		}
+
+		.solution-right {
+			position: relative;
+			padding: 30rem / @hfs 30rem / @hfs 30rem / @hfs 420rem / @hfs;
+
+			h2 {
+				margin: 0 0 25rem / @hfs;
+			}
+
+			.sol-comps {
+				.comps-in {
+					display: inline-block;
+					vertical-align: top;
+					width: 100%;
+
+					.comps-ul {
+						li {
+							display: inline-block;
+							vertical-align: top;
+							width: 50%;
+							margin-bottom: 25rem / @hfs;
+						}
+					}
+				}
+			}
+		}
+
+		&:hover {
+			.hover-circle {
+				opacity: .9;
+				transform: scale(5);
+				transition-duration: .5s;
+				transition-delay: 0s, .05s;
+			}
+			.solution-hover {
+				opacity: 1;
+				transition: opacity .25s ease .1s;
+			}
+		}
+	}
+}
+
+.comps-ul {
+	.list-unstyled;
+
+	li {
+		a {
+			display: inline-block;
+			vertical-align: middle;
+			color: #000;
+			font-weight: 500;
+			text-decoration: none;
+			width: 80%;
+		}
+
+		.title {
+			height: 60rem / @hfs;
+
+			&:before {
+				content: "";
+				box-sizing: border-box;
+				display: inline-block;
+				vertical-align: middle;
+				height: 40rem / @hfs;
+				width: 40rem / @hfs;
+				border-width: 2px;
+				border-style: solid;
+				margin-right: 20rem / @hfs;
+			}
+
+			&:after {
+				content: "";
+				display: inline-block;
+				vertical-align: middle;
+				width: 0;
+				height: 100%;
+			}
+		}
+	}
+}

@@ -1,0 +1,57 @@
+.solution-block {
+	.prj-content {
+		position: absolute;
+		z-index: 2;
+		color: #fff;
+		top: 30rem / @hfs;
+		left: 30rem / @hfs;
+		right: 30rem / @hfs;
+		bottom: 30rem / @hfs;
+
+		.title {
+			font-size: 14em / @hfs;
+			font-weight: 500;
+			text-transform: uppercase;
+
+			.us-icon {
+				position: relative;
+				top: -.05em;
+				margin-right: 10rem / @hfs;
+			}
+		}
+
+		.desc {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			font-size: 18em / @hfs;
+			font-weight: 500;
+			line-height: 30rem / @hfs;
+		}
+
+		.text {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			color: #babcbc;
+		}
+	}
+
+	.hover-circle {
+		position: absolute;
+		transform: scale(1);
+		z-index: 3;
+		opacity: 0;
+		top: 50%; left: 50%;
+		width: 180rem / @hfs;
+		height: 180rem / @hfs;
+		margin-left: -180rem / 2 / @hfs;
+		margin-top: -180rem / 2 / @hfs;
+		border-radius: 180rem / @hfs;
+
+		transition-property: transform, opacity;
+		transition-duration: 0s;
+		transition-timing-function: ease;
+		transition-delay: 0s;
+	}
+}

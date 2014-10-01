@@ -1,0 +1,19 @@
+.type-class(@color, @icon) {
+	&.stat-item.active, &.stat-item:hover, &:hover .us-icon { color: @color !important; }
+	.stat-ul .title, .icons-ul li:before, .us-icon, .aim:before { color: @color; }
+	.hover-circle, .color-0, .stat-ul .title.normal:before { background: @color; }
+	.color-1, .stat-ul .title.light:before { background: lighten(@color, @color-light); }
+	.color-2, .stat-ul .title.lighter:before { background: lighten(@color, @color-lighter); }
+	.aud-text:before, .bul-ul li:before, .comps-ul li .title:before, .aim:before { border-color: @color; }
+	.sol-icon:before { content: @icon; }
+}
+
+// [[:||||||||||||||||||||||||||:]] //
+
+.type-health { 			.type-class(@color-health, 		"\e605"); }
+.type-education { 		.type-class(@color-education, 	"\e604"); }
+.type-auto { 			.type-class(@color-auto, 		"\e602"); }
+.type-goverment { 		.type-class(@color-goverment, 	"\e603"); }
+.type-law { 			.type-class(@color-law, 		"\e601"); }
+.type-tourism { 		.type-class(@color-tourism, 	"\e600"); }
+.type-portals { 		.type-class(@color-portals,		"\e606"); }

@@ -1,0 +1,45 @@
+.list-unstyled {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.fl-r {
+	float: right;
+}
+.columns-2 {
+	column-count: 2;
+    column-gap: 40rem / @hfs;
+
+    li {
+        break-inside: avoid-column;
+    }
+}
+.svg-font {
+	speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.us-section, .gray-section, .dark-section {
+    padding: 40rem / @hfs 0;
+
+    h2:first-child {
+        margin-top: 0;
+    }
+}
+.gray-section {
+    background: @normal-gray;
+}
+.dark-section {
+    background: @dark-section;
+
+    h1, h2, .us-desc {
+        color: #fff;
+    }
+}
