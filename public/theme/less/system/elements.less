@@ -11,6 +11,11 @@ h2 {
 	font-size: 24em / @hfs;
 	text-transform: uppercase;
 	margin: 20rem / @hfs 0;
+
+	.h2-desc {
+		color: @color-desc;
+		text-transform: none;
+	}
 }
 
 h1, h2 {
@@ -33,21 +38,52 @@ section a {
 	padding: 0 35em / @hfs;
 	height: 40rem / @hfs;
 	line-height: 40rem / @hfs;
-	color: @green-link;
+	color: @green-link !important;
 	border: 1px solid @green-link;
 	border-radius: 40rem / @hfs;
 	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 12em / @hfs;
 	font-weight: 500;
+	transition: all .2s ease;
+	background: transparent;
+	outline: 0 none;
+
+	&:hover {
+		color: #fff !important;
+		background: @green-link;
+	}
 }
 
 .us-desc {
 	font-size: 18em / @hfs;
-	margin: 30rem / @hfs 0;
 	color: @color-desc;
-	width: 75%;
 	line-height: 35rem / @hfs;
+	width: 75%;
+	margin: 30rem / @hfs 0;
+}
+
+.desc-lh {
+	line-height: 30rem / @hfs;
+}
+
+.bold-desc {
+	.desc-lh;
+	font-size: 18em / @hfs;
+	color: @color-desc;
+	font-weight: 500;
+
+	p {
+		margin-bottom: 40rem / @hfs;
+	}
+
+	&.min-mar p {
+		margin-bottom: 10rem / @hfs;
+	}
+
+	p:last-child {
+		margin: 0;
+	}
 }
 
 .us-icon {
@@ -188,6 +224,7 @@ section a {
 			border-radius: 7rem / @hfs;
 			border-width: 1px;
 			border-style: solid;
+			border-color: @green-link;
 		}
 	}
 }
@@ -242,6 +279,8 @@ section a {
 				font-weight: 500;
 				border-width: 1px;
 				border-style: solid;
+				border-color: @green-link;
+				color: @green-link;
 				margin-bottom: 20rem / @hfs;
 			}
 		}

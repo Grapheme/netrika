@@ -1,0 +1,82 @@
+.about-russian {
+	background: @green-link;
+	color: #fff;
+	font-size: 36em / @hfs;
+	font-weight: 300;
+
+	.grid_12 {
+		position: relative;
+		height: 100rem / @hfs;
+		line-height: 100rem / @hfs;
+
+		&:after {
+			content: "";
+			position: absolute;
+			bottom: -10px;
+			left: 20px;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 10px 10px 0 10px;
+			border-color: @green-link transparent transparent transparent;
+		}
+	}
+}
+
+.benefits {
+	padding: 10rem / @hfs 0;
+
+	.benefit-item {
+		margin-top: 50rem / @hfs;
+		margin-bottom: 50rem / @hfs;
+	}
+
+	.benefit-img {
+		display: inline-block;
+		vertical-align: middle;
+		width: 160rem / @hfs;
+		height: 120rem / @hfs;
+		background-position: left center;
+		background-repeat: no-repeat;
+		background-size: contain;
+	}
+
+	.benefit-text {
+		display: inline-block;
+		vertical-align: middle;
+		width: 200rem / @hfs;
+		font-size: 23em / @hfs;
+		font-weight: 300;
+		color: @color-desc;
+		line-height: 1.25em;
+
+	}
+}
+
+.vacancy-ul {
+	.list-unstyled;
+	margin-top: 40rem / @hfs;
+
+	li {
+		display: inline-block;
+		vertical-align: top;
+		box-sizing: border-box;
+		width: 100% / 4;
+		padding: 0 1px;
+
+		.vacancy-ben {
+			background: #fff;
+			padding: 30rem / @hfs 20rem / @hfs;
+
+			.title {
+				color: @green-link;
+				font-size: 24em / @hfs;
+			}
+
+			.text {
+				margin-top: 10rem / @hfs;
+				font-size: 18em / @hfs;
+			}
+		}
+	}
+}
