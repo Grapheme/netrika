@@ -531,11 +531,11 @@ class AdminDicvalsController extends BaseController {
 
         $return = true;
 
-        if ($dic->view_access === 0)
+        if ((int)$dic->view_access == 0)
             $return = true;
-        elseif ($dic->view_access === 1 && !Allow::superuser())
+        elseif ((int)$dic->view_access == 1 && !Allow::superuser())
             $return = false;
-        elseif ($dic->view_access === 2 && !Allow::action($this->module['group'], 'hidden'))
+        elseif ((int)$dic->view_access == 2 && !Allow::action($this->module['group'], 'hidden'))
             $return = false;
 
         #Helper::dd($return);
