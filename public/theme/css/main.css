@@ -2194,3 +2194,39 @@ section a {
 .vacancy-list li a {
   font-size: 1.5em;
 }
+.error-block {
+  width: 37.5rem;
+  margin: 0 auto;
+  padding: 4.375rem 0 3.125rem;
+  text-align: center;
+}
+.error-block .error-icon {
+  position: relative;
+  display: inline-block;
+  left: 0.4375rem;
+  width: 7.9375rem;
+  height: 10.625rem;
+}
+.error-block.code-404 .error-icon {
+  background-image: url(../img/svg/404.svg);
+}
+.error-block.code-500 .error-icon {
+  background-image: url(../img/svg/500.svg);
+}
+.error-block .error-code {
+  font-size: 7.5em;
+  color: #babcbc;
+  margin-top: 2.5rem;
+  font-weight: 300;
+}
+.error-block .error-text {
+  font-size: 1.5em;
+  margin-top: 1.25rem;
+}
+.error-block .error-tomain {
+  margin-top: 0.625rem;
+}
+.error-block .error-tomain a {
+  font-size: 1.5em;
+  color: #313736;
+}
