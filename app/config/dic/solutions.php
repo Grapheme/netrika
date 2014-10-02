@@ -156,5 +156,5 @@ return array(
         'before_destroy' => function ($dic, $dicval) {},
     ),
 
-    'seo' => false,
+    'seo' => 1,
 );
