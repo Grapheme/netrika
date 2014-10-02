@@ -9,6 +9,9 @@
 .text-center {
   text-align: center;
 }
+.text-right {
+  text-align: right;
+}
 .columns-2 {
   -webkit-column-count: 2;
      -moz-column-count: 2;
@@ -64,7 +67,7 @@
   padding: 0;
 }
 .non-margin {
-  margin: 0;
+  margin: 0 !important;
 }
 /*
 	Variable Grid System.
@@ -1480,9 +1483,12 @@ section a {
   text-transform: uppercase;
   font-size: 0.875em;
   color: #454f52;
+  padding-top: 2.5rem;
   -webkit-transition: color .1s ease;
           transition: color .1s ease;
-  padding-top: 2.5rem;
+}
+.stat-nav .stat-items .stat-item:first-child {
+  margin-left: 0;
 }
 .stat-nav .stat-items .stat-item.active:before {
   content: "";
