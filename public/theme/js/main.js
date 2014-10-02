@@ -1,25 +1,79 @@
 //Навигация по выбору направлений в блоке статистики
 $.fn.indexStatNav = function(block_class, item_class) {
 	var parent = $(this),
-		slider = $(this).find('.js-slider-parent'),
+		slider_block = $(this).find('.js-slider-parent'),
 		block = $(this).find(block_class),
 		item = $(this).find(item_class),
-		left_arrow = parent.find('.stat-control .prev'),
-		right_arrow = parent.find('.stat-control .next'),
-		new_width = 0;
+		left_arrow = parent.find('.stat-control .js-prev'),
+		right_arrow = parent.find('.stat-control .js-next'),
+		new_width = 0,
+		left_pos = 0,
+		min_left = 0,
+		max_left = item.last().outerWidth(true) * (5 - item.length);
 
 	item.each(function(){
 		new_width += $(this).outerWidth(true);
 	});
 
-	function arrowDisable(arrow) {
-		arrow.addClass('disable');
+	var arrow = {
+		disable: function(arrow) {
+			arrow.addClass('disable');
+		},
+		enable: function(arrow) {
+			arrow.removeClass('disable');
+		}
 	}
 
+	var slider = {
+		go: function(direction) {
+			var step = item.last().outerWidth(true),
+				ifLeft = (direction == '<'),
+				ifRight =  (direction == '>');
+
+			if( ifRight ) {
+
+				step = step * (-1);
+				if(left_pos <= max_left) {
+					return;
+				}
+				if(left_pos + step <= max_left) {
+					arrow.disable(right_arrow);
+				}
+				arrow.enable(left_arrow);
+			}
+
+			if( ifLeft ) {
+
+				if(left_pos >= min_left) {
+					return;
+				}
+				if(left_pos + step >= min_left) {
+					arrow.disable(left_arrow);
+				}
+				arrow.enable(right_arrow);
+			}
+
+			left_pos = left_pos + step;
+			block.css('left', left_pos);
+		}
+	}
+
+	right_arrow.on('click', function(){
+		slider.go('>');
+		return false;
+	});
+	left_arrow.on('click', function(){
+		slider.go('<');
+		return false;
+	});
+
 	function init() {
-		slider.css('overflow', 'hidden');
-		block.css('width', new_width);
-		arrowDisable(left_arrow);
+		slider_block.css('overflow', 'hidden');
+		block.css({
+			'width': new_width,
+			'left': 0
+		});
+		arrow.disable(left_arrow);
 	}
 
 	init();
