@@ -81,6 +81,48 @@ $.fn.indexStatNav = function(block_class, item_class) {
 
 $('.stat-nav').indexStatNav('.stat-items', '.stat-item');
 
+$.fn.statTabs = function(slider_class) {
+	var parent = $(this),
+		slider = $(slider_class),
+		tab_link = slider.find('.js-tab-link');
+
+	tab_link.on('click', function(){
+		go($(this).attr('data-type'));
+		return false;
+	});
+
+	function go(data_type) {
+		slider.find('.js-tab-link[data-type="' + data_type + '"]')
+			.addClass('active')
+			.siblings().removeClass('active');
+
+		parent.find('.js-stat-tab[data-type="' + data_type + '"]')
+			.show()
+			.siblings().hide();
+
+		removeParentClasses();
+		parent.addClass('type-' + data_type);
+
+	}
+
+	function removeParentClasses() {
+		var classList = parent.attr('class').split(/\s+/);
+		$.each( classList, function(index, item){
+		    if(item.slice(0, 5) == 'type-') {
+		    	parent.removeClass(item);
+		    }
+		});
+	}
+
+	function init() {
+		go(tab_link.first().attr('data-type'));
+	}
+
+	init();
+}
+
+$('.js-stat-parent').statTabs('.js-slider-parent');
+
 $.fn.jshover = function(circ) {
 	var element = $(this);
 	var circle = $(this).find('.' + circ);

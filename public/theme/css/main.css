@@ -1480,6 +1480,7 @@ section a {
   position: relative;
   -webkit-transition: left .5s ease;
           transition: left .5s ease;
+  height: 100%;
 }
 .stat-nav .stat-items .stat-item {
   position: relative;
