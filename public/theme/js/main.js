@@ -1,3 +1,32 @@
+//Навигация по выбору направлений в блоке статистики
+$.fn.indexStatNav = function(block_class, item_class) {
+	var parent = $(this),
+		slider = $(this).find('.js-slider-parent'),
+		block = $(this).find(block_class),
+		item = $(this).find(item_class),
+		left_arrow = parent.find('.stat-control .prev'),
+		right_arrow = parent.find('.stat-control .next'),
+		new_width = 0;
+
+	item.each(function(){
+		new_width += $(this).outerWidth(true);
+	});
+
+	function arrowDisable(arrow) {
+		arrow.addClass('disable');
+	}
+
+	function init() {
+		slider.css('overflow', 'hidden');
+		block.css('width', new_width);
+		arrowDisable(left_arrow);
+	}
+
+	init();
+}
+
+$('.stat-nav').indexStatNav('.stat-items', '.stat-item');
+
 $.fn.jshover = function(circ) {
 	var element = $(this);
 	var circle = $(this).find('.' + circ);
