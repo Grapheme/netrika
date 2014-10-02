@@ -557,6 +557,7 @@ section a {
 }
 .desc-icon.disable {
   color: #babcbc;
+  cursor: default;
 }
 .desc-icon.prev:before {
   content: "\e605";
@@ -1474,6 +1475,11 @@ section a {
 }
 .stat-nav .stat-control {
   line-height: 10.625rem;
+}
+.stat-nav .stat-items {
+  position: relative;
+  -webkit-transition: left .5s ease;
+          transition: left .5s ease;
 }
 .stat-nav .stat-items .stat-item {
   position: relative;
