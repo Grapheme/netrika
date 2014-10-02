@@ -30,10 +30,10 @@
 					&:hover {
 						color: @green-link;
 					}
-				}
 
-				&.active a {
-					color: #1dcba4;
+					&.active {
+						color: #1dcba4;
+					}
 				}
 
 				&.optional {
@@ -149,7 +149,15 @@
 		color: #fff;
 		margin-left: 10rem / @hfs;
 		transition: color .2s ease;
+	}
 
+	&.nav-dark {
+		a:not(.desc-icon) {
+			color: @black-link;
+		}
+	}
+
+	a:not(.desc-icon) {
 		&:hover {
 			color: @gray-link;
 		}
@@ -158,15 +166,60 @@
 
 .head-info {
 	margin-top: 20rem / @hfs;
+	font-size: 14em / @hfs;
 
 	.head-type {
 		margin-right: 40rem / @hfs;
-		text-transform: uppercase;
-		font-size: 14em / @hfs;
+
+		span {
+			text-transform: uppercase;
+		}
 
 		.us-icon {
-			font-size: 16em / @hfs;
-			margin-right: 10rem / @hfs;
+			margin-right: 5rem / @hfs;
+			font-size: 1.2em;
+		}
+	}
+
+	a {
+		color: #fff;
+	}
+}
+
+.head-form {
+	margin-top: 25rem / @hfs;
+
+	.head-input {
+		margin-top: 10rem / @hfs;
+		height: 50rem / @hfs;
+		width: 100%;
+		background: transparent;
+		outline: 0 none;
+		border: 0 none;
+		border-bottom: 1px solid rgba(255, 255, 255, .5);
+		font-weight: 300;
+		color: #fff;
+
+		&::-webkit-input-placeholder { color:#fff; }
+		&:-moz-placeholder { color: #fff; }
+	}
+}
+
+.head-desc {
+	color: @gray-link;
+}
+
+.head-top-info {
+	margin-bottom: 30rem / @hfs;
+
+	.tags-ul {
+		display: inline-block;
+		margin-left: 40rem / @hfs;
+
+		li {
+			display: inline-block;
+			margin-left: 40rem / @hfs;
+			color: @gray-link;
 		}
 	}
 }

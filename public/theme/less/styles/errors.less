@@ -1,0 +1,43 @@
+.error-block {
+	width: 600rem / @hfs;
+	margin: 0 auto;
+	padding: 70rem / @hfs 0 50rem / @hfs;
+	text-align: center;
+
+	.error-icon {
+		position: relative;
+		display: inline-block;
+		left: 7rem / @hfs;
+		width: 127rem / @hfs;
+		height: 170rem / @hfs;
+	}
+
+	&.code-404 .error-icon {
+		background-image: url(../img/svg/404.svg);
+	}
+
+	&.code-500 .error-icon {
+		background-image: url(../img/svg/500.svg);
+	}
+
+	.error-code {
+		font-size: 120em / @hfs;
+		color: @gray-link;
+		margin-top: 40rem / @hfs;
+		font-weight: 300;
+	}
+
+	.error-text {
+		font-size: 24em / @hfs;
+		margin-top: 20rem / @hfs;
+	}
+
+	.error-tomain {
+		margin-top: 10rem / @hfs;
+
+		a {
+			font-size: 24em / @hfs;
+			color: @black-link;
+		}
+	}
+}

@@ -1,0 +1,149 @@
+.news-search {
+	.tags-ul {
+		margin: 20rem / @hfs 0;
+
+		li {
+			margin-bottom: 10rem / @hfs;
+		}
+	}
+
+	.search-date {
+		margin-top: 20rem / @hfs;
+
+		input {
+			width: 90rem / @hfs;
+			background: transparent;
+			outline: 0 none;
+			border: 0 none;
+			border-bottom: 1px solid #dcdddd;
+		}
+	}
+}
+
+.news-photo {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	width: 100%;
+	height: 270rem / @hfs;
+	background-size: cover;
+	background-position: center;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0; left: 0; right: 0; bottom: 0;
+		background: #4c5864;
+		opacity: .6;
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-style: solid;
+	}
+
+	.news-date {
+		position: absolute;
+		display: inline-block;
+		bottom: 20rem / @hfs;
+		left: 25rem / @hfs;
+		color: #fff;
+	}
+}
+
+.news-first, .news-item {
+
+	.tags-ul {
+		line-height: 30rem / @hfs;
+
+		li {
+			display: inline-block;
+			margin-right: 30rem / @hfs;
+		}
+	}
+}
+
+.news-date {
+	font-weight: 300;
+
+	.day {
+		font-size: 36em / @hfs;
+	}
+}
+
+.news-first {
+	.news-photo {
+		&:after {
+			right: 0;
+			top: 35rem / @hfs;
+			border-width: 10px 10px 10px 0;
+			border-color: transparent #fff transparent transparent;
+		}
+	}
+
+	.title {
+		margin-top: 40rem / @hfs;
+		font-size: 24em / @hfs;
+		color: @black-link;
+	}
+
+	.tags-ul {
+		padding: 20rem / @hfs 0 20rem / @hfs;
+	}
+}
+
+.news-item {
+	background: #fff;
+	margin-bottom: 40rem / @hfs;
+
+	.news-photo {
+		&:after {
+			bottom: 0;
+			left: 25rem / @hfs;
+			border-width: 0 10px 10px 10px;
+			border-color: transparent transparent #fff transparent;
+		}
+	}
+	.news-preview {
+		padding: 30rem / @hfs 30rem / @hfs 0 30rem / @hfs;
+		margin-bottom: 30rem / @hfs;
+
+		.title {
+			font-size: 18em / @hfs;
+			font-weight: 600;
+			color: @black-link;
+			line-height: 30rem / @hfs;
+		}
+
+		.news-date {
+			display: block;
+			color: @color-desc;
+			margin-bottom: 20rem / @hfs;
+		}
+	}
+
+	.tags-ul {
+		margin-top: -10rem / @hfs;
+		padding: 0 0 25rem / @hfs 30rem / @hfs;
+	}
+}
+
+.news-content {
+	.news-text {
+		margin-top: 40rem / @hfs;
+		color: @color-desc;
+
+		.head-nav {
+			margin-top: 40rem / @hfs;
+		}
+	}
+
+	.news-desc {
+		color: @color-desc;
+		height: 70rem / @hfs;
+		margin: 15rem / @hfs 0 30rem / @hfs;
+	}
+}
