@@ -951,9 +951,10 @@ section a {
 }
 .main-header .logo {
   display: inline-block;
-  width: 7.5rem;
+  width: 7.8125rem;
   height: 1.75rem;
-  background-image: url(../img/header/logo.png);
+  background-image: url(../img/header/logo.svg);
+  background-repeat: no-repeat;
 }
 .main-header .main-nav {
   display: inline-block;
@@ -968,22 +969,50 @@ section a {
 .main-header .main-nav ul li {
   display: inline-block;
   margin-left: 2.8125rem;
+  font-size: 0.875em;
   line-height: normal;
 }
 .main-header .main-nav ul li a {
-  color: #fff;
   text-decoration: none;
   color: #babcbc;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
 }
-.main-header .main-nav ul li a:hover {
-  color: #1dcba4;
-}
+.main-header .main-nav ul li a:hover,
 .main-header .main-nav ul li a.active {
   color: #1dcba4;
 }
+.main-header .main-nav ul li.js-main-links.animate {
+  -webkit-transition: all .5s ease;
+          transition: all .5s ease;
+}
+.main-header .main-nav ul li.js-main-links.animate.active {
+  -webkit-transition: all .5s ease .25s;
+          transition: all .5s ease .25s;
+}
 .main-header .main-nav ul li.optional {
+  position: relative;
   margin: 0;
-  display: none;
+  z-index: -1;
+  opacity: 0;
+}
+.main-header .main-nav ul li.optional a {
+  color: #1dcba4;
+}
+.main-header .main-nav ul li.optional a:hover {
+  color: #babcbc;
+}
+.main-header .main-nav ul li.optional.animate {
+  -webkit-transition: all .5s ease 0s;
+          transition: all .5s ease 0s;
+}
+.main-header .main-nav ul li.optional.animate.active {
+  -webkit-transition: all .5s ease .35s;
+          transition: all .5s ease .35s;
+}
+.main-header .main-nav ul li.optional.active {
+  opacity: 1;
+  z-index: 1;
 }
 .main-header .main-nav ul li.menu-icon {
   cursor: pointer;
@@ -1015,36 +1044,52 @@ section a {
           transition: inherit;
 }
 .main-header .main-nav ul li.menu-icon span:before {
-  -webkit-transform: translateX(-200%);
-      -ms-transform: translateX(-200%);
-          transform: translateX(-200%);
+  -webkit-transform: translateX(-150%);
+      -ms-transform: translateX(-150%);
+          transform: translateX(-150%);
 }
 .main-header .main-nav ul li.menu-icon span:after {
-  -webkit-transform: translateX(200%);
-      -ms-transform: translateX(200%);
-          transform: translateX(200%);
+  -webkit-transform: translateX(150%);
+      -ms-transform: translateX(150%);
+          transform: translateX(150%);
 }
-.main-header .main-nav ul li.menu-icon.active span,
 .main-header .main-nav ul li.menu-icon:hover span {
   background: #fff;
+  border-color: #fff;
 }
-.main-header .main-nav ul li.menu-icon.active span:before,
 .main-header .main-nav ul li.menu-icon:hover span:before,
-.main-header .main-nav ul li.menu-icon.active span:after,
 .main-header .main-nav ul li.menu-icon:hover span:after {
-  background-color: #fff;
+  background: #fff;
+  border-color: #fff;
+}
+.main-header .main-nav ul li.menu-icon:hover span:before {
+  -webkit-transform: translateX(150%);
+      -ms-transform: translateX(150%);
+          transform: translateX(150%);
+}
+.main-header .main-nav ul li.menu-icon:hover span:after {
+  -webkit-transform: translateX(-150%);
+      -ms-transform: translateX(-150%);
+          transform: translateX(-150%);
+}
+.main-header .main-nav ul li.menu-icon.active span {
+  background: #1dcba4;
+  border-color: #1dcba4;
 }
 .main-header .main-nav ul li.menu-icon.active span:before,
-.main-header .main-nav ul li.menu-icon:hover span:before {
-  -webkit-transform: translateX(200%);
-      -ms-transform: translateX(200%);
-          transform: translateX(200%);
+.main-header .main-nav ul li.menu-icon.active span:after {
+  background-color: #1dcba4;
+  border-color: #1dcba4;
 }
-.main-header .main-nav ul li.menu-icon.active span:after,
-.main-header .main-nav ul li.menu-icon:hover span:after {
-  -webkit-transform: translateX(-200%);
-      -ms-transform: translateX(-200%);
-          transform: translateX(-200%);
+.main-header .main-nav ul li.menu-icon.active span:before {
+  -webkit-transform: translateX(150%);
+      -ms-transform: translateX(150%);
+          transform: translateX(150%);
+}
+.main-header .main-nav ul li.menu-icon.active span:after {
+  -webkit-transform: translateX(-150%);
+      -ms-transform: translateX(-150%);
+          transform: translateX(-150%);
 }
 .title-block {
   position: relative;
@@ -1423,7 +1468,7 @@ section a {
   cursor: pointer;
 }
 .main-stat {
-  padding: 1.875rem 0 1.25rem;
+  padding: 2.5rem 0 2.5rem;
 }
 .main-stat h1 {
   margin-top: 0;
