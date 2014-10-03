@@ -65,6 +65,10 @@
 	}
 
 	.stat-items {
+		position: relative;
+		transition: left .5s ease;
+		height: 100%;
+
 		.stat-item {
 			position: relative;
 			height: 100%;
@@ -73,9 +77,12 @@
 			text-transform: uppercase;
 			font-size: 14em / @hfs;
 			color: #454f52;
+			padding-top: 40rem / @hfs;
 			transition: color .1s ease;
 
-			padding-top: 40rem / @hfs;
+			&:first-child {
+				margin-left: 0;
+			}
 
 			&.active {
 				&:before {

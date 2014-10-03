@@ -71,13 +71,22 @@
         </div>
 
         <section class="main-stat">
-            <div class="container_12 type-health">
+            <div class="container_12 js-stat-parent">
                 <div class="grid_4 stat-desc">
-                    <h1>N3. Здравоохранение</h1>
-                    <p>
-                        Комплексная интегрированная платформа N3.Здравоохранение предназначена для создания, модернизации и/или преобразования системы управления здравоохранением региона, соответствующей всем современным требованиям отрасли. 
-                        Система находится в промышленной эксплуатации более двух лет. Интеграционная платформа от компании «Нетрика» - оптимальное решение, которое позволит региону привести все данные в единый вид при взаимодействии различных медицинских информационных систем регионального и федерального уровней.
-                    </p>
+                    <div class="js-stat-tab" data-type="health">    
+                        <h1 class="title-link"><a href="#">N3. Здравоохранение</a></h1>
+                        <p>
+                            Комплексная интегрированная платформа N3.Здравоохранение предназначена для создания, модернизации и/или преобразования системы управления здравоохранением региона, соответствующей всем современным требованиям отрасли. 
+                            Система находится в промышленной эксплуатации более двух лет. Интеграционная платформа от компании «Нетрика» - оптимальное решение, которое позволит региону привести все данные в единый вид при взаимодействии различных медицинских информационных систем регионального и федерального уровней.
+                        </p>
+                    </div>
+                    <div class="js-stat-tab" data-type="education">    
+                        <h1 class="title-link"><a href="#">N2. Образование</a></h1>
+                        <p>
+                            Комплексная интегрированная платформа N3.Здравоохранение предназначена для создания, модернизации и/или преобразования системы управления здравоохранением региона, соответствующей всем современным требованиям отрасли. 
+                            Система находится в промышленной эксплуатации более двух лет. Интеграционная платформа от компании «Нетрика» - оптимальное решение, которое позволит региону привести все данные в единый вид при взаимодействии различных медицинских информационных систем регионального и федерального уровней.
+                        </p>
+                    </div>
                 </div>
                 <div class="grid_4 canvas-cirs">
                     <canvas id="canvas-cir-0" width="360" height="360"></canvas>
@@ -88,7 +97,7 @@
                     <i class="color-2"></i>
                 </div>
                 <div class="grid_4">
-                    <ul class="stat-ul">
+                    <ul class="stat-ul js-stat-tab" data-type="health">
                         <li>
                             <div class="title normal">62%</div>
                             <p>
@@ -110,6 +119,29 @@
                                 в медецинских учереждениях
                             </p>
                     </ul>
+
+                    <ul class="stat-ul js-stat-tab" data-type="education">
+                        <li>
+                            <div class="title normal">55%</div>
+                            <p>
+                                экономии времени на ведении отчетности 
+                                в медецинских учереждениях
+                            </p>
+
+                        <li>
+                            <div class="title light">32%</div>
+                            <p>
+                                экономии времени на ведении отчетности 
+                                в медецинских учереждениях
+                            </p>
+
+                        <li>
+                            <div class="title lighter">11%</div>
+                            <p>
+                                экономии времени на ведении отчетности 
+                                в медецинских учереждениях
+                            </p>
+                    </ul>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -117,38 +149,38 @@
         <section class="stat-nav">
             <div class="container_12">
                 <div class="grid_1 stat-control">
-                    <a href="#" class="desc-icon prev"></a>
+                    <a href="#" class="desc-icon prev js-prev"></a>
                 </div>
-                <div class="grid_10">
+                <div class="grid_10 js-slider-parent">
                     <div class="stat-items">
-                        <a href="#" class="grid_2 stat-item active type-health">
+                        <a href="#" class="grid_2 stat-item js-tab-link active type-health" data-type="health">
                             <i class="sol-icon"></i><br>
                             <span>Здравоохранение</span>
                         </a>
-                        <a href="#" class="grid_2 stat-item type-education">
+                        <a href="#" class="grid_2 stat-item js-tab-link type-education" data-type="education">
                             <i class="sol-icon"></i><br>
                             <span>Образование</span>
                         </a>
-                        <a href="#" class="grid_2 stat-item type-goverment">
+                        <a href="#" class="grid_2 stat-item js-tab-link type-goverment" data-type="goverment">
                             <i class="sol-icon"></i><br>
                             <span>Открытое правительство</span>
                         </a>
-                        <a href="#" class="grid_2 stat-item type-tourism">
+                        <a href="#" class="grid_2 stat-item js-tab-link type-tourism" data-type="tourism">
                             <i class="sol-icon"></i><br>
                             <span>Туризм</span>
                         </a>
-                        <!-- <a href="#" class="grid_2 stat-item type-law">
+                        <a href="#" class="grid_2 stat-item js-tab-link type-law" data-type="law">
                             <i class="sol-icon"></i><br>
                             <span>Суды</span>
                         </a>
-                        <a href="#" class="grid_2 stat-item type-portals">
+                        <a href="#" class="grid_2 stat-item js-tab-link type-portals" data-type="portals">
                             <i class="sol-icon"></i><br>
                             <span>Порталы</span>
-                        </a> -->
+                        </a>
                     </div>
                 </div>
-                <div class="grid_1 stat-control">
-                    <a href="#" class="desc-icon next"></a>
+                <div class="grid_1 stat-control text-right">
+                    <a href="#" class="desc-icon next js-next non-margin"></a>
                 </div>
             </div>
         </section>
