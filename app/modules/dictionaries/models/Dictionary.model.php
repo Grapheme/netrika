@@ -173,7 +173,6 @@ class Dictionary extends BaseModel {
             }
         }
 
-
         #Helper::tad($data);
 
         return is_object($data) ? $data : self::firstOrNew(array('id' => 0));

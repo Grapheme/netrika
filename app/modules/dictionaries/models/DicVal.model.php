@@ -26,7 +26,7 @@ class DicVal extends BaseModel {
     #}
 
     public function dic() {
-        return $this->belongsTo('Dictionary', 'dic_id')->orderBy('name');
+        return $this->belongsTo('Dictionary', 'dic_id');
     }
 
     public function metas() {
