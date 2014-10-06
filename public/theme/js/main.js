@@ -1,3 +1,105 @@
+//Карта
+$.fn.smart_map = function(map_array) {
+	var parent = $(this),
+		map_block = parent.find('.js-map-block'),
+		map_desc = parent.find('.js-map-desc'),
+		active_id = false;
+
+	$(document).on('click', '.js-map-dot', function(){
+		var id = $(this).attr('data-id');
+		openDesc(id);
+
+		return false;
+	});
+
+	$(document).on('click', '.js-desc-close', function(){
+		closeDesc();
+		return false;
+	});
+
+	$(document).on('click', '.js-map-control', function(){
+		goDesc($(this).attr('data-direction'));
+		return false;
+	});
+
+	function goDesc(d) {
+		var dir;
+		if(d == '<') {
+			dir = -1;
+		} else {
+			dir = 1;
+		}
+
+		var new_id = active_id + dir;
+
+		if(new_id == -1) {
+			new_id = map_array.length - 1;
+		}
+		if(new_id == map_array.length) {
+			new_id = 0;
+		}
+
+		openDesc(new_id);
+	}
+
+	function openDesc(id) {
+		var id_array = map_array[id];
+		var items = id_array.items;
+		var city = id_array.name;
+		var posX = id_array.posX;
+		var posY = id_array.posY;
+
+		var items_str = '';
+		$.each(items, function(index, value){
+			items_str += '<li>' + value;
+		});
+		map_desc.find('.js-desc-title').text(city);
+		map_desc.find('.js-desc-items').html(items_str);
+
+		var map_block_x = map_block.width()/4 - posX;
+		var map_block_y = map_block.height()/2 - posY;
+		var transform_str = transform('translateX(' + map_block_x + 'px) translateY(' + map_block_y + 'px)');
+
+		map_block.attr('style', transform_str);
+
+		$('.js-map-dot[data-id=' + id + ']').addClass('active')
+			.siblings().removeClass('active');
+
+		map_desc.show();
+		active_id = parseInt(id);
+	}
+
+	function closeDesc() {
+		map_block.attr('style', transform('translateX(0px) translateY(0px)'));
+		$('.js-map-dot').removeClass('active');
+		map_desc.hide();
+	}
+
+	function init() {
+		var map_html = '';
+
+		$.each(map_array, function(index, value){
+			var rad_width = value.radius * 11;
+			var style_str = 	'margin-top: -' + rad_width/2 + 'px; '+
+								'margin-left: -' + rad_width/2 + 'px; '+
+								'width: ' + rad_width + 'px; '+
+								'height: ' + rad_width + 'px; '+
+								'border-radius: ' + rad_width + 'px; ';
+
+			var str = 	'<a href="#" class="map-dot js-map-dot" style="top: ' + value.posY + 'px; left: ' + value.posX + 'px;" data-id="' + index + '">'+
+	                        '<i class="map-rad" style="' + style_str + '"></i>'+
+	                    '</a>';
+
+	  		map_html += str;
+		});
+
+		map_block.html(map_html);
+		map_desc.hide();
+	}
+
+	init();
+}
+
 //Дополнительное меню в хидере
 $.fn.header_nav = function() {
 	var parent = $(this),
@@ -7,18 +109,6 @@ $.fn.header_nav = function() {
 		button = $('.js-menu-open');
 
 	var transform_str = '';
-
-	function transform(transform_value) {
-		var prefixes = ['-webkit-', '-ms-', ''];
-		var str = '';
-
-		$.each(prefixes, function(index, value){
-				var new_str = value + 'transform: ' + transform_value + '; ';
-				str += new_str;
-		});
-
-		return str;
-	}
 
 	function setTransform() {
 		main_links.attr('style', transform_str).addClass('active');
@@ -287,4 +377,16 @@ $.fn.jshover = function(circ) {
 }
 
 $('.js-hover').jshover('js-circle');
+
+function transform(transform_value) {
+	var prefixes = ['-webkit-', '-ms-', ''];
+	var str = '';
+
+	$.each(prefixes, function(index, value){
+			var new_str = value + 'transform: ' + transform_value + '; ';
+			str += new_str;
+	});
+
+	return str;
+}
 
