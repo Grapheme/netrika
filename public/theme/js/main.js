@@ -347,8 +347,6 @@ $.fn.statTabs = function(slider_class) {
 	$(window).on('load', init);
 }
 
-$('.js-stat-parent').statTabs('.js-slider-parent');
-
 $.fn.jshover = function(circ) {
 	var element = $(this);
 	var circle = $(this).find('.' + circ);
