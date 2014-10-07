@@ -1,3 +1,198 @@
+$.fn.news_module = function(news_array, tags_object) {
+	var first_news = {},
+		other_news = [];
+
+	var step = 0;
+
+	var news_html = {
+		getFirst: function(obj) {
+
+			var out_obj = this.objOut(obj);
+			var str = '<div class="grid_4 alpha">'+
+                        '<a href="' + obj.href + '" class="news-photo" style="background-image: url(' + obj.image + ');">'+
+                            '<span class="news-date"><span class="day">' + out_obj.day + '</span> / ' + out_obj.month + ' / ' + out_obj.year + '</span>'+
+                        '</a>'+
+                    '</div>'+
+                    '<div class="grid_4 omega">'+
+                        '<a href="' + obj.href + '" class="title">' + obj.title + '</a>'+
+                        '<ul class="tags-ul">' + out_obj.tag_list + '</ul>'+
+                    '</div>';
+
+            return str;
+		},
+
+		fillFirst: function(obj) {
+			var str = this.getFirst(obj);
+			$('.js-news-first').html(str);
+		},
+
+		getOther: function(obj) {
+
+			var out_obj = this.objOut(obj);
+			var date_str = '<span class="news-date"><span class="day">' + out_obj.day + '</span> / ' + out_obj.month + ' / ' + out_obj.year + '</span>';
+			var img_str = '<a href="' + obj.href + '" class="news-photo" style="background-image: url(' + obj.image + ');">';
+
+			var date_without_image = '';
+			var date_with_image = '';
+
+			if(!obj.image) {
+				img_str = '';
+				date_without_image = date_str;
+			} else {
+				date_with_image = date_str;
+			}
+
+			var str = '<div class="news-item">'+
+                        	img_str +
+                            date_with_image +
+                        '</a>'+
+                        '<div class="news-preview">'+
+                        	date_without_image +
+                            '<a href="news-one.html" class="title">' + obj.title + '</a>'+
+                        '</div>'+
+                        '<ul class="tags-ul">' + out_obj.tag_list + '</ul>'+
+                    '</div>';
+
+           	return str;
+		},
+
+		getAllOthers: function(allObj) {
+			var parent = this;
+			var grids = ['', '', ''];
+			$.each(allObj, function(index, value){
+				grids[step] += parent.getOther(value);
+				step++;
+				if(step == 3) step = 0;
+			});
+
+			return grids;
+		},
+
+		fillGrids: function(obj) {
+			var toGrids = this.getAllOthers(obj);
+			var i = 0;
+			for(i; i < 3; i++) {
+				$('.js-news-grid').eq(i).html(toGrids[i]);
+			}
+		},
+
+		objOut: function(obj) {
+			var objDate = new Date(obj.date);
+
+			var day = objDate.getDay();
+			if(('' + day).length == 1) { day = '0' + day; }
+
+			var month = objDate.getMonth();
+			if(('' + month).length == 1) { month = '0' + month; }
+
+			var year = objDate.getFullYear();
+
+			var tag_list = '';
+			$.each(obj.tags, function(index, value){
+				tag_list += '<li class="tag-' + value + '">' + tags_object[value];
+			});
+
+			return {
+				day: day,
+				month: month,
+				year: year,
+				tag_list: tag_list
+			}
+		}
+	}
+
+	function init() {
+		setNews({
+			tags: [], 
+			date: ['2013-09-01', '2015-10-29']
+		});
+	}
+
+	function getNews(settings) {
+		var ready_array = [];
+
+		$.each(news_array, function(index, value){
+			var news_date = value.date.getTime();
+			var date = {
+				min: (new Date(settings.date[0])).getTime(),
+				max: (new Date(settings.date[1])).getTime()
+			}
+
+			if(news_date > date.min && news_date < date.max) {
+				var toArray = true;
+				$.each(settings.tags, function(tag_index, tag){
+					if(!inArray(tag, value.tags)) {
+						toArray = false;
+					}
+				});
+				
+				if(toArray) {
+					ready_array.push(value);
+				}
+			}
+		});
+
+		return ready_array;
+	}
+
+	function sortNews(settings) {
+		var noSortArray = getNews(settings);
+
+		first_news = (noSortArray.splice(0, 1))[0];
+		other_news = noSortArray;
+	}
+
+	function setNews(settings) {
+		sortNews(settings);
+		var first_html = news_html.getFirst(first_news);
+
+		news_html.fillFirst(first_news);
+		news_html.fillGrids(other_news);
+	}
+
+	init();
+}
+
+$.fn.simple_filter = function(block_parent, default_filter) {
+	var parent = $(this),
+		blocks = $(block_parent).find('[data-filter]'),
+		links = '.js-filters [data-filter]';
+
+	$(document).on('click', '.js-filters [data-filter]', function(){
+		var filter = $(this).attr('data-filter');
+		go(filter);
+
+		return false;
+	});
+
+	function init() {
+		go(default_filter);
+
+		$(links).each(function(){
+			var type = $(this).attr('data-filter');
+			var amount = $(block_parent).find('[data-filter="' + type + '"]').length;
+			if(type == 'all') amount = blocks.length;
+
+			$(this).find('.js-amount').text(amount);
+			console.log(amount);
+		});
+	}
+
+	function go(filter) {
+		if(filter == 'all') {
+			blocks.show();
+			return;
+		}
+
+		var toshow = $(block_parent).find('[data-filter="' + filter + '"]');
+
+		blocks.hide();
+		toshow.show();
+	}
+
+	init();
+}
+
 $.fn.main_slider = function(dots_class) {
 	var parent = $(this),
 		slides = parent.find('.js-main-slide'),
@@ -283,7 +478,7 @@ $.fn.header_nav = function() {
 		}
 	}
 
-	$(document).on('ready', init);
+	$(window).on('load', init);
 
 	$(document).on('click', '.menu-icon', function(){
 		controlMenu();
@@ -294,7 +489,19 @@ $('.main-nav').header_nav();
 
 $.fn.canvas_draw = function(array) {
 
-	if(isNaN(array[0])) return;
+	if(!array) {
+		array = [];
+		var i = 0;
+
+		for(i; i < 3; i++) {
+			array[i] = parseInt($('.main-stat .js-perc').eq(i).text());
+		}
+
+	} else
+
+	if(isNaN(array[0])) {
+		return;
+	}
 
 	var radiuses = [160, 120, 80];
 
@@ -528,5 +735,9 @@ function transform(transform_value) {
 	});
 
 	return str;
+}
+
+function inArray(value, array) {
+  return array.indexOf(value) > -1;
 }
 
