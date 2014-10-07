@@ -1117,15 +1117,15 @@ section a {
   position: relative;
   z-index: 2;
 }
+.title-block .title-content h1 {
+  color: inherit;
+  margin: 0;
+}
 .title-block .title-content.max-pad {
   padding: 3.75rem 0 6.25rem;
 }
 .title-block .title-content.min-pad {
   padding: 1.25rem 0 3.75rem;
-}
-.title-block .title-content h1 {
-  color: inherit;
-  margin: 0;
 }
 .title-block .title-content .title-btn {
   margin-top: 1.875rem;
@@ -1135,6 +1135,26 @@ section a {
 }
 .title-block .title-content .sol-dots li:before {
   background: #fff;
+}
+.title-block .title-content .main-slider {
+  position: relative;
+}
+.title-block .title-content .main-slider h1 {
+  position: absolute;
+  opacity: 0;
+  -webkit-transition: all .5s ease 0s;
+          transition: all .5s ease 0s;
+  -webkit-transform: translateY(-10px);
+      -ms-transform: translateY(-10px);
+          transform: translateY(-10px);
+}
+.title-block .title-content .main-slider h1.active {
+  -webkit-transition: all .5s ease .25s;
+          transition: all .5s ease .25s;
+  opacity: 1;
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
 }
 .head-nav {
   margin-top: 0.625rem;
@@ -1373,12 +1393,19 @@ section a {
 .audience h2 {
   margin-top: 0;
 }
+.audience .aud-container {
+  overflow: hidden;
+}
+.audience .aud-container .aud-slide {
+  -webkit-transition: all .5s ease;
+          transition: all .5s ease;
+}
 .audience .aud-container .aud-slide .aud-block {
   display: inline-block;
   -moz-box-sizing: border-box;
        box-sizing: border-box;
   padding: 0.125rem 0.0625rem 0;
-  width: 25%;
+  width: 18.75rem;
 }
 .audience .aud-container .aud-slide .aud-block .aud-text {
   background: #fff;

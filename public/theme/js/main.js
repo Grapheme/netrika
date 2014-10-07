@@ -1,3 +1,147 @@
+$.fn.main_slider = function(dots_class) {
+	var parent = $(this),
+		slides = parent.find('.js-main-slide'),
+		active_id = 0,
+		change_time = 5000,
+		auto_stop = false,
+		auto_timeout = false,
+		click_timeout = false,
+		dots_list = $(dots_class);
+
+	$(document).on('click', dots_class + ' li', function(){
+		go($(this).index());
+		auto_stop = true;
+		clearTimeout(auto_timeout);
+		clearTimeout(click_timeout);
+
+		click_timeout = setTimeout(function(){
+			auto_stop = false;
+			auto(change_time);
+		}, change_time * 2);
+	});
+
+	function init() {
+		var max = 0;
+		slides.each(function(){
+			dots_list.append('<li>');
+			var height = $(this).outerHeight(true);
+			if(height > max) {
+				max = height;
+			}
+		});
+		parent.css('height', max);
+
+		go(0);
+		setTimeout(function(){
+			auto(change_time);
+		}, change_time);
+	}
+
+	function go(id) {
+		slides.eq(id).addClass('active')
+			.siblings().removeClass('active');
+
+		dots_list.find('li').eq(id).addClass('active')
+			.siblings().removeClass('active');
+
+		active_id = id;
+	}
+
+	function auto(time) {
+		if(auto_stop) return;
+
+		var new_id = active_id + 1;
+		if(new_id == slides.length) {
+			new_id = 0;
+		}
+
+		go(new_id);
+		auto_timeout = setTimeout(function(){
+			auto(time);
+		}, time);
+	}
+
+	$(window).on('load', init);
+}
+
+$.fn.simple_tabs = function() {
+	var parent = $(this),
+		links = parent.find('.js-simple-link'),
+		tabs = parent.find('.js-simple-tab');
+
+	$(document).on('click', '.js-simple-link', function(){
+		go($(this).index());
+	});
+
+	function init() {
+		go(0);
+	}
+
+	function go(id) {
+		tabs.eq(id).show()
+			.siblings().hide();
+
+		links.eq(id).addClass('active')
+			.siblings().removeClass('active');
+	}
+
+	init();
+}
+
+$.fn.line_slider = function() {
+	var parent = $(this),
+		list = parent.find('.js-ls-list'),
+		items = list.find('.js-ls-item'),
+		controls = parent.find('.js-ls-controls'),
+		measure,
+		step,
+		max_left,
+		min_left = 0,
+		left_arrow = controls.find('.js-ls-control[data-direction="<"]'),
+		right_arrow = controls.find('.js-ls-control[data-direction=">"]'),
+		slider_position = 0;
+
+	if(items.length <= 4) {
+		controls.hide();
+		return;
+	}
+
+	$(document).on('click', '.js-ls-control', function(){
+		var dir = $(this).attr('data-direction');
+		go(dir);
+
+		return false;
+	});
+
+	function init() {
+		if(items.length <= 8) {
+			measure = 1;
+		} else {
+			measure = 2;
+		}
+
+		left_arrow.addClass('disable');
+
+
+		item_width = items.last().outerWidth(true);
+		step = item_width * 4;
+		var new_width = item_width * items.length / measure;
+		list.css('width', new_width);
+	}
+
+	function go(dir) {
+		var new_step = step;
+		if(dir == '>') new_step = new_step * (-1);
+		var new_left = slider_position + new_step;
+		slider_position = new_left;
+
+		var transform_str = transform('translateX(' + new_left + 'px)') + ' width: ' + list.width() + 'px;';
+		list.attr('style', transform_str);
+	}
+
+	init();
+}
+
 //Карта
 $.fn.smart_map = function(map_array) {
 	var parent = $(this),
@@ -274,8 +418,6 @@ $.fn.indexStatNav = function(block_class, item_class) {
 
 	init();
 }
-
-$('.stat-nav').indexStatNav('.stat-items', '.stat-item');
 
 $.fn.statTabs = function(slider_class) {
 	var parent = $(this),
