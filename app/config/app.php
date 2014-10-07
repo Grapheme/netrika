@@ -63,6 +63,7 @@ return array(
         'Flynsarmy\DbBladeCompiler\DbBladeCompilerServiceProvider',
         'Scalia\SphinxSearch\SphinxSearchServiceProvider',
         'Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider',
+        'sngrl\StringBladeCompiler\StringBladeCompilerServiceProvider',
     ),
 	'aliases' => array(
 		'App'             => 'Illuminate\Support\Facades\App',
