@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "814c23852b65ee4650c94ad1d17f33bf",
+    "hash": "cfbd38fe673859760558a1377e1d654d",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1761,6 +1761,49 @@
             "time": "2014-06-20 16:35:16"
         },
         {
+            "name": "sngrl/string-blade-compiler",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sngrl/string-blade-compiler.git",
+                "reference": "fe759a9433283ff2a7e0bba06f7b14e9ce2a0dd7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sngrl/string-blade-compiler/zipball/fe759a9433283ff2a7e0bba06f7b14e9ce2a0dd7",
+                "reference": "fe759a9433283ff2a7e0bba06f7b14e9ce2a0dd7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "sngrl\\StringBladeCompiler\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "sngrl",
+                    "email": "sangrealrnd@gmail.com"
+                }
+            ],
+            "description": "Render Blade templates from string variable",
+            "keywords": [
+                "blade",
+                "compiler",
+                "laravel",
+                "string",
+                "variable"
+            ],
+            "time": "2014-10-07 15:06:19"
+        },
+        {
             "name": "stack/builder",
             "version": "dev-master",
             "source": {
@@ -2736,21 +2779,14 @@
             "time": "2014-05-27 14:21:26"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "barryvdh/laravel-debugbar": 20
+        "barryvdh/laravel-debugbar": 20,
+        "sngrl/string-blade-compiler": 20
     },
     "prefer-stable": false,
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "platform": [],
+    "platform-dev": []
 }
