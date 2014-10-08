@@ -7,7 +7,7 @@
                         <li><a href="#">Решения</a>
                         <li><a href="{{ URL::route('page', 'newslist') }}">Новости</a>
                         <li><a href="#">Контакты</a>
-                        <li><a href="#">Карта сайта</a>
+                        <li><a href="{{ URL::route('page', 'sitemap') }}">Карта сайта</a>
                     </ul>
                 </div>
                 <div class="grid_4">
