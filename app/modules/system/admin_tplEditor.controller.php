@@ -110,26 +110,28 @@ class AdminTplEditorController extends BaseController {
          */
 
         $config = Config::get('github');
-        if ($config['active'] != FALSE) {
-            #App::abort(403, 'Модуль отключен');
-            #$config['branch'] = $git_branch;
-            #$config['post_data'] = Input::get('payload');
+        if ($config['active'] != FALSE && Input::get('git') && class_exists('GitHub')) {
 
             #if($config['test_mode_key'] == $extends):
-                $config['test_mode'] = TRUE;
+            #    $config['test_mode'] = TRUE;
             #else:
-            #    $config['test_mode'] = FALSE;
+                $config['test_mode'] = FALSE;
             #endif;
+
             $github = new GitHub();
             $github->init($config);
             $result = $github->execute('git add ' . $full_file);
             #echo $result . "\n";
-            $result = $github->execute('git commit -m "server commit - template editor; module: ' . $mod_name . ', file: ' . $file . '"');
-            #echo $result . "\n";
-            $result = $github->pull();
-            #echo $result . "\n";
-            $result = $github->push();
-            #echo $result . "\n";
+            if ($result == 0) {
+                $result = $github->execute('git commit -m "server commit - template editor; module: ' . $mod_name . ', file: ' . $file . '"');
+                #echo $result . "\n";
+                if ($result == 0) {
+                    $result = $github->pull();
+                    #echo $result . "\n";
+                    $result = $github->push();
+                    #echo $result . "\n";
+                }
+            }
         }
 
         $json_request['status'] = true;
