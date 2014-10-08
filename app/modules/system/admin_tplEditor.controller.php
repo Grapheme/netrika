@@ -122,7 +122,7 @@ class AdminTplEditorController extends BaseController {
             #endif;
             $github = new GitHub();
             $github->init($config);
-            echo $github->execute('git add *');
+            echo $github->execute('git add ' . $full_file);
             echo "\n";
             echo $github->execute('git commit -m "server commit - template editor"');
             echo "\n";
