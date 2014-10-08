@@ -113,9 +113,9 @@ class AdminTplEditorController extends BaseController {
         if ($config['active'] != FALSE && Input::get('git') && class_exists('GitHub')) {
 
             #if($config['test_mode_key'] == $extends):
-            #    $config['test_mode'] = TRUE;
+                $config['test_mode'] = TRUE;
             #else:
-                $config['test_mode'] = FALSE;
+            #    $config['test_mode'] = FALSE;
             #endif;
 
             $github = new GitHub();
