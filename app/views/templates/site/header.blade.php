@@ -17,7 +17,7 @@
                             <li class="optional">
                                 <ul>
                                     <li><a href="support.html">Контакты поддержки</a>
-                                    <li><a href="tel:">+7 (812) 640-80-70</a>
+                                    <li><a href="tel:">+7 (812) 640-80-700</a>
                                 </ul>
 
                             <li class="menu-icon js-menu-open">
