@@ -140,7 +140,7 @@ class GitHub {
             echo "\nResult:\n"; print_r($result);
             echo "\nCode:\n"; print_r($returnCode);
         endif;
-        return TRUE;
+        return $returnCode;
     }
 
     public function pull(){
@@ -160,7 +160,7 @@ class GitHub {
             echo "\nResult:\n"; print_r($result);
             echo "\nCode:\n"; print_r($returnCode);
         endif;
-        return TRUE;
+        return $returnCode;
     }
 
     public function push(){
@@ -180,7 +180,7 @@ class GitHub {
             echo "\nResult:\n"; print_r($result);
             echo "\nCode:\n"; print_r($returnCode);
         endif;
-        return TRUE;
+        return $returnCode;
     }
 
     private function permission(){
