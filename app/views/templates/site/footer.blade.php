@@ -5,7 +5,7 @@
                         <li><a href="{{ URL::route('page', 'about') }}">О компании</a>
                         <li><a href="{{ URL::route('page', 'projects') }}">Проекты</a>
                         <li><a href="#">Решения</a>
-                        <li><a href="#">Новости</a>
+                        <li><a href="{{ URL::route('page', 'newslist') }}">Новости</a>
                         <li><a href="#">Контакты</a>
                         <li><a href="#">Карта сайта</a>
                     </ul>
