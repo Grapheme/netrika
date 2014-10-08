@@ -1462,25 +1462,25 @@ section a {
   border-color: #7fe898;
 }
 .tags-ul li.tag-auto.active:before {
-  background: #7fe898;
+  background: #7fe898 !important;
 }
 .tags-ul li.tag-stat:before {
   border-color: #ffd75f;
 }
 .tags-ul li.tag-stat.active:before {
-  background: #ffd75f;
+  background: #ffd75f !important;
 }
 .tags-ul li.tag-event:before {
   border-color: #ff9381;
 }
 .tags-ul li.tag-event.active:before {
-  background: #ff9381;
+  background: #ff9381 !important;
 }
 .tags-ul li.tag-int:before {
   border-color: #9cb9fc;
 }
 .tags-ul li.tag-int.active:before {
-  background: #9cb9fc;
+  background: #9cb9fc !important;
 }
 .tags-ul.tags-hover li.tag-auto:hover:before {
   background: rgba(127, 232, 152, 0.25);

@@ -4,6 +4,32 @@ $.fn.news_module = function(news_array, tags_object) {
 
 	var step = 0;
 
+	$(document).on('news::update', function(){
+		newsUpdate();
+	});
+
+	$(document).on('click', '.js-tags li', function(){
+		tagsClick($(this).attr('data-filter'));
+	});
+
+	$(document).on('click', '.js-apply-filter', function(){
+		$(document).trigger('news::update');
+		return false;
+	});
+
+	function init() {
+		var tags_str = '<li class="tag-all" data-filter="all">Все';
+		$.each(tags_object, function(index, value){
+			tags_str += '<li class="tag-' + index + '" data-filter="' + index + '">' + value;
+		});
+		$('.js-tags').html(tags_str);
+
+		setNews({
+			tags: [], 
+			date: ['1999-12-31', '2999-12-31']
+		});
+	}
+
 	var news_html = {
 		getFirst: function(obj) {
 
@@ -13,7 +39,7 @@ $.fn.news_module = function(news_array, tags_object) {
                             '<span class="news-date"><span class="day">' + out_obj.day + '</span> / ' + out_obj.month + ' / ' + out_obj.year + '</span>'+
                         '</a>'+
                     '</div>'+
-                    '<div class="grid_4 omega">'+
+                    '<div class="grid_4 omega js-news-item">'+
                         '<a href="' + obj.href + '" class="title">' + obj.title + '</a>'+
                         '<ul class="tags-ul">' + out_obj.tag_list + '</ul>'+
                     '</div>';
@@ -42,7 +68,7 @@ $.fn.news_module = function(news_array, tags_object) {
 				date_with_image = date_str;
 			}
 
-			var str = '<div class="news-item">'+
+			var str = '<div class="news-item js-news-item">'+
                         	img_str +
                             date_with_image +
                         '</a>'+
@@ -101,10 +127,38 @@ $.fn.news_module = function(news_array, tags_object) {
 		}
 	}
 
-	function init() {
+	function tagsClick(type) {
+		if(type != 'all') {
+			$('.js-tags li[data-filter="' + type + '"]').toggleClass('active');
+			var all_active = true;
+			$('.js-tags li').not('[data-filter=all]').each(function(){
+				if(!$(this).hasClass('active')) {
+					all_active = false;
+				}
+			});
+
+			if(all_active) {
+				$('.js-tags li[data-filter=all]').addClass('active');
+			}
+		} else {
+			$('.js-tags li').addClass('active');
+		}
+	}
+
+	function newsUpdate() {
+		tags_array = [];
+		$('.js-tags li.active').each(function(){
+			var tag = $(this).attr('data-filter');
+			tags_array.push(tag);
+		});
+
 		setNews({
-			tags: [], 
-			date: ['2013-09-01', '2015-10-29']
+			tags: tags_array, 
+			date: ['1999-12-31', '2999-12-31']
+		});
+
+		$.each(tags_array, function(index, value){
+			$('.js-news-item .tag-' + value).addClass('active');
 		});
 	}
 
@@ -144,7 +198,6 @@ $.fn.news_module = function(news_array, tags_object) {
 
 	function setNews(settings) {
 		sortNews(settings);
-		var first_html = news_html.getFirst(first_news);
 
 		news_html.fillFirst(first_news);
 		news_html.fillGrids(other_news);
