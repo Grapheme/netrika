@@ -2,6 +2,9 @@ $.fn.news_module = function(news_array, tags_object) {
 	var first_news = {},
 		other_news = [];
 
+	var default_min_date = '1999-12-31',
+		default_max_date = '2999-12-31';
+
 	var step = 0;
 
 	$(document).on('news::update', function(){
@@ -16,19 +19,6 @@ $.fn.news_module = function(news_array, tags_object) {
 		$(document).trigger('news::update');
 		return false;
 	});
-
-	function init() {
-		var tags_str = '<li class="tag-all" data-filter="all">Все';
-		$.each(tags_object, function(index, value){
-			tags_str += '<li class="tag-' + index + '" data-filter="' + index + '">' + value;
-		});
-		$('.js-tags').html(tags_str);
-
-		setNews({
-			tags: [], 
-			date: ['1999-12-31', '2999-12-31']
-		});
-	}
 
 	var news_html = {
 		getFirst: function(obj) {
@@ -85,6 +75,7 @@ $.fn.news_module = function(news_array, tags_object) {
 		getAllOthers: function(allObj) {
 			var parent = this;
 			var grids = ['', '', ''];
+			step = 0;
 			$.each(allObj, function(index, value){
 				grids[step] += parent.getOther(value);
 				step++;
@@ -105,11 +96,8 @@ $.fn.news_module = function(news_array, tags_object) {
 		objOut: function(obj) {
 			var objDate = new Date(obj.date);
 
-			var day = objDate.getDay();
-			if(('' + day).length == 1) { day = '0' + day; }
-
-			var month = objDate.getMonth();
-			if(('' + month).length == 1) { month = '0' + month; }
+			var day = ("0" + objDate.getDate()).slice(-2);
+            var month = ("0" + (objDate.getMonth() + 1)).slice(-2);
 
 			var year = objDate.getFullYear();
 
@@ -127,6 +115,21 @@ $.fn.news_module = function(news_array, tags_object) {
 		}
 	}
 
+	function init() {
+		var tags_str = '<li class="tag-all" data-filter="all">Все';
+		$.each(tags_object, function(index, value){
+			tags_str += '<li class="tag-' + index + '" data-filter="' + index + '">' + value;
+		});
+		$('.js-tags').html(tags_str);
+
+		var init_settings = {
+			tags: [], 
+			date: [default_min_date, default_max_date]
+		}
+
+		setNews(init_settings);
+	}
+
 	function tagsClick(type) {
 		if(type != 'all') {
 			$('.js-tags li[data-filter="' + type + '"]').toggleClass('active');
@@ -139,6 +142,8 @@ $.fn.news_module = function(news_array, tags_object) {
 
 			if(all_active) {
 				$('.js-tags li[data-filter=all]').addClass('active');
+			} else {
+				$('.js-tags li[data-filter=all]').removeClass('active');
 			}
 		} else {
 			$('.js-tags li').addClass('active');
@@ -152,13 +157,18 @@ $.fn.news_module = function(news_array, tags_object) {
 			tags_array.push(tag);
 		});
 
-		setNews({
-			tags: tags_array, 
-			date: ['1999-12-31', '2999-12-31']
-		});
+		var date_range = {
+			min: $('.js-date-range .js-date-from').val(),
+			max: $('.js-date-range .js-date-to').val(),
+		}
 
-		$.each(tags_array, function(index, value){
-			$('.js-news-item .tag-' + value).addClass('active');
+		if(date_range.min == "") date_range.min = default_min_date;
+		if(date_range.max == "") date_range.max = default_max_date;
+
+		setNews({
+			tags: tags_array,
+			active_tags: tags_array,
+			date: [date_range.min, date_range.max]
 		});
 	}
 
@@ -168,10 +178,9 @@ $.fn.news_module = function(news_array, tags_object) {
 		$.each(news_array, function(index, value){
 			var news_date = value.date.getTime();
 			var date = {
-				min: (new Date(settings.date[0])).getTime(),
-				max: (new Date(settings.date[1])).getTime()
+				min: new Date(settings.date[0]).getTime() - 1,
+				max: new Date(settings.date[1]).getTime() + 1
 			}
-
 			if(news_date > date.min && news_date < date.max) {
 				var toArray = true;
 				$.each(settings.tags, function(tag_index, tag){
@@ -191,16 +200,30 @@ $.fn.news_module = function(news_array, tags_object) {
 
 	function sortNews(settings) {
 		var noSortArray = getNews(settings);
+		var sortArray = noSortArray.sort(function(a,b){
+			return new Date(b.date) - new Date(a.date);
+		});
 
-		first_news = (noSortArray.splice(0, 1))[0];
-		other_news = noSortArray;
+		first_news = (sortArray.splice(0, 1))[0];
+		other_news = sortArray;
 	}
 
 	function setNews(settings) {
+		if(settings.active_tags == undefined) settings.active_tags = [];
+
 		sortNews(settings);
+
+		if(first_news == undefined){
+			alert('Ничего не найдено');
+			return;
+		}
 
 		news_html.fillFirst(first_news);
 		news_html.fillGrids(other_news);
+
+		$.each(settings.active_tags, function(index, value){
+			$('.js-news-item .tag-' + value).addClass('active');
+		});
 	}
 
 	init();
@@ -227,7 +250,6 @@ $.fn.simple_filter = function(block_parent, default_filter) {
 			if(type == 'all') amount = blocks.length;
 
 			$(this).find('.js-amount').text(amount);
-			console.log(amount);
 		});
 	}
 
