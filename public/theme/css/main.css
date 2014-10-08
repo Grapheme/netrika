@@ -1501,6 +1501,9 @@ section a {
 .tags-ul.tags-hover li {
   cursor: pointer;
 }
+#ui-datepicker-div {
+  z-index: 5 !important;
+}
 .main-stat {
   padding: 2.5rem 0 2.5rem;
 }
@@ -2048,6 +2051,8 @@ section a {
   outline: 0 none;
   border: 0 none;
   border-bottom: 1px solid #dcdddd;
+  color: #7f8281;
+  font-weight: 300;
 }
 .news-photo {
   position: relative;
