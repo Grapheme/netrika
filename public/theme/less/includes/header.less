@@ -194,8 +194,18 @@
 			.js-main-slide {
 				position: absolute;
 				opacity: 0;
+				font-size: 36em / @hfs;
+				font-weight: 300;
 				transition: all .5s ease 0s;
 				transform: translateY(-10px);
+
+				p {
+					margin: 0;
+				}
+
+				.title-btn {
+					font-size: 12em / 36em;
+				}
 
 				&.active {
 					transition: all .5s ease .25s;

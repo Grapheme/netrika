@@ -1146,11 +1146,19 @@ section a {
 .title-block .title-content .main-slider .js-main-slide {
   position: absolute;
   opacity: 0;
+  font-size: 2.25em;
+  font-weight: 300;
   -webkit-transition: all .5s ease 0s;
           transition: all .5s ease 0s;
   -webkit-transform: translateY(-10px);
       -ms-transform: translateY(-10px);
           transform: translateY(-10px);
+}
+.title-block .title-content .main-slider .js-main-slide p {
+  margin: 0;
+}
+.title-block .title-content .main-slider .js-main-slide .title-btn {
+  font-size: 0.33333333em;
 }
 .title-block .title-content .main-slider .js-main-slide.active {
   -webkit-transition: all .5s ease .25s;
