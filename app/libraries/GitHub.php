@@ -158,7 +158,27 @@ class GitHub {
         if($this->set_log):
             echo "\ncommand:\n".$this->git_path.'git pull '.$this->remote.' '.$this->branch;
             echo "\nResult:\n"; print_r($result);
-            echo "\Code:\n"; print_r($returnCode);
+            echo "\nCode:\n"; print_r($returnCode);
+        endif;
+        return TRUE;
+    }
+
+    public function push(){
+
+        if(!$this->permission()):
+            App::abort(403, 'В доступе отказано');
+        endif;
+
+        try {
+            exec($this->git_path.'git push '.$this->remote.' '.$this->branch.' 2>&1', $result, $returnCode);
+        } catch (Exception $e) {
+            return 'Невозможно вызвать комманду git push'. $this->remote.' '.$this->branch;
+        }
+
+        if($this->set_log):
+            echo "\ncommand:\n".$this->git_path.'git push '.$this->remote.' '.$this->branch;
+            echo "\nResult:\n"; print_r($result);
+            echo "\nCode:\n"; print_r($returnCode);
         endif;
         return TRUE;
     }

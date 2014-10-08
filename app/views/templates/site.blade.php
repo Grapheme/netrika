@@ -25,12 +25,23 @@
         <![endif]-->
 
         @include(Helper::layout('header'))
-        @yield('content', @$content)
 
-        @yield('footer', @file_get_contents(Helper::inclayout('footer')))
+        @section('content')
+            {{ @$content }}
+        @show
+
+        @section('footer')
+            {{-- @file_get_contents(Helper::inclayout('footer')) --}}
+            @include(Helper::layout('footer'))
+        @show
+
         @include(Helper::layout('scripts'))
-        @yield('overlays')
-        @yield('scripts')
+
+        @section('overlays')
+        @show
+
+        @section('scripts')
+        @show
 
     </body>
 </html>

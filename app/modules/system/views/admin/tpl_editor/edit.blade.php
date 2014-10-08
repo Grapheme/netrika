@@ -54,7 +54,8 @@ $tpl_content = @file_get_contents($full_file);
             <fieldset class="padding-top-10">
                 <section>
                     <label class="textarea" style="display:block; height:auto">
-                        {{ Form::textarea('tpl', $tpl_content, array('id' => 'tpl_content')) }}
+                        <div id="tpl_content">{{ htmlspecialchars($tpl_content) }}</div>
+                        {{ Form::textarea('tpl', '', array('class' => 'hidden')) }}
                     </label>
                 </section>
             </fieldset>
@@ -132,6 +133,8 @@ $tpl_content = @file_get_contents($full_file);
 
             e.preventDefault();
             var form = $(this);
+            $('[name=tpl]').val( editor.getValue() );
+            console.log(form);
             var options = { target: null, type: $(form).attr('method'), dataType: 'json' };
 
             options.beforeSubmit = function(formData, jqForm, options){
