@@ -1,3 +1,31 @@
+$.fn.news_page = function() {
+	var desc = $('.js-fotorama-desc');
+    var fotorama_settings = {
+        loop: true,
+        arrows: false,
+        nav: false,
+        fit: 'contain'
+    };
+    var $fotoramaDiv = $('.js-news-fotorama').fotorama(fotorama_settings);
+    var fotorama = $fotoramaDiv.data('fotorama');
+
+    $('.fotorama').on('fotorama:show', function (e, fotorama, extra) {
+			changeFrame(fotorama.activeIndex);
+		}
+	);
+
+	function changeFrame(id) {
+
+	}
+
+    function init() {
+    	desc.first()
+    		.siblings().hide();
+    }
+
+    init();
+}
+
 $.fn.news_module = function(news_array, tags_object) {
 	var first_news = {},
 		other_news = [];
@@ -310,6 +338,8 @@ $.fn.main_slider = function(dots_class) {
 	function go(id) {
 		slides.eq(id).addClass('active')
 			.siblings().removeClass('active');
+
+			console.log(slides);
 
 		dots_list.find('li').eq(id).addClass('active')
 			.siblings().removeClass('active');
