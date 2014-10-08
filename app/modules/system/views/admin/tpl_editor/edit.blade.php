@@ -49,6 +49,15 @@ $tpl_content = @file_get_contents($full_file);
                     <i class="fa fa-save"></i>
                     Сохранить
                 </button>
+
+                <section class="smart-form">
+                <label class="checkbox">
+                    {{ Form::checkbox('git', 1, 1) }}
+                    <i></i>
+                    Отправить изменения в GIT
+                </label>
+                </section>
+
             </fieldset>
 
             <fieldset class="padding-top-10">

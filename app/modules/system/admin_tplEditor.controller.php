@@ -122,13 +122,14 @@ class AdminTplEditorController extends BaseController {
             #endif;
             $github = new GitHub();
             $github->init($config);
-            echo $github->execute('git add ' . $full_file);
-            echo "\n";
-            echo $github->execute('git commit -a -m "server commit - template editor; module: ' . $mod_name . ', file: ' . $file . '"');
-            echo "\n";
-            echo $github->pull();
-            echo "\n";
-            echo $github->push();
+            $result = $github->execute('git add ' . $full_file);
+            #echo $result . "\n";
+            $result = $github->execute('git commit -m "server commit - template editor; module: ' . $mod_name . ', file: ' . $file . '"');
+            #echo $result . "\n";
+            $result = $github->pull();
+            #echo $result . "\n";
+            $result = $github->push();
+            #echo $result . "\n";
         }
 
         $json_request['status'] = true;

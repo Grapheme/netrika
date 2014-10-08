@@ -146,7 +146,7 @@ class GitHub {
     public function pull(){
 
         if(!$this->permission()):
-            return App::abort(403, 'В доступе отказано');
+            App::abort(403, 'В доступе отказано');
         endif;
 
         try {
