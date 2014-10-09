@@ -1019,6 +1019,12 @@ section a:hover {
 .main-header .main-nav {
   display: inline-block;
   float: right;
+  opacity: 0;
+  -webkit-transition: opacity .5s ease;
+          transition: opacity .5s ease;
+}
+.main-header .main-nav.loaded {
+  opacity: 1;
 }
 .main-header .main-nav ul {
   display: inline-block;

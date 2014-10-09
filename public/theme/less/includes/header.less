@@ -16,6 +16,12 @@
 	.main-nav {
 		display: inline-block;
 		float: right;
+		opacity: 0;
+		transition: opacity .5s ease;
+
+		&.loaded {
+			opacity: 1;
+		}
 
 		ul {
 			display: inline-block;

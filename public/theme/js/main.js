@@ -590,6 +590,10 @@ $.fn.header_nav = function() {
 			optional_links.addClass('animate');
 			main_links.addClass('animate');
 		}, 5);
+
+		setTimeout(function(){
+			$('.main-nav').addClass('loaded');
+		}, 250);
 	}
 
 	function controlMenu() {
