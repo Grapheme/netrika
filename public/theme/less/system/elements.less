@@ -323,9 +323,12 @@ section a {
 	a {
 		&:after {
 			content: "\e60e";
+			position: relative;
+			display: inline-block;
+			width: 0;
+			left: 10rem / @hfs;
 			font-family: "elements";
 			font-size: .7em;
-			margin-left: 1em;
 		}
 	}
 }

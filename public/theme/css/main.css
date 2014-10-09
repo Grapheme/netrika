@@ -746,9 +746,12 @@ section a:hover {
 }
 .title-link a:after {
   content: "\e60e";
+  position: relative;
+  display: inline-block;
+  width: 0;
+  left: 0.625rem;
   font-family: "elements";
   font-size: .7em;
-  margin-left: 1em;
 }
 .type-health.stat-item.active,
 .type-health.stat-item:hover,
