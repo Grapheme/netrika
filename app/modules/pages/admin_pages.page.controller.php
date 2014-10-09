@@ -108,7 +108,16 @@ class AdminPagesPageController extends BaseController {
         #Helper::dd($locales);
 
         foreach ($this->templates(__DIR__) as $template)
-            @$templates[$template] = $template;
+            @$templates_module[$template] = $template;
+
+        foreach ($this->templates(Helper::theme_dir(), '') as $key => $template)
+            @$templates_theme[$key] = $template;
+
+        $templates = array();
+        if (@count($templates_theme))
+            $templates['Тема оформления'] = $templates_theme;
+        if (@count($templates_module))
+            $templates['Модуль'] = $templates_module;
         #Helper::dd($templates);
 
         return View::make($this->module['tpl'].'edit', compact('element', 'locales', 'templates'));
@@ -144,23 +153,14 @@ class AdminPagesPageController extends BaseController {
         foreach ($this->templates(__DIR__) as $template)
             @$templates_module[$template] = $template;
 
-        #Helper::dd(Helper::theme_dir());
-
         foreach ($this->templates(Helper::theme_dir(), '') as $key => $template)
             @$templates_theme[$key] = $template;
 
         $templates = array();
-
         if (@count($templates_theme))
             $templates['Тема оформления'] = $templates_theme;
         if (@count($templates_module))
             $templates['Модуль'] = $templates_module;
-        /*
-        $templates = array(
-            'Модуль' => @$templates_module,
-            'Тема' => @$templates_theme,
-        );
-        */
         #Helper::dd($templates);
 
         return View::make($this->module['tpl'].'edit', compact('element', 'locales', 'templates'));

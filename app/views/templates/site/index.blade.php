@@ -25,8 +25,13 @@ $projects = DicVal::extracts($projects, true);
 
 $images_ids = Dic::makeLists($projects, false, 'mainpage_image');
 #Helper::d($images_ids);
-$images = Photo::whereIn('id', $images_ids)->get();
-$images = DicVal::extracts($images, true);
+if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
+    $images = Photo::whereIn('id', $images_ids)->get();
+    if (count($images))
+        $images = DicVal::extracts($images, true);
+} else {
+    $images = array();
+}
 #Helper::tad($images);
 
 $clients = Dic::valuesBySlug('clients');

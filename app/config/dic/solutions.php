@@ -33,6 +33,10 @@ return array(
                 'title' => 'Описание преимущества решения',
                 'type' => 'textarea_redactor',
             ),
+            'mainpage_image' => array(
+                'title' => 'Изображение для главной страницы',
+                'type' => 'image',
+            ),
             'image_schemes_work' => array(
                 'title' => 'Изображение схемы работы',
                 'type' => 'image',
