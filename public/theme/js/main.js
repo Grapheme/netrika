@@ -14,13 +14,33 @@ $.fn.news_page = function() {
 		}
 	);
 
-	function changeFrame(id) {
+	$(document).on('click', '.js-fotorama-control', function(){
+		fotorama.show($(this).attr('data-direction'));
+		return false;
+	});
 
+	function setRelative() {
+		var relative_height = $('.js-relative-in').outerHeight(true);
+		var news_height = $('.js-news-one').outerHeight(true);
+
+		if(relative_height > news_height) {
+			$('.js-relative-in .js-one-relative').last().remove();
+			setRelative();
+		} else {
+			$('.js-relative-news').addClass('active');
+		}
+	}
+
+	function changeFrame(id) {
+		desc.eq(id).show()
+			.siblings().hide();
 	}
 
     function init() {
     	desc.first()
     		.siblings().hide();
+
+    	setRelative();
     }
 
     init();
@@ -282,6 +302,9 @@ $.fn.simple_filter = function(block_parent, default_filter) {
 	}
 
 	function go(filter) {
+		$('.js-filters [data-filter]').removeClass('active');
+		$('.js-filters [data-filter="' + filter + '"]').addClass('active');
+
 		if(filter == 'all') {
 			blocks.show();
 			return;
@@ -338,8 +361,6 @@ $.fn.main_slider = function(dots_class) {
 	function go(id) {
 		slides.eq(id).addClass('active')
 			.siblings().removeClass('active');
-
-			console.log(slides);
 
 		dots_list.find('li').eq(id).addClass('active')
 			.siblings().removeClass('active');

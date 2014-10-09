@@ -149,3 +149,16 @@
 		margin: 15rem / @hfs 0 30rem / @hfs;
 	}
 }
+
+.js-relative-news {
+	position: relative;
+	opacity: 0;
+
+	&.active {
+		opacity: 1;
+	}
+
+	.js-relative-in {
+		position: absolute;
+	}
+}

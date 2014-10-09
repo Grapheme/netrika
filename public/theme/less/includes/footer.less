@@ -19,12 +19,21 @@
 
 		li {
 			a {
-				color:  #babcbc;
+				color:  @gray-link;
 				text-decoration: none;
+				transition: color .2s ease;
+
+				&:hover {
+					color: @green-link;
+				}
 			}
 
 			.phone-link {
 				color: inherit;
+
+				&:hover {
+					color: inherit;
+				}
 			}
 
 			.min-line {

@@ -452,6 +452,11 @@ p {
 section a {
   color: #313736;
   text-decoration: none;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
+}
+section a:hover {
+  color: #babcbc;
 }
 .title-btn {
   display: inline-block;
@@ -706,6 +711,7 @@ section a {
 .type-health.stat-item.active,
 .type-health.stat-item:hover,
 .type-health:hover .us-icon,
+.type-health.active .us-icon,
 .type-health .aim:before {
   color: #74ce76 !important;
 }
@@ -741,6 +747,7 @@ section a {
 .type-education.stat-item.active,
 .type-education.stat-item:hover,
 .type-education:hover .us-icon,
+.type-education.active .us-icon,
 .type-education .aim:before {
   color: #fbb84f !important;
 }
@@ -776,6 +783,7 @@ section a {
 .type-auto.stat-item.active,
 .type-auto.stat-item:hover,
 .type-auto:hover .us-icon,
+.type-auto.active .us-icon,
 .type-auto .aim:before {
   color: #5ac8f6 !important;
 }
@@ -811,6 +819,7 @@ section a {
 .type-goverment.stat-item.active,
 .type-goverment.stat-item:hover,
 .type-goverment:hover .us-icon,
+.type-goverment.active .us-icon,
 .type-goverment .aim:before {
   color: #f55959 !important;
 }
@@ -846,6 +855,7 @@ section a {
 .type-law.stat-item.active,
 .type-law.stat-item:hover,
 .type-law:hover .us-icon,
+.type-law.active .us-icon,
 .type-law .aim:before {
   color: #809cf6 !important;
 }
@@ -881,6 +891,7 @@ section a {
 .type-tourism.stat-item.active,
 .type-tourism.stat-item:hover,
 .type-tourism:hover .us-icon,
+.type-tourism.active .us-icon,
 .type-tourism .aim:before {
   color: #fb8b63 !important;
 }
@@ -916,6 +927,7 @@ section a {
 .type-portals.stat-item.active,
 .type-portals.stat-item:hover,
 .type-portals:hover .us-icon,
+.type-portals.active .us-icon,
 .type-portals .aim:before {
   color: #2ca0fa !important;
 }
@@ -975,7 +987,7 @@ section a {
 .main-header .main-nav ul li {
   display: inline-block;
   margin-left: 2.8125rem;
-  font-size: 0.875em;
+  font-size: 0.9375em;
   line-height: normal;
 }
 .main-header .main-nav ul li a {
@@ -1262,8 +1274,16 @@ section a {
 .main-footer .footer-list li a {
   color: #babcbc;
   text-decoration: none;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
+}
+.main-footer .footer-list li a:hover {
+  color: #1dcba4;
 }
 .main-footer .footer-list li .phone-link {
+  color: inherit;
+}
+.main-footer .footer-list li .phone-link:hover {
   color: inherit;
 }
 .main-footer .footer-list li .min-line {
@@ -1732,10 +1752,12 @@ section a {
   -webkit-transition: all .2s ease;
           transition: all .2s ease;
 }
-.prj-ul li a:hover .text {
+.prj-ul li a:hover .text,
+.prj-ul li a.active .text {
   color: #fff;
 }
-.prj-ul li a:hover .amount {
+.prj-ul li a:hover .amount,
+.prj-ul li a.active .amount {
   opacity: 1;
 }
 .prj-ul li:first-child a {
@@ -2164,6 +2186,16 @@ section a {
   color: #7f8281;
   height: 4.375rem;
   margin: 0.9375rem 0 1.875rem;
+}
+.js-relative-news {
+  position: relative;
+  opacity: 0;
+}
+.js-relative-news.active {
+  opacity: 1;
+}
+.js-relative-news .js-relative-in {
+  position: absolute;
 }
 .about-russian {
   background: #1dcba4;
