@@ -16,6 +16,12 @@
 	.main-nav {
 		display: inline-block;
 		float: right;
+		opacity: 0;
+		transition: opacity .5s ease;
+
+		&.loaded {
+			opacity: 1;
+		}
 
 		ul {
 			display: inline-block;
@@ -24,7 +30,7 @@
 			li {
 				display: inline-block;
 				margin-left: 45rem / @hfs;
-				font-size: 14em / @hfs;
+				font-size: 15em / @hfs;
 				line-height: normal;
 
 				a {

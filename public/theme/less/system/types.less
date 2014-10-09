@@ -1,5 +1,5 @@
 .type-class(@color, @icon) {
-	&.stat-item.active, &.stat-item:hover, &:hover .us-icon, .aim:before { color: @color !important; }
+	&.stat-item.active, &.stat-item:hover, &:hover .us-icon, &.active .us-icon, .aim:before { color: @color !important; }
 	.stat-ul .title, .icons-ul li:before, .us-icon { color: @color; }
 	.hover-circle, .color-0, .stat-ul .title.normal:before { background: @color; }
 	.color-1, .stat-ul .title.light:before { background: lighten(@color, @color-light); }

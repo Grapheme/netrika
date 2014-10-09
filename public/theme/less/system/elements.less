@@ -29,6 +29,11 @@ p {
 section a {
 	color: @black-link;
 	text-decoration: none;
+	transition: color .2s ease;
+
+	&:hover {
+		color: @gray-link;
+	}
 }
 
 // CUSTOM ELEMENTS
@@ -158,6 +163,17 @@ section a {
 	&.prev:before { content: "\e605"; }
 	&.next:before { content: "\e604"; }
 	&.close:before { content: "\e603"; }
+}
+
+.ext-link {
+	&:after {
+		content: "\e607";
+		position: relative;
+		font-family: "elements";
+		font-size: .7em;
+		margin-left: 1em;
+		top: -.2em;
+	}
 }
 
 .sol-dots {
@@ -301,6 +317,18 @@ section a {
 			color: #fff;
 		}
 	}
+}
 
-	
+.title-link {
+	a {
+		&:after {
+			content: "\e60e";
+			position: relative;
+			display: inline-block;
+			width: 0;
+			left: 10rem / @hfs;
+			font-family: "elements";
+			font-size: .7em;
+		}
+	}
 }

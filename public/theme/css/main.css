@@ -427,6 +427,34 @@ html {
 /** {
 	-webkit-font-smoothing: antialiased;
 }*/
+@-webkit-keyframes mappulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes mappulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
 h1 {
   font-weight: 300;
   font-size: 2.25em;
@@ -452,6 +480,11 @@ p {
 section a {
   color: #313736;
   text-decoration: none;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
+}
+section a:hover {
+  color: #babcbc;
 }
 .title-btn {
   display: inline-block;
@@ -570,6 +603,14 @@ section a {
 }
 .desc-icon.close:before {
   content: "\e603";
+}
+.ext-link:after {
+  content: "\e607";
+  position: relative;
+  font-family: "elements";
+  font-size: .7em;
+  margin-left: 1em;
+  top: -0.2em;
 }
 .sol-dots {
   margin: 0;
@@ -703,9 +744,19 @@ section a {
   border-color: #fff;
   color: #fff;
 }
+.title-link a:after {
+  content: "\e60e";
+  position: relative;
+  display: inline-block;
+  width: 0;
+  left: 0.625rem;
+  font-family: "elements";
+  font-size: .7em;
+}
 .type-health.stat-item.active,
 .type-health.stat-item:hover,
 .type-health:hover .us-icon,
+.type-health.active .us-icon,
 .type-health .aim:before {
   color: #74ce76 !important;
 }
@@ -741,6 +792,7 @@ section a {
 .type-education.stat-item.active,
 .type-education.stat-item:hover,
 .type-education:hover .us-icon,
+.type-education.active .us-icon,
 .type-education .aim:before {
   color: #fbb84f !important;
 }
@@ -776,6 +828,7 @@ section a {
 .type-auto.stat-item.active,
 .type-auto.stat-item:hover,
 .type-auto:hover .us-icon,
+.type-auto.active .us-icon,
 .type-auto .aim:before {
   color: #5ac8f6 !important;
 }
@@ -811,6 +864,7 @@ section a {
 .type-goverment.stat-item.active,
 .type-goverment.stat-item:hover,
 .type-goverment:hover .us-icon,
+.type-goverment.active .us-icon,
 .type-goverment .aim:before {
   color: #f55959 !important;
 }
@@ -846,6 +900,7 @@ section a {
 .type-law.stat-item.active,
 .type-law.stat-item:hover,
 .type-law:hover .us-icon,
+.type-law.active .us-icon,
 .type-law .aim:before {
   color: #809cf6 !important;
 }
@@ -881,6 +936,7 @@ section a {
 .type-tourism.stat-item.active,
 .type-tourism.stat-item:hover,
 .type-tourism:hover .us-icon,
+.type-tourism.active .us-icon,
 .type-tourism .aim:before {
   color: #fb8b63 !important;
 }
@@ -916,6 +972,7 @@ section a {
 .type-portals.stat-item.active,
 .type-portals.stat-item:hover,
 .type-portals:hover .us-icon,
+.type-portals.active .us-icon,
 .type-portals .aim:before {
   color: #2ca0fa !important;
 }
@@ -965,6 +1022,12 @@ section a {
 .main-header .main-nav {
   display: inline-block;
   float: right;
+  opacity: 0;
+  -webkit-transition: opacity .5s ease;
+          transition: opacity .5s ease;
+}
+.main-header .main-nav.loaded {
+  opacity: 1;
 }
 .main-header .main-nav ul {
   display: inline-block;
@@ -975,7 +1038,7 @@ section a {
 .main-header .main-nav ul li {
   display: inline-block;
   margin-left: 2.8125rem;
-  font-size: 0.875em;
+  font-size: 0.9375em;
   line-height: normal;
 }
 .main-header .main-nav ul li a {
@@ -1262,8 +1325,16 @@ section a {
 .main-footer .footer-list li a {
   color: #babcbc;
   text-decoration: none;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
+}
+.main-footer .footer-list li a:hover {
+  color: #1dcba4;
 }
 .main-footer .footer-list li .phone-link {
+  color: inherit;
+}
+.main-footer .footer-list li .phone-link:hover {
   color: inherit;
 }
 .main-footer .footer-list li .min-line {
@@ -1650,13 +1721,17 @@ section a {
   background: #4c5865;
 }
 .projects .grid_4:after {
-  content: "";
+  content: "\e60d";
   position: absolute;
+  font-family: "elements";
+  font-size: .5em;
+  line-height: 5.9rem;
+  text-align: center;
+  color: #fff;
   top: 50%;
   left: 50%;
   z-index: 4;
   background-color: rgba(255, 255, 255, 0.2);
-  background-image: url(../img/elements/projects-arrow.png);
   background-repeat: no-repeat;
   background-position: center center;
   opacity: 0;
@@ -1732,10 +1807,12 @@ section a {
   -webkit-transition: all .2s ease;
           transition: all .2s ease;
 }
-.prj-ul li a:hover .text {
+.prj-ul li a:hover .text,
+.prj-ul li a.active .text {
   color: #fff;
 }
-.prj-ul li a:hover .amount {
+.prj-ul li a:hover .amount,
+.prj-ul li a.active .amount {
   opacity: 1;
 }
 .prj-ul li:first-child a {
@@ -1806,7 +1883,7 @@ section a {
   margin-left: -0.34375rem;
   margin-top: -0.34375rem;
   border-radius: 0.6875rem;
-  background: #b1b1b1;
+  background: #1dcba4;
 }
 .map-container .map-dot .map-rad {
   content: "";
@@ -1816,13 +1893,15 @@ section a {
   background: #b1b1b1;
   opacity: .2;
 }
-.map-container .map-dot:hover,
-.map-container .map-dot.active {
-  background: #1dcba4;
-}
 .map-container .map-dot:hover .map-rad,
 .map-container .map-dot.active .map-rad {
   background: #1dcba4;
+}
+.map-container .map-dot:hover .map-rad {
+  -webkit-transition: all .75s ease;
+          transition: all .75s ease;
+  -webkit-animation: mappulse .75s infinite;
+          animation: mappulse .75s infinite;
 }
 .map-container .map-desc {
   position: absolute;
@@ -1913,11 +1992,15 @@ section a {
   text-decoration: none;
   border-color: #fff;
 }
+.solutions .solution .solution-left .solution-hover .hover-content a:hover {
+  color: #313736;
+}
 .solutions .solution .solution-left .solution-hover .hover-content .title-btn {
   color: #fff !important;
 }
 .solutions .solution .solution-left .solution-hover .hover-content .title-btn:hover {
-  background: transparent;
+  background: #fff;
+  color: #313736 !important;
 }
 .solutions .solution .solution-right {
   position: relative;
@@ -2051,6 +2134,14 @@ section a {
   margin-bottom: 0.625rem;
 }
 .news-search .search-date {
+  margin-top: 1.875rem;
+}
+.news-search .search-date:after {
+  content: '\e60a';
+  font-family: 'elements';
+  font-size: 1.125em;
+}
+.news-search .search-date:nth-of-type(2) {
   margin-top: 1.25rem;
 }
 .news-search .search-date input {
@@ -2164,6 +2255,16 @@ section a {
   color: #7f8281;
   height: 4.375rem;
   margin: 0.9375rem 0 1.875rem;
+}
+.js-relative-news {
+  position: relative;
+  opacity: 0;
+}
+.js-relative-news.active {
+  opacity: 1;
+}
+.js-relative-news .js-relative-in {
+  position: absolute;
 }
 .about-russian {
   background: #1dcba4;
