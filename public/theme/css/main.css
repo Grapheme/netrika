@@ -433,8 +433,8 @@ html {
             transform: scale(1);
   }
   50% {
-    -webkit-transform: scale(1.05);
-            transform: scale(1.05);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
   }
   100% {
     -webkit-transform: scale(1);
@@ -447,8 +447,8 @@ html {
             transform: scale(1);
   }
   50% {
-    -webkit-transform: scale(1.05);
-            transform: scale(1.05);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
   }
   100% {
     -webkit-transform: scale(1);
@@ -1874,7 +1874,7 @@ section a:hover {
   margin-left: -0.34375rem;
   margin-top: -0.34375rem;
   border-radius: 0.6875rem;
-  background: #b1b1b1;
+  background: #1dcba4;
 }
 .map-container .map-dot .map-rad {
   content: "";
@@ -1883,10 +1883,6 @@ section a:hover {
   left: 50%;
   background: #b1b1b1;
   opacity: .2;
-}
-.map-container .map-dot:hover,
-.map-container .map-dot.active {
-  background: #1dcba4;
 }
 .map-container .map-dot:hover .map-rad,
 .map-container .map-dot.active .map-rad {
