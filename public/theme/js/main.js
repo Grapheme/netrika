@@ -611,8 +611,6 @@ $.fn.header_nav = function() {
 	});
 }
 
-$('.main-nav').header_nav();
-
 $.fn.canvas_draw = function(array) {
 
 	if(!array) {
@@ -849,7 +847,18 @@ $.fn.jshover = function(circ) {
 	});
 }
 
+$.fn.ext_url = function() {
+	$(this).each(function(){
+		var link = $(this);
+		if(isExternal(link.attr('href'))) {
+			link.addClass('ext-link').attr('target', '_blank');
+		}
+	});
+}
+
+$('a[href]').ext_url();
 $('.js-hover').jshover('js-circle');
+$('.main-nav').header_nav();
 
 function transform(transform_value) {
 	var prefixes = ['-webkit-', '-ms-', ''];
@@ -867,3 +876,11 @@ function inArray(value, array) {
   return array.indexOf(value) > -1;
 }
 
+function isExternal(url) {
+	console.log(url.slice(0,4));
+    var match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/);
+    if (url.slice(0,7) == 'mailto:' || url.slice(0, 4) == 'tel:') return false;
+    if (typeof match[1] === "string" && match[1].length > 0 && match[1].toLowerCase() !== location.protocol) return true;
+    if (typeof match[2] === "string" && match[2].length > 0 && match[2].replace(new RegExp(":("+{"http:":80,"https:":443}[location.protocol]+")?$"), "") !== location.host) return true;
+    return false;
+}

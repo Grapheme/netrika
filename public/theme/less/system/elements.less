@@ -165,6 +165,17 @@ section a {
 	&.close:before { content: "\e603"; }
 }
 
+.ext-link {
+	&:after {
+		content: "\e607";
+		position: relative;
+		font-family: "elements";
+		font-size: .7em;
+		margin-left: 1em;
+		top: -.2em;
+	}
+}
+
 .sol-dots {
 	.list-unstyled;
 	margin-left: -3rem / @hfs;
