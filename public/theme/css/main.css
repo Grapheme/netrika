@@ -427,6 +427,34 @@ html {
 /** {
 	-webkit-font-smoothing: antialiased;
 }*/
+@-webkit-keyframes mappulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes mappulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
 h1 {
   font-weight: 300;
   font-size: 2.25em;
@@ -715,6 +743,12 @@ section a:hover {
 .aims.aims-dark li .aim:before {
   border-color: #fff;
   color: #fff;
+}
+.title-link a:after {
+  content: "\e60e";
+  font-family: "elements";
+  font-size: .7em;
+  margin-left: 1em;
 }
 .type-health.stat-item.active,
 .type-health.stat-item:hover,
@@ -1857,6 +1891,12 @@ section a:hover {
 .map-container .map-dot:hover .map-rad,
 .map-container .map-dot.active .map-rad {
   background: #1dcba4;
+}
+.map-container .map-dot:hover .map-rad {
+  -webkit-transition: all .75s ease;
+          transition: all .75s ease;
+  -webkit-animation: mappulse .75s infinite;
+          animation: mappulse .75s infinite;
 }
 .map-container .map-desc {
   position: absolute;
