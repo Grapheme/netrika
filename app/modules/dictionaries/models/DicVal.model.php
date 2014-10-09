@@ -123,6 +123,7 @@ class DicVal extends BaseModel {
         $tbl_dicval = $tbl_dicval->getTable();
         $result = new DicFieldVal;
         $tbl_dicfieldval = $result->getTable();
+        #Helper::d($array);
         foreach ($array as $key => $value) {
             #Helper::dd($value);
             if (is_array($value))
@@ -133,14 +134,15 @@ class DicVal extends BaseModel {
         $result = $result
             ->join($tbl_dicval, $tbl_dicval.'.id', '=', $tbl_dicfieldval.'.dicval_id')
             ->whereIn($tbl_dicval.'.dic_id', $dic_ids)
+            ->where($tbl_dicval.'.version_of', NULL)
         ;
 
         ## Делаем выборку всех подходящих записей...
         $result = $result->select($tbl_dicfieldval.'.*', $tbl_dicval.'.dic_id')->get();
 
         ## DEBUG
-        #$queries = DB::getQueryLog();
-        #Helper::smartQuery(end($queries), 1);
+        $queries = DB::getQueryLog();
+        #Helper::smartQuery(end($queries), 1); die;
         #Helper::ta($result);
         #Helper::smartQueries(1);
 
@@ -167,11 +169,13 @@ class DicVal extends BaseModel {
         return $counts;
     }
 
-    public static function extracts($elements, $unset = false) {
+    public static function extracts($elements, $unset = false, $extract_ids = true) {
+        $return = new Collection;
+        #Helper::dd($return);
         foreach ($elements as $e => $element) {
-            $elements[$e] = $element->extract($unset);
+            $return[($extract_ids ? $element->id : $e)] = $element->extract($unset);
         }
-        return $elements;
+        return $return;
     }
 
 

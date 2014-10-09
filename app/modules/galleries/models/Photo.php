@@ -26,4 +26,8 @@ class Photo extends Eloquent {
         return str_replace('//', '/', public_path(Config::get('site.galleries_photo_public_dir') . "/" . $this->name));
     }
 
+    public function extract() {
+        return $this;
+    }
+
 }

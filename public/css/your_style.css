@@ -301,7 +301,7 @@ margin-left: 0;
 }
 .redactor_box {
 	max-width: 790px;
-    z-index: 1000;
+    /*z-index: 1000;*/
     position: relative;
 }
 .redactor_box.redactor_box_fullscreen {
@@ -759,4 +759,12 @@ nav ul li a {
 
 .select2-container .select2-choice {
     height: 30px;
+}
+
+div.input.textarea_redactor {
+    /*z-index: 1000;*/
+}
+div.redactor_dropdown {
+    background-color: #fff;
+    z-index: 10000;
 }

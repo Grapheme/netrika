@@ -1,5 +1,43 @@
 @extends(Helper::layout())
 
+<?
+$slides = Dic::valuesBySlug('sliders');
+$slides = DicVal::extracts($slides, true);
+#Helper::tad($slides);
+
+$solutions = Dic::valuesBySlug('solutions');
+$solutions = DicVal::extracts($solutions, true);
+#Helper::tad($solutions);
+
+$projects = Dic::valuesBySlug('projects', function($query){
+    #$query->orderBy('order', 'asc');
+    $query->orderBy('updated_at', 'desc');
+    $query->orderBy('created_at', 'desc');
+    $query->take(5);
+});
+$projects = DicVal::extracts($projects, true);
+#Helper::ta($projects);
+
+$images_ids = Dic::makeLists($projects, false, 'mainpage_image');
+#Helper::d($images_ids);
+$images = Photo::whereIn('id', $images_ids)->get();
+$images = DicVal::extracts($images, true);
+#Helper::tad($images);
+
+$clients = Dic::valuesBySlug('clients');
+$clients = DicVal::extracts($clients, true);
+#Helper::tad($clients);
+$map_array = array();
+foreach ($clients as $client) {
+    $map_array[] = array(
+        'posX' => $client->city_x,
+        'posY' => $client->city_y,
+        'radius' => $client->size,
+        'name' => $client->name,
+        'items' => explode("\n", $client->clients_list),
+    );
+}
+?>
 
 @section('style')
 @stop
@@ -13,19 +51,16 @@
                     <section class="title-content max-pad">
                         <div class="grid_9 alpha">
                             <div class="main-slider js-main-slider">
-                                <h1 class="js-main-slide">
-                                    Разработка, внедрение, интеграция, поддержка
-                                    и сопровождение комплексных IT-решений
-                                    в государственном секторе
-                                </h1>
-                                <h1 class="js-main-slide">
-                                    Заголовок 2
-                                </h1>
-                                <h1 class="js-main-slide">
-                                    Заголовок 3
-                                </h1>
+                                @foreach ($slides as $slide)
+                                    <?
+                                    #$slide->text_slide = strip_tags($slide->text_slide, '<a>');
+                                    ?>
+                                    <div class="js-main-slide">
+                                        {{ $slide->text_slide }}
+                                    </div>
+                                @endforeach
                             </div>
-                            <a href="#" class="title-btn">Скачать презентацию</a>
+                            {{--<a href="#" class="title-btn">Скачать презентацию</a>--}}
                         </div>
                         <div class="grid_3 omega">
                             <ul class="sol-dots js-ms-dots">
@@ -41,19 +76,17 @@
         <section class="main-stat us-section">
             <div class="container_12 js-stat-parent">
                 <div class="grid_4 stat-desc">
-                    <div class="js-stat-tab" data-type="health">
-                        <h1 class="title-link"><a href="#">N3. Здравоохранение</a></h1>
+
+                    @foreach ($solutions as $solution)
+                    <div class="js-stat-tab" data-type="{{ $solution->slug }}">
+                        <h1 class="title-link"><a href="#">{{ $solution->name }}</a></h1>
                         <p>
-                            Комплексная интегрированная платформа N3.Здравоохранение предназначена для создания, модернизации и/или преобразования системы управления здравоохранением региона, соответствующей всем современным требованиям отрасли.
-                            Система находится в промышленной эксплуатации более двух лет. Интеграционная платформа от компании «Нетрика» - оптимальное решение, которое позволит региону привести все данные в единый вид при взаимодействии различных медицинских информационных систем регионального и федерального уровней.
+                            {{ $solution->describes_purpose_decision }}
                         </p>
                     </div>
-                    <div class="js-stat-tab" data-type="education">
-                        <h1 class="title-link"><a href="#">N2. Образование</a></h1>
-                        <p>
-                            Комплексная интегрированная платформа N3.Здравоохранение предназначена для создания, модернизации и/или преобразования системы управления здравоохранением региона, соответствующей всем современным требованиям отрасли.
-                        </p>
-                    </div>
+
+                    @endforeach
+
                 </div>
                 <div class="grid_4 canvas-cirs">
                     <canvas id="canvas-cir-0" width="360" height="360"></canvas>
@@ -64,51 +97,34 @@
                     <i class="color-2"></i>
                 </div>
                 <div class="grid_4">
-                    <ul class="stat-ul js-stat-tab" data-type="health">
-                        <li>
-                            <div class="title normal js-perc">62%</div>
-                            <p>
-                                экономии времени на ведении отчетности
-                                в медецинских учереждениях
-                            </p>
 
-                        <li>
-                            <div class="title light js-perc">43%</div>
-                            <p>
-                                экономии времени на ведении отчетности
-                                в медецинских учереждениях
-                            </p>
-
-                        <li>
-                            <div class="title lighter js-perc">54%</div>
-                            <p>
-                                экономии времени на ведении отчетности
-                                в медецинских учереждениях
-                            </p>
+                    @foreach ($solutions as $solution)
+                    <ul class="stat-ul js-stat-tab" data-type="{{ $solution->slug }}">
+                        {{-- $solution->performance_indicators --}}
+                        <?
+                        $indicators = explode("\n", $solution->performance_indicators);
+                        ?>
+                        @if (count($indicators))
+                            @foreach ($indicators as $indicator)
+                                <?
+                                $indicator = trim($indicator);
+                                if ($indicator == '')
+                                    continue;
+                                $data = explode(' ', $indicator, 2);
+                                ?>
+                                <li>
+                                    <div class="title normal js-perc">
+                                        {{ @trim($data[0]) }}
+                                    </div>
+                                    <p>
+                                        {{ @trim($data[1]) }}
+                                    </p>
+                            @endforeach
+                        @endif
                     </ul>
 
-                    <ul class="stat-ul js-stat-tab" data-type="education">
-                        <li>
-                            <div class="title normal js-perc">55%</div>
-                            <p>
-                                экономии времени на ведении отчетности
-                                в медецинских учереждениях
-                            </p>
+                    @endforeach
 
-                        <li>
-                            <div class="title light js-perc">32%</div>
-                            <p>
-                                экономии времени на ведении отчетности
-                                в медецинских учереждениях
-                            </p>
-
-                        <li>
-                            <div class="title lighter js-perc">11%</div>
-                            <p>
-                                экономии времени на ведении отчетности
-                                в медецинских учереждениях
-                            </p>
-                    </ul>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -120,6 +136,16 @@
                 </div>
                 <div class="grid_10 js-slider-parent">
                     <div class="stat-items">
+
+                        @foreach ($solutions as $solution)
+                        <a href="#" class="grid_2 stat-item js-tab-link active type-{{ $solution->slug }}" data-type="{{ $solution->slug }}">
+                            <i class="sol-icon"></i><br>
+                            <span>{{ $solution->name }}</span>
+                        </a>
+                        @endforeach
+
+                        @if (0)
+                        <!--
                         <a href="#" class="grid_2 stat-item js-tab-link active type-health" data-type="health">
                             <i class="sol-icon"></i><br>
                             <span>Здравоохранение</span>
@@ -144,6 +170,9 @@
                             <i class="sol-icon"></i><br>
                             <span>Порталы</span>
                         </a>
+                        -->
+                        @endif
+
                     </div>
                 </div>
                 <div class="grid_1 stat-control text-right">
@@ -154,64 +183,31 @@
 
         <section class="projects">
             <div class="container_12">
-                <div class="grid_4 solution-block type-portals js-hover">
-                    <div class="background" style="background-image: url({{ asset(Config::get('site.theme_path').'/img/projects/images/portals.jpg') }})"></div>
+
+                @foreach ($projects as $project)
+                <?
+                $solution = @$solutions[$project->solution_id];
+                $image = @$images[$project->mainpage_image] ?: new Photo;
+                ?>
+                <div class="grid_4 solution-block type-{{ $solution->slug }} js-hover">
+                    <div class="background" style="background-image: url(
+                    {{-- asset(Config::get('site.theme_path').'/img/projects/images/portals.jpg') --}}
+                    {{ $image->full() }}
+                    )"></div>
                     <a href="#" class="project-link"></a>
                     <div class="hover-circle js-circle"></div>
                     <div class="prj-content">
-                        <div class="title"><i class="us-icon icon-portals"></i> Порталы</div>
+                        <div class="title"><i class="us-icon icon-{{ $solution->slug }}"></i> {{ $solution->name }}</div>
                         <div class="desc">
-                            Автоматизация управления лечебно-диагностической деятельности СПб ГБУЗ
-                        </div>
-                    </div>
-                </div>
-                <div class="grid_4 solution-block type-health js-hover">
-                    <div class="background" style="background-image: url({{ asset(Config::get('site.theme_path').'/img/projects/images/health.jpg') }})"></div>
-                    <a href="#" class="project-link"></a>
-                    <div class="hover-circle js-circle"></div>
-                    <div class="prj-content">
-                        <div class="title"><i class="us-icon icon-health"></i> Здравоохранение</div>
-                        <div class="desc">
-                            Региональный сегмент ЕГИСЗ <br>в Архангельске
-                        </div>
-                    </div>
-                </div>
-                <div class="grid_4 solution-block type-education js-hover">
-                    <div class="background" style="background-image: url({{ asset(Config::get('site.theme_path').'/img/projects/images/education.jpg') }})"></div>
-                    <a href="#" class="project-link"></a>
-                    <div class="hover-circle js-circle"></div>
-                    <div class="prj-content">
-                        <div class="title"><i class="us-icon icon-education"></i> Образование</div>
-                        <div class="desc">
-                            Региональный фрагмент ЕГИСЗ <br>в Санкт-Петербурге
-                        </div>
-                    </div>
-                </div>
-                <div class="grid_4 solution-block type-auto js-hover">
-                    <div class="background" style="background-image: url({{ asset(Config::get('site.theme_path').'/img/projects/images/auto.jpg') }})"></div>
-                    <a href="#" class="project-link"></a>
-                    <div class="hover-circle js-circle"></div>
-                    <div class="prj-content">
-                        <div class="title"><i class="us-icon icon-auto"></i> Автоматизация закупок</div>
-                        <div class="desc">
-                            Региональный сегмент ЕГИСЗ <br> в Архангельске
-                        </div>
-                    </div>
-                </div>
-                <div class="grid_4 solution-block type-tourism js-hover">
-                    <div class="background" style="background-image: url({{ asset(Config::get('site.theme_path').'/img/projects/images/portals.jpg') }})"></div>
-                    <a href="#" class="project-link"></a>
-                    <div class="hover-circle js-circle"></div>
-                    <div class="prj-content">
-                        <div class="title"><i class="us-icon icon-tourism"></i> Туризм</div>
-                        <div class="desc">
-                            Автоматизация управления лечебно-диагностической деятельности СПб ГБУЗ
+                            {{ $project->name }}
                         </div>
                     </div>
                 </div>
 
+                @endforeach
+
                 <div class="grid_4 type-all">
-                    <a href="solutions.html" class="project-link">
+                    <a href="{{ URL::route('page', 'solutions') }}" class="project-link">
                         <span>
                             <i class="lit-icon icon-projects"></i> Все проекты
                         </span>
@@ -255,122 +251,13 @@
 
 
 @section('scripts')
-        <script>
-            var map_array = [
-                {
-                    posX: 332,
-                    posY: 202,
-                    radius: 6,
-                    name: "Санкт-Петербург",
-                    items: [
-                        "Администрация Санкт-Петербурга",
-                        "Пресс-служба Администрации Санкт-Петербурга",
-                        "СПб ГУП «АТС Смольного»",
-                        "СПб ГУП «Управление информационных технологий и связи»",
-                        "Региональный центр оценки качества образования и информационных технологий (РЦОКОиИТ)",
-                        "Санкт-Петербургский информационно-аналитический центр",
-                        "Санкт-Петербургский медицинский информационно-аналитический центр",
-                        "Комитет по информатизации и связи Санкт-Петербурга",
-                        "Комитет по здравоохранению Санкт-Петербурга",
-                        "Комитет по образованию Санкт-Петербурга",
-                        "Комитет по вопросам законности, правопорядка и безопасности Санкт-Петербурга",
-                        "Комитет по транспортно-транзитной политике Санкт-Петербурга",
-                        /*"Комитет по вопросам законности, правопорядка и безопасности Санкт-Петербурга",
-                        "Комитет по вопросам законности, правопорядка и безопасности Санкт-Петербурга",
-                        "Комитет по вопросам законности, правопорядка и безопасности Санкт-Петербурга",
-                        "Комитет по вопросам законности, правопорядка и безопасности Санкт-Петербурга",*/
-                    ]
-                },
+    <script>
+        var map_array = {{ json_encode($map_array) }};
 
-                {
-                    posX: 510,
-                    posY: 299,
-                    radius: 4,
-                    name: "Челябинск",
-                    items: [
-                        "Администрация Челябинска",
-                        "Пресс-служба Администрации Санкт-Петербурга",
-                        "СПб ГУП «АТС Смольного»",
-                        "СПб ГУП «Управление информационных технологий и связи»",
-                        "Региональный центр оценки качества образования и информационных технологий (РЦОКОиИТ)",
-                        "Санкт-Петербургский информационно-аналитический центр",
-                        "Санкт-Петербургский медицинский информационно-аналитический центр",
-                        "Комитет по информатизации и связи Санкт-Петербурга",
-                        "Комитет по здравоохранению Санкт-Петербурга",
-                        "Комитет по образованию Санкт-Петербурга",
-                        "Комитет по вопросам законности, правопорядка и безопасности Санкт-Петербурга",
-                        "Комитет по транспортно-транзитной политике Санкт-Петербурга"
-                    ]
-                },
+        $('.map-container').smart_map(map_array);
+        $('.js-stat-parent').statTabs('.js-slider-parent');
+        $('.stat-nav').indexStatNav('.stat-items', '.stat-item');
+        $('.js-main-slider').main_slider('.js-ms-dots');
 
-                {
-                    posX: 243,
-                    posY: 250,
-                    radius: 3,
-                    name: "Псков",
-                    items: [
-                        "Администрация Пскова",
-                        "Пресс-служба Администрации Санкт-Петербурга",
-                        "СПб ГУП «АТС Смольного»",
-                        "СПб ГУП «Управление информационных технологий и связи»",
-                        "Региональный центр оценки качества образования и информационных технологий (РЦОКОиИТ)",
-                        "Санкт-Петербургский информационно-аналитический центр",
-                        "Санкт-Петербургский медицинский информационно-аналитический центр",
-                        "Комитет по информатизации и связи Санкт-Петербурга",
-                        "Комитет по здравоохранению Санкт-Петербурга",
-                        "Комитет по образованию Санкт-Петербурга",
-                        "Комитет по вопросам законности, правопорядка и безопасности Санкт-Петербурга",
-                        "Комитет по транспортно-транзитной политике Санкт-Петербурга"
-                    ]
-                },
-
-                {
-                    posX: 100,
-                    posY: 120,
-                    radius: 3,
-                    name: "Калининград",
-                    items: [
-                        "Администрация Пскова",
-                        "Пресс-служба Администрации Санкт-Петербурга",
-                        "СПб ГУП «АТС Смольного»",
-                        "СПб ГУП «Управление информационных технологий и связи»",
-                        "Региональный центр оценки качества образования и информационных технологий (РЦОКОиИТ)",
-                        "Санкт-Петербургский информационно-аналитический центр",
-                        "Санкт-Петербургский медицинский информационно-аналитический центр",
-                        "Комитет по информатизации и связи Санкт-Петербурга",
-                        "Комитет по здравоохранению Санкт-Петербурга",
-                        "Комитет по образованию Санкт-Петербурга",
-                        "Комитет по вопросам законности, правопорядка и безопасности Санкт-Петербурга",
-                        "Комитет по транспортно-транзитной политике Санкт-Петербурга"
-                    ]
-                },
-
-                {
-                    posX: 1082,
-                    posY: 496,
-                    radius: 8,
-                    name: "Хабаровск",
-                    items: [
-                        "Администрация Пскова",
-                        "Пресс-служба Администрации Санкт-Петербурга",
-                        "СПб ГУП «АТС Смольного»",
-                        "СПб ГУП «Управление информационных технологий и связи»",
-                        "Региональный центр оценки качества образования и информационных технологий (РЦОКОиИТ)",
-                        "Санкт-Петербургский информационно-аналитический центр",
-                        "Санкт-Петербургский медицинский информационно-аналитический центр",
-                        "Комитет по информатизации и связи Санкт-Петербурга",
-                        "Комитет по здравоохранению Санкт-Петербурга",
-                        "Комитет по образованию Санкт-Петербурга",
-                        "Комитет по вопросам законности, правопорядка и безопасности Санкт-Петербурга",
-                        "Комитет по транспортно-транзитной политике Санкт-Петербурга"
-                    ]
-                },
-            ];
-
-            $('.map-container').smart_map(map_array);
-            $('.js-stat-parent').statTabs('.js-slider-parent');
-            $('.stat-nav').indexStatNav('.stat-items', '.stat-item');
-            $('.js-main-slider').main_slider('.js-ms-dots');
-
-        </script>
+    </script>
 @stop

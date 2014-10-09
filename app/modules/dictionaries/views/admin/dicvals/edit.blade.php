@@ -91,7 +91,8 @@
                 } elseif (isset($element->allfields) && is_object($element->allfields) && count($element->allfields)) {
                     $element_fields = $element->allfields->lists('value', 'key');
                 } else {
-                    $element_fields = array();
+                    #$element_fields = array();
+                    $element_fields = $element->toArray();
                 }
                 #Helper::d($element_fields);
                 #$fields_general = $dic_settings['fields'];

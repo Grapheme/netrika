@@ -19,6 +19,7 @@ return array(
                 'title' => 'Категория проекта',
                 'type' => 'select',
                 'values' => $lists['solutions'],
+                /*
                 'handler' => function($value, $element) {
                     $value = (array)$value;
                     $value = array_flip($value);
@@ -34,6 +35,7 @@ return array(
                     ;
                     return $return;
                 },
+                */
             ),
             'link_to_project' => array(
                 'title' => 'Ссылка на реализованный проект',
@@ -46,6 +48,10 @@ return array(
             'description_results' => array(
                 'title' => 'Описание результатов',
                 'type' => 'textarea_redactor',
+            ),
+            'mainpage_image' => array(
+                'title' => 'Изображение для главной страницы',
+                'type' => 'image',
             ),
             'gallery' => array(
                 'title' => 'Изображения',
@@ -105,6 +111,10 @@ return array(
         $counts = Config::get('temp.index_counts');
         return '
             <span class="block_ margin-bottom-5_">
+                <a href="' . URL::route('entity.edit', array('solutions', $dicval->solution_id)) . '" class="btn btn-default">
+                    <i class="fa fa-arrow-left"></i>
+                    Решение
+                </a>
                 <a href="' . URL::route('entity.index', array('project-documents', 'filter[fields][project_id]' => $dicval->id)) . '" class="btn btn-default">
                     Документы (' . @(int)$counts[$dicval->id][$dic_documents->id] . ')
                 </a>

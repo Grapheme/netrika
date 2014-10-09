@@ -14,12 +14,19 @@ return array(
         #Helper::dd($lists);
 
         return array(
-            'description_target_audience' => array(
-                'title' => 'Описание целевой аудитории',
-                'type' => 'textarea_redactor',
-            ),
             'describes_purpose_decision' => array(
                 'title' => 'Описание назначения решения',
+                'type' => 'textarea_redactor',
+            ),
+            'performance_indicators' => array(
+                'title' => 'Показатели эффективности',
+                'type' => 'textarea',
+                'default' => '100% экономия времени
+100% снижение затрат
+100% повышение эффективности',
+            ),
+            'description_target_audience' => array(
+                'title' => 'Описание целевой аудитории',
                 'type' => 'textarea_redactor',
             ),
             'description_advantages_solution' => array(
@@ -104,9 +111,13 @@ return array(
         ## Data from hook: before_index_view
         $dics = Config::get('temp.index_dics');
         $dic_documents = $dics['solution-documents'];
+        $dic_projects = $dics['projects'];
         $counts = Config::get('temp.index_counts');
         return '
             <span class="block_ margin-bottom-5_">
+                <a href="' . URL::route('entity.index', array('projects', 'filter[fields][solution_id]' => $dicval->id)) . '" class="btn btn-default">
+                    Проекты (' . @(int)$counts[$dicval->id][$dic_projects->id] . ')
+                </a>
                 <a href="' . URL::route('entity.index', array('solution-documents', 'filter[fields][solution_id]' => $dicval->id)) . '" class="btn btn-default">
                     Документы (' . @(int)$counts[$dicval->id][$dic_documents->id] . ')
                 </a>
@@ -121,20 +132,22 @@ return array(
         'before_index_view' => function ($dic, $dicvals) {
             $dics_slugs = array(
                 'solution-documents',
+                'projects',
             );
             $dics = Dic::whereIn('slug', $dics_slugs)->get();
             $dics = Dic::modifyKeys($dics, 'slug');
-            #Helper::tad($dics);
+            #Helper::d($dics);
             Config::set('temp.index_dics', $dics);
 
             $dic_ids = Dic::makeLists($dics, false, 'id');
             #Helper::d($dic_ids);
             $dicval_ids = Dic::makeLists($dicvals, false, 'id');
-            #Helper::d($dicval_ids);
+            #Helper::dd($dicval_ids);
 
             $counts = array();
-            if (count($dic_ids) && count($dicval_ids))
+            if (count($dic_ids) && count($dicval_ids)) {
                 $counts = DicVal::counts_by_fields($dic_ids, array('solution_id' => $dicval_ids));
+            }
             #Helper::dd($counts);
             Config::set('temp.index_counts', $counts);
         },

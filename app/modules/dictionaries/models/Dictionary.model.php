@@ -35,6 +35,7 @@ class Dictionary extends BaseModel {
 
     public function values() {
         return $this->hasMany('DicVal', 'dic_id', 'id')
+            ->where('version_of', NULL)
             ->with('meta', 'fields')
             ->orderBy('order', 'ASC')
             ->orderBy('slug', 'ASC')
@@ -43,15 +44,15 @@ class Dictionary extends BaseModel {
     }
 
     public function values_count() {
-        return DicVal::where('dic_id', $this->id)->count();
+        return DicVal::where('dic_id', $this->id)->where('version_of', NULL)->count();
     }
 
     public function values_count2() {
-        return $this->hasMany('DicVal', 'dic_id', 'id'); #->select(DB::raw('COUNT(*) as count'));
+        return $this->hasMany('DicVal', 'dic_id', 'id')->where('version_of', NULL); #->select(DB::raw('COUNT(*) as count'));
     }
 
     public function value() {
-        return $this->hasOne('DicVal', 'dic_id', 'id');
+        return $this->hasOne('DicVal', 'dic_id', 'id')->where('version_of', NULL);
     }
 
     public static function whereSlugValues($slug) {
@@ -102,10 +103,13 @@ class Dictionary extends BaseModel {
         foreach ($collection as $c => $col) {
             if (!$listed_key) {
 
-                if ($key != '')
-                    $lists[$col->$key] = $col->$value;
-                else
-                    $lists[] = $col->$value;
+                #Helper::d((int)$col->$value);
+
+                if (isset($col->$value))
+                    if ($key != '')
+                        $lists[$col->$key] = $col->$value;
+                    else
+                        $lists[] = $col->$value;
 
             } else {
 
@@ -136,13 +140,20 @@ class Dictionary extends BaseModel {
             }))->first()->value;
     }
 
-    public static function valuesBySlug($slug) {
+    public static function valuesBySlug($slug, Closure $conditions = NULL) {
         #Helper::dd($slug);
-        $return = Dic::where('slug', $slug)->with('values')->first();
+        $return = Dic::where('slug', $slug);
+        #dd($conditions);
+        if (is_callable($conditions))
+            $return = $return->with(array('values' => $conditions));
+        else
+            $return = $return->with('values');
+
+        $return = $return->first();
         if (is_object($return))
             $return = $return->values;
         else
-            $return = Dic::firstOrNew(array('slug' => $slug))->with('values')->first()->values;
+            $return = Dic::firstOrNew(array('slug' => $slug, 'version_of' => NULL))->with('values')->first()->values;
         #return self::firstOrNew(array('slug' => $slug))->values;
         return $return;
     }

@@ -1,12 +1,30 @@
+<?
+$solutions = Dic::valuesBySlug('solutions');
+$solutions = DicVal::extracts($solutions, true);
+#Helper::ta($solutions);
+
+$projects = Dic::valuesBySlug('projects', function($query){
+    #$query->orderBy('order', 'asc');
+    $query->orderBy('updated_at', 'desc');
+    $query->orderBy('created_at', 'desc');
+});
+$projects = DicVal::extracts($projects, true);
+#Helper::ta($projects);
+
+$array = array();
+foreach ($projects as $project) {
+    $array[$project->solution_id][$project->id] = $project;
+}
+?>
         <footer class="main-footer">
             <div class="container_12">
                 <div class="grid_4">
                     <ul class="footer-list">
                         <li><a href="{{ URL::route('page', 'about') }}">О компании</a>
                         <li><a href="{{ URL::route('page', 'projects') }}">Проекты</a>
-                        <li><a href="#">Решения</a>
+                        <li><a href="{{ URL::route('page', 'solutions') }}">Решения</a>
                         <li><a href="{{ URL::route('page', 'newslist') }}">Новости</a>
-                        <li><a href="#">Контакты</a>
+                        <li><a href="{{ URL::route('page', 'contacts') }}">Контакты</a>
                         <li><a href="{{ URL::route('page', 'sitemap') }}">Карта сайта</a>
                     </ul>
                 </div>
@@ -16,7 +34,7 @@
                         <li><a class="phone-link" href="tel:+78126408070">+7 (812) 640-80-70</a>
                         <li><a href="#">Контакты поддержки</a>
                         <li><i class="min-line"></i>
-                        <li><a href="#">api.netrika.ru</a>
+                        <li><a href="http://api.netrika.ru">api.netrika.ru</a>
                     </ul>
                 </div>
                 <div class="grid_4">
@@ -31,65 +49,21 @@
                 </div>
                 <div class="grid_12 footer-line"></div>
                 <div class="grid_4">
-                    <div class="footer-title">Здравоохранение</div>
-                    <ul class="footer-list">
-                        <li><a href="#">Региональная интеграционная платформа</a>
-                        <li><a href="#">Интеграция с федеральными сервисами</a>
-                        <li><a href="#">ЦТО</a>
-                        <li><a href="#">Управление потоками пациентов</a>
-                        <li><a href="#">Интеграция МИС, ЛИС, PACS</a>
-                        <li><a href="#">Аналитика, статистика</a>
-                        <li><a href="#">Мобильные приложения</a>
-                    </ul>
-                    <div class="footer-title">Открытое правительство</div>
-                    <ul class="footer-list">
-                        <li><a href="#">Открытый регион</a>
-                        <li><a href="#">Открытые данные</a>
-                        <li><a href="#">Открытый бюджет</a>
-                        <li><a href="#">Навигатор информационных ресурсов</a>
-                    </ul>
-                    <div class="footer-title">Официальные сайты</div>
-                    <ul class="footer-list">
-                        <li><a href="#">Порталы администраци, ОГВ</a>
-                        <li><a href="#">Конструктор сайтов</a>
-                        <li><a href="#">Навигатор информационных ресурсов</a>
-                    </ul>
-                </div>
-                <div class="grid_4">
-                    <div class="footer-title">Государственные закупки</div>
-                    <ul class="footer-list">
-                        <li><a href="#">Документооборот</a>
-                        <li><a href="#">Бюджетирование</a>
-                        <li><a href="#">Процедура закупки</a>
-                        <li><a href="#">Учет активов</a>
-                    </ul>
-                    <div class="footer-title">Мировые суды</div>
-                    <ul class="footer-list">
-                        <li><a href="#">Автоматизация деятельности судебных участков</a>
-                        <li><a href="#">Информационная поддержка граждан</a>
-                        <li><a href="#">Интеграция с ГАС Правосудие</a>
-                    </ul>
-                    <div class="footer-title">Туризм</div>
-                    <ul class="footer-list">
-                        <li><a href="#">Региональная система</a>
-                        <li><a href="#">Тур портал</a>
-                        <li><a href="#">Мобильное приложение</a>
-                        <li><a href="#">Тур реестр</a>
-                    </ul>
-                </div>
-                <div class="grid_4">
-                    <div class="footer-title">Образование</div>
-                    <ul class="footer-list">
-                        <li><a href="#">Региональная ИАС управления образованием </a>
-                        <li><a href="#">и оказания государственных услуг</a>
-                        <li><a href="#">Государственные услуги</a>
-                        <li><a href="#">Сервис поддержки принятия решений</a>
-                        <li><a href="#">Интеграция с федеральной системой учета контингента</a>
-                        <li><a href="#">Единый образовательный портал региона</a>
-                        <li><a href="#">АИС Школы</a>
-                        <li><a href="#">АИС Сады</a>
-                        <li><a href="#">АИС Техникумы</a>
-                    </ul>
+
+                    @foreach ($solutions as $solution)
+                        <div class="footer-title">{{ $solution->name }}</div>
+                        <?
+                        $solution_projects = @$array[$solution->id];
+                        ?>
+                        @if (count($solution_projects))
+                            <ul class="footer-list">
+                            @foreach ($solution_projects as $project)
+                                <li><a href="#">{{ $project->name }}</a>
+                            @endforeach
+                            </ul>
+                        @endif
+                    @endforeach
+
                 </div>
                 <div class="grid_12 footer-line"></div>
                 <div class="grid_12">

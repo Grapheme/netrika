@@ -5,10 +5,25 @@ return array(
     'fields' => function () {
 
         return array(
-            'description_clients' => array(
-                'title' => 'Описание',
-                'type' => 'textarea_redactor',
+            'city_x' => array(
+                'title' => 'Координата X',
+                'type' => 'text',
             ),
+            'city_y' => array(
+                'title' => 'Координата Y',
+                'type' => 'text',
+            ),
+            'size' => array(
+                'title' => 'Размерность',
+                'type' => 'select',
+                'values' => array('3'=>'Малый', '4'=>'Средний', '6'=>'Большой', '8'=>'Мегаполис'),
+                'default' => 4,
+            ),
+            'clients_list' => array(
+                'title' => 'Список клиентов (по одному на строку)',
+                'type' => 'textarea',
+            ),
+            /*
             'gallery' => array(
                 'title' => 'Изображения',
                 'type' => 'gallery',
@@ -21,6 +36,7 @@ return array(
                     ));
                 }
             ),
+            */
         );
 
     },
@@ -33,6 +49,7 @@ return array(
 
 
     'actions' => function($dic, $dicval) {
+        /*
         ## Data from hook: before_index_view
         $dics = Config::get('temp.index_dics');
         $dic_documents = $dics['clients-institutions'];
@@ -44,6 +61,7 @@ return array(
                 </a>
             </span>
         ';
+        */
     },
 
     'hooks' => array(
@@ -55,6 +73,7 @@ return array(
         },
 
         'before_index_view' => function ($dic, $dicvals) {
+            /*
             $dics_slugs = array(
                 'clients-institutions',
             );
@@ -73,6 +92,7 @@ return array(
                 $counts = DicVal::counts_by_fields($dic_ids, array('client_id' => $dicval_ids));
             #Helper::dd($counts);
             Config::set('temp.index_counts', $counts);
+            */
         },
 
         'before_create_edit' => function ($dic) {
