@@ -1,34 +1,11 @@
 <?
 /**
- * TITLE: Главная страница
+ * TITLE: О компании
  */
 ?>
 @extends(Helper::layout())
 
 <?
-$slides = Dic::valuesBySlug('sliders');
-$slides = DicVal::extracts($slides, true);
-#Helper::tad($slides);
-
-$solutions = Dic::valuesBySlug('solutions');
-$solutions = DicVal::extracts($solutions, true);
-#Helper::tad($solutions);
-
-$projects = Dic::valuesBySlug('projects', function($query){
-    #$query->orderBy('order', 'asc');
-    $query->orderBy('updated_at', 'desc');
-    $query->orderBy('created_at', 'desc');
-    $query->take(5);
-});
-$projects = DicVal::extracts($projects, true);
-#Helper::ta($projects);
-
-$images_ids = Dic::makeLists($projects, false, 'mainpage_image');
-#Helper::d($images_ids);
-$images = Photo::whereIn('id', $images_ids)->get();
-$images = DicVal::extracts($images, true);
-#Helper::tad($images);
-
 $clients = Dic::valuesBySlug('clients');
 $clients = DicVal::extracts($clients, true);
 #Helper::tad($clients);

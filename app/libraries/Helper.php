@@ -91,6 +91,16 @@ class Helper {
         return "templates." . $layout . ($file ? '.' . $file : '');
     }
 
+    public static function theme_dir($file = '') {
+
+        $layout = Config::get('app.template');
+        if (!$layout)
+            $layout = 'default';
+
+        $full = base_path("app/views/templates/" . $layout . ( $file ? '/'.$file : ''));
+        return $full;
+    }
+
     public static function inclayout($file) {
 
         $layout = Config::get('app.template');
@@ -951,6 +961,55 @@ HTML;
         $return = strtr($tpl_container, array('%elements%' => implode('', $links),));
         #Helper::dd($return);
         return $return;
+    }
+
+    public static function getFileProperties($file) {
+        $properties = array();
+        $limit = 18;
+
+        if (!file_exists($file) || !is_file($file) || !is_readable($file))
+            return $properties;
+
+        $l = 0;
+        $handle = @fopen($file, "r");
+        if ($handle) {
+            while (($buffer = fgets($handle, 1024)) !== false) {
+                ++$l;
+                /*
+                Helper::d(
+                    $l . " => " . $buffer
+                    . ' / ' . ($l == 1 ? (int)(trim($buffer) == '<?') . '[' . trim($buffer) . ']' : '')
+                    . ' / ' . ($l == 2 ? (int)(trim($buffer) == '/**') . '[' . trim($buffer) . ']' : '')
+                );
+                */
+                if (
+                    $l > $limit
+                    || ($l == 1 && mb_substr($buffer, 0, 2) != '<?')
+                    || ($l == 2 && mb_substr($buffer, 0, 3) != '/**')
+                )
+                    break;
+
+                #Helper::d(' + ' . $buffer . ' => ' . (int)(trim($buffer) == '<?'));
+
+                if ($l > 2) {
+                    if (mb_substr($buffer, 0, 3) == ' */')
+                        break;
+
+                    $buffer = trim($buffer, " \r\n\t*");
+                    $buffer = explode(':', $buffer);
+
+                    #Helper::d($buffer);
+
+                    $properties[@trim($buffer[0])] = @trim($buffer[1]) ?: true;
+                }
+
+            }
+            if (!feof($handle)) {
+                #echo "Error: unexpected fgets() fail\n";
+            }
+            fclose($handle);
+        }
+        return $properties;
     }
 }
 

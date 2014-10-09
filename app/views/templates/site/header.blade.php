@@ -1,4 +1,8 @@
-
+<?
+/**
+ * TEMPLATE_IS_NOT_SETTABLE
+ */
+?>
         <header class="main-header">
             <div class="container_12">
                 <div class="grid_12">

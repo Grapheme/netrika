@@ -1,7 +1,12 @@
 <?
+/**
+ * TEMPLATE_IS_NOT_SETTABLE
+ */
+/*
 $solutions = Dic::valuesBySlug('solutions');
 $solutions = DicVal::extracts($solutions, true);
 #Helper::ta($solutions);
+*/
 
 $projects = Dic::valuesBySlug('projects', function($query){
     #$query->orderBy('order', 'asc');
