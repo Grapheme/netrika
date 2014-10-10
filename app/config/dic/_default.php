@@ -176,12 +176,12 @@ return array(
                     $value = array_flip($value);
                     foreach ($value as $v => $null)
                         $value[$v] = array('dicval_child_dic' => 'scope');
-                    $element->relations()->sync($value);
+                    $element->related_dicvals()->sync($value);
                     return @count($value);
                 },
                 'value_modifier' => function($value, $element) {
                     $return = (is_object($element) && $element->id)
-                        ? $element->relations()->get()->lists('id')
+                        ? $element->related_dicvals()->get()->lists('id')
                         : $return = array()
                     ;
                     return $return;
@@ -202,12 +202,12 @@ return array(
                 'values' => $lists['scope'],
                 'handler' => function ($value, $element) {
                     $value = (array)$value;
-                    $element->relations()->sync($value);
+                    $element->related_dicvals()->sync($value);
                     return @count($value);
                 },
                 'value_modifier' => function ($value, $element) {
                     $return = (is_object($element) && $element->id)
-                        ? $element->relations()->get()->lists('name', 'id')
+                        ? $element->related_dicvals()->get()->lists('name', 'id')
                         : $return = array();
                     return $return;
                 },

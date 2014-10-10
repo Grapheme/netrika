@@ -121,6 +121,9 @@ foreach ($clients as $client) {
         </section>
         <section class="gray-section">
             <div class="container_12">
+                <div class="grid_12">
+                    <h2 class="title-link"><a href="{{ URL::route('page', 'vacancy') }}">Вакансии</a></h2>
+                </div>
 
                 {{ $page->block('vacancy') }}
 

@@ -114,10 +114,14 @@ class AdminPagesPageController extends BaseController {
             @$templates_theme[$key] = $template;
 
         $templates = array();
-        if (@count($templates_theme))
+        if (@count($templates_theme)) {
+            natsort($templates_theme);
             $templates['Тема оформления'] = $templates_theme;
-        if (@count($templates_module))
+        }
+        if (@count($templates_module)) {
+            natsort($templates_module);
             $templates['Модуль'] = $templates_module;
+        }
         #Helper::dd($templates);
 
         return View::make($this->module['tpl'].'edit', compact('element', 'locales', 'templates'));
@@ -157,10 +161,14 @@ class AdminPagesPageController extends BaseController {
             @$templates_theme[$key] = $template;
 
         $templates = array();
-        if (@count($templates_theme))
+        if (@count($templates_theme)) {
+            natsort($templates_theme);
             $templates['Тема оформления'] = $templates_theme;
-        if (@count($templates_module))
+        }
+        if (@count($templates_module)) {
+            natsort($templates_module);
             $templates['Модуль'] = $templates_module;
+        }
         #Helper::dd($templates);
 
         return View::make($this->module['tpl'].'edit', compact('element', 'locales', 'templates'));

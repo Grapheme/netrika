@@ -51,7 +51,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                                 @if (isset($page->seo) && @is_object($page->seo) && $page->seo->h1 != '')
                                     {{ $page->seo->h1 }}
                                 @else
-                                    {{ $page->title }}
+                                    {{ $page->name }}
                                 @endif
                             </h1>
                         </div>

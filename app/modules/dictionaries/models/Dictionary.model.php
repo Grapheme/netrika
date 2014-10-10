@@ -40,7 +40,15 @@ class Dictionary extends BaseModel {
             ->orderBy('order', 'ASC')
             ->orderBy('slug', 'ASC')
             ->orderBy('name', 'ASC')
-            ->orderBy('id', 'ASC');
+            ->orderBy('id', 'ASC')
+        ;
+    }
+
+    public function values_no_conditions() {
+        return $this->hasMany('DicVal', 'dic_id', 'id')
+            ->where('version_of', NULL)
+            ->with('meta', 'fields')
+        ;
     }
 
     public function values_count() {
@@ -145,13 +153,16 @@ class Dictionary extends BaseModel {
         $return = Dic::where('slug', $slug);
         #dd($conditions);
         if (is_callable($conditions))
-            $return = $return->with(array('values' => $conditions));
+            $return = $return->with(array('values_no_conditions' => $conditions));
         else
             $return = $return->with('values');
 
         $return = $return->first();
+
+        #Helper::tad($return);
+
         if (is_object($return))
-            $return = $return->values;
+            $return = isset($return->values_no_conditions) ? $return->values_no_conditions : $return->values;
         else
             $return = Dic::firstOrNew(array('slug' => $slug, 'version_of' => NULL))->with('values')->first()->values;
         #return self::firstOrNew(array('slug' => $slug))->values;

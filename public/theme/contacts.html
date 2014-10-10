@@ -338,7 +338,9 @@
                         center: new google.maps.LatLng(59.938474, 30.372941),
                         zoom: 17,
                         mapTypeId: google.maps.MapTypeId.ROADMAP,
-                        //draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true,
+                        //draggable: false, zoomControl: false,
+                        scrollwheel: false,
+                        //disableDoubleClickZoom: true,
                         styles: style
                     };
                     var map = new google.maps.Map(document.getElementById("map"), mapOptions);

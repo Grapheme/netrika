@@ -217,7 +217,7 @@ foreach ($clients as $client) {
                 @endforeach
 
                 <div class="grid_4 type-all">
-                    <a href="{{ URL::route('page', 'solutions') }}" class="project-link">
+                    <a href="{{ URL::route('page', 'projects') }}" class="project-link">
                         <span>
                             <i class="lit-icon icon-projects"></i> Все проекты
                         </span>

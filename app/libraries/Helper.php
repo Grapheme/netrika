@@ -496,13 +496,14 @@ HTML;
                 }
                 foreach ($array['values'] as $key => $val) {
                     $checked = is_array($value) && isset($value[$key]);
-                    $el = '<label class="checkbox' . $style . '">'
-                        . Form::checkbox($name . '[]', $key, $checked, $others_array)
-                        . '<i></i>'
-                        . '<span>' . $val . '</span>'
-                        . '</label>';
+                    $el = '<label class="checkbox' . $style . '">' . "\n"
+                        . Form::checkbox($name . '[]', $key, $checked, $others_array) . "\n"
+                        . '<i></i>' . "\n"
+                        . '<span>' . $val . '</span>' . "\n"
+                        . '</label>' . "\n\n";
                     $return .= $el;
                 }
+                #Helper::d(htmlspecialchars($return));
                 break;
         }
         return $return;

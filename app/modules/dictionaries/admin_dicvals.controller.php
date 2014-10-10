@@ -245,7 +245,7 @@ class AdminDicvalsController extends BaseController {
         if (!is_object($element))
             App::abort(404);
 
-        $element->extract(1);
+        $element->extract(0);
         #Helper::tad($element);
 
 		return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'dic_id', 'locales', 'dic_settings'));
@@ -398,6 +398,7 @@ class AdminDicvalsController extends BaseController {
             if (isset($element_fields_i18n) && is_callable($element_fields_i18n))
                 $element_fields_i18n = $element_fields_i18n();
             #Helper::dd($element_fields_i18n);
+            #Helper::dd($fields_i18n);
 
             ## FIELDS I18N
             #if (@is_array($fields_i18n) && count($fields_i18n)) {
@@ -413,20 +414,26 @@ class AdminDicvalsController extends BaseController {
                 foreach ($element_fields_i18n as $field_name => $field_params) {
                     #Helper::d($field_name);
                     #Helper::d($field_params);
+                    #Helper::dd($fields_i18n);
                     #continue;
                     foreach ($fields_i18n as $locale_sign => $values) {
 
-                        if (!isset($values[$field_name]))
-                            continue;
+                        #Helper::d($field_name . ' => ' . @$values[$field_name]);
+                        #var_dump(@$values[$field_name]);
+
+                        #if (!isset($values[$field_name]))
+                        #    continue;
 
                         $value = @$values[$field_name];
+                        #Helper::d($field_name . ' => ' . $value);
 
                         ## If handler of field is defined
                         if (is_callable($handler = @$element_fields_i18n[$field_name]['handler'])) {
                             #Helper::dd($handler);
-                            $value = $handler($value);
+                            $value = $handler($value, $element);
                         }
-                        #Helper::d($value);
+
+                        #Helper::d($field_name . ' => ' . $value);
 
                         if ($value === false)
                             continue;
@@ -450,6 +457,7 @@ class AdminDicvalsController extends BaseController {
                     $element_meta = DicValMeta::firstOrNew(array('dicval_id' => $id, 'language' => $locale_sign));
                     $element_meta->update($array);
                     $element_meta->save();
+                    Helper::tad($element_meta);
                     unset($element_meta);
                 }
             }

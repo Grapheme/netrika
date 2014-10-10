@@ -224,6 +224,7 @@ $.fn.news_module = function(news_array, tags_object) {
 		var ready_array = [];
 
 		$.each(news_array, function(index, value){
+            value.date = new Date(value.date);
 			var news_date = value.date.getTime();
 			var date = {
 				min: new Date(settings.date[0]).getTime() - 1,
