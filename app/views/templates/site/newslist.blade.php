@@ -67,6 +67,7 @@ foreach ($newslist as $new) {
 ?>
 
 @section('style')
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
 @stop
 
 
@@ -194,52 +195,8 @@ foreach ($newslist as $new) {
         <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
         <script src="{{ asset(Config::get('site.theme_path').'/js/vendor/jquery.ui.datepicker-ru.js') }}"></script>
         <script>
-            <!--
-            var tags_object = {
-                'auto': 'Автоматизация',
-                'stat': 'Статистика',
-                'event': 'Выставки',
-                'int': 'Интеграция'
-            };
-            -->
             var tags_object = {{ json_encode($tags_slug_name) }};
 
-            <!--
-            var news_array = [
-                {
-                    date: new Date('2014-10-27'),
-                    title: 'Почти 2000 образовательных учреждений Санкт-Петербурга могут создать свой типовой Интернет-сайт',
-                    image: 'img/projects/images/news-photo.jpg',
-                    href: 'news-one.html',
-                    tags: [
-                        'auto',
-                        'event',
-                        'int'
-                    ]
-                },
-
-                {
-                    date: new Date('2014-10-23'),
-                    title: 'Почти 2000 образовательных учреждений Санкт-Петербурга могут создать свой типовой Интернет-сайт',
-                    image: false,
-                    href: 'news-one.html',
-                    tags: [
-                        'auto',
-                    ]
-                },
-
-                {
-                    date: new Date('2014-09-01'),
-                    title: 'Почти 3000 образовательных учреждений Санкт-Петербурга могут создать свой типовой Интернет-сайт',
-                    image: 'img/projects/images/auto.jpg',
-                    href: 'news-one.html',
-                    tags: [
-                        'event',
-                        'int'
-                    ]
-                },
-            ];
-            -->
             var news_array = {{ json_encode($news) }};
 
             $(document).news_module(news_array, tags_object);

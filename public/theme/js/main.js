@@ -112,7 +112,7 @@ $.fn.news_module = function(news_array, tags_object) {
                         '</a>'+
                         '<div class="news-preview">'+
                         	date_without_image +
-                            '<a href="news-one.html" class="title">' + obj.title + '</a>'+
+                            '<a href="' + obj.href + '" class="title">' + obj.title + '</a>'+
                         '</div>'+
                         '<ul class="tags-ul">' + out_obj.tag_list + '</ul>'+
                     '</div>';
