@@ -15,7 +15,7 @@ return array(
 
         return array(
             'solution_id' => array(
-                'title' => 'Проекты',
+                'title' => 'Проект',
                 'type' => 'select',
                 'values' => $lists['projects'],
                 'default' => (int)Input::get('filter.fields.project_id')
@@ -24,7 +24,7 @@ return array(
                 'title' => 'Описание',
                 'type' => 'textarea_redactor',
             ),
-            'link_document' => array(
+            'file_document' => array(
                 'title' => 'Добавить файл',
                 'type' => 'upload',
                 'accept' => 'application/pdf,application/x-download', # .exe,image/*,video/*,audio/*
@@ -36,6 +36,10 @@ return array(
                     }
                     return ExtForm::process('upload', $value);
                 },
+            ),
+            'link_document' => array(
+                'title' => 'Ссылка на документ (необязательно)',
+                'type' => 'text',
             ),
         );
 

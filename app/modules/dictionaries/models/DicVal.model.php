@@ -227,7 +227,7 @@ class DicVal extends BaseModel {
 
         }
 
-        ## Extract SEO
+        ## Extract SEOs
         if (isset($this->seos)) {
             #Helper::tad($this->seos);
             if (count($this->seos) == 1 && count(Config::get('app.locales')) == 1) {
@@ -257,6 +257,22 @@ class DicVal extends BaseModel {
                 if ($m != $meta->language || $m === 0)
                     unset($this->metas[$m]);
             }
+        }
+
+        ## Extract meta
+        if (isset($this->meta)) {
+
+            if (
+                is_object($this->meta)
+                && ($this->meta->language == Config::get('app.locale') || $this->meta->language == NULL)
+            ) {
+                if ($this->meta->name != '')
+                    $this->name = $this->meta->name;
+
+            }
+
+            if ($unset)
+                unset($this->meta);
         }
 
         #Helper::ta($this);

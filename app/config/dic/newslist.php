@@ -23,6 +23,7 @@ return array(
         #Helper::dd($lists);
 
         return array(
+            /*
             'published_at' => array(
                 'title' => 'Дата публикации',
                 'type' => 'date',
@@ -38,6 +39,7 @@ return array(
                     return $value ? @date('d.m.Y', strtotime($value)) : $value;
                 },
             ),
+            */
 
             'preview' => array(
                 'title' => 'Анонс',
@@ -58,6 +60,19 @@ return array(
             'image_id' => array(
                 'title' => 'Изображение',
                 'type' => 'image',
+            ),
+
+            'gallery_id' => array(
+                'title' => 'Галерея изображений',
+                'type' => 'gallery',
+                'handler' => function($array, $element) {
+                    return ExtForm::process('gallery', array(
+                        'module'  => 'DicValMeta',
+                        'unit_id' => $element->id,
+                        'gallery' => $array,
+                        'single'  => true,
+                    ));
+                }
             ),
 
             'tags_ids' => array(

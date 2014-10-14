@@ -20,30 +20,10 @@ return array(
                 'values' => $lists['solutions'],
                 'default' => (int)Input::get('filter.fields.solution_id')
             ),
-            'description_document' => array(
-                'title' => 'Полное наименование документа',
+            'description' => array(
+                'title' => 'Описание решения',
                 'type' => 'textarea',
             ),
-            'url_document' => array(
-                'title' => 'Ссылка на документ (необязательно)',
-                'type' => 'text',
-            ),
-            /*
-            'link_document' => array(
-                'title' => 'Добавить файл',
-                'type' => 'upload',
-                'accept' => 'application/pdf,application/x-download', # .exe,image/*,video/*,audio/*
-                'label_class' => 'input-file',
-                'handler' => function($value, $element = false) {
-                    if (@is_object($element) && @is_array($value)) {
-                        $value['module'] = 'dicval';
-                        $value['unit_id'] = $element->id;
-                    }
-                    return ExtForm::process('upload', $value);
-                },
-            ),
-            */
-
         );
 
     },
@@ -94,13 +74,13 @@ return array(
         'before_edit' => function ($dic, $dicval) {
         },
         'after_store' => function ($dic, $dicval) {
-            Event::fire('reshenie-sozdan-normativnyy-dokument', array(array('title'=>$dicval->name)));
+            #Event::fire('reshenie-sozdan-normativnyy-dokument', array(array('title'=>$dicval->name)));
         },
         'after_update' => function ($dic, $dicval) {
-            Event::fire('reshenie-otredaktirovan-normativnyy-dokument', array(array('title'=>$dicval->name)));
+            #Event::fire('reshenie-otredaktirovan-normativnyy-dokument', array(array('title'=>$dicval->name)));
         },
         'after_destroy' => function ($dic, $dicval) {
-            Event::fire('reshenie-udalen-normativnyy-dokument', array(array('title'=>$dicval->name)));
+            #Event::fire('reshenie-udalen-normativnyy-dokument', array(array('title'=>$dicval->name)));
         },
         'before_store_update' => function ($dic) {
         },
@@ -112,11 +92,6 @@ return array(
         'before_destroy' => function ($dic, $dicval) {
         },
     ),
-
-    'second_line_modifier' => function($line, $dic, $dicval) {
-        #$users =  Config::get('temp.users');
-        return $dicval->url_document;
-    },
 
     'seo' => false,
 );

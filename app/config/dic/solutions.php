@@ -5,9 +5,10 @@ return array(
     'fields' => function () {
 
         $dics_slugs = array(
-            'entities-tags',
+            'tags',
         );
         $dics = Dic::whereIn('slug', $dics_slugs)->with('values')->get();
+        #Helper::dd();
         $dics = Dic::modifyKeys($dics, 'slug');
         #Helper::tad($dics);
         $lists = Dic::makeLists($dics, 'values', 'name', 'id');
@@ -15,7 +16,7 @@ return array(
 
         return array(
             'describes_purpose_decision' => array(
-                'title' => 'Описание назначения решения',
+                'title' => 'Описание решения',
                 'type' => 'textarea_redactor',
             ),
             'performance_indicators' => array(
@@ -26,41 +27,63 @@ return array(
 100% повышение эффективности',
             ),
             'description_target_audience' => array(
-                'title' => 'Описание целевой аудитории',
-                'type' => 'textarea_redactor',
+                'title' => 'Целевая аудитория (по одному на строку)',
+                'type' => 'textarea',
+            ),
+
+            'assignment_solution' => array(
+                'title' => 'Назначение решения (по одному на строку)',
+                'type' => 'textarea',
             ),
             'description_advantages_solution' => array(
-                'title' => 'Описание преимущества решения',
-                'type' => 'textarea_redactor',
+                'title' => 'Преимущества решения (по одному на строку)',
+                'type' => 'textarea',
+            ),
+            'application_solution' => array(
+                'title' => 'Применение решения (по одному на строку)',
+                'type' => 'textarea',
             ),
             'mainpage_image' => array(
-                'title' => 'Изображение для главной страницы',
+                'title' => 'Фоновое изображение',
                 'type' => 'image',
             ),
             'image_schemes_work' => array(
                 'title' => 'Изображение схемы работы',
                 'type' => 'image',
             ),
-            'identify_features_solution' => array(
-                'title' => 'Описание возможности решения',
-                'type' => 'textarea_redactor',
-            ),
+
             'description_integration' => array(
                 'title' => 'Описание интеграции',
                 'type' => 'textarea_redactor',
             ),
+
+            'identify_features_solution' => array(
+                'title' => 'Возможности решения',
+                'type' => 'textarea_redactor',
+            ),
+
+            'additional_features' => array(
+                'title' => 'Дополнительные возможности (по одному на строку)',
+                'type' => 'textarea',
+            ),
+            /*
             'description_plans' => array(
                 'title' => 'Описание планов',
                 'type' => 'textarea_redactor',
             ),
+            */
+            /*
             'description_components' => array(
                 'title' => 'Описание компонентов решения',
                 'type' => 'textarea_redactor',
             ),
+            */
+            /*
             'description_partners' => array(
-                'title' => 'Список партнеров',
+                'title' => 'Партнеры решения',
                 'type' => 'textarea_redactor',
             ),
+            */
             'availability_demonstrate' => array(
                 'no_label' => true,
                 'title' => 'Доступность демонстрации решения',
@@ -83,7 +106,7 @@ return array(
             'tags_id' => array(
                 'title' => 'Список тегов',
                 'type' => 'select-multiple',
-                'values' => $lists['entities-tags'],
+                'values' => $lists['tags'],
                 'handler' => function($value, $element) {
                     $value = (array)$value;
                     $value = array_flip($value);
@@ -114,16 +137,20 @@ return array(
     'actions' => function($dic, $dicval) {
         ## Data from hook: before_index_view
         $dics = Config::get('temp.index_dics');
-        $dic_documents = $dics['solution-documents'];
         $dic_projects = $dics['projects'];
+        $dic_documents = $dics['solution-documents'];
+        $dic_components = $dics['solution_components'];
         $counts = Config::get('temp.index_counts');
         return '
-            <span class="block_ margin-bottom-5_">
+            <span class="display-block margin-bottom-5">
                 <a href="' . URL::route('entity.index', array('projects', 'filter[fields][solution_id]' => $dicval->id)) . '" class="btn btn-default">
                     Проекты (' . @(int)$counts[$dicval->id][$dic_projects->id] . ')
                 </a>
                 <a href="' . URL::route('entity.index', array('solution-documents', 'filter[fields][solution_id]' => $dicval->id)) . '" class="btn btn-default">
                     Документы (' . @(int)$counts[$dicval->id][$dic_documents->id] . ')
+                </a>
+                <a href="' . URL::route('dicval.index', array('solution_components', 'filter[fields][solution_id]' => $dicval->id)) . '" class="btn btn-default">
+                    Компоненты (' . @(int)$counts[$dicval->id][$dic_components->id] . ')
                 </a>
             </span>
         ';
@@ -135,8 +162,9 @@ return array(
         'before_index' => function ($dic) {},
         'before_index_view' => function ($dic, $dicvals) {
             $dics_slugs = array(
-                'solution-documents',
                 'projects',
+                'solution-documents',
+                'solution_components',
             );
             $dics = Dic::whereIn('slug', $dics_slugs)->get();
             $dics = Dic::modifyKeys($dics, 'slug');

@@ -17,7 +17,8 @@
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        {{ HTML::style('theme/css/normalize.css') }}
-        {{ HTML::style('theme/css/main.css') }}
+        {{ HTML::style(Config::get('site.theme_path').'/css/fotorama.css') }}
+        {{ HTML::style(Config::get('site.theme_path').'/css/normalize.css') }}
+        {{ HTML::style(Config::get('site.theme_path').'/css/main.css') }}
         {{-- HTML::style('static/css/fotorama/fotorama.css') --}}
-        {{ HTML::script('theme/js/vendor/modernizr-2.6.2.min.js') }}
+        {{ HTML::script(Config::get('site.theme_path').'/js/vendor/modernizr-2.6.2.min.js') }}

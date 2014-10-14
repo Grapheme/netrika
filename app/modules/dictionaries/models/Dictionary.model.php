@@ -175,24 +175,13 @@ class Dictionary extends BaseModel {
         #Helper::d("$dic_slug, $val_slug");
 
         $data = self::where('slug', $dic_slug)->with(array('value' => function($query) use ($val_slug){
+                $query->where('version_of', NULL);
                 $query->where('slug', $val_slug);
-                $query->with('meta', 'fields');
+                $query->with('meta', 'fields', 'seo', 'related_dicvals');
             }))->first()->value;
 
         if ($extract) {
-            if (@count($data->fields)) {
-                foreach ($data->fields as $field) {
-                    $data->{$field->key} = $field->value;
-                }
-                unset($data->fields);
-            }
-            if (@is_object($data->meta)) {
-                if (@$data->meta->name)
-                    $data->name = $data->meta->name;
-                if (@$data->meta->slug)
-                    $data->slug = $data->meta->slug;
-                unset($data->meta);
-            }
+            $data->extract(0);
         }
 
         #Helper::tad($data);

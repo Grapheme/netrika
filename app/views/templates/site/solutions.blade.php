@@ -75,9 +75,9 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                             <div class="hover-circle"></div>
                             <div class="solution-hover">
                                 <div class="hover-content">
-                                    <a href="solution_one.html" class="title-btn">Описание решения</a>
+                                    <a href="{{ URL::route('solution-one', $solution->slug) }}" class="title-btn">Описание решения</a>
                                     <br>
-                                    <a href="#"><i class="lit-icon icon-projects"></i> Все проекты</a>
+                                    <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}"><i class="lit-icon icon-projects"></i> Все проекты</a>
                                 </div>
                             </div>
                             <div class="prj-content">

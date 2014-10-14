@@ -204,7 +204,7 @@ foreach ($clients as $client) {
                     {{-- asset(Config::get('site.theme_path').'/img/projects/images/portals.jpg') --}}
                     {{ $image->full() }}
                     )"></div>
-                    <a href="#" class="project-link"></a>
+                    <a href="{{ URL::route('project-one', $project->slug) }}" class="project-link"></a>
                     <div class="hover-circle js-circle"></div>
                     <div class="prj-content">
                         <div class="title"><i class="us-icon icon-{{ $solution->slug }}"></i> {{ $solution->name }}</div>

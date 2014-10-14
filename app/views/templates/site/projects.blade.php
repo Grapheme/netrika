@@ -94,7 +94,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                 ?>
                     <div class="grid_4 solution-block type-{{ $solutions[$project->solution_id]->slug }} js-hover" data-filter="{{ $solutions[$project->solution_id]->slug }}">
                         <div class="background" style="background-image: url({{ $image->full() }})"></div>
-                        <a href="project_one.html" class="project-link"></a>
+                        <a href="{{ URL::route('project-one', $project->slug) }}" class="project-link"></a>
                         <div class="hover-circle js-circle"></div>
                         <div class="prj-content">
                             <div class="title"><i class="us-icon icon-{{ $solutions[$project->solution_id]->slug }}"></i> {{ $solutions[$project->solution_id]->name }}</div>
