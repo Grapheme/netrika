@@ -41,20 +41,45 @@ return array(
                 'title' => 'Ссылка на реализованный проект',
                 'type' => 'text',
             ),
+
             'description_objectives' => array(
-                'title' => 'Описание целей и задач',
+                'title' => 'Описание целей',
                 'type' => 'textarea_redactor',
             ),
+            'description_tasks' => array(
+                'title' => 'Задачи (по одной на строку)',
+                'type' => 'textarea',
+            ),
+
             'description_results' => array(
                 'title' => 'Описание результатов',
                 'type' => 'textarea_redactor',
             ),
+            'description_results_num' => array(
+                'title' => 'Результаты (по одному на строку)',
+                'type' => 'textarea',
+            ),
+
             'mainpage_image' => array(
-                'title' => 'Изображение для главной страницы',
+                'title' => 'Фоновое изображение',
                 'type' => 'image',
             ),
+
+            'description_advantages' => array(
+                'title' => 'Преимущества (по одному на строку)',
+                'type' => 'textarea',
+            ),
+            'description_features' => array(
+                'title' => 'Особенности',
+                'type' => 'textarea_redactor',
+            ),
+
+            'description_process' => array(
+                'title' => 'Описание процесса',
+                'type' => 'textarea_redactor',
+            ),
             'gallery' => array(
-                'title' => 'Изображения',
+                'title' => 'Изображения процесса',
                 'type' => 'gallery',
                 'handler' => function($array, $element) {
                     return ExtForm::process('gallery', array(
@@ -65,14 +90,8 @@ return array(
                     ));
                 }
             ),
-            'description_advantages' => array(
-                'title' => 'Описание преимуществ',
-                'type' => 'textarea_redactor',
-            ),
-            'description_features' => array(
-                'title' => 'Описание особенностей проекта',
-                'type' => 'textarea_redactor',
-            ),
+
+            /*
             'similar_projects_ids' => array(
                 'title' => 'Список похожих проектов',
                 'type' => 'select-multiple',
@@ -93,6 +112,7 @@ return array(
                     return $return;
                 },
             ),
+            */
         );
 
     },

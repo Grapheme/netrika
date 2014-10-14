@@ -14,30 +14,17 @@ return array(
         #Helper::dd($lists);
 
         return array(
-            'solution_id' => array(
+            'project_id' => array(
                 'title' => 'Проект',
                 'type' => 'select',
                 'values' => $lists['projects'],
                 'default' => (int)Input::get('filter.fields.project_id')
             ),
             'description_document' => array(
-                'title' => 'Описание',
-                'type' => 'textarea_redactor',
+                'title' => 'Полное наименование документа',
+                'type' => 'textarea',
             ),
-            'file_document' => array(
-                'title' => 'Добавить файл',
-                'type' => 'upload',
-                'accept' => 'application/pdf,application/x-download', # .exe,image/*,video/*,audio/*
-                'label_class' => 'input-file',
-                'handler' => function($value, $element = false) {
-                    if (@is_object($element) && @is_array($value)) {
-                        $value['module'] = 'dicval';
-                        $value['unit_id'] = $element->id;
-                    }
-                    return ExtForm::process('upload', $value);
-                },
-            ),
-            'link_document' => array(
+            'url_document' => array(
                 'title' => 'Ссылка на документ (необязательно)',
                 'type' => 'text',
             ),

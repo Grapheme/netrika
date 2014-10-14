@@ -198,6 +198,100 @@ class PublicNetrikaController extends BaseController {
         $project->extract(1);
         #Helper::tad($project);
 
+        $solution = Dic::valueBySlugAndId('solutions', $project->solution_id);
+        $solution->extract(1);
+        #Helper::tad($solution);
+
+        $gallery = Gallery::where('id', $project->gallery)->with('photos')->first();
+        #Helper::tad($gallery);
+        $photos = array();
+        if (is_object($gallery))
+            foreach ($gallery->photos as $photo)
+                $photos[] = $photo->full();
+        #$photos_ids = Dic::makeLists($gallery->photos, false, 'full()');
+        #Helper::dd($photos);
+
+        $documents = Dic::valuesBySlug('project-documents', function($query) use ($project) {
+            /**
+             * Фильтр значений (DicVal) по его доп. полю (DicFieldVal)
+             * SOLUTION_id
+             */
+            $tbl_dicval = (new DicVal())->getTable();
+            $tbl_dic_field_val = (new DicFieldVal())->getTable();
+            $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+            $query->select($tbl_dicval . '.*');
+            $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+                ->where($rand_tbl_alias . '.key', '=', 'project_id')
+                ->where($rand_tbl_alias . '.value', '=', $project->id);
+        });
+        DicVal::extracts($documents, 1);
+        #Helper::tad($documents);
+
+        $projects = Dic::valuesBySlug('projects', function($query) use ($solution, $project) {
+            /**
+             * Фильтр значений (DicVal) по его доп. полю (DicFieldVal)
+             * SOLUTION_id
+             */
+            $tbl_dicval = (new DicVal())->getTable();
+            $tbl_dic_field_val = (new DicFieldVal())->getTable();
+            $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+            $query->select($tbl_dicval . '.*');
+            $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+                ->where($rand_tbl_alias . '.key', '=', 'solution_id')
+                ->where($rand_tbl_alias . '.value', '=', $solution->id);
+            #$query->where($tbl_dicval . '.id', '!=', $project->id);
+            $query->take(5);
+        });
+        DicVal::extracts($projects, 1);
+        #Helper::tad($projects);
+
+        $images_ids = Dic::makeLists($projects, false, 'mainpage_image');
+        #Helper::d($images_ids);
+        if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
+            $images = Photo::whereIn('id', $images_ids)->get();
+            if (count($images))
+                $images = DicVal::extracts($images, true);
+        } else {
+            $images = array();
+        }
+        #Helper::tad($images);
+
+        /**
+        * Предыдущий проект
+        */
+        $prev_project = Dic::valuesBySlug('projects', function($query) use ($project){
+            $query->where('id', '!=', $project->id);
+            $query->where('created_at', '<', $project->created_at);
+            $query->take(1);
+        });
+        $prev_project = @$prev_project[0];
+        #Helper::d($prev_project);
+
+        /**
+         * Следующий проект
+         */
+        $next_project = Dic::valuesBySlug('projects', function($query) use ($project, $solution){
+            /**
+             * Фильтр значений (DicVal) по его доп. полю (DicFieldVal)
+             * SOLUTION_id
+             */
+            $tbl_dicval = (new DicVal())->getTable();
+            $tbl_dic_field_val = (new DicFieldVal())->getTable();
+            $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+            $query->select($tbl_dicval . '.*');
+            $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+                ->where($rand_tbl_alias . '.key', '=', 'solution_id')
+                ->where($rand_tbl_alias . '.value', '=', $solution->id);
+
+            $query->where($tbl_dicval.'.id', '!=', $project->id);
+            $query->where($tbl_dicval.'.created_at', '>', $project->created_at);
+            $query->take(1);
+        });
+        $next_project = @$next_project[0];
+        #Helper::dd($next_project);
+
+
+        return View::make(Helper::layout('project-one'), compact('project', 'solution', 'gallery', 'photos', 'documents', 'projects', 'images', 'prev_project', 'next_project'));
     }
 
 }

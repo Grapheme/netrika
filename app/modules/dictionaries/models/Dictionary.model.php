@@ -189,6 +189,32 @@ class Dictionary extends BaseModel {
         return is_object($data) ? $data : self::firstOrNew(array('id' => 0));
     }
 
+    public static function valueBySlugAndId($dic_slug, $val_id, $extract = false) {
+
+        #Helper::d("$dic_slug, $val_slug");
+
+        $data = self::where('slug', $dic_slug)->with(array('value' => function($query) use ($val_id){
+                $query->where('version_of', NULL);
+                $query->where('id', $val_id);
+                $query->with('meta', 'fields', 'seo', 'related_dicvals');
+            }))
+            ->first()
+            ->value
+        ;
+
+        #Helper::tad($data);
+
+        if ($extract) {
+            $data->extract(0);
+        }
+
+        #Helper::tad($data);
+
+        return is_object($data) ? $data : self::firstOrNew(array('id' => 0));
+    }
+
+
+
 }
 
 class Dic extends Dictionary {

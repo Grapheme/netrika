@@ -297,11 +297,11 @@
                                 @if ($document->url_document)
                                 <li class="li-file">
                                     <a href="{{ $document->url_document }}">
-                                        {{ $document->description_document }}
+                                        {{ $document->description_document ?: $document->name }}
                                     </a>
                                 @else
                                 <li class="li-file-big">
-                                    {{ $document->description_document }}
+                                    {{ $document->description_document ?: $document->name }}
                                 @endif
                             @endforeach
 

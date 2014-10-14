@@ -139,6 +139,7 @@ foreach ($clients as $client) {
                 <div class="clearfix"></div>
             </div>
         </section>
+
         <section class="stat-nav">
             <div class="container_12">
                 <div class="grid_1 stat-control">
@@ -153,35 +154,6 @@ foreach ($clients as $client) {
                             <span>{{ $solution->name }}</span>
                         </a>
                         @endforeach
-
-                        @if (0)
-                        <!--
-                        <a href="#" class="grid_2 stat-item js-tab-link active type-health" data-type="health">
-                            <i class="sol-icon"></i><br>
-                            <span>Здравоохранение</span>
-                        </a>
-                        <a href="#" class="grid_2 stat-item js-tab-link type-education" data-type="education">
-                            <i class="sol-icon"></i><br>
-                            <span>Образование</span>
-                        </a>
-                        <a href="#" class="grid_2 stat-item js-tab-link type-goverment" data-type="goverment">
-                            <i class="sol-icon"></i><br>
-                            <span>Открытое правительство</span>
-                        </a>
-                        <a href="#" class="grid_2 stat-item js-tab-link type-tourism" data-type="tourism">
-                            <i class="sol-icon"></i><br>
-                            <span>Туризм</span>
-                        </a>
-                        <a href="#" class="grid_2 stat-item js-tab-link type-law" data-type="law">
-                            <i class="sol-icon"></i><br>
-                            <span>Суды</span>
-                        </a>
-                        <a href="#" class="grid_2 stat-item js-tab-link type-portals" data-type="portals">
-                            <i class="sol-icon"></i><br>
-                            <span>Порталы</span>
-                        </a>
-                        -->
-                        @endif
 
                     </div>
                 </div>
