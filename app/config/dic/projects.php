@@ -120,6 +120,22 @@ return array(
 
     'menus' => function($dic, $dicval = NULL) {
         $menus = array();
+        $menus[] = array('raw' => '<br/>');
+
+        $dics_slugs = array(
+            'solutions',
+        );
+        $dics = Dic::whereIn('slug', $dics_slugs)->with('values')->get();
+        $dics = Dic::modifyKeys($dics, 'slug');
+        $lists = Dic::makeLists($dics, 'values', 'name', 'id');
+        #Helper::tad($lists);
+
+        $menus[] = array(
+            'link' => action('entity.index','solutions'),
+            'title' => "<i class='fa fa-arrow-circle-left'></i> Решения",
+            'class' => 'btn btn-default'
+        );
+        $menus[] = Helper::getDicValMenuDropdown('solution_id', 'Все решения', $lists['solutions'], $dic);
         return $menus;
     },
 

@@ -776,3 +776,8 @@ div.redactor_dropdown {
 .display-inline-block {
     display: inline-block !important;
 }
+
+.smart-form .label {
+    white-space: normal;
+    word-wrap: normal;
+}

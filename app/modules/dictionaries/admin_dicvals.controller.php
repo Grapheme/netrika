@@ -181,10 +181,12 @@ class AdminDicvalsController extends BaseController {
         )
             $actions_column = true;
 
+        $total_elements = DicVal::where('dic_id', $dic->id)->where('version_of', '=', NULL)->count();
+
         $this->callHook('before_index_view', $dic, $elements);
 
         #return View::make(Helper::acclayout());
-        return View::make($this->module['tpl'].'index', compact('elements', 'dic', 'dic_id', 'sortable', 'dic_settings', 'actions_column'));
+        return View::make($this->module['tpl'].'index', compact('elements', 'dic', 'dic_id', 'sortable', 'dic_settings', 'actions_column', 'total_elements'));
 	}
 
     /************************************************************************************/

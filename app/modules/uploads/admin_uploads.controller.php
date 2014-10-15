@@ -65,6 +65,7 @@ class AdminUploadsController extends BaseController {
                 }
 
                 #Helper::dd($value);
+                #Helper::dd($params);
 
                 if ( $value === false || $value === null ) {
                     $val = Form::text($name);

@@ -348,7 +348,9 @@ HTML;
 
                 #$return .= "\n<!--\n" . $_SERVER['REQUEST_URI'] . "\n" . $menu['link'] . "\n-->\n";
 
-                $return .= '<a class="' . @$menu['class'] . ($child_exists ? '' : ' margin-bottom-5') . '" href="' . $menu['link'] . '">'
+                $additional = isset($menu['others']) ? self::arrayToAttributes($menu['others']) : '';
+
+                $return .= '<a class="' . @$menu['class'] . ($child_exists ? '' : ' margin-bottom-5') . '" href="' . $menu['link'] . '" ' . $additional . '>'
                         . ($current ? '<i class="fa fa-check"></i> ' : '')
                         . @$menu['title'] . '</a> ';
 
@@ -459,6 +461,7 @@ HTML;
                 break;
             case 'upload':
                 $others_array['class'] = trim(@$others_array['class'] . ' file_upload');
+                #Helper::dd($others_array);
                 $return = ExtForm::upload($name, $value, $others_array);
                 break;
             case 'video':
@@ -998,10 +1001,24 @@ HTML;
 
                     $buffer = trim($buffer, " \r\n\t*");
                     $buffer = explode(':', $buffer);
-
                     #Helper::d($buffer);
 
-                    $properties[@trim($buffer[0])] = @trim($buffer[1]) ?: true;
+                    $value = @trim($buffer[1]) ?: true;
+                    if ($value !== true && is_string($value) && mb_strlen($value) && mb_strpos($value, '|')) {
+                        $temp = explode('|', $value);
+                        $value = array();
+                        foreach ($temp as $tmp) {
+                            $tmp = trim($tmp);
+                            if (mb_strpos($tmp, '=')) {
+                                $keyval = explode('=', $tmp, 2);
+                                $value[trim($keyval[0])] = trim($keyval[1]);
+                            } else {
+                                $value[$tmp] = true;
+                            }
+                        }
+                    }
+
+                    $properties[@trim($buffer[0])] = $value;
                 }
 
             }
@@ -1012,5 +1029,14 @@ HTML;
         }
         return $properties;
     }
+
+    public static function getLayoutProperties($layout = false) {
+         if (!$layout)
+             $layout = Config::get('app.template');
+
+        $file = base_path("/app/views/templates/" . $layout . '.blade.php');
+        return self::getFileProperties($file);
+    }
+
 }
 

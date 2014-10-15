@@ -23,7 +23,7 @@
                             </h1>
 
                             @if ($solution->availability_demonstrate)
-                            <a href="#" class="title-btn">Заказать демонстрацию</a>
+                            <a href="{{ URL::route('request-demo', ['solution' => $solution->slug]) }}" class="title-btn">Заказать демонстрацию</a>
                             @endif
 
                         </div>
@@ -317,7 +317,7 @@
                     <div class="grid_12">
 
                         @if ($solution->availability_demonstrate)
-                        <a href="#" class="title-btn">Заказать демонстрацию</a>
+                        <a href="{{ URL::route('request-demo', ['solution' => $solution->slug]) }}" class="title-btn">Заказать демонстрацию</a>
                         @endif
 
                         <span class="fl-r">
@@ -330,7 +330,7 @@
                                 @endif
                             @endif
 
-                            <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}"><i class="lit-icon icon-projects"></i> Все проекты</a>
+                            <a href="{{ URL::route('page', 'solutions') }}"><i class="lit-icon icon-projects"></i> Все решения</a>
                         </span>
                     </div>
                     <div class="clearfix"></div>

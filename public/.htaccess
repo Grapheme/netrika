@@ -1,5 +1,8 @@
 <IfModule mod_rewrite.c>
 
+    ErrorDocument 500 /500.html
+    #RewriteRule .* - [R=500,L]
+
 	<IfModule mod_negotiation.c>
     	Options -MultiViews
     </IfModule>

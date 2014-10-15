@@ -15,6 +15,7 @@ class PublicNetrikaController extends BaseController {
             #Route::get('/news',      array('as' => 'news',      'uses' => __CLASS__.'@showNews'));
             Route::get('/solution/{url}', array('as' => 'solution-one', 'uses' => __CLASS__.'@showSolution'));
             Route::get('/project/{url}',  array('as' => 'project-one',  'uses' => __CLASS__.'@showProject'));
+            Route::get('/demo',  array('as' => 'request-demo',  'uses' => __CLASS__.'@showDemoRequestForm'));
         });
     }
 

@@ -93,8 +93,10 @@ return array(
             'link_to_file_presentation' => array(
                 'title' => 'Добавить файл презентации',
                 'type' => 'upload',
-                'accept' => 'application/pdf,application/x-download', # .exe,image/*,video/*,audio/*
                 'label_class' => 'input-file',
+                'others' => [
+                    'accept' => 'application/pdf', # .exe,application/pdf,image/*,video/*,audio/*
+                ],
                 'handler' => function($value, $element = false) {
                     if (@is_object($element) && @is_array($value)) {
                         $value['module'] = 'dicval';

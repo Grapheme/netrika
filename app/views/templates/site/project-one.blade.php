@@ -34,9 +34,11 @@
                             <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}"><i class="lit-icon icon-projects"></i> Все проекты</a>
                         </div>
                         <div class="grid_12 head-info">
-                            <span class="head-type">
-                                <i class="us-icon icon-{{ $solution->slug }}"></i> <span>{{ $solution->name }}</span>
-                            </span>
+                            <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}">
+                                <span class="head-type">
+                                    <i class="us-icon icon-{{ $solution->slug }}"></i> <span>{{ $solution->name }}</span>
+                                </span>
+                            </a>
                             @if ($project->link_to_project)
                             <?
                             $domain = parse_url($project->link_to_project);
@@ -50,6 +52,7 @@
                 </div>
             </section>
 
+            @if ($project->description_objectives || $project->description_tasks)
             <section class="us-section">
                 <div class="container_12">
                     <div class="grid_12">
@@ -83,6 +86,7 @@
                     <div class="clearfix"></div>
                 </div>
             </section>
+            @endif
 
             @if ($project->description_results || $project->description_results_num)
             <section class="dark-section">
@@ -120,6 +124,7 @@
             </section>
             @endif
 
+            @if ($project->description_advantages || $project->description_features)
             <section class="us-section">
                 <div class="container_12">
 
@@ -156,6 +161,7 @@
                     <div class="clearfix"></div>
                 </div>
             </section>
+            @endif
 
 
             <section class="dark-section">
@@ -195,6 +201,7 @@
                     <div class="clearfix"></div>
                 </div>
             </section>
+
 
             @if (isset($documents) && count($documents))
             <section class="us-section">

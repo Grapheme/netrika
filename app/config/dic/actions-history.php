@@ -28,9 +28,12 @@ return array(
             $dics = Dic::modifyKeys($dics,'id');
             Config::set('temp.index_dics', $dics);
 
+            $users = array();
             $usersIDs = (array)array_unique(Dic::makeLists($dicvals,false,'user_id'));
-            $users = User::whereIn('id',$usersIDs)->get();
-            $users = Dic::modifyKeys($users, 'id');
+            if (count($usersIDs)) {
+                $users = User::whereIn('id', $usersIDs)->get();
+                $users = Dic::modifyKeys($users, 'id');
+            }
             Config::set('temp.users', $users);
         },
 

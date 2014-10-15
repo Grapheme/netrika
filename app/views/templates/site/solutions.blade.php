@@ -10,17 +10,20 @@ $solutions = Dic::valuesBySlug('solutions');
 $solutions = DicVal::extracts($solutions, true);
 #Helper::ta($solutions);
 
-$projects = Dic::valuesBySlug('projects', function($query){
+/**
+ * Компоненты решений
+ */
+$solution_components = Dic::valuesBySlug('solution_components', function($query){
     #$query->orderBy('order', 'asc');
     $query->orderBy('updated_at', 'desc');
     $query->orderBy('created_at', 'desc');
 });
-$projects = DicVal::extracts($projects, true);
+$solution_components = DicVal::extracts($solution_components, true);
 #Helper::ta($projects);
 
 $array = array();
-foreach ($projects as $project) {
-    $array[$project->solution_id][$project->id] = $project;
+foreach ($solution_components as $solution_component) {
+    $array[$solution_component->solution_id][$solution_component->id] = $solution_component;
 }
 
 $images_ids = Dic::makeLists($solutions, false, 'mainpage_image');

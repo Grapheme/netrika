@@ -138,8 +138,10 @@ return array(
             'link_to_file' => array(
                 'title' => 'Поле для загрузки файла',
                 'type' => 'upload',
-                'accept' => '*', # .exe,image/*,video/*,audio/*
                 'label_class' => 'input-file',
+                'others' => [
+                    'accept' => 'application/pdf', # *,.exe,application/pdf,image/*,video/*,audio/*
+                ],
                 'handler' => function($value, $element = false) {
                     if (@is_object($element) && @is_array($value)) {
                         $value['module'] = 'dicval';
@@ -433,4 +435,10 @@ return array(
         },
 
     ),
+
+    /**
+     * Максимальное количество элементов в списке.
+     * Если достигнуто - кнопка "Добавить" будет скрыта.
+     */
+    'max_elements' => 1,
 );

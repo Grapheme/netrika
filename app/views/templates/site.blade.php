@@ -1,3 +1,8 @@
+<?
+/**
+ * MENU_PLACEMENTS: main_menu=Основное меню|additional_menu=Дополнительное меню
+ */
+?>
 <? #Helper::tad($page); ?>
 @if (@is_object($page->seo))
 @section('title'){{ $page->seo->title ? $page->seo->title : $page->name }}@stop
