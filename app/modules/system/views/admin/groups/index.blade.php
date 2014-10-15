@@ -8,7 +8,7 @@
     @if($groups->count())
     <div class="row">
     	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
-    		<table class="table table-striped table-bordered">
+    		<table class="table table-striped table-bordered white-bg">
     			<thead>
     				<tr>
     					<th class="col-lg-1 text-center">ID</th>
@@ -17,13 +17,13 @@
     				</tr>
     			</thead>
     			<tbody>
-    			@foreach($groups as $group)
+    			@foreach($groups as $g => $group)
     			    <?
     			    if ($group->id == 1 && !Allow::superuser())
     			        continue;
     			    ?>
     				<tr class="vertical-middle">
-    					<td class="text-center">{{ $group->id }}</td>
+    					<td class="text-center">{{ ($g+1) }}</td>
     					<td>
                             {{ $group->desc }}
                             <div style="margin:0; padding:0; font-size:80%; color:#777">Пользователей: {{ $group->count_users() }}</div>
