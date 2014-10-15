@@ -18,6 +18,10 @@
     			</thead>
     			<tbody>
     			@foreach($groups as $group)
+    			    <?
+    			    if ($group->id == 1 && !Allow::superuser())
+    			        continue;
+    			    ?>
     				<tr class="vertical-middle">
     					<td class="text-center">{{ $group->id }}</td>
     					<td>
@@ -33,12 +37,12 @@
                     		@endif
 
         					@if(Allow::action('system', 'groups'))
-							<a class="btn btn-success margin-right-10" href="{{ action($module['class'].'@getEdit', array('group_id' => $group->id)) }}"<? if($group->id == 1){ echo " disabled='disabled'"; }?>>
+							<a class="btn btn-success margin-right-10" href="{{ action($module['class'].'@getEdit', array('group_id' => $group->id)) }}">
 								Изменить
 							</a>
                     		@endif
 
-        					@if(Allow::action('system', 'groups'))
+        					@if(Allow::action('system', 'groups') && $group->id != 1)
 							<form method="POST" action="{{ action($module['class'].'@deleteDestroy', array('group_id' => $group->id)) }}" style="display:inline-block">
 								<button type="submit" class="btn btn-danger remove-group"<? if($group->id == 1){ echo " disabled='disabled'"; }?>>
 									Удалить
