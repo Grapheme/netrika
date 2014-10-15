@@ -882,7 +882,6 @@ function inArray(value, array) {
 }
 
 function isExternal(url) {
-	console.log(url.slice(0,4));
     var match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/);
     if (url.slice(0,7) == 'mailto:' || url.slice(0, 4) == 'tel:') return false;
     if (typeof match[1] === "string" && match[1].length > 0 && match[1].toLowerCase() !== location.protocol) return true;
