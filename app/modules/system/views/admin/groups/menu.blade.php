@@ -19,6 +19,7 @@
             'title' => $group->desc . ' (' . $group->count_users() . ')',
         );
         foreach ($groups as $grp) {
+            if ($grp->id == 1 && !Allow::superuser())
             $arr = array(
                 'link' => action($module['class'] . '@getEdit', array('group_id' => $grp->id)),
                 'title' => $grp->desc . ' (' . $grp->count_users() . ')',
