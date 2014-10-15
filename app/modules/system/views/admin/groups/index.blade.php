@@ -17,13 +17,13 @@
     				</tr>
     			</thead>
     			<tbody>
-    			@foreach($groups as $g => $group)
+    			@foreach($groups as $group)
     			    <?
     			    if ($group->id == 1 && !Allow::superuser())
     			        continue;
     			    ?>
     				<tr class="vertical-middle">
-    					<td class="text-center">{{ ($g+1) }}</td>
+    					<td class="text-center">{{ (@++$i) }}</td>
     					<td>
                             {{ $group->desc }}
                             <div style="margin:0; padding:0; font-size:80%; color:#777">Пользователей: {{ $group->count_users() }}</div>
