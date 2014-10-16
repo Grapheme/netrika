@@ -29,12 +29,14 @@ $seo = isset($value) && is_object($value) ? $value : new Seo;
             </label>
         </section>
 
+        @if (0)
         <section>
             <label class="label">URL</label>
             <label class="input">
                 {{ Form::text($name.'[url]', $seo->url) }}
             </label>
         </section>
+        @endif
 
         <section>
             <label class="label">H1</label>

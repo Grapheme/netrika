@@ -358,12 +358,14 @@
                     </div>
                     @endforeach
 
-                    <div class="grid_4 type-all">
+                    <div class="grid_4">
+                        <div class="solution-block type-all">
                         <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}" class="project-link">
                             <span>
                                 <i class="lit-icon icon-projects"></i> Все проекты
                             </span>
                         </a>
+                        </div>
                     </div>
 
                     <div class="clearfix"></div>
