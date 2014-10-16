@@ -423,9 +423,12 @@ $.fn.simple_filter = function(block_parent, default_filter) {
 	});
 
 	function init() {
-		go(default_filter);
-
-		//alert(window.location.hash.replace('#',''););
+		var hash = window.location.hash.replace('#','');
+		if(hash) {
+			go(hash);
+		} else {
+			go(default_filter);
+		}
 
 		$(links).each(function(){
 			var type = $(this).attr('data-filter');
@@ -437,6 +440,7 @@ $.fn.simple_filter = function(block_parent, default_filter) {
 	}
 
 	function go(filter) {
+		window.location.hash = '#' + filter;
 		$('.js-filters [data-filter]').removeClass('active');
 		$('.js-filters [data-filter="' + filter + '"]').addClass('active');
 
