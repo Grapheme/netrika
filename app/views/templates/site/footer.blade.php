@@ -111,25 +111,25 @@ foreach ($projects as $project) {
                         <input type="text" name="phone" placeholder="Номер телефона">
                     </div>
                     <div class="input-wrp">
-                        <div class="multiple-select">
-                            <!-- <div class="select-line">Выберите компоненты для демонстрации</div>
+                        <!-- <div class="multiple-select">
+                            <div class="select-line">Выберите компоненты для демонстрации</div>
                             <ul class="select-list">
                                 <li><div>Интеграция</div>
                                 <li><div>Автоматизация</div>
                                 <li><div>Телепортация</div>
                                 <li><div>Минимизация</div>
-                            </ul> -->
+                            </ul>
                             <ul class="selected-list">
                                 <li>Интеграция
                                 <li>Автоматизация
                             </ul>
-                        </div>
-                        <!-- <select multiple data-name="Выберите компоненты для демонстрации">
-                            <option>Интеграция</option>
-                            <option>Автоматизация</option>
-                            <option>Телепортация</option>
-                            <option>Минимизация</option>
-                        </select> -->
+                        </div> -->
+                        <select multiple data-text="Выберите компоненты для демонстрации" class="js-mSelect">
+                            <option value="1">Интеграция</option>
+                            <option value="2">Автоматизация</option>
+                            <option value="3">Телепортация</option>
+                            <option value="4">Минимизация</option>
+                        </select>
                     </div>
                     <div class="input-wrp">
                         <textarea name="comment" placeholder="Оставьте ваш комментарий *"></textarea>
