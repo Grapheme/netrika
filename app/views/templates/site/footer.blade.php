@@ -67,7 +67,7 @@ foreach ($projects as $project) {
                         @if (count($solution_projects))
                             <ul class="footer-list">
                             @foreach ($solution_projects as $project)
-                                <li><a href="#">{{ $project->name }}</a>
+                                <li><a href="{{ URL::route('project-one', $project->slug) }}">{{ $project->name }}</a>
                             @endforeach
                             </ul>
                         @endif
@@ -77,7 +77,7 @@ foreach ($projects as $project) {
                 <div class="grid_12 footer-line"></div>
                 <div class="grid_12">
                     <span>Официальный сайт компании Нетрика © 2014{{ date('Y') > 2014 ? '-'.date('Y') : '' }}</span>
-                    <span class="copy-right">Разработка сайта: Нетрика при участии <a href="">Func</a></span>
+                    <span class="copy-right">Разработка сайта: Нетрика при участии <a href="http://funcfunc.ru">Func</a></span>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -85,25 +85,30 @@ foreach ($projects as $project) {
 
         <section class="popups">
             <div class="popup order-present" data-popup="order-present">
+
+                {{ Form::open(array('url' => URL::route('request-demo'), 'method' => 'POST')) }}
+
                 <header class="popup-header">
                     <span class="title">Заказать демонстрацию</span>
                     <span class="popup-close js-popup-close"><span class="desc-icon close"></a></span>
                 </header>
                 <div class="popup-body">
+                    {{ Form::hidden('solution_id', 25) }}
+
                     <div class="input-wrp">
-                        <input type="text" placeholder="Имя">
+                        <input type="text" name="name" placeholder="Имя">
                     </div>
                     <div class="input-wrp">
-                        <input type="text" placeholder="Организация">
+                        <input type="text" name="org" placeholder="Организация">
                     </div>
                     <div class="input-wrp">
-                        <input type="text" placeholder="Должность">
+                        <input type="text" name="role" placeholder="Должность">
                     </div>
                     <div class="input-wrp">
-                        <input type="text" placeholder="E-mail">
+                        <input type="text" name="email" placeholder="E-mail">
                     </div>
                     <div class="input-wrp">
-                        <input type="text" placeholder="Номер телефона">
+                        <input type="text" name="phone" placeholder="Номер телефона">
                     </div>
                     <div class="input-wrp">
                         <div class="multiple-select">
@@ -127,11 +132,14 @@ foreach ($projects as $project) {
                         </select> -->
                     </div>
                     <div class="input-wrp">
-                        <textarea placeholder="Оставте ваш комментарий *"></textarea>
+                        <textarea name="comment" placeholder="Оставьте ваш комментарий *"></textarea>
                     </div>
                 </div>
                 <footer class="popup-footer">
                     <button class="title-btn">Заказать</button>
                 </footer>
+
+                {{ Form::close() }}
+
             </div>
         </section>

@@ -15,7 +15,7 @@ class PublicNetrikaController extends BaseController {
             #Route::get('/news',      array('as' => 'news',      'uses' => __CLASS__.'@showNews'));
             Route::get('/solution/{url}', array('as' => 'solution-one', 'uses' => __CLASS__.'@showSolution'));
             Route::get('/project/{url}',  array('as' => 'project-one',  'uses' => __CLASS__.'@showProject'));
-            Route::get('/demo',  array('as' => 'request-demo',  'uses' => __CLASS__.'@showDemoRequestForm'));
+            Route::post('/request-demo',  array('as' => 'request-demo',  'uses' => __CLASS__.'@postRequestDemo'));
         });
     }
 
@@ -293,6 +293,11 @@ class PublicNetrikaController extends BaseController {
 
 
         return View::make(Helper::layout('project-one'), compact('project', 'solution', 'gallery', 'photos', 'documents', 'projects', 'images', 'prev_project', 'next_project'));
+    }
+
+
+    public function postRequestDemo() {
+        Helper::dd(Input::all());
     }
 
 }

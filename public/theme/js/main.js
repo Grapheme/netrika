@@ -935,3 +935,78 @@ function isExternal(url) {
     if (typeof match[2] === "string" && match[2].length > 0 && match[2].replace(new RegExp(":("+{"http:":80,"https:":443}[location.protocol]+")?$"), "") !== location.host) return true;
     return false;
 }
+
+
+
+
+$(document).ready(function() {
+
+    $(".popup.order-present form").validate({
+        rules: {
+            'solution_id': "required",
+            'name': "required",
+            'email': "required",
+        },
+        messages: {
+            'solution_id': "",
+            'name': "",
+            'email': "",
+        },
+        errorClass: "inp-error",
+        submitHandler: function(form) {
+            //console.log(form);
+            sendOrderForm(form);
+            return false;
+        }
+    });
+
+    function sendOrderForm(form) {
+
+        //console.log(form);
+
+        var options = { target: null, type: $(form).attr('method'), dataType: 'json' };
+
+        options.beforeSubmit = function(formData, jqForm, options){
+            $(form).find('button').addClass('loading');
+            //$('.error').text('').hide();
+        }
+
+        options.success = function(response, status, xhr, jqForm){
+            //console.log(response);
+            //$('.success').hide().removeClass('hidden').slideDown();
+            //$(form).slideUp();
+
+            if (response.status) {
+                //$('.error').text('').hide();
+                //location.href = response.redirect;
+
+                //$('.response').text(response.responseText).slideDown();
+                //$(form).slideUp();
+
+                $('.form-success').addClass('active');
+
+                /*
+                setTimeout( function(){
+                    $('.booking-form').removeClass('active');
+                    $('.form-success').removeClass('active');
+                }, 2500);
+                */
+
+            } else {
+                //$('.response').text(response.responseText).show();
+            }
+
+        }
+
+        options.error = function(xhr, textStatus, errorThrown){
+            console.log(xhr);
+        }
+
+        options.complete = function(data, textStatus, jqXHR){
+            $(form).find('button').removeClass('loading');
+        }
+
+        $(form).ajaxSubmit(options);
+    }
+
+});
