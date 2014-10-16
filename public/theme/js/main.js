@@ -1055,7 +1055,8 @@ $(document).ready(function() {
         var options = { target: null, type: $(form).attr('method'), dataType: 'json' };
 
         options.beforeSubmit = function(formData, jqForm, options){
-            $(form).find('button').addClass('loading');
+            $(form).find('button').addClass('loading').attr('disabled', 'disabled');
+            $(form).find('.error-msg').text('');
             //$('.error').text('').hide();
         }
 
@@ -1071,7 +1072,11 @@ $(document).ready(function() {
                 //$('.response').text(response.responseText).slideDown();
                 //$(form).slideUp();
 
-                $('.form-success').addClass('active');
+                //$('.form-success').addClass('active');
+                $(form).find('button').addClass('success').text('Отправлено');
+                $(form).find('.popup-body').slideUp(function(){
+                    setTimeout(function(){ $('.popup .js-popup-close').trigger('click'); }, 3000);
+                });
 
                 /*
                 setTimeout( function(){
@@ -1088,6 +1093,8 @@ $(document).ready(function() {
 
         options.error = function(xhr, textStatus, errorThrown){
             console.log(xhr);
+            $(form).find('button').removeAttr('disabled');
+            $(form).find('.error-msg').text('Ошибка при отправке, попробуйте позднее');
         }
 
         options.complete = function(data, textStatus, jqXHR){

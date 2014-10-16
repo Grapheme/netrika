@@ -300,6 +300,9 @@ class PublicNetrikaController extends BaseController {
 
         #Helper::d(Input::all());
 
+        #sleep(5);
+        #App::abort(404);
+
         if(!Request::ajax())
             App::abort(404);
 

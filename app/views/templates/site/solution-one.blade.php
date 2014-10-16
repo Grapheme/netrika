@@ -383,6 +383,57 @@
 
             @parent
 
+        <section class="popups">
+            <div class="popup order-present" data-popup="order-present">
+
+                {{ Form::open(array('url' => URL::route('request-demo'), 'method' => 'POST')) }}
+
+                <header class="popup-header">
+                    <span class="title">Заказать демонстрацию</span>
+                    <span class="popup-close js-popup-close"><span class="desc-icon close"></a></span>
+                </header>
+                <div class="popup-body">
+                    {{ Form::hidden('solution_id', $solution->id) }}
+
+                    <div class="input-wrp">
+                        <input type="text" name="name" placeholder="Имя">
+                    </div>
+                    <div class="input-wrp">
+                        <input type="text" name="org" placeholder="Организация">
+                    </div>
+                    <div class="input-wrp">
+                        <input type="text" name="role" placeholder="Должность">
+                    </div>
+                    <div class="input-wrp">
+                        <input type="text" name="email" placeholder="E-mail">
+                    </div>
+                    <div class="input-wrp">
+                        <input type="text" name="phone" placeholder="Номер телефона">
+                    </div>
+
+                    @if (isset($components) && count($components))
+                    <div class="input-wrp">
+                        <select multiple name="components[]" data-text="Выберите компоненты для демонстрации" class="js-mSelect">
+                        @foreach ($components as $component)
+                            <option value="{{ $component->name }}">{{ $component->name }}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                    @endif
+
+                    <div class="input-wrp">
+                        <textarea name="comment" placeholder="Оставьте ваш комментарий *"></textarea>
+                    </div>
+                </div>
+                <footer class="popup-footer">
+                    <button class="title-btn">Заказать</button>
+                    <span class="error-msg"></span>
+                </footer>
+
+                {{ Form::close() }}
+
+            </div>
+        </section>
 @stop
 
 

@@ -8,6 +8,15 @@
 		<p>
             Запрос на демонстрацию решения &laquo;{{ $solution->name }}&raquo;<br/>
 
+            @if (isset($components) && is_array($components) && count($components))
+            Выбранные компоненты:
+                <ul>
+                @foreach ($components as $component)
+                    <li>{{ $component }}</li>
+                @endforeach
+                </ul>
+            @endif
+
             @if ($name)
             Имя: {{ $name }}<br/>
             @endif
