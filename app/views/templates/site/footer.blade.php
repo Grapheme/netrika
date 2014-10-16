@@ -22,6 +22,9 @@ foreach ($projects as $project) {
         <footer class="main-footer">
             <div class="container_12">
                 <div class="grid_4">
+
+                    {{ Menu::placement('footer_menu') }}
+
                     <ul class="footer-list">
                         <li><a href="{{ URL::route('page', 'about') }}">О компании</a>
                         <li><a href="{{ URL::route('page', 'projects') }}">Проекты</a>
@@ -30,12 +33,13 @@ foreach ($projects as $project) {
                         <li><a href="{{ URL::route('page', 'contacts') }}">Контакты</a>
                         <li><a href="{{ URL::route('page', 'sitemap') }}">Карта сайта</a>
                     </ul>
+
                 </div>
                 <div class="grid_4">
                     <ul class="footer-list">
                         <li>Санкт-Петербург, пер. Фуражный, д. 3
                         <li><a class="phone-link" href="tel:+78126408070">+7 (812) 640-80-70</a>
-                        <li><a href="#">Контакты поддержки</a>
+                        <li><a href="{{ URL::route('page', 'contacts') }}">Контакты поддержки</a>
                         <li><i class="min-line"></i>
                         <li><a href="http://api.netrika.ru">api.netrika.ru</a>
                     </ul>
@@ -76,3 +80,56 @@ foreach ($projects as $project) {
                 <div class="clearfix"></div>
             </div>
         </footer>
+
+        <section class="popups">
+            <div class="popup order-present" data-popup="order-present">
+                <header class="popup-header">
+                    <span class="title">Заказать демонстрацию</span>
+                    <span class="popup-close js-popup-close"><span class="desc-icon close"></a></span>
+                </header>
+                <div class="popup-body">
+                    <div class="input-wrp">
+                        <input type="text" placeholder="Имя">
+                    </div>
+                    <div class="input-wrp">
+                        <input type="text" placeholder="Организация">
+                    </div>
+                    <div class="input-wrp">
+                        <input type="text" placeholder="Должность">
+                    </div>
+                    <div class="input-wrp">
+                        <input type="text" placeholder="E-mail">
+                    </div>
+                    <div class="input-wrp">
+                        <input type="text" placeholder="Номер телефона">
+                    </div>
+                    <div class="input-wrp">
+                        <div class="multiple-select">
+                            <!-- <div class="select-line">Выберите компоненты для демонстрации</div>
+                            <ul class="select-list">
+                                <li><div>Интеграция</div>
+                                <li><div>Автоматизация</div>
+                                <li><div>Телепортация</div>
+                                <li><div>Минимизация</div>
+                            </ul> -->
+                            <ul class="selected-list">
+                                <li>Интеграция
+                                <li>Автоматизация
+                            </ul>
+                        </div>
+                        <!-- <select multiple data-name="Выберите компоненты для демонстрации">
+                            <option>Интеграция</option>
+                            <option>Автоматизация</option>
+                            <option>Телепортация</option>
+                            <option>Минимизация</option>
+                        </select> -->
+                    </div>
+                    <div class="input-wrp">
+                        <textarea placeholder="Оставте ваш комментарий *"></textarea>
+                    </div>
+                </div>
+                <footer class="popup-footer">
+                    <button class="title-btn">Заказать</button>
+                </footer>
+            </div>
+        </section>

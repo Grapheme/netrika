@@ -383,58 +383,6 @@
 
             @parent
 
-            <section class="popups">
-                <div class="popup order-present" data-popup="order-present">
-                    <header class="popup-header">
-                        <span class="title">Заказать демонстрацию</span>
-                        <span class="popup-close js-popup-close"><span class="desc-icon close"></a></span>
-                    </header>
-                    <div class="popup-body">
-                        <div class="input-wrp">
-                            <input type="text" placeholder="Имя">
-                        </div>
-                        <div class="input-wrp">
-                            <input type="text" placeholder="Организация">
-                        </div>
-                        <div class="input-wrp">
-                            <input type="text" placeholder="Должность">
-                        </div>
-                        <div class="input-wrp">
-                            <input type="text" placeholder="E-mail">
-                        </div>
-                        <div class="input-wrp">
-                            <input type="text" placeholder="Номер телефона">
-                        </div>
-                        <div class="input-wrp">
-                            <div class="multiple-select">
-                                <!-- <div class="select-line">Выберите компоненты для демонстрации</div>
-                                <ul class="select-list">
-                                    <li><div>Интеграция</div>
-                                    <li><div>Автоматизация</div>
-                                    <li><div>Телепортация</div>
-                                    <li><div>Минимизация</div>
-                                </ul> -->
-                                <ul class="selected-list">
-                                    <li>Интеграция
-                                    <li>Автоматизация
-                                </ul>
-                            </div>
-                            <!-- <select multiple data-name="Выберите компоненты для демонстрации">
-                                <option>Интеграция</option>
-                                <option>Автоматизация</option>
-                                <option>Телепортация</option>
-                                <option>Минимизация</option>
-                            </select> -->
-                        </div>
-                        <div class="input-wrp">
-                            <textarea placeholder="Оставте ваш комментарий *"></textarea>
-                        </div>
-                    </div>
-                    <footer class="popup-footer">
-                        <button class="title-btn">Заказать</button>
-                    </footer>
-                </div>
-            </section>
 @stop
 
 

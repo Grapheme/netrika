@@ -1,6 +1,6 @@
 <?
 /**
- * MENU_PLACEMENTS: main_menu=Основное меню|additional_menu=Дополнительное меню
+ * MENU_PLACEMENTS: main_menu=Основное меню|additional_menu=Дополнительное меню|footer_menu=Меню в подвале
  */
 ?>
 <? #Helper::tad($page); ?>
