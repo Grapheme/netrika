@@ -2,7 +2,7 @@ $.fn.PopUp = function() {
 	var parent = $(this);
 	var openFlag = false;
 
-	open('order-present');
+	//open('order-present');
 
 	function open(name) {
 		openFlag = true;
