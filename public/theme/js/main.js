@@ -1,3 +1,49 @@
+$.fn.PopUp = function() {
+	var parent = $(this);
+	var openFlag = false;
+
+	open('order-present');
+
+	function open(name) {
+		openFlag = true;
+		parent.show();
+		parent.find('[data-popup="' + name + '"]').addClass('active');
+
+		setTimeout(function(){
+			parent.css('opacity', 1);
+		}, 50);
+	}
+
+	function close() {
+		openFlag = false;
+		parent.css('opacity', 0);
+		setTimeout(function(){
+			parent.hide();
+			parent.find('[data-popup="' + name + '"]').removeClass('active');
+		}, 200);
+	}
+
+	$(document).on('click', '.js-popup-open', function(){
+		open($(this).attr('data-popup'));
+		return false;
+	});
+
+	$(document).on('click', '.js-popup-close', function(){
+		close();
+		return false;
+	});
+
+	$(document).on('click', '.popup', function(e){
+		e.stopPropagation();
+	});
+
+	$(document).on('click', function(){
+		if(openFlag) {
+			close();
+		}
+	});
+}
+
 $.fn.news_page = function() {
 	var desc = $('.js-fotorama-desc');
     var fotorama_settings = {
@@ -864,6 +910,7 @@ $.fn.ext_url = function() {
 $('a[href]').ext_url();
 $('.js-hover').jshover('js-circle');
 $('.main-nav').header_nav();
+$('.popups').PopUp();
 
 function transform(transform_value) {
 	var prefixes = ['-webkit-', '-ms-', ''];
