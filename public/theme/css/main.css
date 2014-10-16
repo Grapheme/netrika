@@ -2577,6 +2577,8 @@ section a:hover {
       -ms-transform: rotate(90deg);
           transform: rotate(90deg);
   cursor: pointer;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
 }
 .popups .popup.order-present .popup-body .input-wrp .multiple-select .select-btn:before {
   content: "\e60e";
@@ -2639,6 +2641,12 @@ section a:hover {
 }
 .popups .popup.order-present .popup-body .input-wrp .multiple-select.open .select-list {
   display: block;
+}
+.popups .popup.order-present .popup-body .input-wrp .multiple-select.open .select-btn {
+  -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  color: #1dcba4;
 }
 .popups .popup.order-present .popup-body .input-wrp .multiple-select.selected .selected-list {
   display: block;
