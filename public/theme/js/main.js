@@ -1,8 +1,92 @@
+$.fn.mSelect = function() {
+	var select = $(this),
+		select_text = select.attr('data-text'),
+		styledSelect;
+
+	var options = {};
+
+	$(document).on('click', '.select-line, .select-btn', clickDialog);
+	$(document).on('click', '.select-list li', function(){
+		addElement($(this).attr('data-value'));
+	});
+	$(document).on('click', '.selected-list li', function(){
+		removeElement($(this).attr('data-value'));
+	});
+
+	function gainOptions() {
+		select.find('option').each(function(){
+			var option = $(this);
+
+			options[option.attr('value')] = option.text();
+		});
+
+		console.log(options);
+	}
+
+	function setHTML() {
+		gainOptions();
+
+		var options_str = '';
+		$.each(options, function(index, value){
+			options_str += '<li data-value="' + index + '"><div>' + value + '</div>';
+		});
+
+		var str = '';
+		str += '<div class="multiple-select"><span class="select-btn"></span>';
+			str += '<div class="select-line">' + select_text + '</div>';
+	        str += '<ul class="select-list">';
+	        	str += options_str;
+	        str += '</ul>';
+	        str += '<ul class="selected-list">';
+	        str += '</ul>';
+        str += '</div>';
+
+        select.parent().append(str);
+        select.hide();
+	}
+
+	function clickDialog() {
+		styledSelect.toggleClass('open');
+	}
+
+	function closeDialog() {
+		styledSelect.removeClass('open');
+	}
+
+	function removeElement(value) {
+		styledSelect.find('.selected-list li[data-value="' + value + '"]').remove();
+		styledSelect.find('.select-list').append('<li data-value="' + value + '"><div>' + options[value] + '</div>');
+		select.find('option[value="' + value + '"]').removeAttr('selected');
+		if(styledSelect.find('.selected-list li').length == 0) {
+			styledSelect.removeClass('selected');
+		}
+	}
+
+	function addElement(value) {
+		styledSelect.addClass('selected');
+		styledSelect.find('.select-list li[data-value="' + value + '"]').remove();
+		styledSelect.find('.selected-list').append('<li data-value="' + value + '">' + options[value]);
+		select.find('option[value="' + value + '"]').attr('selected', 'selected');
+		closeDialog();
+	}
+
+	function init() {
+		setHTML();
+		styledSelect = select.parent().find('.multiple-select');
+		//$('.select-list').hide();
+		//$('.selected-list').hide();
+	}
+
+	init();
+}
+
+$('.js-mSelect').mSelect();
+
 $.fn.PopUp = function() {
 	var parent = $(this);
 	var openFlag = false;
 
-	//open('order-present');
+	open('order-present');
 
 	function open(name) {
 		openFlag = true;

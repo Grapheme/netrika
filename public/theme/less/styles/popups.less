@@ -81,8 +81,22 @@
 						position: relative;
 						background: #fff;
 
+						.select-btn {
+							position: absolute;
+							display: inline-block;
+							font-family: "elements";
+							right: 40rem / @hfs;
+							top: 17.5rem / @hfs;
+							transform: rotate(90deg);
+							cursor: pointer;
+
+							&:before {
+								content: "\e60e";
+							}
+						}
+
 						.select-line, .select-list li {
-							padding: 0 39rem / @hfs;
+							padding: 0 40rem / @hfs;
 							height: 50rem / @hfs;
 							line-height: 50rem / @hfs;
 							cursor: pointer;
@@ -95,6 +109,7 @@
 
 						.select-list {
 							.list-unstyled;
+							display: none;
 							position: absolute;
 							width: 100%;
 							top: 100%;
@@ -119,7 +134,8 @@
 
 						.selected-list {
 							.list-unstyled;
-							padding: 15rem / @hfs 39rem / @hfs 0;
+							display: none;
+							padding: 15rem / @hfs 40rem / @hfs 0;
 
 							li {
 								display: inline-block;
@@ -134,6 +150,22 @@
 								padding: 0 15rem / @hfs;
 								cursor: pointer;
 								margin-bottom: 15px;
+							}
+						}
+
+						&.open {
+							.select-list {
+								display: block;
+							}
+						}
+
+						&.selected {
+							.selected-list {
+								display: block;
+							}
+
+							.select-line {
+								display: none;
 							}
 						}
 					}
