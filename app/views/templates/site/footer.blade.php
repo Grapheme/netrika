@@ -25,6 +25,7 @@ foreach ($projects as $project) {
 
                     {{ Menu::placement('footer_menu') }}
 
+                    @if (0)
                     <ul class="footer-list">
                         <li><a href="{{ URL::route('page', 'about') }}">О компании</a>
                         <li><a href="{{ URL::route('page', 'projects') }}">Проекты</a>
@@ -33,6 +34,7 @@ foreach ($projects as $project) {
                         <li><a href="{{ URL::route('page', 'contacts') }}">Контакты</a>
                         <li><a href="{{ URL::route('page', 'sitemap') }}">Карта сайта</a>
                     </ul>
+                    @endif
 
                 </div>
                 <div class="grid_4">
@@ -75,7 +77,7 @@ foreach ($projects as $project) {
                 <div class="grid_12 footer-line"></div>
                 <div class="grid_12">
                     <span>Официальный сайт компании Нетрика © 2014{{ date('Y') > 2014 ? '-'.date('Y') : '' }}</span>
-                    <span class="copy-right">Разработка сайта: Нетрика при участии <a href="#">Func</a></span>
+                    <span class="copy-right">Разработка сайта: Нетрика при участии <a href="">Func</a></span>
                 </div>
                 <div class="clearfix"></div>
             </div>
