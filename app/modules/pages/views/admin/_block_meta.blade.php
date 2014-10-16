@@ -17,7 +17,7 @@ else
     <label class="control-label margin-top-10">
         Содержимое блока
     </label>
-    {{ Form::textarea('locales[' . $locale_sign . '][content]', ($block_meta ? ($block_meta->content) : false), array('class' => 'form-control redactor-no-filter  redactor_450 editor_block_content', 'placeholder' => 'Содержимое блока', 'style' => 'position:relative; z-index:0') ) }}
+    {{ Form::textarea('locales[' . $locale_sign . '][content]', ($block_meta ? ($block_meta->content) : false), array('class' => 'form-control redactor-no-filter  redactor_150 editor_block_content', 'placeholder' => 'Содержимое блока', 'style' => 'position:relative; z-index:0') ) }}
     
     <div id="default_block_content" style="display:none;">{{ $block_meta ? ($block_meta->content) : false }}</div>
 
