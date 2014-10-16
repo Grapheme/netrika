@@ -89,6 +89,7 @@
 							top: 17.5rem / @hfs;
 							transform: rotate(90deg);
 							cursor: pointer;
+							transition: all .2s ease;
 
 							&:before {
 								content: "\e60e";
@@ -156,6 +157,11 @@
 						&.open {
 							.select-list {
 								display: block;
+							}
+
+							.select-btn {
+								transform: rotate(-90deg);
+								color: @green-link;
 							}
 						}
 

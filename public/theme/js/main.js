@@ -86,8 +86,6 @@ $.fn.PopUp = function() {
 	var parent = $(this);
 	var openFlag = false;
 
-	open('order-present');
-
 	function open(name) {
 		openFlag = true;
 		parent.show();
@@ -422,6 +420,10 @@ $.fn.simple_filter = function(block_parent, default_filter) {
 
 	function init() {
 		go(default_filter);
+
+		if($(document).location.hash) {
+			//alert($(document).location.hash);
+		}
 
 		$(links).each(function(){
 			var type = $(this).attr('data-filter');
