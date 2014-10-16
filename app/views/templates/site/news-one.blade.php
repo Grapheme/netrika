@@ -88,7 +88,7 @@
                             @if (isset($next_new) && is_object($next_new) && $next_new->id)
                             <a href="{{ URL::route('news_full', $next_new->slug) }}" class="desc-icon next"></a>
                             @endif
-                            <a href="#"><i class="lit-icon icon-projects"></i> Все новости</a>
+                            <a href="{{ URL::route('page', 'newslist') }}"><i class="lit-icon icon-projects"></i> Все новости</a>
                         </div>
                     </div>
                 </div>
