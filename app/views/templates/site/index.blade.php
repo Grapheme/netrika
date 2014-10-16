@@ -89,7 +89,7 @@ foreach ($clients as $client) {
 
                     @foreach ($solutions as $solution)
                     <div class="js-stat-tab" data-type="{{ $solution->slug }}">
-                        <h1 class="title-link"><a href="#">{{ $solution->name }}</a></h1>
+                        <h1 class="title-link"><a href="{{ URL::route('solution-one', $solution->slug) }}">{{ $solution->name }}</a></h1>
                         <p>
                             {{ $solution->describes_purpose_decision }}
                         </p>
