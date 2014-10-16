@@ -476,7 +476,7 @@ $.fn.line_slider = function() {
 
 	$(document).on('click', '.js-ls-control', function(){
 		var dir = $(this).attr('data-direction');
-		go(dir);
+		//go(dir);
 
 		return false;
 	});
