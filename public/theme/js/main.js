@@ -88,20 +88,24 @@ $.fn.PopUp = function() {
 
 	function open(name) {
 		openFlag = true;
-		parent.show();
-		parent.find('[data-popup="' + name + '"]').addClass('active');
+		var popup = $('.popups').find('[data-popup="' + name + '"]');
+		var popus_cont = popup.parent();
+		popus_cont.show();
+		popup.addClass('active');
 
 		setTimeout(function(){
-			parent.css('opacity', 1);
+			popus_cont.css('opacity', 1);
 		}, 50);
 	}
 
 	function close() {
 		openFlag = false;
-		parent.css('opacity', 0);
+		var popup = $('.popups .popup.active');
+		var popus_cont = popup.parent();
+		popus_cont.css('opacity', 0);
 		setTimeout(function(){
-			parent.hide();
-			parent.find('[data-popup="' + name + '"]').removeClass('active');
+			popus_cont.hide();
+			popup.removeClass('active');
 		}, 200);
 	}
 
@@ -419,10 +423,11 @@ $.fn.simple_filter = function(block_parent, default_filter) {
 	});
 
 	function init() {
-		go(default_filter);
-
-		if($(document).location.hash) {
-			//alert($(document).location.hash);
+		var hash = window.location.hash.replace('#','');
+		if(hash) {
+			go(hash);
+		} else {
+			go(default_filter);
 		}
 
 		$(links).each(function(){
@@ -435,6 +440,7 @@ $.fn.simple_filter = function(block_parent, default_filter) {
 	}
 
 	function go(filter) {
+		window.location.hash = '#' + filter;
 		$('.js-filters [data-filter]').removeClass('active');
 		$('.js-filters [data-filter="' + filter + '"]').addClass('active');
 
