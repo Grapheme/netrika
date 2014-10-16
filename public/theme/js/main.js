@@ -1029,12 +1029,14 @@ $(document).ready(function() {
         rules: {
             'solution_id': "required",
             'name': "required",
-            'email': "required",
+            'email': { required: true, email: true },
+            'comment': "required",
         },
         messages: {
             'solution_id': "",
             'name': "",
             'email': "",
+            'comment': "",
         },
         errorClass: "inp-error",
         submitHandler: function(form) {

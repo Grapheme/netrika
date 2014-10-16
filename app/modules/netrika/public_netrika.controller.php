@@ -297,7 +297,46 @@ class PublicNetrikaController extends BaseController {
 
 
     public function postRequestDemo() {
-        Helper::dd(Input::all());
+
+        #Helper::d(Input::all());
+
+        if(!Request::ajax())
+            App::abort(404);
+
+        $solution_id = Input::get('solution_id');
+
+        #if (!strpos($room_type, '.'))
+        #    App::abort(404);
+        #Helper::dd($room_type);
+        #list($room_id, $price_type) = explode('.', $room_type);
+
+        $solution = Dic::valueBySlugAndId('solutions', $solution_id);
+
+        if (!is_object($solution)) {
+            App::abort(404);
+        }
+
+        #Helper::tad($solution);
+
+        $json_request = array('status' => TRUE, 'responseText' => '');
+
+        ## Send confirmation to user - with password
+        $data = Input::all();
+        $data['solution'] = $solution;
+        Mail::send('emails.request-demo', $data, function ($message) use ($data) {
+            $message->from(Config::get('mail.from.address'), Config::get('mail.from.name'));
+            $message->subject('Заказ на демонстрацию решения: ' . $data['solution']->name);
+            $message->to(Config::get('mail.feedback.address'));
+
+            $ccs = Config::get('mail.feedback.cc');
+            if (isset($ccs) && is_array($ccs) && count($ccs))
+                foreach ($ccs as $cc)
+                    $message->cc($cc);
+
+        });
+        #Helper::dd($result);
+        return Response::json($json_request, 200);
+
     }
 
 }
