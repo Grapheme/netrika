@@ -242,7 +242,7 @@
         @if (
             Config::get('pages.versions') && Allow::action($module['group'], 'page_restore') && $element->id
         )
-        <section class="col col-6">
+        <section class="col col-6 pull-right clearfix">
             <div class="well">
 
                 <a name="versions"></a>
