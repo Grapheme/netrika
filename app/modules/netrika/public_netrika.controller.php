@@ -517,8 +517,10 @@ class PublicNetrikaController extends BaseController {
              */
             $tbl_dicval = (new DicVal())->getTable();
             $tbl_dic_field_val = (new DicFieldVal())->getTable();
-            $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+
             $query->select($tbl_dicval . '.*');
+
+            $rand_tbl_alias = md5(time() . rand(999999, 9999999));
             $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
                 ->where($rand_tbl_alias . '.key', '=', 'solution_id')
                 ->where($rand_tbl_alias . '.value', '=', $solution->id);

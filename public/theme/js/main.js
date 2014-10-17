@@ -30,12 +30,15 @@ $.fn.solutionSelect = function(auto_select) {
 			data: {'solution_id': value},
 			type: 'post',
 		})
-		.done(function(data){
-			var json = $.parseJSON(data);
+		.done(function(data) {
+            var json = $.parseJSON(data);
 
-			clearMSelect();
-			$('.js-ajax-select-parent').find('.js-mSelect').show();
-			$('.js-ajax-select-parent').find('.js-mSelect').mSelect(json);
+            clearMSelect();
+
+            if (json['items'].length) {
+                $('.js-ajax-select-parent').find('.js-mSelect').show();
+                $('.js-ajax-select-parent').find('.js-mSelect').mSelect(json);
+            }
 		})
 		.fail(function(data){
 			console.log(data);
@@ -58,6 +61,7 @@ $.fn.solutionSelect = function(auto_select) {
 }
 
 $.fn.mSelect = function(json) {
+
 	var select = $(this),
 		select_text = select.attr('data-text'),
 		styledSelect;

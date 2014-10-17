@@ -116,7 +116,11 @@ foreach ($projects as $project) {
                             <div class="solution-line">Выберите решение</div>
                             <ul class="solution-list">
                                 @foreach ($solutions as $solution)
-                                <li data-value="{{ $solution->id }}"><div>{{ $solution->name }}</div>
+                                    <?
+                                    if (!$solution->availability_demonstrate)
+                                        continue;
+                                    ?>
+                                    <li data-value="{{ $solution->id }}"><div>{{ $solution->name }}</div>
                                 @endforeach
                             </ul>
                         </div>
@@ -149,5 +153,3 @@ foreach ($projects as $project) {
 
             </div>
         </section>
-
-{{ Helper::ta($solutions) }}

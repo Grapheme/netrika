@@ -390,8 +390,6 @@
             $('.js-ls-parent').line_slider();
             $('.js-st-parent').simple_tabs();
             $(document).canvas_draw(false);
-
-            $('.solution-select').solutionSelect({{ $solution->id }});
         </script>
 
 @stop

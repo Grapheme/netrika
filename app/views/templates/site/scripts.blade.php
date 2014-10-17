@@ -9,3 +9,7 @@
         {{ HTML::script("theme/js/main.js") }}
         {{ HTML::script("js/vendor/jquery.validate.min.js") }}
         {{ HTML::script("js/vendor/jquery-form.min.js") }}
+
+        <script>
+            $('.solution-select').solutionSelect({{ (isset($solution) && is_object($solution) && $solution->id ? $solution->id : '') }});
+        </script>
