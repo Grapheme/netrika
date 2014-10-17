@@ -23,6 +23,7 @@ $.fn.solutionSelect = function(auto_select) {
 			.siblings().removeClass('active');
 
 		parent.find('.solution-line').text(this_option.text());
+		$('input[name="solution_id"]').val(value);
 		close();
 
 		$.ajax({
