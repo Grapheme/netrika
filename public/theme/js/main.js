@@ -80,8 +80,9 @@ $.fn.mSelect = function(json) {
 		if(json) {
 			$.each(json.items, function(index, value){
 				options[value] = value;
+				select.append('<option value="' + value + '">' + value);
 			});
-			console.log(options);
+
 		} else {
 			select.find('option').each(function(){
 				var option = $(this);
