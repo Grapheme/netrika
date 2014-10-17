@@ -206,7 +206,7 @@ foreach ($newslist as $new) {
 
                 $( ".js-date-from" ).datepicker({
                   defaultDate: "+1w",
-                  changeMonth: true,
+                  changeMonth: false,
                   numberOfMonths: 1,
                   dateFormat: date_format,
                   onClose: function( selectedDate ) {
@@ -222,7 +222,7 @@ foreach ($newslist as $new) {
                 });
                 $( ".js-date-to" ).datepicker({
                   defaultDate: "+1w",
-                  changeMonth: true,
+                  changeMonth: false,
                   numberOfMonths: 1,
                   dateFormat: date_format,
                   onClose: function( selectedDate ) {
