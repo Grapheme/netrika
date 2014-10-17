@@ -97,7 +97,7 @@
                     ?>
                     <div class="grid_4">
                         <div class="search-solution-item">
-                            <a href="#" class="type-{{ $solution->slug }} solution-head">
+                            <a href="{{ URL::route('solution-one', $solution->slug) }}" class="type-{{ $solution->slug }} solution-head">
                                 <i class="sol-icon"></i>
                                 <span>{{ $solution->name }}</span>
                             </a>

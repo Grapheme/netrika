@@ -12,6 +12,7 @@ node_modules
 Thumbs.db
 
 /app/config/database.php
+/app/config/packages
 /app/storage
 /app/lang
 /!files
