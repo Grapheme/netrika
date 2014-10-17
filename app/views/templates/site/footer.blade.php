@@ -149,3 +149,7 @@ foreach ($projects as $project) {
 
             </div>
         </section>
+
+        <script>
+            //$('.solution-select').solutionSelect(1);
+        </script>

@@ -57,8 +57,6 @@ $.fn.solutionSelect = function(auto_select) {
 	init();
 }
 
-$('.solution-select').solutionSelect();
-
 $.fn.mSelect = function(json) {
 	var select = $(this),
 		select_text = select.attr('data-text'),
