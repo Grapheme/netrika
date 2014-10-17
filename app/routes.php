@@ -6,9 +6,6 @@ $prefix = Auth::check() ? AuthAccount::getStartPage() : 'guest';
 | Общие роуты, независящие от условий
 */
 //Route::get('image/{image_group}/{id}', 'ImageController@showImage')->where('id','\d+');
-Route::post('get_test_json', function(){
-    return '{"items": ["Auto", "TEST", "etc..."]}';
-});
 Route::get('redactor/get-uploaded-images', 'DownloadsController@redactorUploadedImages');
 Route::post('redactor/upload', 'DownloadsController@redactorUploadImage');
 

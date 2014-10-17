@@ -115,9 +115,9 @@ foreach ($projects as $project) {
                             <span class="select-btn"></span>
                             <div class="solution-line">Выберите решение</div>
                             <ul class="solution-list">
-                                <li data-value="1"><div>Что-то</div>
-                                <li data-value="2"><div>Еще что-то</div>
-                                <li data-value="3"><div>И еще</div>
+                                @foreach ($solutions as $solution)
+                                <li data-value="{{ $solution->id }}"><div>{{ $solution->name }}</div>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -150,6 +150,4 @@ foreach ($projects as $project) {
             </div>
         </section>
 
-        <script>
-            //$('.solution-select').solutionSelect(1);
-        </script>
+{{ Helper::ta($solutions) }}

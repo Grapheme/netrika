@@ -26,8 +26,8 @@ $.fn.solutionSelect = function(auto_select) {
 		close();
 
 		$.ajax({
-			url: '/get_test_json',
-			data: value,
+			url: '/get-solution-components',
+			data: {'solution_id': value},
 			type: 'post',
 		})
 		.done(function(data){

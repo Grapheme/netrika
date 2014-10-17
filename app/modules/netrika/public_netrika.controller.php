@@ -500,4 +500,32 @@ class PublicNetrikaController extends BaseController {
         return View::make(Helper::layout('search'), compact('q', 'results_count', 'results', 'dicvals', 'pages', 'excerpts'));
     }
 
+
+    public function postSolutionComponents() {
+
+        $return = array();
+
+        $solution_id = Input::get('solution_id');
+        $solution = Dic::valueBySlugAndId('solutions', $solution_id);
+        if (!is_object($solution))
+            return json_encode($return);
+
+        $components = Dic::valuesBySlug('solution_components', function($query) use ($solution) {
+            /**
+             * Фильтр значений (DicVal) по его доп. полю (DicFieldVal)
+             * SOLUTION_id
+             */
+            $tbl_dicval = (new DicVal())->getTable();
+            $tbl_dic_field_val = (new DicFieldVal())->getTable();
+            $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+            $query->select($tbl_dicval . '.*');
+            $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+                ->where($rand_tbl_alias . '.key', '=', 'solution_id')
+                ->where($rand_tbl_alias . '.value', '=', $solution->id);
+        });
+
+        $return = array('items' => $components->lists('name'));
+        return json_encode($return);
+    }
+
 }
