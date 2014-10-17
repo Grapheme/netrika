@@ -21,6 +21,8 @@ class AdminDicsController extends BaseController {
             Route::post('dic/{dic_id}/import2', array('as' => 'dic.import2', 'uses' => $class.'@postImport2'));
             Route::post('dic/{dic_id}/import3', array('as' => 'dic.import3', 'uses' => $class.'@postImport3'));
 
+            Route::get('dic/{dic_id}/sphinx',  array('as' => 'dic.sphinx',   'uses' => $class.'@getSphinx'));
+
             Route::resource('dic', $class,
                 array(
                     'except' => array('show'),
@@ -396,6 +398,101 @@ class AdminDicsController extends BaseController {
         #Helper::d($array);
 
         return Redirect::route('dicval.index', $dic_id);
+    }
+
+    public function getSphinx($dic_id) {
+
+        if (!Allow::superuser())
+            App::abort(404);
+
+        $dic = Dictionary::where(is_numeric($dic_id) ? 'id' : 'slug', $dic_id)
+            #->with('values')
+            ->first();
+
+        if (!is_object($dic))
+            App::abort(404);
+
+        #Helper::d('Данные словаря:') . Helper::ta($dic);
+
+        $fields = Config::get('dic/' . $dic->slug . '.fields');
+        if (isset($fields) && is_callable($fields))
+            $fields = $fields();
+
+        #Helper::d('Доп. поля словаря (fields):') . Helper::d($fields);
+
+        $fields_i18n = Config::get('dic/' . $dic->slug . '.fields_i18n');
+        if (isset($fields_i18n) && is_callable($fields_i18n))
+            $fields_i18n = $fields_i18n();
+
+        #Helper::d('Мультиязычные доп. поля словаря (fields_i18n):') . Helper::d($fields_i18n);
+
+        $tbl_dic_field_val = (new DicFieldVal)->getTable();
+
+        /**
+         * Будут индексироваться только поля следующих типов
+         */
+        $indexed_types = array('textarea', 'textarea_redactor', 'text');
+
+        $selects = array(
+            "dicval.id AS id",
+            $dic->id . " AS dic_id",
+            "'" . $dic->name . "' AS dic_name",
+            "'" . $dic->slug . "' AS dic_slug",
+            "dicval.name AS name"
+        );
+        $sql = array();
+
+        $j = 0;
+        /**
+         * Поиск по обычным полям
+         */
+        if (isset($fields) && is_array($fields) && count($fields)) {
+            foreach ($fields as $field_key => $field) {
+
+                if (!in_array($field['type'], $indexed_types))
+                    continue;
+
+                ++$j;
+                $tbl =  "tbl" . $j;
+                ##$selects[] = $tbl . '.language AS language';
+                $selects[] = $tbl . '.value AS ' . $field_key;
+                $sql[] = "LEFT JOIN " . $tbl_dic_field_val . " AS " . $tbl . " ON " . $tbl . ".dicval_id = dicval.id AND " . $tbl . ".key = '" . $field_key . "' AND " . $tbl . ".language IS NULL";
+            }
+        }
+        /**
+         * Поиск по мультиязычным полям
+         */
+        if (isset($fields_i18n) && is_array($fields_i18n) && count($fields_i18n)) {
+            foreach ($fields_i18n as $field_key => $field) {
+
+                if (!in_array($field['type'], $indexed_types))
+                    continue;
+
+                ++$j;
+                $tbl =  "tbl" . $j;
+                ##$selects[] = $tbl . '.language AS language';
+                $selects[] = $tbl . '.value AS ' . $field_key;
+                $sql[] = "LEFT JOIN " . $tbl_dic_field_val . " AS " . $tbl . " ON " . $tbl . ".dicval_id = dicval.id AND " . $tbl . ".key = '" . $field_key . "' AND " . $tbl . ".language IS NOT NULL";
+            }
+        }
+
+        $sql[] = "WHERE dicval.version_of IS NULL AND dicval.dic_id = '" . $dic->id . "'";
+
+        $selects_compile = implode(', ', $selects);
+
+        array_unshift($sql, "SELECT " . $selects_compile . " FROM " . (new DicVal)->getTable() . " AS dicval");
+
+        return
+            "<h1>Поиск по словарю &laquo;" . $dic->name . "&raquo; (" . $dic->slug . ")</h1>" .
+            "<h3>SQL-запрос для тестирования (phpMyAdmin):</h3>" .
+            nl2br(implode("\n", $sql)) .
+            "<h3>SQL-запрос для вставки в конфиг Sphinx:</h3>" .
+            "<pre>
+    sql_query     = \\\n        " . (implode(' \\'."\n        ", $sql)) . "
+
+    sql_attr_uint = id
+</pre>"
+            ;
     }
 
 }

@@ -385,6 +385,41 @@ HTML;
 
     }
 
+    public static function buildExcerpts($docs = false, $index = '*', $words = false, $opts = false) {
+
+        if (!$docs || !$words)
+            return false;
+
+        $opts_default = array(
+            'before_match' => '<b>',
+            'after_match' => '</b>',
+            'chunk_separator' => '...',
+            'limit' => 256,
+            'around' => 5,
+            'exact_phrase' => FALSE,
+            'single_passage' => FALSE
+        );
+        $opts = (array)$opts + $opts_default;
+        #Helper::dd($opts);
+
+        $sphinx = new \Sphinx\SphinxClient;
+        $results = $sphinx->buildExcerpts($docs, $index, $words, $opts);
+        /**
+         * Костыль-с...
+         */
+        $n = 0;
+        $temp = array();
+        foreach ($docs as $d => $doc)
+            $temp[$d] = $results[$n++];
+        unset($sphinx);
+        return $temp;
+    }
+
+
+    public static function multiSpace($a) {
+        return preg_replace('~\s\s+~is', " ", $a);
+    }
+
     ##
     ## Uses in Dictionaries module (DicVal additional fields)
     ## $element - current DicVal model
@@ -637,6 +672,7 @@ HTML;
         return sprintf("%0.2f Gb", $number / 1024 / 1024 / 1024);
     }
 
+
     public static function isRoute($route_name = false, $route_params = array(), $match_text = ' class="active"', $mismatch_text = '') {
 
         $match = true;
@@ -645,7 +681,7 @@ HTML;
         #dd($route->getPath());
 
         if (is_string($route_params)) {
-            preg_match("~\{([^\}]+?)\}~is", $route->getPath(), $matches);
+            preg_match('~\{([^\}]+?)\}~is', $route->getPath(), $matches);
             #Helper::dd($matches);
             if (@$matches[1] != '') {
                 $route_params = array($matches[1] => $route_params);

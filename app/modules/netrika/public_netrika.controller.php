@@ -11,12 +11,17 @@ class PublicNetrikaController extends BaseController {
         ## Генерим роуты без префикса, и назначаем before-фильтр i18n_url.
         ## Это позволяет нам делать редирект на урл с префиксом только для этих роутов, не затрагивая, например, /admin и /login
         Route::group(array(), function() {
-            Route::get('/news/{url}', array('as' => 'news_full', 'uses' => __CLASS__.'@showFullNews'));
-            #Route::get('/news',      array('as' => 'news',      'uses' => __CLASS__.'@showNews'));
+            Route::get('/news/{url}',     array('as' => 'news_full',    'uses' => __CLASS__.'@showFullNews'));
             Route::get('/solution/{url}', array('as' => 'solution-one', 'uses' => __CLASS__.'@showSolution'));
             Route::get('/project/{url}',  array('as' => 'project-one',  'uses' => __CLASS__.'@showProject'));
-            Route::post('/request-demo',  array('as' => 'request-demo',  'uses' => __CLASS__.'@postRequestDemo'));
+            Route::post('/request-demo',  array('as' => 'request-demo', 'uses' => __CLASS__.'@postRequestDemo'));
+            Route::get('/search/',        array('as' => 'search',       'uses' => __CLASS__.'@showSearchResults'));
         });
+
+        $a = 10;
+        return $a;
+
+
     }
 
     /****************************************************************************/
@@ -340,6 +345,162 @@ class PublicNetrikaController extends BaseController {
         #Helper::dd($result);
         return Response::json($json_request, 200);
 
+    }
+
+    public function showSearchResults() {
+
+        #Helper::d(Input::all());
+        $q = Input::get('q');
+
+        $sphinx_match_mode = \Sphinx\SphinxClient::SPH_MATCH_ANY;
+
+        /**
+         * projects
+         */
+        $results['projects'] = SphinxSearch::search($q, 'netrika_projects_index')->setMatchMode($sphinx_match_mode)->query();
+        $results_counts['projects'] = @count($results['projects']['matches']);
+
+        /**
+         * solutions
+         */
+        $results['solutions'] = SphinxSearch::search($q, 'netrika_solutions_index')->setMatchMode($sphinx_match_mode)->query();
+        $results_counts['solutions'] = @count($results['solutions']['matches']);
+
+        /**
+         * news
+         */
+        $results['news'] = SphinxSearch::search($q, 'netrika_news_index')->setMatchMode($sphinx_match_mode)->query();
+        $results_counts['news'] = @count($results['news']['matches']);
+
+        /**
+         * pages
+         */
+        $results['pages'] = SphinxSearch::search($q, 'netrika_pages_index')->setMatchMode($sphinx_match_mode)->query();
+        $results_counts['pages'] = @count($results['pages']['matches']);
+
+        #Helper::d($results);
+
+        /**
+         * Собираем dicval_id для получения одним запросом
+         */
+        $dicvals_ids = array_unique(array_merge(@(array)array_keys($results['projects']['matches']), @(array)array_keys($results['solutions']['matches']), @(array)array_keys($results['news']['matches'])));
+        #Helper::d($dicvals_ids);
+
+        /**
+         * Получаем все найденные значения DicVal одним запросом
+         */
+        if (@count($dicvals_ids)) {
+            $dicvals = DicVal::whereIn('id', $dicvals_ids)->get();
+            $dicvals->load('dic', 'meta', 'fields', 'seo', 'related_dicvals');
+            $dicvals = DicVal::extracts($dicvals, 1);
+        } else {
+            $dicvals = array();
+        }
+        #Helper::tad($dicvals);
+
+        $excerpts = array();
+
+        /**
+         * Поисковые подсказки - projects
+         */
+        if (@count(array_keys($results['projects']['matches']))) {
+            $docs = array();
+            foreach (array_keys($results['projects']['matches']) as $dicval_id) {
+                $dicval = $dicvals[$dicval_id];
+                $line = Helper::multiSpace(strip_tags($dicval->description_objectives)) . "\n" . Helper::multiSpace(strip_tags($dicval->description_tasks)) . "\n" . Helper::multiSpace(strip_tags($dicval->description_results)) . "\n" . Helper::multiSpace(strip_tags($dicval->description_results_num)) . "\n" . Helper::multiSpace(strip_tags($dicval->description_advantages)) . "\n" . Helper::multiSpace(strip_tags($dicval->description_features)) . "\n" . Helper::multiSpace(strip_tags($dicval->description_process)) . "\n";
+                $docs[$dicval_id] = trim($line);
+            }
+            #Helper::d($docs);
+            $excerpts['projects'] = Helper::buildExcerpts($docs, 'netrika_projects_index', $q, array('before_match' => '<span>', 'after_match' => '</span>'));
+        } else {
+            $excerpts['projects'] = array();
+        }
+        #Helper::d($excerpts);
+
+        /**
+         * Поисковые подсказки - solutions
+         */
+        if (@count(array_keys($results['solutions']['matches']))) {
+            $docs = array();
+            foreach (array_keys($results['solutions']['matches']) as $dicval_id) {
+                $dicval = $dicvals[$dicval_id];
+                $line = Helper::multiSpace(strip_tags($dicval->describes_purpose_decision)) . "\n" . Helper::multiSpace(strip_tags($dicval->performance_indicators)) . "\n" . Helper::multiSpace(strip_tags($dicval->description_target_audience)) . "\n" . Helper::multiSpace(strip_tags($dicval->assignment_solution)) . "\n" . Helper::multiSpace(strip_tags($dicval->description_advantages_solution)) . "\n" . Helper::multiSpace(strip_tags($dicval->application_solution)) . "\n" . Helper::multiSpace(strip_tags($dicval->description_integration)) . "\n" . Helper::multiSpace(strip_tags($dicval->identify_features_solution)) . "\n" . Helper::multiSpace(strip_tags($dicval->additional_features)) . "\n";
+                $docs[$dicval_id] = trim($line);
+            }
+            #Helper::d($docs);
+            $excerpts['solutions'] = Helper::buildExcerpts($docs, 'netrika_solutions_index', $q, array('before_match' => '<span>', 'after_match' => '</span>'));
+        } else {
+            $excerpts['solutions'] = array();
+        }
+        #Helper::d($excerpts);
+
+        /**
+         * Поисковые подсказки - news
+         */
+        if (@count(array_keys($results['news']['matches']))) {
+            $docs = array();
+            foreach (array_keys($results['news']['matches']) as $dicval_id) {
+                $dicval = $dicvals[$dicval_id];
+                $line =
+                    Helper::multiSpace(strip_tags($dicval->name)) . "\n"
+                    . Helper::multiSpace(strip_tags($dicval->preview)) . "\n"
+                    . Helper::multiSpace(strip_tags($dicval->content)) . "\n"
+                ;
+                $docs[$dicval_id] = trim($line);
+            }
+            #Helper::d($docs);
+            $excerpts['news'] = Helper::buildExcerpts($docs, 'netrika_news_index', $q, array('before_match' => '<span>', 'after_match' => '</span>'));
+        } else {
+            $excerpts['news'] = array();
+        }
+        #Helper::d($excerpts);
+
+
+        /**
+         * Получим все найденные страницы
+         */
+        if (@count(array_keys($results['pages']['matches']))) {
+            $pages = Page::whereIn('id', array_keys($results['pages']['matches']))->get();
+            $pages->load('meta', 'blocks.meta');
+            $temp = new Collection;
+            foreach ($pages as $page) {
+                $temp[$page->id] = $page->extract(1);
+            }
+            $pages = $temp;
+        } else {
+            $pages = array();
+        }
+        #Helper::tad($pages);
+
+        /**
+         * Поисковые подсказки - pages
+         */
+        if (@count(array_keys($results['pages']['matches']))) {
+            $docs = array();
+            foreach (array_keys($results['pages']['matches']) as $page_id) {
+                $page = $pages[$page_id];
+                $line = '';
+                if (count($page->blocks)) {
+                    foreach ($page->blocks as $block) {
+                        $line .= Helper::multiSpace(strip_tags($block->content)) . "\n";
+                    }
+                }
+                $docs[$page_id] = trim($line);
+            }
+            #Helper::d($docs);
+            $excerpts['pages'] = Helper::buildExcerpts($docs, 'netrika_pages_index', $q, array('before_match' => '<span>', 'after_match' => '</span>'));
+        } else {
+            $excerpts['pages'] = array();
+        }
+        #Helper::d($excerpts);
+
+
+        /**
+         * Общее количество результатов
+         */
+        $results_count = count(array_merge($dicvals_ids, @(array)array_keys($results['pages']['matches'])));
+
+        return View::make(Helper::layout('search'), compact('q', 'results_count', 'results', 'dicvals', 'pages', 'excerpts'));
     }
 
 }

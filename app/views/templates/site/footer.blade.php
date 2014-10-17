@@ -47,8 +47,8 @@ foreach ($projects as $project) {
                     </ul>
                 </div>
                 <div class="grid_4">
-                    <form class="footer-search" action="">
-                        <input type="text" class="search-input" placeholder="Поиск">
+                    <form class="footer-search" method="GET" action="{{ URL::route('search') }}">
+                        <input type="text" class="search-input" name="q" placeholder="Поиск" value="{{ @$_GET['q'] }}">
                         <button class="search-btn" type="submit"></button>
                     </form>
                     <ul class="footer-soc">
