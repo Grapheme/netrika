@@ -2572,11 +2572,7 @@ section a:hover {
   height: 8.125rem;
   padding: 1.5625rem 2.5rem;
 }
-.popups .popup.order-present .popup-body .input-wrp .multiple-select {
-  position: relative;
-  background: #fff;
-}
-.popups .popup.order-present .popup-body .input-wrp .multiple-select .select-btn {
+.popups .popup.order-present .popup-body .input-wrp .select-btn {
   position: absolute;
   display: inline-block;
   font-family: "elements";
@@ -2589,8 +2585,12 @@ section a:hover {
   -webkit-transition: all .2s ease;
           transition: all .2s ease;
 }
-.popups .popup.order-present .popup-body .input-wrp .multiple-select .select-btn:before {
+.popups .popup.order-present .popup-body .input-wrp .select-btn:before {
   content: "\e60e";
+}
+.popups .popup.order-present .popup-body .input-wrp .multiple-select {
+  position: relative;
+  background: #fff;
 }
 .popups .popup.order-present .popup-body .input-wrp .multiple-select .select-line,
 .popups .popup.order-present .popup-body .input-wrp .multiple-select .select-list li {
@@ -2662,6 +2662,48 @@ section a:hover {
 }
 .popups .popup.order-present .popup-body .input-wrp .multiple-select.selected .select-line {
   display: none;
+}
+.popups .popup.order-present .popup-body .input-wrp .solution-select {
+  position: relative;
+}
+.popups .popup.order-present .popup-body .input-wrp .solution-select .solution-line {
+  height: 3.125rem;
+  padding: 0 2.5rem;
+  line-height: 3.125rem;
+  background: #fff;
+  cursor: pointer;
+}
+.popups .popup.order-present .popup-body .input-wrp .solution-select .solution-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: none;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  max-height: 12.5rem;
+  overflow: auto;
+}
+.popups .popup.order-present .popup-body .input-wrp .solution-select .solution-list li {
+  height: 3.125rem;
+  line-height: 3.125rem;
+  padding: 0 2.5rem;
+  color: #000000;
+  background: #d2f5ed;
+  cursor: pointer;
+}
+.popups .popup.order-present .popup-body .input-wrp .solution-select .solution-list li div {
+  height: 3.0625rem;
+  border-bottom: 1px solid #d7eae6;
+}
+.popups .popup.order-present .popup-body .input-wrp .solution-select .solution-list li.active {
+  cursor: default;
+  color: #babcbc;
+}
+.popups .popup.order-present .popup-body .input-wrp .solution-select.open .solution-list {
+  display: block;
 }
 .popups .popup.order-present .popup-footer {
   height: 6.25rem;

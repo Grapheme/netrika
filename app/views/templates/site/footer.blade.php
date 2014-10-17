@@ -110,6 +110,17 @@ foreach ($projects as $project) {
                     <div class="input-wrp">
                         <input type="text" name="phone" placeholder="Номер телефона">
                     </div>
+                    <div class="input-wrp">
+                        <div class="solution-select">
+                            <span class="select-btn"></span>
+                            <div class="solution-line">Выберите решение</div>
+                            <ul class="solution-list">
+                                <li data-value="1"><div>Что-то</div>
+                                <li data-value="2"><div>Еще что-то</div>
+                                <li data-value="3"><div>И еще</div>
+                            </ul>
+                        </div>
+                    </div>
 
                     @if (isset($components) && count($components))
                     <div class="input-wrp">
