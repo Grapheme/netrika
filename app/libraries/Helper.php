@@ -416,6 +416,7 @@ HTML;
         $sphinx->setServer($host, $port);
         $results = $sphinx->buildExcerpts($docs, $index, $words, $opts);
         ##Helper::d($results);
+        
         /**
          * Костыль-с...
          */
