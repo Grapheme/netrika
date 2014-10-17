@@ -77,24 +77,24 @@
 						padding: 25rem / @hfs 40rem / @hfs;
 					}
 
+					.select-btn {
+						position: absolute;
+						display: inline-block;
+						font-family: "elements";
+						right: 40rem / @hfs;
+						top: 17.5rem / @hfs;
+						transform: rotate(90deg);
+						cursor: pointer;
+						transition: all .2s ease;
+
+						&:before {
+							content: "\e60e";
+						}
+					}
+
 					.multiple-select {
 						position: relative;
 						background: #fff;
-
-						.select-btn {
-							position: absolute;
-							display: inline-block;
-							font-family: "elements";
-							right: 40rem / @hfs;
-							top: 17.5rem / @hfs;
-							transform: rotate(90deg);
-							cursor: pointer;
-							transition: all .2s ease;
-
-							&:before {
-								content: "\e60e";
-							}
-						}
 
 						.select-line, .select-list li {
 							padding: 0 40rem / @hfs;
@@ -172,6 +172,55 @@
 
 							.select-line {
 								display: none;
+							}
+						}
+					}
+
+					.solution-select {
+						position: relative;
+
+						.solution-line {
+							height: 50rem / @hfs;
+							padding: 0 40rem / @hfs;
+							line-height: 50rem / @hfs;
+							background: #fff;
+							cursor: pointer;
+						}
+
+						.solution-list {
+							.list-unstyled;
+							display: none;
+							position: absolute;
+							z-index: 2;
+							width: 100%;
+							top: 100%;
+							left: 0;
+							max-height: 200rem / @hfs;
+							overflow: auto;
+
+							li {
+								height: 50rem / @hfs;
+								line-height: 50rem / @hfs;
+								padding: 0 40rem / @hfs;
+								color: #000000;
+								background: #d2f5ed;
+								cursor: pointer;
+
+								div {
+									height: 49rem / @hfs;
+									border-bottom: 1px solid #d7eae6;
+								}
+
+								&.active {
+									cursor: default;
+									color: @gray-link;
+								}
+							}
+						}
+
+						&.open {
+							.solution-list {
+								display: block;
 							}
 						}
 					}

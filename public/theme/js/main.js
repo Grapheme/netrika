@@ -1,3 +1,42 @@
+$.fn.solutionSelect = function(auto_select) {
+	var parent = $(this);
+
+	$(document).on('click', '.solution-line', function(){
+		selectClick();
+	});
+
+	$(document).on('click', '.solution-list li', function(){
+		set($(this).attr('data-value'));
+	});
+
+	function selectClick() {
+		parent.toggleClass('open');
+	}
+
+	function close() {
+		parent.removeClass('open');
+	}
+
+	function set(value) {
+		var this_option = parent.find('[data-value="' + value + '"]');
+		this_option.addClass('active')
+			.siblings().removeClass('active');
+
+		parent.find('.solution-line').text(this_option.text());
+		close();
+	}
+
+	function init() {
+		if(auto_select) {
+			set(auto_select);
+		}
+	}
+
+	init();
+}
+
+$('.solution-select').solutionSelect();
+
 $.fn.mSelect = function() {
 	var select = $(this),
 		select_text = select.attr('data-text'),
@@ -85,6 +124,8 @@ $('.js-mSelect').mSelect();
 $.fn.PopUp = function() {
 	var parent = $(this);
 	var openFlag = false;
+
+	open('order-present');
 
 	function open(name) {
 		openFlag = true;
