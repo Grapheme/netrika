@@ -110,7 +110,6 @@
                 </section><!--
                 @endif
 
-
                 @if (@count($results['news']['matches']))
              --><section class="search-news search-section">
                     <div class="grid_4">
