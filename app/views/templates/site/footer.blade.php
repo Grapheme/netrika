@@ -90,7 +90,7 @@ foreach ($projects as $project) {
 
                 <header class="popup-header">
                     <span class="title">Заказать демонстрацию</span>
-                    <span class="popup-close js-popup-close"><span class="desc-icon close"></a></span>
+                    <span class="popup-close js-popup-close"><span class="desc-icon close"></span></span>
                 </header>
                 <div class="popup-body">
                     {{ Form::hidden('solution_id', $solution->id) }}
