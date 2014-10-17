@@ -208,6 +208,8 @@ class AdminDicvalsController extends BaseController {
         $locales = $this->locales;
         $dic_settings = Config::get('dic/' . $dic->slug);
 
+        $total_elements = DicVal::where('dic_id', $dic->id)->where('version_of', '=', NULL)->count();
+
         $element = new Dictionary;
 
         return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'dic_id', 'locales', 'dic_settings'))->render();
@@ -250,7 +252,9 @@ class AdminDicvalsController extends BaseController {
         $element->extract(0);
         #Helper::tad($element);
 
-		return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'dic_id', 'locales', 'dic_settings'));
+        $total_elements = DicVal::where('dic_id', $dic->id)->where('version_of', '=', NULL)->count();
+
+        return View::make($this->module['tpl'].'edit', compact('element', 'dic', 'dic_id', 'locales', 'dic_settings'));
 	}
 
 
