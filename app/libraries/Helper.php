@@ -402,8 +402,20 @@ HTML;
         $opts = (array)$opts + $opts_default;
         #Helper::dd($opts);
 
+        /**
+         * VENDOR
+         * scalia/sphinxsearch
+         */
+        $host = \Config::get('sphinxsearch::host');
+        $port = \Config::get('sphinxsearch::port');
+        /**
+         * VENDOR
+         * gigablah/sphinxphp
+         */
         $sphinx = new \Sphinx\SphinxClient;
+        $sphinx->setServer($host, $port);
         $results = $sphinx->buildExcerpts($docs, $index, $words, $opts);
+        ##Helper::d($results);
         /**
          * Костыль-с...
          */
