@@ -1,0 +1,144 @@
+.ui-datepicker {
+	font-family: "proxima_nova" !important;
+	font-weight: 300 !important;
+	border: 0 none !important;
+	border-radius: 0 !important;
+	margin: 25rem / @hfs 0 0 -85rem / @hfs;
+	padding: 20px !important;
+
+	&:before {
+		content: "";
+		position: absolute;
+		display: inline-block !important;
+		top: -10px;
+		left: 50%;
+		margin-left: -7.5px;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 0 10px 10px 10px;
+		border-color: transparent transparent #4c5865 transparent;
+	}
+
+	th {
+		font-weight: 300 !important;
+	}
+
+	.ui-datepicker-header {
+		padding: 0 0 42px 0 !important;
+		position: absolute !important;
+		width: 100%;
+		height: 60px;
+		top: 0;
+		left: 0;
+		border: 0 none !important;
+		border-radius: 0 !important;
+		background: #4c5865;
+	}
+
+	.ui-datepicker-title {
+		line-height: 60px !important;
+		font-weight: 400 !important;
+		color: @gray-link !important;
+		font-size: 14px !important;
+	}
+
+	.ui-datepicker-next, .ui-datepicker-prev {
+		font-family: "elements";
+		top: 0 !important;
+		line-height: 60px;
+		text-align: center !important;
+		padding: 0 15px;
+		color: @green-link;
+		font-size: 22px;
+		font-weight: 400 !important;
+		cursor: pointer;
+		transition: color .2s ease;
+
+		span {
+			display: none !important;
+		}
+
+		&:hover {
+			color: @gray-link !important;
+		}
+	}
+
+	.ui-datepicker-next-hover, .ui-datepicker-prev-hover {
+		//right: 0 !important;
+		top: 0 !important;
+		//left: 0 !important;
+		border: 0 none !important;
+		background: transparent !important;
+	}
+
+	.ui-datepicker-prev {
+		left: 0 !important;
+
+		&:before {
+			content: "\e605";
+		}
+	}
+
+	.ui-datepicker-next {
+		right: 0 !important;
+
+		&:before {
+			content: "\e604";
+		}
+	}
+
+	.ui-datepicker-calendar {
+		position: relative;
+		font-size: 14px !important;
+		margin-top: 15px;
+
+		thead {
+			font-family: "proxima_nova";
+			color: @gray-link !important;
+			
+			tr {
+				height: 80px;
+			}	
+		}
+
+		tbody {
+			tr {
+				height: 30px;
+				font-size: 12px;
+
+				a, span {
+					text-align: center !important;
+				}
+
+				a {
+					&.ui-state-active, &:hover {
+						position: relative !important;
+						color: @green-link !important;
+
+						&:before {
+							content: "";
+							position: absolute;
+							display: inline-block;
+							box-sizing: border-box;
+							width: 30px;
+							height: 30px;
+							border-radius: 30px;
+							border: 1px solid @green-link;
+							top: 50%;
+							left: 50%;
+							margin-top: -15px;
+							margin-left: -15px;
+						}
+					}
+				}
+
+				.ui-state-default {
+					border: 0 none !important;
+					background: transparent !important;
+					color: #000 !important;
+				}
+			}
+		}
+	}
+}

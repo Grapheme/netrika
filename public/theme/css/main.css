@@ -487,7 +487,7 @@ section a {
           transition: color .2s ease;
 }
 section a:hover {
-  color: #babcbc;
+  color: #1dcba4;
 }
 .title-btn {
   display: inline-block;
@@ -1415,6 +1415,14 @@ section a:hover {
 .main-footer .copy-right a {
   color: #fff;
   text-decoration: none;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
+}
+.main-footer .copy-right a:hover {
+  color: #1dcba4;
+}
+.main-footer .copy-right a:after {
+  display: none;
 }
 .solution-block .prj-content {
   position: absolute;
@@ -2050,6 +2058,7 @@ section a:hover {
   font-weight: 500;
   text-decoration: none;
   width: 80%;
+  cursor: default;
 }
 .comps-ul li .title {
   height: 3.75rem;
@@ -2694,4 +2703,131 @@ section a:hover {
 .error-block .error-tomain a {
   font-size: 1.5em;
   color: #313736;
+}
+.ui-datepicker {
+  font-family: "proxima_nova" !important;
+  font-weight: 300 !important;
+  border: 0 none !important;
+  border-radius: 0 !important;
+  margin: 1.5625rem 0 0 -5.3125rem;
+  padding: 20px !important;
+}
+.ui-datepicker:before {
+  content: "";
+  position: absolute;
+  display: inline-block !important;
+  top: -10px;
+  left: 50%;
+  margin-left: -7.5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #4c5865 transparent;
+}
+.ui-datepicker th {
+  font-weight: 300 !important;
+}
+.ui-datepicker .ui-datepicker-header {
+  padding: 0 0 42px 0 !important;
+  position: absolute !important;
+  width: 100%;
+  height: 60px;
+  top: 0;
+  left: 0;
+  border: 0 none !important;
+  border-radius: 0 !important;
+  background: #4c5865;
+}
+.ui-datepicker .ui-datepicker-title {
+  line-height: 60px !important;
+  font-weight: 400 !important;
+  color: #babcbc !important;
+  font-size: 14px !important;
+}
+.ui-datepicker .ui-datepicker-next,
+.ui-datepicker .ui-datepicker-prev {
+  font-family: "elements";
+  top: 0 !important;
+  line-height: 60px;
+  text-align: center !important;
+  padding: 0 15px;
+  color: #1dcba4;
+  font-size: 22px;
+  font-weight: 400 !important;
+  cursor: pointer;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
+}
+.ui-datepicker .ui-datepicker-next span,
+.ui-datepicker .ui-datepicker-prev span {
+  display: none !important;
+}
+.ui-datepicker .ui-datepicker-next:hover,
+.ui-datepicker .ui-datepicker-prev:hover {
+  color: #babcbc !important;
+}
+.ui-datepicker .ui-datepicker-next-hover,
+.ui-datepicker .ui-datepicker-prev-hover {
+  top: 0 !important;
+  border: 0 none !important;
+  background: transparent !important;
+}
+.ui-datepicker .ui-datepicker-prev {
+  left: 0 !important;
+}
+.ui-datepicker .ui-datepicker-prev:before {
+  content: "\e605";
+}
+.ui-datepicker .ui-datepicker-next {
+  right: 0 !important;
+}
+.ui-datepicker .ui-datepicker-next:before {
+  content: "\e604";
+}
+.ui-datepicker .ui-datepicker-calendar {
+  position: relative;
+  font-size: 14px !important;
+  margin-top: 15px;
+}
+.ui-datepicker .ui-datepicker-calendar thead {
+  font-family: "proxima_nova";
+  color: #babcbc !important;
+}
+.ui-datepicker .ui-datepicker-calendar thead tr {
+  height: 80px;
+}
+.ui-datepicker .ui-datepicker-calendar tbody tr {
+  height: 30px;
+  font-size: 12px;
+}
+.ui-datepicker .ui-datepicker-calendar tbody tr a,
+.ui-datepicker .ui-datepicker-calendar tbody tr span {
+  text-align: center !important;
+}
+.ui-datepicker .ui-datepicker-calendar tbody tr a.ui-state-active,
+.ui-datepicker .ui-datepicker-calendar tbody tr a:hover {
+  position: relative !important;
+  color: #1dcba4 !important;
+}
+.ui-datepicker .ui-datepicker-calendar tbody tr a.ui-state-active:before,
+.ui-datepicker .ui-datepicker-calendar tbody tr a:hover:before {
+  content: "";
+  position: absolute;
+  display: inline-block;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  border: 1px solid #1dcba4;
+  top: 50%;
+  left: 50%;
+  margin-top: -15px;
+  margin-left: -15px;
+}
+.ui-datepicker .ui-datepicker-calendar tbody tr .ui-state-default {
+  border: 0 none !important;
+  background: transparent !important;
+  color: #000 !important;
 }
