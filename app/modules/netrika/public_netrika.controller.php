@@ -16,11 +16,8 @@ class PublicNetrikaController extends BaseController {
             Route::get('/project/{url}',  array('as' => 'project-one',  'uses' => __CLASS__.'@showProject'));
             Route::post('/request-demo',  array('as' => 'request-demo', 'uses' => __CLASS__.'@postRequestDemo'));
             Route::get('/search/',        array('as' => 'search',       'uses' => __CLASS__.'@showSearchResults'));
+            Route::post('/get-solution-components',  array('as' => 'solution-components', 'uses' => __CLASS__.'@postSolutionComponents'));
         });
-
-        $a = 10;
-        return $a;
-
 
     }
 
