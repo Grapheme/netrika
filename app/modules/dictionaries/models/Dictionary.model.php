@@ -107,6 +107,7 @@ class Dictionary extends BaseModel {
      */
     public static function makeLists($collection, $listed_key = 'values', $value, $key = '') {
         #Helper::ta($collection);
+        #$lists = new Collection;
         $lists = array();
         foreach ($collection as $c => $col) {
             if (!$listed_key) {

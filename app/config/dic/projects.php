@@ -124,6 +124,7 @@ return array(
 
         $dics_slugs = array(
             'solutions',
+            'project-documents',
         );
         $dics = Dic::whereIn('slug', $dics_slugs)->with('values')->get();
         $dics = Dic::modifyKeys($dics, 'slug');
@@ -145,6 +146,7 @@ return array(
         $dics = Config::get('temp.index_dics');
         $dic_documents = $dics['project-documents'];
         $counts = Config::get('temp.index_counts');
+        #Helper::tad($dics);
         return '
             <span class="block_ margin-bottom-5_">
                 <a href="' . URL::route('entity.edit', array('solutions', $dicval->solution_id)) . '" class="btn btn-default">
@@ -182,7 +184,7 @@ return array(
 
             $counts = array();
             if (count($dic_ids) && count($dicval_ids))
-                $counts = DicVal::counts_by_fields($dic_ids, array('solution_id' => $dicval_ids));
+                $counts = DicVal::counts_by_fields($dic_ids, array('project_id' => $dicval_ids));
             #Helper::dd($counts);
             Config::set('temp.index_counts', $counts);
         },
