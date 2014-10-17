@@ -93,7 +93,7 @@ foreach ($projects as $project) {
                     <span class="popup-close js-popup-close"><span class="desc-icon close"></a></span>
                 </header>
                 <div class="popup-body">
-                    {{ Form::hidden('solution_id', $solution->id) }}
+                    {{ Form::hidden('solution_id', '') }}
 
                     <div class="input-wrp">
                         <input type="text" name="name" placeholder="Имя">

@@ -300,7 +300,7 @@ class PublicNetrikaController extends BaseController {
 
     public function postRequestDemo() {
 
-        #Helper::d(Input::all());
+        Helper::d(Input::all());
 
         #sleep(5);
         #App::abort(404);

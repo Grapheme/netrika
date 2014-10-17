@@ -7,6 +7,11 @@
 @extends(Helper::layout())
 
 
+<?
+$solution2form = $solution;
+?>
+
+
 @section('style')
 @stop
 

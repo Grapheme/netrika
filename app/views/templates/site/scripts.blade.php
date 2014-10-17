@@ -11,5 +11,5 @@
         {{ HTML::script("js/vendor/jquery-form.min.js") }}
 
         <script>
-            $('.solution-select').solutionSelect({{ (isset($solution) && is_object($solution) && $solution->id ? $solution->id : '') }});
+            $('.solution-select').solutionSelect({{ (isset($solution4form) && is_object($solution4form) && $solution4form->id) ? $solution4form->id : '' }});
         </script>
