@@ -121,8 +121,12 @@ foreach ($projects as $project) {
                             </ul>
                         </div>
                     </div>
+                    <div class="input-wrp js-ajax-select-parent">
+                        <select multiple name="components[]" data-text="Выберите компоненты для демонстрации" class="js-mSelect">
+                        </select>
+                    </div>
 
-                    @if (isset($components) && count($components))
+                    <!-- @if (isset($components) && count($components))
                     <div class="input-wrp">
                         <select multiple name="components[]" data-text="Выберите компоненты для демонстрации" class="js-mSelect">
                         @foreach ($components as $component)
@@ -130,7 +134,7 @@ foreach ($projects as $project) {
                         @endforeach
                         </select>
                     </div>
-                    @endif
+                    @endif -->
 
                     <div class="input-wrp">
                         <textarea name="comment" placeholder="Оставьте ваш комментарий *"></textarea>

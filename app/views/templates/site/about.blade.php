@@ -148,7 +148,6 @@ foreach ($clients as $client) {
         var map_array = {{ json_encode($map_array) }};
 
         $('.map-container').smart_map(map_array);
-        $('.js-stat-parent').statTabs('.js-slider-parent');
         $('.stat-nav').indexStatNav('.stat-items', '.stat-item');
         $('.js-main-slider').main_slider('.js-ms-dots');
 

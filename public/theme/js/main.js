@@ -24,9 +24,31 @@ $.fn.solutionSelect = function(auto_select) {
 
 		parent.find('.solution-line').text(this_option.text());
 		close();
+
+		$.ajax({
+			url: '/get_test_json',
+			data: value,
+			type: 'post',
+		})
+		.done(function(data){
+			var json = $.parseJSON(data);
+
+			clearMSelect();
+			$('.js-ajax-select-parent').find('.js-mSelect').show();
+			$('.js-ajax-select-parent').find('.js-mSelect').mSelect(json);
+		})
+		.fail(function(data){
+			console.log(data);
+		});
+	}
+
+	function clearMSelect() {
+		$('.js-ajax-select-parent').find('.js-mSelect option').remove();
+		$('.js-ajax-select-parent').find('.multiple-select').remove();
 	}
 
 	function init() {
+		$('.js-ajax-select-parent').find('.js-mSelect').hide();
 		if(auto_select) {
 			set(auto_select);
 		}
@@ -37,7 +59,7 @@ $.fn.solutionSelect = function(auto_select) {
 
 $('.solution-select').solutionSelect();
 
-$.fn.mSelect = function() {
+$.fn.mSelect = function(json) {
 	var select = $(this),
 		select_text = select.attr('data-text'),
 		styledSelect;
@@ -53,13 +75,18 @@ $.fn.mSelect = function() {
 	});
 
 	function gainOptions() {
-		select.find('option').each(function(){
-			var option = $(this);
+		if(json) {
+			$.each(json.items, function(index, value){
+				options[value] = value;
+			});
+			console.log(options);
+		} else {
+			select.find('option').each(function(){
+				var option = $(this);
 
-			options[option.attr('value')] = option.text();
-		});
-
-		console.log(options);
+				options[option.attr('value')] = option.text();
+			});
+		}
 	}
 
 	function setHTML() {
@@ -118,14 +145,13 @@ $.fn.mSelect = function() {
 
 	init();
 }
-
-$('.js-mSelect').mSelect();
+//$('.js-mSelect').mSelect();
 
 $.fn.PopUp = function() {
 	var parent = $(this);
 	var openFlag = false;
 
-	open('order-present');
+	//open('order-present');
 
 	function open(name) {
 		openFlag = true;
