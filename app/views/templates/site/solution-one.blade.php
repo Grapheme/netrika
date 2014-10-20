@@ -145,7 +145,9 @@ $solution4form = $solution;
                         @if ($scheme->name != '')
                         <h2>Схема работы</h2>
 
-                        <img src="{{ $scheme->full() }}" alt="">
+                        <div style="text-align:center">
+                            <img src="{{ $scheme->full() }}" alt="">
+                        </div>
                         @endif
 
                     </div>
