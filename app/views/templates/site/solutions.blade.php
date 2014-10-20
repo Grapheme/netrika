@@ -86,7 +86,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                             <div class="prj-content">
                                 <div class="title"><i class="us-icon icon-{{ $solution->slug }}"></i> {{ $solution->name }}</div>
                                 <div class="text">
-                                    {{ Helper::preview($solution->describes_purpose_decision, 10) }}
+                                    {{ Helper::preview($solution->describes_purpose_decision, 25) }}
                                 </div>
                             </div>
                         </div>
