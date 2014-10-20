@@ -115,11 +115,17 @@ foreach ($clients as $client) {
                         $indicators = explode("\n", $solution->performance_indicators);
                         ?>
                         @if (count($indicators))
+                            <?
+                            $i = 0;
+                            ?>
                             @foreach ($indicators as $indicator)
                                 <?
                                 $indicator = trim($indicator);
                                 if ($indicator == '')
                                     continue;
+                                ++$i;
+                                if ($i > 3)
+                                    break;
                                 $data = explode(' ', $indicator, 2);
                                 ?>
                                 <li>
