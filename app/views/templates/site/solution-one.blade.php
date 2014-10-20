@@ -66,15 +66,15 @@ $solution4form = $solution;
                         ?>
                         @if (count($indicators))
                             <?
-                            $c = 0;
+                            $i = 0;
                             ?>
                             @foreach ($indicators as $indicator)
                                 <?
                                 $indicator = trim($indicator);
                                 if ($indicator == '')
                                     continue;
-                                ++$c;
-                                if ($c > 3)
+                                ++$i;
+                                if ($i > 3)
                                     break;
                                 $data = explode(' ', $indicator, 2);
                                 ?>
