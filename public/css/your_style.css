@@ -781,3 +781,11 @@ div.redactor_dropdown {
     white-space: normal;
     word-wrap: normal;
 }
+
+.note.first_note {
+    margin: 0 0 6px 0;
+}
+
+.note.second_note {
+    margin: 6px 0 0 0;
+}

@@ -108,9 +108,15 @@
                             @if (!@$field['no_label'])
                             <label class="label">{{ @$field['title'] }}</label>
                             @endif
+                            @if (@$field['first_note'])
+                            <label class="note first_note">{{ @$field['first_note'] }}</label>
+                            @endif
                             <div class="input {{ @$field['type'] }} {{ @$field['label_class'] }}">
                                 {{ Helper::formField('fields[' . @$field_name . ']', @$field, @$element_fields[$field_name], $element) }}
                             </div>
+                            @if (@$field['second_note'])
+                            <label class="note second_note">{{ @$field['second_note'] }}</label>
+                            @endif
                         </section>
                         @endforeach
                     </fieldset>

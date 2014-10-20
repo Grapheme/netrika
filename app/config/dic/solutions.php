@@ -20,11 +20,30 @@ return array(
                 'type' => 'textarea_redactor',
             ),
             'performance_indicators' => array(
-                'title' => 'Показатели эффективности',
+                'title' => 'Показатели эффективности (максимум три строки)',
                 'type' => 'textarea',
+                'first_note' => 'Пример строки: 58% повышение общей эффективности',
                 'default' => '100% экономия времени
 100% снижение затрат
 100% повышение эффективности',
+                'others' => array(
+                    'onkeyup' => str_replace("\n", ' ', "
+var c = 1;
+var len = 0;
+for (i=0; i<this.value.length; i++) {
+    if ( this.value[i] == '\\n' ) {
+        ++c;
+        if ( c == 4 ) {
+            len = i;
+            break;
+        }
+    }
+}
+if (len > 0) {
+    this.value = this.value.slice(0, len + 1);
+}
+"), ## ONLY 3 LINES AT TEXTAREA
+                ),
             ),
             'description_target_audience' => array(
                 'title' => 'Целевая аудитория (по одному на строку)',
