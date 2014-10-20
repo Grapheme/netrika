@@ -88,9 +88,9 @@ $solution2form = $solution;
             </section>
 
             <?
-            $target_audience = (array)explode("\n", $solution->description_target_audience);
+            $target_audience = explode("\n", $solution->description_target_audience);
             ?>
-            @if (count($target_audience) > 1)
+            @if (count($target_audience) > 0)
             <section class="audience">
                 <div class="container_12 js-ls-parent">
                     <div class="grid_9">
@@ -127,12 +127,15 @@ $solution2form = $solution;
             <section class="us-section">
                 <div class="container_12">
                     <div class="grid_12">
+
+                        @if ($solution->identify_features_solution)
                         <h2>Возможности решения</h2>
                         <div class="columns-2">
 
                             {{ $solution->identify_features_solution }}
 
                         </div>
+                        @endif
 
                         <?
                         $scheme = $solution->image_schemes_work;
