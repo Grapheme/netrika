@@ -5,10 +5,12 @@ return array(
     'fields' => function () {
 
         return array(
+            /*
             'description_vacancy' => array(
                 'title' => 'Описание вакансии',
                 'type' => 'textarea_redactor',
             ),
+            */
             'link_to_vacancy' => array(
                 'title' => 'Ссылка на ресурс hh.ru',
                 'type' => 'text',
