@@ -14,11 +14,14 @@ return array(
                 'title' => 'Ссылка',
                 'type' => 'text',
             ),
+            #*/
+
+            #/*
             'image_slide' => array(
-                'title' => 'Изображение',
+                'title' => 'Фоновое изображение',
                 'type' => 'image',
             ),
-            */
+            #*/
         );
 
     },
