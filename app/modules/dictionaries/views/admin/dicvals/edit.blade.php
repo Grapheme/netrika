@@ -68,6 +68,7 @@
                         <label class="input">
                             {{ Form::text('slug', null, array()) }}
                         </label>
+                        <label class="note second_note">Только символы англ. алфавита, знаки _ и -, цифры</label>
                     </section>
                     @endif
 
