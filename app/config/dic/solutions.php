@@ -63,7 +63,7 @@ if (len > 0) {
                 'type' => 'textarea',
             ),
             'mainpage_image' => array(
-                'title' => 'Фоновое изображение',
+                'title' => 'Фоновое изображение (в списках)',
                 'type' => 'image',
             ),
             'image_schemes_work' => array(

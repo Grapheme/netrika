@@ -8,7 +8,7 @@
 
 
 <?
-$solution2form = $solution;
+$solution4form = $solution;
 ?>
 
 
