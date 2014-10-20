@@ -124,6 +124,7 @@ if (len > 0) {
                     return ExtForm::process('upload', $value);
                 },
             ),
+            /*
             'tags_id' => array(
                 'title' => 'Список тегов',
                 'type' => 'select-multiple',
@@ -144,6 +145,7 @@ if (len > 0) {
                     return $return;
                 },
             ),
+            */
         );
 
     },
