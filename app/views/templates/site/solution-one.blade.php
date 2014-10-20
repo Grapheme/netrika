@@ -65,11 +65,17 @@ $solution4form = $solution;
                         $indicators = explode("\n", $solution->performance_indicators);
                         ?>
                         @if (count($indicators))
+                            <?
+                            $c = 0;
+                            ?>
                             @foreach ($indicators as $indicator)
                                 <?
                                 $indicator = trim($indicator);
                                 if ($indicator == '')
                                     continue;
+                                ++$c;
+                                if ($c > 3)
+                                    break;
                                 $data = explode(' ', $indicator, 2);
                                 ?>
                                 <li>
