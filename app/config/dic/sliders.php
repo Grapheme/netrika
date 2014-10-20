@@ -8,6 +8,9 @@ return array(
             'text_slide' => array(
                 'title' => 'Текст на слайде',
                 'type' => 'textarea_redactor',
+                'others' => array(
+                    'class' => 'redactor_450'
+                ),
             ),
             /*
             'link_slide' => array(

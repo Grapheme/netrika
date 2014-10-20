@@ -494,7 +494,7 @@ HTML;
                 $return = Form::textarea($name, $value, $others_array);
                 break;
             case 'textarea_redactor':
-                $others_array['class'] = trim(@$others_array['class'] . ' redactor redactor_450');
+                $others_array['class'] = trim(@$others_array['class'] . ' redactor redactor_150');
                 $return = Form::textarea($name, $value, $others_array);
                 break;
             case 'image':
