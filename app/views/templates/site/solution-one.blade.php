@@ -88,7 +88,7 @@ $solution2form = $solution;
             </section>
 
             <?
-            $target_audience = explode("\n", $solution->description_target_audience);
+            $target_audience = (array)explode("\n", $solution->description_target_audience);
             ?>
             @if (count($target_audience) > 1)
             <section class="audience">
