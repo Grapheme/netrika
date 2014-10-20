@@ -284,6 +284,12 @@ class AdminDicvalsController extends BaseController {
 
         $this->dicval_permission($dic, (@$id ? 'dicval_edit' : 'dicval_create'));
 
+        $element = new DicVal;
+        if ($id)
+            $element = DicVal::find($id);
+        if (!is_object($element))
+            $element = new DicVal;
+
         $this->callHook('before_all', $dic);
         $this->callHook('before_store_update', $dic);
 
@@ -297,8 +303,57 @@ class AdminDicvalsController extends BaseController {
         $fields_i18n = Input::get('fields_i18n');
         $seo = Input::get('seo');
 
+        /*
         if (!@$input['slug'] && $dic->make_slug_from_name)
             $input['slug'] = Helper::translit($input['name']);
+        */
+
+        if (!@$input['name'])
+            $input['name'] = '';
+
+        /**
+         * Генерация системного имени в зависимости от настроек словаря
+         */
+        switch ((int)$dic->make_slug_from_name) {
+            case 1:
+                $input['slug'] = Helper::translit($input['name']);
+                break;
+            case 2:
+                if (!$dic->hide_slug && !@$input['slug'])
+                    $input['slug'] = Helper::translit($input['name']);
+                break;
+            case 3:
+                if ($dic->hide_slug && $element->slug == '')
+                    $input['slug'] = Helper::translit($input['name']);
+                break;
+
+            case 4:
+                $input['slug'] = Helper::translit($input['name'], false);
+                break;
+            case 5:
+                if (!$dic->hide_slug && !@$input['slug'])
+                    $input['slug'] = Helper::translit($input['name'], false);
+                break;
+            case 6:
+                if ($dic->hide_slug && $element->slug == '')
+                    $input['slug'] = Helper::translit($input['name'], false);
+                break;
+
+            case 7:
+                $input['slug'] = $input['name'];
+                break;
+            case 8:
+                if (!$dic->hide_slug && !@$input['slug'])
+                    $input['slug'] = $input['name'];
+                break;
+            case 9:
+                if ($dic->hide_slug && $element->slug == '')
+                    $input['slug'] = $input['name'];
+                break;
+        }
+        $input['slug'] = Helper::translit($input['slug'], false);
+
+        #Helper::dd($input['slug']);
 
         #$json_request['responseText'] = "<pre>" . print_r(Input::get('seo'), 1) . "</pre>";
         $json_request['responseText'] = "<pre>" . print_r(Input::all(), 1) . "</pre>";
@@ -314,7 +369,7 @@ class AdminDicvalsController extends BaseController {
 
             $mode = '';
 
-            if ($id > 0 && NULL !== ($element = DicVal::find($id))) {
+            if (isset($element) && is_object($element) && $element->id) {
 
                 $mode = 'update';
 

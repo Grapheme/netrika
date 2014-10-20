@@ -173,7 +173,7 @@ class AdminDicsController extends BaseController {
         if (Allow::action($this->module['group'], 'settings')) {
             $input['entity'] = Input::get('entity') ? 1 : NULL;
             $input['hide_slug'] = Input::get('hide_slug') ? 1 : NULL;
-            $input['make_slug_from_name'] = Input::get('make_slug_from_name') ? 1 : NULL;
+            $input['make_slug_from_name'] = Input::get('make_slug_from_name') > 0 ? (int)Input::get('make_slug_from_name') : NULL;
             $input['name_title'] = Input::get('name_title') ?: NULL;
             $input['view_access'] = Input::get('view_access') ?: NULL;
             $input['sortable'] = Input::get('sortable') ? 1 : 0;
