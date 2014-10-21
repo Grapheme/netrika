@@ -118,6 +118,7 @@ return array(
         return $dicval->url_document;
     },
 
+    'seo' => false,
 
     /**
      * Максимальное количество элементов в списке.
@@ -125,5 +126,4 @@ return array(
      */
     'max_elements' => 10,
 
-    'seo' => false,
 );

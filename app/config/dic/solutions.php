@@ -27,7 +27,7 @@ return array(
 100% снижение затрат
 100% повышение эффективности',
                 'others' => array(
-                    'onkeyup' => str_replace("\n", ' ', "
+                    'onkeyup' => trim(str_replace("\n", ' ', "
 var c = 1;
 var len = 0;
 for (i=0; i<this.value.length; i++) {
@@ -42,7 +42,7 @@ for (i=0; i<this.value.length; i++) {
 if (len > 0) {
     this.value = this.value.slice(0, len + 1);
 }
-"), ## ONLY 3 LINES AT TEXTAREA
+")), ## ONLY 3 LINES AT TEXTAREA
                 ),
             ),
             'description_target_audience' => array(
@@ -65,10 +65,16 @@ if (len > 0) {
             'mainpage_image' => array(
                 'title' => 'Фоновое изображение (в списках)',
                 'type' => 'image',
+                'params' => array(
+                    'maxFilesize' => 1, // MB
+                ),
             ),
             'image_schemes_work' => array(
                 'title' => 'Изображение схемы работы',
                 'type' => 'image',
+                'params' => array(
+                    'maxFilesize' => 1, // MB
+                ),
             ),
 
             'description_integration' => array(
@@ -227,4 +233,9 @@ if (len > 0) {
     'seo' => 1,
 
     'versions' => 1,
+
+    'javascript' => <<<JS
+        /* generate slug from name via translit */
+JS
+,
 );

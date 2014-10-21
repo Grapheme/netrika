@@ -13,7 +13,13 @@
             'class' => 'btn btn-default'
         );
     }
-    if (Allow::action($module['group'], 'dicval_delete') && isset($element) && is_object($element) && $element->id) {
+    if (
+        Allow::action($module['group'], 'dicval_delete') && isset($element) && is_object($element) && $element->id
+        && (
+            !isset($dic_settings['min_elements'])
+            || ($dic_settings['min_elements'] > 0 && $total_elements > $dic_settings['min_elements'])
+        )
+    ) {
         $menus[] = array(
             'link' => action(is_numeric($dic_id) ? 'dicval.destroy' : 'entity.destroy', array('dic_id' => $dic_id, $element->id)),
             'title' => '<i class="fa fa-trash-o"></i>',

@@ -39,7 +39,7 @@ $seo = isset($value) && is_object($value) ? $value : new Seo;
         @endif
 
         <section>
-            <label class="label">H1</label>
+            <label class="label">Заголовок H1</label>
             <label class="input">
                 {{ Form::text($name.'[h1]', $seo->h1) }}
             </label>

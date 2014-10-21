@@ -25,7 +25,9 @@
                                 success: success
                             });
                         }
-                    }
+                    },
+                    cancel: ".not-sortable",
+                    distance: 5
                 });
             }
         });

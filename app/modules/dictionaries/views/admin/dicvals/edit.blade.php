@@ -367,7 +367,13 @@
     {{ HTML::script('js/vendor/redactor.min.js') }}
     {{ HTML::script('js/system/redactor-config.js') }}
 
-    {{ HTML::script('js/modules/gallery.js') }}
+    {{-- HTML::script('js/modules/gallery.js') --}}
     {{ HTML::script('js/plugin/select2/select2.min.js') }}
+
+    @if (trim(Config::get('dic/' . $dic->slug . '.javascript')))
+    <script>
+        {{ Config::get('dic/' . $dic->slug . '.javascript') }}
+    </script>
+    @endif
 
 @stop

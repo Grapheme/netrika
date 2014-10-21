@@ -504,10 +504,10 @@ HTML;
                 $return = Form::textarea($name, $value, $others_array);
                 break;
             case 'image':
-                $return = ExtForm::image($name, $value);
+                $return = ExtForm::image($name, $value, @$array['params']);
                 break;
             case 'gallery':
-                $return = ExtForm::gallery($name, $value);
+                $return = ExtForm::gallery($name, $value, @$array['params']);
                 break;
             case 'date':
                 $others_array['class'] = trim(@$others_array['class'] . ' datepicker');

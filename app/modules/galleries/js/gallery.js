@@ -16,12 +16,13 @@
 
             var el_name = $(el).data("name");
 			var gallery_id = $(el).data('gallery_id');
+            var max_file_size = $(el).data("maxFilesize");
 
 			var myDropzone = new Dropzone(
 				el, {
                     url: base_url + "/admin/galleries/abstractupload",
                     addRemoveLinks : true,
-                    maxFilesize: 0.5,
+                    maxFilesize: max_file_size || 2, // MB
                     dictResponseError: 'Error uploading file!'
 				}
 			);
@@ -64,12 +65,13 @@
             var el_name = $(el).data("name");
             var gallery_id = 0; //$(el).data('gallery_id');
 			var preview = $(el).parent().find(".photo-preview");
+            var max_file_size = $(el).data("maxFilesize");
 
 			var myDropzone = new Dropzone(
 				el, {
                     url: base_url + "/admin/galleries/singleupload",
                     addRemoveLinks : true,
-                    maxFilesize: 0.5,
+                    maxFilesize: max_file_size || 2, // MB
                     dictResponseError: 'Error uploading file!',
                     dictDefaultMessage: 'dictDefaultMessage',
                     uploadMultiple: false,
