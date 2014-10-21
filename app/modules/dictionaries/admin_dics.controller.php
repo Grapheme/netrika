@@ -133,7 +133,41 @@ class AdminDicsController extends BaseController {
         Allow::permission($this->module['group'], 'edit');
 
 		$element = Dictionary::find($id);
-		return View::make($this->module['tpl'].'edit', compact('element'));
+
+        $dic_fields_array = array();
+        if (NULL !== ($dic_fields = Config::get('dic/' . $element->slug . '.fields'))) {
+            if (is_callable($dic_fields)) {
+                $dic_fields = $dic_fields();
+                $temp = array();
+                foreach ($dic_fields as $field_name => $field_array) {
+                    if (!isset($field_array['title']) || !$field_array['title'])
+                        continue;
+                    $temp[$field_name] = $field_array['title'];
+                }
+                if (count($temp))
+                    $dic_fields_array['Обычные поля'] = $temp;
+
+            }
+        }
+        if (NULL !== ($dic_fields = Config::get('dic/' . $element->slug . '.fields_i18n'))) {
+            if (is_callable($dic_fields)) {
+                $dic_fields = $dic_fields();
+                $temp = array();
+                foreach ($dic_fields as $field_name => $field_array) {
+                    if (!isset($field_array['title']) || !$field_array['title']) {
+                        continue;
+                    }
+                    $temp[$field_name] = $field_array['title'];
+                }
+                if (count($temp)) {
+                    $dic_fields_array['Мультиязычные поля'] = $temp;
+                }
+            }
+        }
+
+        #Helper::dd($dic_fields_array);
+
+        return View::make($this->module['tpl'].'edit', compact('element', 'dic_fields_array'));
 	}
 
 
@@ -300,7 +334,7 @@ class AdminDicsController extends BaseController {
 
         #Helper::dd($array);
 
-        $fields = array('Выберите...', 'name' => 'Название', 'slug' => 'Системное имя') + array_keys((array)Config::get('dic.fields.' . $dic->slug));
+        $fields = array('Выберите...', 'name' => 'Название', 'slug' => 'Системное имя') + array_keys((array)Config::get('dic/' . $dic->slug . '.fields'));
         #Helper::dd($fields);
 
         $element = $dic;

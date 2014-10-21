@@ -23,7 +23,7 @@ return array(
         #Helper::dd($lists);
 
         return array(
-            /*
+            #/*
             'published_at' => array(
                 'title' => 'Дата публикации',
                 'type' => 'date',
@@ -39,7 +39,7 @@ return array(
                     return $value ? @date('d.m.Y', strtotime($value)) : $value;
                 },
             ),
-            */
+            #*/
 
             'preview' => array(
                 'title' => 'Анонс',
@@ -133,7 +133,15 @@ return array(
 
     'second_line_modifier' => function($line, $dic, $dicval) {
         #$users =  Config::get('temp.users');
-        return myDateTime::SwapDotDateWithTime($dicval->created_at);
+        #return myDateTime::SwapDotDateWithTime($dicval->created_at);
+        #return myDateTime::SwapDotDate($dicval->published_at);
+        $carbon = \Carbon\Carbon::createFromFormat('Y-m-d', $dicval->published_at);
+        return
+            (($carbon->timestamp > time()) ? '<span class="txt-color-orangeDark">' : '') .
+            $carbon->format('d.m.Y') .
+            (($carbon->timestamp > time()) ? '&nbsp; <i class="fa fa-clock-o"></i> &nbsp;' : '') .
+            (($carbon->timestamp > time()) ? 'запланированная публикация</span>' : '')
+            ;
     },
 
     'seo' => true,

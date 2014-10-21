@@ -25,12 +25,34 @@ $tags_slug_name = $tags->lists('name', 'slug');
 natsort($tags_slug_name);
 
 $newslist = Dic::valuesBySlug('newslist', function($query) use ($rel_dics_ids){
-    $query->orderBy('created_at', 'desc');
+
+    $tbl_dicval = (new DicVal)->getTable();
+    $tbl_fields = (new DicFieldVal)->getTable();
+    $rand_tbl_alias = md5(rand(99999, 999999));
+    #/*
+    $query
+        ->select($tbl_dicval . '.*')
+        ->leftJoin($tbl_fields . ' AS ' . $rand_tbl_alias, function ($join) use ($tbl_dicval, $tbl_fields, $rand_tbl_alias) {
+            $join
+                ->on($rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+                ->where($rand_tbl_alias . '.key', '=', 'published_at')
+            ;
+        })
+        ->addSelect($rand_tbl_alias . '.value AS ' . 'published_at')
+        ->orderBy('published_at', 'DESC')
+        ->where($rand_tbl_alias . '.value', '<', date('Y-m-d')) /* в данный момент еще не сработал алиас AS published_at, поэтому приходится писать полное наименование поля, с префиксом таблицы */
+        #->orderBy('created_at', 'DESC') /* default */
+        ;
+    #*/
+
+    #$query->orderBy('created_at', 'desc');
+    #/*
     $query->with(
         array('related_dicvals' => function($query) use ($rel_dics_ids){
             $query->whereIn('dic_id', $rel_dics_ids);
         })
     );
+    #*/
 });
 #Helper::tad($newslist);
 $newslist = DicVal::extracts($newslist, true);
@@ -53,7 +75,8 @@ $news_ids = Dic::makeLists($newslist, false, 'id');
 $news = array();
 foreach ($newslist as $new) {
     $news[] = array(
-        'date' => $new->created_at->format('Y-m-d'),
+        #'date' => $new->created_at->format('Y-m-d'),
+        'date' => $new->published_at,
         'title' => $new->name,
         'image' => @$images[$new->image_id] ? $images[$new->image_id]->full() : false,
         'href' => '/news/'.$new->slug,

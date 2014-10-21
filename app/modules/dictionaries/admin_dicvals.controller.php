@@ -106,7 +106,9 @@ class AdminDicvalsController extends BaseController {
         ## Get element
         $elements = new DicVal;
         $tbl_dicval = $elements->getTable();
-        $elements = $elements->where('dic_id', $dic->id)->where('version_of', '=', NULL)
+        $elements = $elements
+            ->where('dic_id', $dic->id)
+            ->where('version_of', '=', NULL)
             ->select($tbl_dicval . '.*')
             ->with('fields')
         ;
@@ -154,6 +156,26 @@ class AdminDicvalsController extends BaseController {
                 break;
             case 'updated_at':
                 $elements = $elements->orderBy('updated_at', $sort_order);
+                break;
+            default:
+                /**
+                 * ORDER BY по произвольному полю
+                 */
+                #Helper::dd($dic->sort_by);
+                #$dic->sort_by .= '2';
+                $tbl_fields = new DicFieldVal();
+                $tbl_fields = $tbl_fields->getTable();
+                $rand_tbl_alias = md5(rand(99999, 999999));
+                $elements = $elements
+                    ->leftJoin($tbl_fields . ' AS ' . $rand_tbl_alias, function ($join) use ($tbl_dicval, $tbl_fields, $rand_tbl_alias, $dic, $sort_order) {
+                        $join
+                            ->on($rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+                            ->where($rand_tbl_alias . '.key', '=', $dic->sort_by)
+                        ;
+                    })
+                    ->addSelect($rand_tbl_alias . '.value AS ' . $dic->sort_by)
+                    ->orderBy($dic->sort_by, $sort_order)
+                    ->orderBy('created_at', 'DESC'); /* default */
                 break;
         }
 
@@ -358,7 +380,7 @@ class AdminDicvalsController extends BaseController {
         #$json_request['responseText'] = "<pre>" . print_r(Input::get('seo'), 1) . "</pre>";
         $json_request['responseText'] = "<pre>" . print_r(Input::all(), 1) . "</pre>";
         #return Response::json($json_request,200);
-        dd(Input::all());
+        #dd(Input::all());
 
         $json_request = array('status' => FALSE, 'responseText' => '', 'responseErrorText' => '', 'redirect' => FALSE);
 		$validator = Validator::make($input, array());
