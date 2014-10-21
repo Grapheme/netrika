@@ -122,4 +122,21 @@ return array(
     ),
 
     'seo' => false,
+
+    /**
+     * Собственные правила валидации данной формы.
+     * Не забыть про поле name, которое по умолчанию должно быть обязательным!
+     */
+    'custom_validation' => <<<JS
+    var validation_rules = {
+		'name': { required: true },
+		'fields[city_x]': { required: true, min: 0, max: 1000 },
+		'fields[city_y]': { required: true, min: 0, max: 600 },
+		'fields[size]': { required: true },
+		'fields[clients_list]': { required: true },
+	};
+	var validation_messages = {
+		'name': { required: "Укажите название" },
+	};
+JS
 );
