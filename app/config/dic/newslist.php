@@ -36,7 +36,7 @@ return array(
                     return $value ? @date('Y-m-d', strtotime($value)) : $value;
                 },
                 'value_modifier' => function($value) {
-                    return $value ? @date('d.m.Y', strtotime($value)) : $value;
+                    return $value ? date('d.m.Y', strtotime($value)) : date('d.m.Y');
                 },
             ),
             #*/
@@ -145,4 +145,19 @@ return array(
     },
 
     'seo' => true,
+
+    /**
+     * Собственные правила валидации данной формы.
+     * Не забыть про поле name, которое по умолчанию должно быть обязательным!
+     */
+    'custom_validation' => <<<JS
+    var validation_rules = {
+		'name': { required: true },
+		'fields_i18n[ru][published_at]': { required: true },
+	};
+	var validation_messages = {
+		'name': { required: "Укажите название" },
+		'fields_i18n[ru][published_at]': { required: "Выберите дату публикации данной новости" },
+	};
+JS
 );
