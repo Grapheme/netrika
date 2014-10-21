@@ -13,6 +13,14 @@ return array(
                     'vacancy' => 'Отклик на вакансию',
                 ),
             ),
+            'message_name' => array(
+                'title' => 'Имя',
+                'type' => 'text',
+            ),
+            'message_email' => array(
+                'title' => 'email',
+                'type' => 'text',
+            ),
             'message_text' => array(
                 'title' => 'Текст обращения',
                 'type' => 'textarea',
@@ -36,17 +44,17 @@ return array(
 
     ),
 
-    /*
+    #/*
     'first_line_modifier' => function($line, $dic, $dicval) {
-        $actions_types =  Config::get('temp.index_dics');
-        return @$actions_types[$dicval->action_id]->name.'. '.$dicval->title;
+        return '<a href="' . URL::route('feedback.view', $dicval->id) . '" target="_blank">' . $line . '</a> <i class="fa fa-arrow-right"></i>';
     },
+    #*/
 
+    #/*
     'second_line_modifier' => function($line, $dic, $dicval) {
-        $users =  Config::get('temp.users');
-        return @$users[$dicval->user_id]->name.'. '.myDateTime::SwapDotDateWithTime($dicval->created_time);
+        return 'От: ' . $dicval->message_name . ($dicval->message_email ? ' &lt;<a href="mailto:' . $dicval->message_email . '">' . $dicval->message_email . '</a>>' : '') . ', ' . $dicval->created_at->format('d.m.Y в H:i');
     },
-    */
+    #*/
 
     /**
      * Перезаписываем права групп для работы с данным словарем.
@@ -56,6 +64,7 @@ return array(
         'moderator' => function() {
             return array(
                 'dicval_create' => 0,
+                'dicval_edit' => 0,
             );
         },
 

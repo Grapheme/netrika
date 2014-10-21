@@ -11,11 +11,12 @@ class PublicNetrikaController extends BaseController {
         ## Генерим роуты без префикса, и назначаем before-фильтр i18n_url.
         ## Это позволяет нам делать редирект на урл с префиксом только для этих роутов, не затрагивая, например, /admin и /login
         Route::group(array(), function() {
-            Route::get('/news/{url}',     array('as' => 'news_full',    'uses' => __CLASS__.'@showFullNews'));
-            Route::get('/solution/{url}', array('as' => 'solution-one', 'uses' => __CLASS__.'@showSolution'));
-            Route::get('/project/{url}',  array('as' => 'project-one',  'uses' => __CLASS__.'@showProject'));
-            Route::post('/request-demo',  array('as' => 'request-demo', 'uses' => __CLASS__.'@postRequestDemo'));
-            Route::get('/search/',        array('as' => 'search',       'uses' => __CLASS__.'@showSearchResults'));
+            Route::get('/news/{url}',     array('as' => 'news_full',         'uses' => __CLASS__.'@showFullNews'));
+            Route::get('/solution/{url}', array('as' => 'solution-one',      'uses' => __CLASS__.'@showSolution'));
+            Route::get('/project/{url}',  array('as' => 'project-one',       'uses' => __CLASS__.'@showProject'));
+            Route::post('/request-demo',  array('as' => 'request-demo',      'uses' => __CLASS__.'@postRequestDemo'));
+            Route::get('/search/',        array('as' => 'search',            'uses' => __CLASS__.'@showSearchResults'));
+            Route::get('/feedback/{id}',      array('as' => 'feedback.view', 'uses' => __CLASS__.'@showFeedbackMessage'));
             Route::post('/get-solution-components',  array('as' => 'solution-components', 'uses' => __CLASS__.'@postSolutionComponents'));
         });
 
@@ -339,6 +340,18 @@ class PublicNetrikaController extends BaseController {
                     $message->cc($cc);
 
         });
+
+        DicVal::inject('feedback', array(
+            'slug' => NULL,
+            'name' => 'Заказ на демонстрацию решения: ' . $data['solution']->name,
+            'fields' => array(
+                'subject_type'  => 'demo',
+                'message_name'  => @$data['name'],
+                'message_email' => @$data['email'],
+                'message_text'  => View::make('emails.request-demo', $data),
+            ),
+        ));
+
         #Helper::dd($result);
         return Response::json($json_request, 200);
 
@@ -528,6 +541,19 @@ class PublicNetrikaController extends BaseController {
 
         $return = array('items' => $components->lists('name'));
         return json_encode($return);
+    }
+
+    public function showFeedbackMessage($id) {
+
+        #Helper::dd($id);
+
+        if (!Auth::check() || !$id)
+            App::abort(404);
+
+        $feedback = Dic::valueBySlugAndId('feedback', $id);
+        $feedback = $feedback->extract(true);
+        #Helper::tad($feedback);
+        return DbView::make($feedback)->field('message_text')->with([])->render();
     }
 
 }
