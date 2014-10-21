@@ -27,7 +27,7 @@
                             404
                         </div>
                         <div class="error-text">
-                            Страница не найдена, или не существует
+                            Страница не найдена или не существует
                         </div>
                         <div class="error-tomain"><a href="#">На главную</a></div>
                     </div>
@@ -40,7 +40,7 @@
 
 
 @section('footer')
-    @parent
+    
 @stop
 
 
