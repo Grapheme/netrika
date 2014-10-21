@@ -56,6 +56,7 @@ class AdminGalleriesController extends BaseController {
                 }
 
                 #Helper::dd($value);
+                #Helper::dd($params);
 
                 if (is_numeric($value)) {
                     $value = Gallery::find($value);

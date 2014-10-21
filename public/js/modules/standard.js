@@ -46,7 +46,8 @@ function runFormValidation() {
 	var validation = $("#" + essence + "-form").validate({
         rules: validation_rules ? validation_rules : {},
 		messages: validation_messages ? validation_messages : {},
-		errorPlacement : function(error, element){error.insertAfter(element.parent());},
+		errorPlacement: function(error, element){error.insertAfter(element.parent());},
+        ignore: [],
 		submitHandler: function(form) {
 			var options = {target:null, dataType:'json', type:'post'};
 			options.beforeSubmit = function(formData,jqForm,options){
@@ -102,4 +103,10 @@ function runFormValidation() {
 			$(form).ajaxSubmit(options);
 		}
 	});
+    /*
+    $('textarea.redactor').filter(function(){
+        //alert($(this).css('display'));
+        return $(this).css('display') == 'none';
+    }).css('height', '0').css('display', 'block');
+    */
 }

@@ -18,6 +18,9 @@ return array(
             'describes_purpose_decision' => array(
                 'title' => 'Описание решения',
                 'type' => 'textarea_redactor',
+                #'others' => array(
+                #    'required' => 'required'
+                #),
             ),
             'performance_indicators' => array(
                 'title' => 'Показатели эффективности (максимум три строки)',
@@ -66,14 +69,16 @@ if (len > 0) {
                 'title' => 'Фоновое изображение (в списках)',
                 'type' => 'image',
                 'params' => array(
-                    'maxFilesize' => 1, // MB
+                    'maxfilesize' => 1, // MB
+                    #'acceptedfiles' => 'image/*',
                 ),
             ),
             'image_schemes_work' => array(
                 'title' => 'Изображение схемы работы',
                 'type' => 'image',
                 'params' => array(
-                    'maxFilesize' => 1, // MB
+                    'maxfilesize' => 1, // MB
+                    #'acceptedfiles' => 'image/*',
                 ),
             ),
 
@@ -237,5 +242,21 @@ if (len > 0) {
     'javascript' => <<<JS
         /* generate slug from name via translit */
 JS
-,
+    ,
+
+    /**
+     * Собственные правила валидации данной формы.
+     * Не забыть про поле name, которое по умолчанию должно быть обязательным!
+     */
+    'custom_validation' => <<<JS
+    var validation_rules = {
+		'name': { required: true },
+		'fields[describes_purpose_decision]': { required: true },
+	};
+	var validation_messages = {
+		'name': { required: "Укажите название" },
+		'fields[describes_purpose_decision]': { required: "Заполните обязательное поле" },
+	};
+JS
+    ,
 );

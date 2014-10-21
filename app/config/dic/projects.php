@@ -63,6 +63,9 @@ return array(
             'mainpage_image' => array(
                 'title' => 'Фоновое изображение',
                 'type' => 'image',
+                'params' => array(
+                    'maxFilesize' => 1, // MB
+                ),
             ),
 
             'description_advantages' => array(
@@ -81,6 +84,10 @@ return array(
             'gallery' => array(
                 'title' => 'Изображения процесса',
                 'type' => 'gallery',
+                'params' => array(
+                    'maxFilesize' => 1, // MB
+                    'maxFiles' => 2,
+                ),
                 'handler' => function($array, $element) {
                     return ExtForm::process('gallery', array(
                         'module'  => 'dicval_meta',
@@ -218,4 +225,20 @@ return array(
     'seo' => 1,
 
     'versions' => 1,
+
+    /**
+     * Собственные правила валидации данной формы.
+     * Не забыть про поле name, которое по умолчанию должно быть обязательным!
+     */
+    'custom_validation' => <<<JS
+    var validation_rules = {
+		'name': { required: true },
+		'fields[solution_id]': { required: true },
+	};
+	var validation_messages = {
+		'name': { required: "Укажите название" },
+		'fields[solution_id]': { required: "Заполните обязательное поле" },
+	};
+JS
+,
 );

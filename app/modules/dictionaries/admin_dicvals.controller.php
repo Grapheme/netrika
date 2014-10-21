@@ -358,6 +358,7 @@ class AdminDicvalsController extends BaseController {
         #$json_request['responseText'] = "<pre>" . print_r(Input::get('seo'), 1) . "</pre>";
         $json_request['responseText'] = "<pre>" . print_r(Input::all(), 1) . "</pre>";
         #return Response::json($json_request,200);
+        dd(Input::all());
 
         $json_request = array('status' => FALSE, 'responseText' => '', 'responseErrorText' => '', 'redirect' => FALSE);
 		$validator = Validator::make($input, array());

@@ -409,6 +409,19 @@ margin-left: 0;
     border: 1px solid #A90329;
 }
 
+.redactor_box.state-error {
+    border: 1px solid #A90329;
+}
+.redactor_box.state-error .redactor_redactor {
+    background-color: #FFF0F0 !important;
+}
+.redactor_box.state-success {
+    /*border: 1px solid #7DC27D;*/
+}
+.redactor_box.state-success .redactor_redactor {
+    background-color: #F0FFF0 !important;
+}
+
 .uploaded_image_false {
     position: absolute;
     left: -10000px;

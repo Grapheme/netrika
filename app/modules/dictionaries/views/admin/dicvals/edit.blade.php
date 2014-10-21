@@ -75,7 +75,7 @@
                     <section>
                         <label class="label">{{ $dic->name_title ?: 'Название' }}</label>
                         <label class="input">
-                            {{ Form::text('name', null, array()) }}
+                            {{ Form::text('name', null, array('required' => 'required')) }}
                         </label>
                     </section>
 
@@ -320,12 +320,16 @@
     <script>
     var essence = '{{ $module['entity'] }}';
     var essence_name = '{{ $module['entity_name'] }}';
-	var validation_rules = {
-		name:              { required: true },
-	};
-	var validation_messages = {
-		name:              { required: "Укажите название" },
-	};
+    @if (isset($dic_settings['custom_validation']) && trim($dic_settings['custom_validation']) != '')
+        {{ $dic_settings['custom_validation'] }}
+    @else
+        var validation_rules = {
+            'name': { required: true }
+        };
+        var validation_messages = {
+            'name': { required: "Укажите название" }
+        };
+	@endif
     </script>
 
     <script>
@@ -370,9 +374,9 @@
     {{-- HTML::script('js/modules/gallery.js') --}}
     {{ HTML::script('js/plugin/select2/select2.min.js') }}
 
-    @if (trim(Config::get('dic/' . $dic->slug . '.javascript')))
+    @if (@trim($dic_settings['javascript']))
     <script>
-        {{ Config::get('dic/' . $dic->slug . '.javascript') }}
+        {{ $dic_settings['javascript'] }}
     </script>
     @endif
 
