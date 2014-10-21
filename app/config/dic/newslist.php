@@ -135,7 +135,7 @@ return array(
         #$users =  Config::get('temp.users');
         #return myDateTime::SwapDotDateWithTime($dicval->created_at);
         #return myDateTime::SwapDotDate($dicval->published_at);
-        $carbon = \Carbon\Carbon::createFromFormat('Y-m-d', $dicval->published_at);
+        $carbon = \Carbon\Carbon::createFromFormat('Y-m-d', $dicval->published_at ? $dicval->published_at : $dicval->created_at);
         return
             (($carbon->timestamp > time()) ? '<span class="txt-color-orangeDark">' : '') .
             $carbon->format('d.m.Y') .
