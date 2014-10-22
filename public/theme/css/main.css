@@ -760,6 +760,10 @@ section a:hover {
   font-family: "elements";
   font-size: .7em;
 }
+.title-link.lower-title a:after {
+  font-size: .6em;
+  top: 0em;
+}
 .type-health.stat-item.active,
 .type-health.stat-item:hover,
 .type-health:hover .us-icon,
@@ -2418,7 +2422,7 @@ section a:hover {
   content: "";
   position: absolute;
   left: 31.25rem;
-  top: -4.0625rem;
+  top: -10rem;
   width: 65.3125rem;
   height: 14.75rem;
   z-index: -1;
@@ -2485,6 +2489,8 @@ section a:hover {
 }
 .search-parent .search-desc {
   margin-top: 0.9375rem;
+  height: 60px;
+  overflow: hidden;
 }
 .search-parent .search-section {
   display: inline-block;
