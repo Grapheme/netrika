@@ -22,5 +22,5 @@ return array(
     'sendmail' => '/usr/sbin/sendmail -bs',
     'encryption' => 'tls',
 
-    'pretend' => 1,
+    'pretend' => 0,
 );

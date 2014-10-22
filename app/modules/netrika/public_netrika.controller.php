@@ -332,7 +332,12 @@ class PublicNetrikaController extends BaseController {
         Mail::send('emails.request-demo', $data, function ($message) use ($data) {
             $message->from(Config::get('mail.from.address'), Config::get('mail.from.name'));
             $message->subject('Заказ на демонстрацию решения: ' . $data['solution']->name);
-            $message->to(Config::get('mail.feedback.address'));
+
+            #$email = Config::get('mail.feedback.address');
+            $email = Dic::valueBySlugs('options', 'email');
+            $email = is_object($email) ? $email->name : 'dev@null.ru';
+
+            $message->to($email);
 
             $ccs = Config::get('mail.feedback.cc');
             if (isset($ccs) && is_array($ccs) && count($ccs))
