@@ -19,7 +19,7 @@ return array(
                 'title' => 'Решение',
                 'type' => 'select',
                 'values' => $lists['solutions'],
-                'default' => Input::get('filter.fields.solution_id'),
+                'default' => (int)Input::get('filter.fields.solution_id'),
                 /*
                 'handler' => function($value, $element) {
                     $value = (array)$value;
