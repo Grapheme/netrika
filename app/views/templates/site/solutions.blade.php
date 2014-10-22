@@ -99,7 +99,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                                         @foreach ($array[$solution->id] as $project)
                                         <li>
                                             <div class="title">
-                                                <a href="#">{{ $project->name }}</a>
+                                                <a href="{{ URL::route('solution-one', $solution->slug) }}#solutions">{{ $project->name }}</a>
                                             </div>
 
                                         @endforeach

@@ -238,6 +238,7 @@ $solution4form = $solution;
             @endif
 
             @if (isset($components) && count($components))
+            <a name="solutions"></a>
             <section class="us-section">
                 <div class="container_12">
                     <div class="grid_12">

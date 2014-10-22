@@ -2062,7 +2062,6 @@ section a:hover {
   font-weight: 500;
   text-decoration: none;
   width: 80%;
-  cursor: default;
 }
 .comps-ul li .title {
   height: 3.75rem;
@@ -2461,7 +2460,9 @@ section a:hover {
 }
 .vacancy-list li {
   display: inline-block;
-  margin: 0 0 0.625rem 11.875rem;
+  vertical-align: top;
+  width: 33.33333333%;
+  margin-bottom: 1.25rem;
 }
 .vacancy-list li:first-child {
   margin-left: 0;
@@ -2593,7 +2594,10 @@ section a:hover {
   vertical-align: middle;
 }
 .popups .popup.order-present .popup-body .input-wrp {
-  margin-bottom: 1px;
+  border-bottom: 1px solid #eceded;
+}
+.popups .popup.order-present .popup-body .input-wrp:last-child {
+  border: 0 none;
 }
 .popups .popup.order-present .popup-body .input-wrp input,
 .popups .popup.order-present .popup-body .input-wrp textarea {
@@ -2610,6 +2614,10 @@ section a:hover {
 .popups .popup.order-present .popup-body .input-wrp input:focus,
 .popups .popup.order-present .popup-body .input-wrp textarea:focus {
   background: #e8faf6;
+}
+.popups .popup.order-present .popup-body .input-wrp input.inp-error,
+.popups .popup.order-present .popup-body .input-wrp textarea.inp-error {
+  background: #ffe5e5;
 }
 .popups .popup.order-present .popup-body .input-wrp input[type=text] {
   height: 3.125rem;
@@ -2757,6 +2765,13 @@ section a:hover {
   height: 6.25rem;
   line-height: 6.25rem;
   padding: 0 2.5rem;
+}
+.popups .popup.order-present .popup-footer .error-msg {
+  margin-left: 1.25rem;
+}
+.popups .popup.order-present .popup-footer .title-btn.success {
+  color: #fff !important;
+  background: #1dcba4;
 }
 .error-block {
   width: 37.5rem;

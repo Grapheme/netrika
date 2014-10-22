@@ -159,6 +159,7 @@ $.fn.PopUp = function() {
 
 	function open(name) {
 		openFlag = true;
+		$('html').css('overflow', 'hidden');
 		var popup = $('.popups').find('[data-popup="' + name + '"]');
 		var popus_cont = popup.parent();
 		popus_cont.show();
@@ -171,6 +172,7 @@ $.fn.PopUp = function() {
 
 	function close() {
 		openFlag = false;
+		$('html').css('overflow', 'visible');
 		var popup = $('.popups .popup.active');
 		var popus_cont = popup.parent();
 		popus_cont.css('opacity', 0);
@@ -321,6 +323,7 @@ $.fn.news_module = function(news_array, tags_object) {
                             '<a href="' + obj.href + '" class="title">' + obj.title + '</a>'+
                         '</div>'+
                         '<ul class="tags-ul">' + out_obj.tag_list + '</ul>'+
+                        '<div class="clearfix"></div>'+
                     '</div>';
 
            	return str;

@@ -50,7 +50,12 @@
 
 			.popup-body {
 				.input-wrp {
-					margin-bottom: 1px;
+					border-bottom: 1px solid #eceded;
+					//margin-bottom: 1px;
+
+					&:last-child {
+						border: 0 none;
+					}
 
 					input, textarea {
 						font-family: "proxima_nova";
@@ -60,9 +65,14 @@
 						outline: 0 none;
 						border: 0 none;
 						transition: background .2s ease;
+						
 
 						&:focus {
 							background: #e8faf6;
+						}
+
+						&.inp-error {
+							background: #ffe5e5;
 						}
 					}
 
@@ -231,6 +241,15 @@
 				height: 100rem / @hfs;
 				line-height: 100rem / @hfs;
 				padding: 0 40rem / @hfs;
+
+				.error-msg {
+					margin-left: 20rem / @hfs;
+				}
+
+				.title-btn.success {
+					color: #fff !important;
+					background: @green-link;
+				}
 			}
 		}
 	}
