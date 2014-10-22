@@ -337,9 +337,18 @@ class PublicNetrikaController extends BaseController {
             $email = Dic::valueBySlugs('options', 'email');
             $email = is_object($email) ? $email->name : 'dev@null.ru';
 
+            $emails = array();
+            if (strpos($email, ',')) {
+                $emails = explode(',', $email);
+                foreach ($emails as $e => $email)
+                    $emails[$e] = trim($email);
+                $email = array_shift($emails);
+            }
+
             $message->to($email);
 
-            $ccs = Config::get('mail.feedback.cc');
+            #$ccs = Config::get('mail.feedback.cc');
+            $ccs = $emails;
             if (isset($ccs) && is_array($ccs) && count($ccs))
                 foreach ($ccs as $cc)
                     $message->cc($cc);
