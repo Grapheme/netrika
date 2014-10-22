@@ -460,9 +460,12 @@ HTML;
         #if ($name_group != '')
         #    $name = $name_group . '[' . $name . ']';
 
-        $value = $value ? $value : @$array['default'];
+        #var_dump($value);
 
-        #Helper::d($value);
+        $value = (isset($value) && $value !== NULL) ? $value : @$array['default'];
+
+        #echo (int)(isset($value) && $value !== NULL);
+        #var_dump($value);
 
         if (is_object($element) && $element->id) {
             $element = $element->extract();
