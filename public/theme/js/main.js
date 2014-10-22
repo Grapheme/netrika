@@ -273,11 +273,14 @@ $.fn.news_module = function(news_array, tags_object) {
 
 	var news_html = {
 		getFirst: function(obj) {
-
 			var out_obj = this.objOut(obj);
-			var str = '<div class="grid_4 alpha">'+
-                        '<a href="' + obj.href + '" class="news-photo" style="background-image: url(' + obj.image + ');">'+
-                            '<span class="news-date"><span class="day">' + out_obj.day + '</span> / ' + out_obj.month + ' / ' + out_obj.year + '</span>'+
+			var str = '<div class="grid_4 alpha">';
+			if(!obj.image) {
+				str += 	'<a href="' + obj.href + '" class="news-photo photoless">';
+			} else {
+				str += 	'<a href="' + obj.href + '" class="news-photo" style="background-image: url(' + obj.image + ');">';
+			}
+			str += 			'<span class="news-date"><span class="day">' + out_obj.day + '</span> / ' + out_obj.month + ' / ' + out_obj.year + '</span>'+
                         '</a>'+
                     '</div>'+
                     '<div class="grid_4 omega js-news-item">'+

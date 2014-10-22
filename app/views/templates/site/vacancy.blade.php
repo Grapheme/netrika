@@ -67,6 +67,60 @@ $vacancies = DicVal::extracts($vacancies, true);
         </section>
         <section class="us-section">
             <div class="container_12">
+                <div class="grid_6">
+                    <h2>Команда разработки</h2>
+                    <div class="clearfix"></div>
+                    <div class="developer-group">
+                        <div class="grid_4 alpha">
+                            <canvas id="developers-canvas" width="320" height="320"></canvas>
+                        </div>
+                        <div class="grid_2 omega">
+                            <div class="developer-type">
+                                <ul class="developer-list">
+                                    <li>PHP
+                                    <li>Python
+                                    <li>C
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid_6">
+                    <div class="alpha grid_3">
+                        <h2>Технологии</h2>
+                    </div>
+                    <div class="omega grid_3 js-ls-controls">
+                        <a href="#" class="desc-icon prev js-ls-control disable" data-direction="<"></a>
+                        <a href="#" class="desc-icon next js-ls-control" data-direction=">"></a>
+                    </div>
+                    <div class="grid_6 alpha omega">
+                        <ul class="aims aims-light aims-small">
+                            <li>
+                                <div class="aim" data-number="1">
+                                    <div class="text">Объединить медицинские учреждения в единую сеть</div>
+                                </div>
+                            </li><li>
+                                <div class="aim" data-number="2">
+                                    <div class="text">Объединить медицинские учреждения в единую сеть</div>
+                                </div>
+                            </li><li>
+                                <div class="aim" data-number="3">
+                                    <div class="text">Объединить медицинские учреждения в единую сеть</div>
+                                </div>
+                            </li><li>
+                                <div class="aim" data-number="4">
+                                    <div class="text">Объединить медицинские учреждения в единую сеть</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+        </section>
+        <section class="us-section">
+            <div class="container_12">
 
                 {{ $page->block('technologies') }}
 
@@ -117,4 +171,52 @@ $vacancies = DicVal::extracts($vacancies, true);
 
 
 @section('scripts')
+    <script src="{{ URL::to('theme/js/vendor/chart.js') }}"></script>
+    <script>
+        var ctx = document.getElementById("developers-canvas").getContext("2d");
+        var data = [
+            {
+                value: 34,
+                color:"#1dcba4",
+                label: "PHP"
+            },
+            {
+                value: 31,
+                color: "#60dabf",
+                label: "Python"
+            },
+            {
+                value: 24,
+                color: "#8ee5d1",
+                label: "C"
+            }
+        ];
+        var options = {
+            //Boolean - Whether we should show a stroke on each segment
+            segmentShowStroke : true,
+
+            //String - The colour of each segment stroke
+            segmentStrokeColor : "#fff",
+
+            //Number - The width of each segment stroke
+            segmentStrokeWidth : 4,
+
+            //Number - The percentage of the chart that we cut out of the middle
+            percentageInnerCutout : 40, // This is 0 for Pie charts
+
+            //Number - Amount of animation steps
+            animationSteps : 1,
+
+            //String - Animation easing effect
+            animationEasing : "ease",
+
+            //Boolean - Whether we animate the rotation of the Doughnut
+            animateRotate : true,
+
+            //Boolean - Whether we animate scaling the Doughnut from the centre
+            animateScale : false,
+
+        }
+        var myPieChart = new Chart(ctx).Pie(data, options);
+    </script>
 @stop

@@ -748,6 +748,9 @@ section a:hover {
   border-color: #fff;
   color: #fff;
 }
+.aims.aims-small li {
+  width: 50%;
+}
 .title-link a:after {
   content: "\e60e";
   position: relative;
@@ -2220,6 +2223,9 @@ section a:hover {
   border-width: 10px 10px 10px 0;
   border-color: transparent #fff transparent transparent;
 }
+.news-first .news-photo.photoless:before {
+  display: none;
+}
 .news-first .title {
   display: inline-block;
   vertical-align: top;
@@ -2355,6 +2361,47 @@ section a:hover {
 .vacancy-ul li .vacancy-ben .text {
   margin-top: 0.625rem;
   font-size: 1.125em;
+}
+.developer-group {
+  margin-top: 1.875rem;
+}
+.developer-group .developer-type {
+  height: 320px;
+  line-height: 320px;
+}
+.developer-group .developer-type .developer-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+  font-size: 24px;
+  text-transform: uppercase;
+  line-height: 60px;
+}
+.developer-group .developer-type .developer-list li {
+  position: relative;
+  padding-left: 30px;
+}
+.developer-group .developer-type .developer-list li:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+}
+.developer-group .developer-type .developer-list li:nth-of-type(1):before {
+  background: #1dcba4;
+}
+.developer-group .developer-type .developer-list li:nth-of-type(2):before {
+  background: #60dabf;
+}
+.developer-group .developer-type .developer-list li:nth-of-type(3):before {
+  background: #8ee5d1;
 }
 .contact-ul {
   margin: 0;
