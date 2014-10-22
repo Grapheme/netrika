@@ -1080,6 +1080,7 @@ $('a[href]').ext_url();
 $('.js-hover').jshover('js-circle');
 $('.main-nav').header_nav();
 $('.popups').PopUp();
+$('input[name=phone]').mask('(000) 000-0000');
 
 function transform(transform_value) {
 	var prefixes = ['-webkit-', '-ms-', ''];
