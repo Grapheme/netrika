@@ -273,6 +273,10 @@ $.fn.news_module = function(news_array, tags_object) {
 		return false;
 	});
 
+	$(document).on('click', '.search-date', function(){
+		$(this).find('input').trigger('focus');
+	});
+
 	var news_html = {
 		getFirst: function(obj) {
 			var out_obj = this.objOut(obj);

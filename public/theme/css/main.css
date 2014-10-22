@@ -764,6 +764,20 @@ section a:hover {
   font-size: .6em;
   top: 0em;
 }
+.netrika-block {
+  position: relative;
+}
+.netrika-block:before {
+  content: "";
+  position: absolute;
+  left: 31.25rem;
+  top: -10rem;
+  width: 65.3125rem;
+  height: 14.75rem;
+  background: url(../img/svg/netrika_white.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .type-health.stat-item.active,
 .type-health.stat-item:hover,
 .type-health:hover .us-icon,
@@ -2156,7 +2170,7 @@ section a:hover {
   margin-top: 1.875rem;
 }
 .news-search .search-date:after {
-  content: '\e60a';
+  content: '\e60f';
   font-family: 'elements';
   font-size: 1.125em;
 }

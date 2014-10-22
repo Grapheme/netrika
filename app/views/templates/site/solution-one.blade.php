@@ -261,7 +261,7 @@ $solution4form = $solution;
 
             @if ($solution->description_integration)
             <section class="gray-section">
-                <div class="container_12">
+                <div class="container_12 netrika-block">
                     <div class="grid_12">
                         <h2>Интеграции</h2>
 
