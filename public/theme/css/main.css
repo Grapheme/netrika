@@ -2344,6 +2344,7 @@ section a:hover {
   padding: 0;
   list-style: none;
   margin-top: 2.5rem;
+  font-size: 0;
 }
 .vacancy-ul li {
   display: inline-block;
@@ -2352,6 +2353,8 @@ section a:hover {
        box-sizing: border-box;
   width: 25%;
   padding: 0 1px;
+  margin-top: 6px;
+  font-size: 1rem;
 }
 .vacancy-ul li .vacancy-ben {
   background: #fff;
