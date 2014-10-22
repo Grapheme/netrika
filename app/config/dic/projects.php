@@ -161,7 +161,7 @@ return array(
         return '
             <span class="display-block margin-bottom-5">
                 <a href="' . URL::route('entity.edit', array('solutions', $dicval->solution_id)) . '" class="btn btn-default">
-                    <i class="fa fa-arrow-left"></i>
+                    <i class="fa fa-thumb-tack"></i>
                     ' . @$solutions[$dicval->solution_id]->name . '
                 </a>
                 <a href="' . URL::route('entity.index', array('project-documents', 'filter[fields][project_id]' => $dicval->id)) . '" class="btn btn-default">
