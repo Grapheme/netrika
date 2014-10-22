@@ -152,14 +152,17 @@ return array(
     'actions' => function($dic, $dicval) {
         ## Data from hook: before_index_view
         $dics = Config::get('temp.index_dics');
+        #Helper::tad($dics);
         $dic_documents = $dics['project-documents'];
         $counts = Config::get('temp.index_counts');
-        #Helper::tad($dics);
+        $solutions = Config::get('temp.solutions');
+        #Helper::tad($solutions);
+
         return '
-            <span class="block_ margin-bottom-5_">
+            <span class="display-block margin-bottom-5">
                 <a href="' . URL::route('entity.edit', array('solutions', $dicval->solution_id)) . '" class="btn btn-default">
                     <i class="fa fa-arrow-left"></i>
-                    Решение
+                    ' . @$solutions[$dicval->solution_id]->name . '
                 </a>
                 <a href="' . URL::route('entity.index', array('project-documents', 'filter[fields][project_id]' => $dicval->id)) . '" class="btn btn-default">
                     Документы (' . @(int)$counts[$dicval->id][$dic_documents->id] . ')
@@ -178,6 +181,7 @@ return array(
 
         'before_index_view' => function ($dic, $dicvals) {
             $dics_slugs = array(
+                'solutions',
                 'project-documents',
             );
             $dics = Dic::whereIn('slug', $dics_slugs)->get();
@@ -189,6 +193,13 @@ return array(
             #Helper::d($dic_ids);
             $dicval_ids = Dic::makeLists($dicvals, false, 'id');
             #Helper::d($dicval_ids);
+
+            $solutions_ids = Dic::makeLists($dicvals, false, 'solution_id');
+            #Helper::ta($solutions_ids);
+            $solutions = Dic::valuesBySlugAndIds('solutions', $solutions_ids);
+            $solutions = Dic::modifyKeys($solutions, 'id');
+            #Helper::tad($solutions);
+            Config::set('temp.solutions', $solutions);
 
             $counts = array();
             if (count($dic_ids) && count($dicval_ids))

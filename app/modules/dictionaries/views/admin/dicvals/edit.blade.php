@@ -64,11 +64,17 @@
 
                     @if (!$dic->hide_slug)
                     <section>
-                        <label class="label">Системное имя (необязательно)</label>
+                        <label class="label">{{ isset($dic_settings['slug_label']) ? $dic_settings['slug_label'] : 'Системное имя (необязательно)' }}</label>
                         <label class="input">
                             {{ Form::text('slug', null, array()) }}
                         </label>
-                        <label class="note second_note">Только символы англ. алфавита, знаки _ и -, цифры</label>
+                        <label class="note second_note">
+                            @if (isset($dic_settings['slug_note']))
+                                {{ $dic_settings['slug_note'] }}
+                            @else
+                                Только символы англ. алфавита, знаки _ и -, цифры
+                            @endif
+                        </label>
                     </section>
                     @endif
 
@@ -76,6 +82,9 @@
                         <label class="label">{{ $dic->name_title ?: 'Название' }}</label>
                         <label class="input">
                             {{ Form::text('name', null, array('required' => 'required')) }}
+                            @if (isset($dic_settings['name_note']))
+                                {{ $dic_settings['name_note'] }}
+                            @endif
                         </label>
                     </section>
 
