@@ -16,7 +16,7 @@ return array(
 
         return array(
             'solution_id' => array(
-                'title' => 'Категория проекта',
+                'title' => 'Решение',
                 'type' => 'select',
                 'values' => $lists['solutions'],
                 'default' => Input::get('filter.fields.solution_id'),
