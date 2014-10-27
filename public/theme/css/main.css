@@ -2569,6 +2569,64 @@ section a:hover {
   color: #babcbc;
   font-weight: 300;
 }
+.no-found {
+  font-size: 1.125em;
+  color: #7f8281;
+  line-height: 1.667;
+  padding: 2.5rem 0 3.75rem;
+  width: 80%;
+}
+.no-found .no-found-input {
+  position: relative;
+  margin-top: 1.25rem;
+}
+.no-found .no-found-input input {
+  font-family: "proxima_nova";
+  background: transparent;
+  border: 0 none;
+  border-bottom: 1px solid #babcbc;
+  padding: 0;
+  outline: 0 none;
+  width: 100%;
+  height: 2.1875rem;
+  font-size: 1em;
+  /* Firefox 19+ */
+  /* Firefox 18- */
+}
+.no-found .no-found-input input::-webkit-input-placeholder {
+  color: #313736;
+  font-family: "proxima_nova";
+}
+.no-found .no-found-input input::-moz-placeholder {
+  color: #313736;
+  font-family: "proxima_nova";
+}
+.no-found .no-found-input input:-moz-placeholder {
+  color: #313736;
+  font-family: "proxima_nova";
+}
+.no-found .no-found-input input:-ms-input-placeholder {
+  color: #313736;
+  font-family: "proxima_nova";
+}
+.no-found .no-found-input button[type="submit"] {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 2.1875rem;
+  width: 2.1875rem;
+  line-height: 2.1875rem;
+  text-align: center;
+  border: 0 none;
+  background: transparent;
+  outline: 0 none;
+  font-family: "elements";
+  color: #7f8281;
+  font-size: .75em;
+}
+.no-found .no-found-input button[type="submit"]:before {
+  content: "\e602";
+}
 .popups {
   position: fixed;
   overflow: auto;
