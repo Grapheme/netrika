@@ -1697,6 +1697,8 @@ section a:hover {
   padding: 0;
   list-style: none;
   margin-top: 2.1875rem;
+  height: 70%;
+  overflow: hidden;
 }
 .map-container .map-desc .map-items li {
   margin-bottom: 0.625rem;
