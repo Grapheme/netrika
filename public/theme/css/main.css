@@ -1255,7 +1255,7 @@ section a:hover {
 .audience .aud-container .aud-slide .aud-block .aud-text {
   background: #fff;
   padding: 1.25rem;
-  height: 6.875rem;
+  height: 6.25rem;
   overflow: hidden;
 }
 .audience .aud-container .aud-slide .aud-block .aud-text:before {
