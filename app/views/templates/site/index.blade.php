@@ -219,7 +219,7 @@ foreach ($clients as $client) {
                     <div class="desc-nav">
                         <a href="#" class="desc-icon prev js-map-control" data-direction="<"></a>
                         <a href="#" class="desc-icon next js-map-control" data-direction=">"></a>
-                        <a href="#" class="desc-icon close fl-r js-desc-close"></a>
+                        <a href="#" class="desc-icon close fl-r js-desc-close mobile-hidden"></a>
                     </div>
                     <div class="title js-desc-title"></div>
                     <ul class="map-items js-desc-items">
