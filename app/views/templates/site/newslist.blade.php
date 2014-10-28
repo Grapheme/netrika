@@ -111,10 +111,10 @@ foreach ($newslist as $new) {
                     <div class="clearfix"></div>
                     <div class="grid_4 head-form">
                         <div class="head-desc">Получайте последние новости</div>
-                        <form id="subscribe" method="POST" action="">
+                        <form id="subscribe" method="POST" action="{{ URL::route('add-email-listener') }}">
                             <input name="email" class="head-input" type="email" placeholder="email@email.com" required>
                             <button type="submit" class="title-btn success">Подписаться</button>
-                            <span class="succeed-text">Подписка оформлена</span>
+                            <span class="succeed-text"><!--Подписка оформлена--></span>
                         </form>
                     </div>
                     <div class="clearfix"></div>
@@ -257,10 +257,70 @@ foreach ($newslist as $new) {
 
             $('#subscribe').validate({
                 errorClass: "inp-error",
+                rules: {
+                    email: { required: true, email: true }
+                },
                 messages: {
                     email: ''
+                },
+                submitHandler: function(form) {
+                    sendSubscribeForm(form);
+                    return false;
                 }
             });
+
+            function sendSubscribeForm(form) {
+
+                //console.log(form);
+
+                var options = { target: null, type: $(form).attr('method'), dataType: 'json' };
+
+                options.beforeSubmit = function(formData, jqForm, options){
+                    $(form).find('button').addClass('loading');
+                    //$('.error').text('').hide();
+                    $('.succeed-text').text('');
+                }
+
+                options.success = function(response, status, xhr, jqForm){
+                    //console.log(response);
+                    //$('.success').hide().removeClass('hidden').slideDown();
+                    //$(form).slideUp();
+
+                    if (response.status) {
+                        //$('.error').text('').hide();
+                        //location.href = response.redirect;
+
+                        //$('.response').text(response.responseText).slideDown();
+                        //$(form).slideUp();
+
+                        //$('.form-success').addClass('active');
+                        $('.succeed-text').text(response.responseText);
+
+                        /*
+                        setTimeout( function(){
+                            $('.booking-form').removeClass('active');
+                            $('.form-success').removeClass('active');
+                        }, 2500);
+                        */
+
+                    } else {
+                        //$('.response').text(response.responseText).show();
+                    }
+
+                }
+
+                options.error = function(xhr, textStatus, errorThrown){
+                    console.log(xhr);
+                }
+
+                options.complete = function(data, textStatus, jqXHR){
+                    $(form).find('button').removeClass('loading');
+                }
+
+                $(form).ajaxSubmit(options);
+            }
+
+
         </script>
 
 @stop

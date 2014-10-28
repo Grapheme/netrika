@@ -107,8 +107,11 @@ $solution4form = $solution;
                         <a href="#" class="desc-icon next js-netrika-control" data-direction=">"></a>
                     </div>
                     <div class="clearfix"></div>
+
+                    @if (0)
                     <div class="aud-container js-netrika-slider">
                         <div class="js-slider-window">
+
                             <div class="js-slide aud-slide">
                                 <div class="aud-block">
                                     <div class="aud-text">
@@ -149,27 +152,38 @@ $solution4form = $solution;
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
+                    @endif
 
-                    <!-- <div class="aud-container">
-                            <div class="aud-slide">
-                            <!--
+                    <div class="aud-container js-netrika-slider">
+                        <div class="js-slider-window">
+                            <?
+                            $limit = count($target_audience) > 8 ? 8 : 4;
+                            $p = 0;
+                            #echo count($target_audience);
+                            ?>
                             @foreach ($target_audience as $target)
                                 <?
                                 $target = trim($target);
                                 if ($target == '')
                                     continue;
                                 ?>
-                             --><div class="aud-block">
+                                @if (!$p++ || $p % ($limit+1) == 0)
+                            <div class="js-slide aud-slide">
+                                @endif
+                                <div class="aud-block">
                                     <div class="aud-text">
                                         <span>{{ $target}}</span>
                                     </div>
-                                </div><!--
-                            @endforeach
-                            -->
+                                </div>
+                                @if ($p % ($limit+1) == $limit)
                             </div>
-                    </div> -->
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </section>
             @endif
