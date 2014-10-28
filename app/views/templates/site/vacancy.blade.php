@@ -21,9 +21,29 @@ foreach ($clients as $client) {
     );
 }
 */
+
+$color = '#1dcba4';
+
 $vacancies = Dic::valuesBySlug('vacancies');
 $vacancies = DicVal::extracts($vacancies, true);
 #Helper::tad($vacancies);
+
+$devteam = $page->block('devteam');
+$devteam = explode("\n", $devteam);
+$temp = array();
+foreach ($devteam as $dev) {
+    $dev = trim($dev);
+    if (!$dev || !strpos($dev, ' '))
+        continue;
+    list($percent, $lang) = explode(' ', $dev);
+    $temp[] = array(
+        'value' => (int)$percent,
+        'color' => $color,
+        'label' => $lang
+    );
+}
+$devteam = $temp;
+unset($temp);
 ?>
 
 @section('style')
@@ -77,9 +97,9 @@ $vacancies = DicVal::extracts($vacancies, true);
                         <div class="grid_2 omega">
                             <div class="developer-type">
                                 <ul class="developer-list">
-                                    <li>PHP
-                                    <li>Python
-                                    <li>C
+                                    @foreach ($devteam as $dev)
+                                    <li>{{ $dev['label'] }}
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -172,23 +192,7 @@ $vacancies = DicVal::extracts($vacancies, true);
     <script>
         $('.js-netrika-parent').netrika_slider();
         var ctx = document.getElementById("developers-canvas").getContext("2d");
-        var data = [
-            {
-                value: 34,
-                color:"#1dcba4",
-                label: "PHP"
-            },
-            {
-                value: 31,
-                color: "#60dabf",
-                label: "Python"
-            },
-            {
-                value: 24,
-                color: "#8ee5d1",
-                label: "C"
-            }
-        ];
+        var data = {{ json_encode($devteam) }};
         var options = {
             //Boolean - Whether we should show a stroke on each segment
             segmentShowStroke : true,
