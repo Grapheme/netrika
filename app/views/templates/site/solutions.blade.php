@@ -90,12 +90,23 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                                 </div>
                             </div>
                         </div>
-                        <div class="solution-right">
+                        <div class="solution-right js-netrika-parent">
                             <h2>Компоненты решения</h2>
-                            <div class="sol-comps">
-                                <div class="comps-in">
+                            <div class="sol-comps js-netrika-slider">
+                                <div class="comps-in js-slider-window">
                                     @if (@count($array[$solution->id]))
-                                    <ul class="comps-ul">
+                                    <ul class="comps-ul js-slide">
+                                        @foreach ($array[$solution->id] as $project)
+                                        <li>
+                                            <div class="title">
+                                                <a href="{{ URL::route('solution-one', $solution->slug) }}#solutions">{{ $project->name }}</a>
+                                            </div>
+
+                                        @endforeach
+                                    </ul>
+                                    @endif
+                                    @if (@count($array[$solution->id]))
+                                    <ul class="comps-ul js-slide">
                                         @foreach ($array[$solution->id] as $project)
                                         <li>
                                             <div class="title">
@@ -107,9 +118,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                                     @endif
                                 </div>
                             </div>
-                            <ul class="sol-dots">
-                                <li class="active"></li>
-                                <li></li>
+                            <ul class="sol-dots js-netrika-dots">
                             </ul>
                         </div>
                     </div>
@@ -128,4 +137,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
 
 
 @section('scripts')
+    <script>
+        $('.js-netrika-parent').netrika_slider();
+    </script>
 @stop

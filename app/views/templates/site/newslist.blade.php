@@ -111,9 +111,10 @@ foreach ($newslist as $new) {
                     <div class="clearfix"></div>
                     <div class="grid_4 head-form">
                         <div class="head-desc">Получайте последние новости</div>
-                        <form>
-                            <input class="head-input" type="text" placeholder="email@email.com">
-                            <button type="submit" class="title-btn">Подписаться</button>
+                        <form id="subscribe" method="POST" action="">
+                            <input name="email" class="head-input" type="email" placeholder="email@email.com" required>
+                            <button type="submit" class="title-btn success">Подписаться</button>
+                            <span class="succeed-text">Подписка оформлена</span>
                         </form>
                     </div>
                     <div class="clearfix"></div>
@@ -253,6 +254,13 @@ foreach ($newslist as $new) {
                   }
                 });
             })();
+
+            $('#subscribe').validate({
+                errorClass: "inp-error",
+                messages: {
+                    email: ''
+                }
+            });
         </script>
 
 @stop

@@ -72,6 +72,9 @@
 .non-top-margin {
   margin-top: 0;
 }
+.over-hidden {
+  overflow: hidden;
+}
 /*
 	Variable Grid System.
 	Learn more ~ http://www.spry-soft.com/grids/
@@ -510,6 +513,11 @@ section a:hover {
 .title-btn:hover {
   color: #fff !important;
   background: #1dcba4;
+}
+.title-btn.success {
+  color: #fff !important;
+  background: #1dcba4;
+  cursor: default;
 }
 .us-desc {
   font-size: 1.125em;
@@ -1312,6 +1320,13 @@ section a:hover {
 .head-form .head-input:-moz-placeholder {
   color: #fff;
 }
+.head-form .head-input.inp-error {
+  border-color: #ff9381;
+}
+.head-form .succeed-text {
+  margin-left: 1.25rem;
+  color: #babcbc;
+}
 .head-desc {
   color: #babcbc;
 }
@@ -1513,10 +1528,10 @@ section a:hover {
   overflow: hidden;
 }
 .audience .aud-container .aud-slide {
-  -webkit-transition: all .5s ease;
-          transition: all .5s ease;
+  font-size: 0;
 }
 .audience .aud-container .aud-slide .aud-block {
+  font-size: 1rem;
   display: inline-block;
   -moz-box-sizing: border-box;
        box-sizing: border-box;
@@ -2296,6 +2311,11 @@ section a:hover {
   height: 4.375rem;
   margin: 0.9375rem 0 1.875rem;
 }
+.no-news {
+  font-size: 1.5rem;
+  color: #313736;
+  line-height: 1.667;
+}
 .js-relative-news {
   position: relative;
   opacity: 0;
@@ -2626,6 +2646,21 @@ section a:hover {
 }
 .no-found .no-found-input button[type="submit"]:before {
   content: "\e602";
+}
+.js-netrika-slider {
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 0;
+}
+.js-netrika-slider .js-slider-window {
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
+}
+.js-netrika-slider .js-slide {
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+  font-size: 1rem;
 }
 .popups {
   position: fixed;

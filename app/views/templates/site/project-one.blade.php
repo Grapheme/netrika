@@ -188,15 +188,19 @@
                             <div class="ps-big" style="background-image: url(http://www.outputmagazine.com/_photos/620-2022-03-28-GC-Futurefashion.jpg)"></div>
                         </div><!--
                         --><div class="ps-block">
+                            <div class="ps-big" style="background-image: url(http://www.outputmagazine.com/_photos/620-2022-03-28-GC-Futurefashion.jpg)"></div>
+                        </div>
+
+                        <!--<div class="ps-block">
                             <div class="ps-small">
-                                <div class="ps-smallin" style="background-image: url(http://www.outputmagazine.com/_photos/620-2022-03-28-GC-Futurefashion.jpg)"></div><!--
-                                --><div class="ps-smallin" style="background-image: url(http://www.outputmagazine.com/_photos/620-2022-03-28-GC-Futurefashion.jpg)"></div>
-                            </div><!--
-                         --><div class="ps-small slider-nav">
+                                <div class="ps-smallin" style="background-image: url(http://www.outputmagazine.com/_photos/620-2022-03-28-GC-Futurefashion.jpg)"></div>
+                                <div class="ps-smallin" style="background-image: url(http://www.outputmagazine.com/_photos/620-2022-03-28-GC-Futurefashion.jpg)"></div>
+                            </div>
+                            <div class="ps-small slider-nav">
                                 <a href="#" class="desc-icon prev"></a>
                                 <a href="#" class="desc-icon next"></a>
                             </div>
-                        </div>
+                        -->
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -256,11 +260,13 @@
                     @endforeach
 
                     <div class="grid_4 type-all">
-                        <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}" class="project-link">
-                            <span>
-                                <i class="lit-icon icon-projects"></i> Все проекты
-                            </span>
-                        </a>
+                        <div class="solution-block type-all">
+                            <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}" class="project-link">
+                                <span>
+                                    <i class="lit-icon icon-projects"></i> Все проекты
+                                </span>
+                            </a>
+                        </div>
                     </div>
 
                     <div class="clearfix"></div>
