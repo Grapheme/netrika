@@ -58,7 +58,7 @@ $solution4form = $solution;
                         <i class="color-1"></i>
                         <i class="color-2"></i>
                     </div>
-                    <div class="grid_4">
+                    <div class="grid_4 stat-right-block">
                         <ul class="stat-ul">
                         {{-- $solution->performance_indicators --}}
                         <?
