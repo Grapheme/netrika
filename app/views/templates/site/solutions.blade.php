@@ -97,6 +97,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                                     @if (@count($array[$solution->id]))
                                         <?
                                         $limit = 4;
+                                        $count = count($array[$solution->id]);
                                         $p = 0;
                                         ?>
                                         @foreach ($array[$solution->id] as $project)
@@ -107,7 +108,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                                                 <div class="title">
                                                     <a href="{{ URL::route('solution-one', $solution->slug) }}#solutions">{{ $project->name }}</a>
                                                 </div>
-                                            @if ($p % ($limit+1) == $limit)
+                                            @if ($p % ($limit+1) == $limit || $p >= $count)
                                         </ul>
                                             @endif
                                         @endforeach

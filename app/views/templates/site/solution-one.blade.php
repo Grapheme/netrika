@@ -161,6 +161,7 @@ $solution4form = $solution;
                         <div class="js-slider-window">
                             <?
                             $limit = count($target_audience) > 8 ? 8 : 4;
+                            $count = count($target_audience);
                             $p = 0;
                             #echo count($target_audience);
                             ?>
@@ -178,7 +179,7 @@ $solution4form = $solution;
                                         <span>{{ $target}}</span>
                                     </div>
                                 </div>
-                                @if ($p % ($limit+1) == $limit)
+                                @if ($p % ($limit+1) == $limit || $p >= $count)
                             </div>
                                 @endif
                             @endforeach
