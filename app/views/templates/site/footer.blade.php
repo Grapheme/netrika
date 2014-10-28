@@ -25,7 +25,7 @@ foreach ($projects as $project) {
 
                     {{ Menu::placement('footer_menu') }}
 
-                    @if (1)
+                    @if (0)
                     <ul class="footer-list">
                         <li><a href="{{ URL::route('page', 'about') }}">О компании</a>
                         <li><a href="{{ URL::route('page', 'projects') }}">Проекты</a>
