@@ -98,17 +98,62 @@ $solution4form = $solution;
             ?>
             @if (count($target_audience) > 0)
             <section class="audience">
-                <div class="container_12 js-ls-parent">
+                <div class="container_12 js-netrika-parent">
                     <div class="grid_9">
                         <h2>Целевая аудитория</h2>
                     </div>
-                    <div class="grid_3 js-ls-controls">
-                        <a href="#" class="desc-icon prev js-ls-control" data-direction="<"></a>
-                        <a href="#" class="desc-icon next js-ls-control" data-direction=">"></a>
+                    <div class="grid_3  js-netrika-controls">
+                        <a href="#" class="desc-icon prev js-netrika-control disable" data-direction="<"></a>
+                        <a href="#" class="desc-icon next js-netrika-control" data-direction=">"></a>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="aud-container">
-                            <div class="aud-slide js-ls-list">
+                    <div class="aud-container js-netrika-slider">
+                        <div class="js-slider-window">
+                            <div class="js-slide aud-slide">
+                                <div class="aud-block">
+                                    <div class="aud-text">
+                                        <span>Организаторы здравоохранения в регионе</span>
+                                    </div>
+                                </div>
+                                <div class="aud-block">
+                                    <div class="aud-text">
+                                        <span>Организаторы здравоохранения в регионе</span>
+                                    </div>
+                                </div>
+                                <div class="aud-block">
+                                    <div class="aud-text">
+                                        <span>Организаторы здравоохранения в регионе</span>
+                                    </div>
+                                </div>
+                                <div class="aud-block">
+                                    <div class="aud-text">
+                                        <span>Организаторы здравоохранения в регионе</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="js-slide aud-slide">
+                                <div class="aud-block">
+                                    <div class="aud-text">
+                                        <span>Организаторы здравоохранения в регионе</span>
+                                    </div>
+                                </div>
+                                <div class="aud-block">
+                                    <div class="aud-text">
+                                        <span>Организаторы здравоохранения в регионе</span>
+                                    </div>
+                                </div>
+                                <div class="aud-block">
+                                    <div class="aud-text">
+                                        <span>Организаторы здравоохранения в регионе</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="aud-container">
+                            <div class="aud-slide">
                             <!--
                             @foreach ($target_audience as $target)
                                 <?
@@ -116,7 +161,7 @@ $solution4form = $solution;
                                 if ($target == '')
                                     continue;
                                 ?>
-                             --><div class="aud-block js-ls-item">
+                             --><div class="aud-block">
                                     <div class="aud-text">
                                         <span>{{ $target}}</span>
                                     </div>
@@ -124,7 +169,7 @@ $solution4form = $solution;
                             @endforeach
                             -->
                             </div>
-                    </div>
+                    </div> -->
                 </div>
             </section>
             @endif
@@ -238,7 +283,8 @@ $solution4form = $solution;
             @endif
 
             @if (isset($components) && count($components))
-            <section class="us-section">
+            <a name="solutions"></a>
+            <section class="us-section type-{{ $solution->slug }}">
                 <div class="container_12">
                     <div class="grid_12">
                         <h2>Компоненты решения</h2>
@@ -259,8 +305,8 @@ $solution4form = $solution;
             @endif
 
             @if ($solution->description_integration)
-            <section class="gray-section">
-                <div class="container_12">
+            <section class="gray-section over-hidden">
+                <div class="container_12 netrika-block">
                     <div class="grid_12">
                         <h2>Интеграции</h2>
 
@@ -300,7 +346,7 @@ $solution4form = $solution;
             @endif
 
             @if (isset($documents) && count($documents))
-            <section class="gray-section">
+            <section class="gray-section type-{{ $solution->slug }}">
                 <div class="container_12">
                     <div class="grid_12">
                         <h2>Нормативные документы</h2>
@@ -403,9 +449,11 @@ $solution4form = $solution;
 
 @section('scripts')
         <script>
-            $('.js-ls-parent').line_slider();
+            $('.js-netrika-parent').netrika_slider();
             $('.js-st-parent').simple_tabs();
             $(document).canvas_draw(false);
+
+            //$('.js-ls-parent').line_slider();
         </script>
 
 @stop

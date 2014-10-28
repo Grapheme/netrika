@@ -162,6 +162,19 @@
                     <div class="clearfix"></div>
                 </div>
             </div>
+            @else
+            <div class="container_12">
+                <div class="grid_12">
+                    <div class="no-found">
+                        <div class="no-found-text">По запросу «{{ @$_GET['q'] }}» не найдено ни одного результата. Попробуйте использовать другие ключевые слова или введите другой запрос.</div>
+                        <form class="no-found-input" method="GET" action="{{ URL::route('search') }}">
+                            <input name="q" type="text" placeholder="Поиск">
+                            <button type="submit"></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
             @endif
 
         </section>

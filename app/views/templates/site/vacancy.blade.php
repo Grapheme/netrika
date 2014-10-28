@@ -85,34 +85,55 @@ $vacancies = DicVal::extracts($vacancies, true);
                         </div>
                     </div>
                 </div>
-                <div class="grid_6">
+                <div class="grid_6 js-netrika-parent">
                     <div class="alpha grid_3">
                         <h2>Технологии</h2>
                     </div>
-                    <div class="omega grid_3 js-ls-controls">
-                        <a href="#" class="desc-icon prev js-ls-control disable" data-direction="<"></a>
-                        <a href="#" class="desc-icon next js-ls-control" data-direction=">"></a>
+                    <div class="omega grid_3 js-netrika-controls">
+                        <a href="#" class="desc-icon prev js-netrika-control disable" data-direction="<"></a>
+                        <a href="#" class="desc-icon next js-netrika-control" data-direction=">"></a>
                     </div>
-                    <div class="grid_6 alpha omega">
-                        <ul class="aims aims-light aims-small">
-                            <li>
-                                <div class="aim" data-number="1">
-                                    <div class="text">Объединить медицинские учреждения в единую сеть</div>
-                                </div>
-                            </li><li>
-                                <div class="aim" data-number="2">
-                                    <div class="text">Объединить медицинские учреждения в единую сеть</div>
-                                </div>
-                            </li><li>
-                                <div class="aim" data-number="3">
-                                    <div class="text">Объединить медицинские учреждения в единую сеть</div>
-                                </div>
-                            </li><li>
-                                <div class="aim" data-number="4">
-                                    <div class="text">Объединить медицинские учреждения в единую сеть</div>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="grid_6 alpha omega js-netrika-slider">
+                        <div class="js-slider-window">
+                            <ul class="aims aims-light aims-small js-slide">
+                                <li>
+                                    <div class="aim" data-number="1">
+                                        <div class="text">Объединить медицинские учреждения в единую сеть</div>
+                                    </div>
+                                </li><li>
+                                    <div class="aim" data-number="2">
+                                        <div class="text">Объединить медицинские учреждения в единую сеть</div>
+                                    </div>
+                                </li><li>
+                                    <div class="aim" data-number="3">
+                                        <div class="text">Объединить медицинские учреждения в единую сеть</div>
+                                    </div>
+                                </li><li>
+                                    <div class="aim" data-number="4">
+                                        <div class="text">Объединить медицинские учреждения в единую сеть</div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <ul class="aims aims-light aims-small js-slide">
+                                <li>
+                                    <div class="aim" data-number="5">
+                                        <div class="text">Объединить медицинские учреждения в единую сеть</div>
+                                    </div>
+                                </li><li>
+                                    <div class="aim" data-number="6">
+                                        <div class="text">Объединить медицинские учреждения в единую сеть</div>
+                                    </div>
+                                </li><li>
+                                    <div class="aim" data-number="7">
+                                        <div class="text">Объединить медицинские учреждения в единую сеть</div>
+                                    </div>
+                                </li><li>
+                                    <div class="aim" data-number="8">
+                                        <div class="text">Объединить медицинские учреждения в единую сеть</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -173,6 +194,7 @@ $vacancies = DicVal::extracts($vacancies, true);
 @section('scripts')
     <script src="{{ URL::to('theme/js/vendor/chart.js') }}"></script>
     <script>
+        $('.js-netrika-parent').netrika_slider();
         var ctx = document.getElementById("developers-canvas").getContext("2d");
         var data = [
             {

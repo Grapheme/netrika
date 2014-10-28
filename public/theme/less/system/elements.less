@@ -58,6 +58,12 @@ section a {
 		color: #fff !important;
 		background: @green-link;
 	}
+
+	&.success {
+		color: #fff !important;
+		background: @green-link;
+		cursor: default;
+	}
 }
 
 .us-desc {
@@ -336,5 +342,28 @@ section a {
 			font-family: "elements";
 			font-size: .7em;
 		}
+	}
+
+	&.lower-title {
+		a:after {
+			font-size: .6em;
+			top: 0em;
+		}
+	}
+}
+
+.netrika-block {
+	position: relative;
+
+	&:before {
+		content: "";
+		position: absolute;
+		left: 500rem / @hfs;
+		top: -160rem / @hfs;
+		width: 1045rem / @hfs;
+		height: 236rem / @hfs;
+		background: url(../img/svg/netrika_white.svg);
+		background-repeat: no-repeat;
+		background-position: center;
 	}
 }

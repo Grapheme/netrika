@@ -72,6 +72,9 @@
 .non-top-margin {
   margin-top: 0;
 }
+.over-hidden {
+  overflow: hidden;
+}
 /*
 	Variable Grid System.
 	Learn more ~ http://www.spry-soft.com/grids/
@@ -511,6 +514,11 @@ section a:hover {
   color: #fff !important;
   background: #1dcba4;
 }
+.title-btn.success {
+  color: #fff !important;
+  background: #1dcba4;
+  cursor: default;
+}
 .us-desc {
   font-size: 1.125em;
   color: #7f8281;
@@ -759,6 +767,24 @@ section a:hover {
   left: 0.625rem;
   font-family: "elements";
   font-size: .7em;
+}
+.title-link.lower-title a:after {
+  font-size: .6em;
+  top: 0em;
+}
+.netrika-block {
+  position: relative;
+}
+.netrika-block:before {
+  content: "";
+  position: absolute;
+  left: 31.25rem;
+  top: -10rem;
+  width: 65.3125rem;
+  height: 14.75rem;
+  background: url(../img/svg/netrika_white.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .type-health.stat-item.active,
 .type-health.stat-item:hover,
@@ -1294,6 +1320,13 @@ section a:hover {
 .head-form .head-input:-moz-placeholder {
   color: #fff;
 }
+.head-form .head-input.inp-error {
+  border-color: #ff9381;
+}
+.head-form .succeed-text {
+  margin-left: 1.25rem;
+  color: #babcbc;
+}
 .head-desc {
   color: #babcbc;
 }
@@ -1495,10 +1528,10 @@ section a:hover {
   overflow: hidden;
 }
 .audience .aud-container .aud-slide {
-  -webkit-transition: all .5s ease;
-          transition: all .5s ease;
+  font-size: 0;
 }
 .audience .aud-container .aud-slide .aud-block {
+  font-size: 1rem;
   display: inline-block;
   -moz-box-sizing: border-box;
        box-sizing: border-box;
@@ -2062,7 +2095,6 @@ section a:hover {
   font-weight: 500;
   text-decoration: none;
   width: 80%;
-  cursor: default;
 }
 .comps-ul li .title {
   height: 3.75rem;
@@ -2153,7 +2185,7 @@ section a:hover {
   margin-top: 1.875rem;
 }
 .news-search .search-date:after {
-  content: '\e60a';
+  content: '\e60f';
   font-family: 'elements';
   font-size: 1.125em;
 }
@@ -2279,6 +2311,11 @@ section a:hover {
   height: 4.375rem;
   margin: 0.9375rem 0 1.875rem;
 }
+.no-news {
+  font-size: 1.5rem;
+  color: #313736;
+  line-height: 1.667;
+}
 .js-relative-news {
   position: relative;
   opacity: 0;
@@ -2341,6 +2378,7 @@ section a:hover {
   padding: 0;
   list-style: none;
   margin-top: 2.5rem;
+  font-size: 0;
 }
 .vacancy-ul li {
   display: inline-block;
@@ -2349,6 +2387,8 @@ section a:hover {
        box-sizing: border-box;
   width: 25%;
   padding: 0 1px;
+  margin-top: 2px;
+  font-size: 1rem;
 }
 .vacancy-ul li .vacancy-ben {
   background: #fff;
@@ -2419,7 +2459,7 @@ section a:hover {
   content: "";
   position: absolute;
   left: 31.25rem;
-  top: -4.0625rem;
+  top: -10rem;
   width: 65.3125rem;
   height: 14.75rem;
   z-index: -1;
@@ -2461,7 +2501,9 @@ section a:hover {
 }
 .vacancy-list li {
   display: inline-block;
-  margin: 0 0 0.625rem 11.875rem;
+  vertical-align: top;
+  width: 33.33333333%;
+  margin-bottom: 1.25rem;
 }
 .vacancy-list li:first-child {
   margin-left: 0;
@@ -2484,6 +2526,8 @@ section a:hover {
 }
 .search-parent .search-desc {
   margin-top: 0.9375rem;
+  height: 60px;
+  overflow: hidden;
 }
 .search-parent .search-section {
   display: inline-block;
@@ -2545,6 +2589,79 @@ section a:hover {
   color: #babcbc;
   font-weight: 300;
 }
+.no-found {
+  font-size: 1.125em;
+  color: #7f8281;
+  line-height: 1.667;
+  padding: 2.5rem 0 3.75rem;
+  width: 80%;
+}
+.no-found .no-found-input {
+  position: relative;
+  margin-top: 1.25rem;
+}
+.no-found .no-found-input input {
+  font-family: "proxima_nova";
+  background: transparent;
+  border: 0 none;
+  border-bottom: 1px solid #babcbc;
+  padding: 0;
+  outline: 0 none;
+  width: 100%;
+  height: 2.1875rem;
+  font-size: 1em;
+  /* Firefox 19+ */
+  /* Firefox 18- */
+}
+.no-found .no-found-input input::-webkit-input-placeholder {
+  color: #313736;
+  font-family: "proxima_nova";
+}
+.no-found .no-found-input input::-moz-placeholder {
+  color: #313736;
+  font-family: "proxima_nova";
+}
+.no-found .no-found-input input:-moz-placeholder {
+  color: #313736;
+  font-family: "proxima_nova";
+}
+.no-found .no-found-input input:-ms-input-placeholder {
+  color: #313736;
+  font-family: "proxima_nova";
+}
+.no-found .no-found-input button[type="submit"] {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 2.1875rem;
+  width: 2.1875rem;
+  line-height: 2.1875rem;
+  text-align: center;
+  border: 0 none;
+  background: transparent;
+  outline: 0 none;
+  font-family: "elements";
+  color: #7f8281;
+  font-size: .75em;
+}
+.no-found .no-found-input button[type="submit"]:before {
+  content: "\e602";
+}
+.js-netrika-slider {
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 0;
+}
+.js-netrika-slider .js-slider-window {
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
+}
+.js-netrika-slider .js-slide {
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+  font-size: 1rem;
+}
 .popups {
   position: fixed;
   overflow: auto;
@@ -2593,7 +2710,10 @@ section a:hover {
   vertical-align: middle;
 }
 .popups .popup.order-present .popup-body .input-wrp {
-  margin-bottom: 1px;
+  border-bottom: 1px solid #eceded;
+}
+.popups .popup.order-present .popup-body .input-wrp:last-child {
+  border: 0 none;
 }
 .popups .popup.order-present .popup-body .input-wrp input,
 .popups .popup.order-present .popup-body .input-wrp textarea {
@@ -2610,6 +2730,10 @@ section a:hover {
 .popups .popup.order-present .popup-body .input-wrp input:focus,
 .popups .popup.order-present .popup-body .input-wrp textarea:focus {
   background: #e8faf6;
+}
+.popups .popup.order-present .popup-body .input-wrp input.inp-error,
+.popups .popup.order-present .popup-body .input-wrp textarea.inp-error {
+  background: #ffe5e5;
 }
 .popups .popup.order-present .popup-body .input-wrp input[type=text] {
   height: 3.125rem;
@@ -2757,6 +2881,13 @@ section a:hover {
   height: 6.25rem;
   line-height: 6.25rem;
   padding: 0 2.5rem;
+}
+.popups .popup.order-present .popup-footer .error-msg {
+  margin-left: 1.25rem;
+}
+.popups .popup.order-present .popup-footer .title-btn.success {
+  color: #fff !important;
+  background: #1dcba4;
 }
 .error-block {
   width: 37.5rem;

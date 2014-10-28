@@ -15,6 +15,8 @@
 
 	.search-desc {
 		margin-top: 15rem / @hfs;
+		height: 60px;
+		overflow: hidden;
 	}
 
 	.search-section {
@@ -97,5 +99,55 @@
 		margin-top: 20rem / @hfs;
 		color: @gray-link;
 		font-weight: 300;
+	}
+}
+
+.no-found {
+	font-size: 18em / @hfs;
+	color: rgb(127, 130, 129);
+	line-height: 1.667;
+	padding: 40rem / @hfs 0 60rem / @hfs;
+	width: 80%;
+
+	.no-found-input {
+		position: relative;
+		margin-top: 20rem / @hfs;
+
+		input {
+			font-family: "proxima_nova";
+			background: transparent;
+			border: 0 none;
+			border-bottom: 1px solid #babcbc;
+			padding: 0;
+			outline: 0 none;
+			width: 100%;
+			height: 35rem / @hfs;
+			font-size: 16em / @hfs;
+
+			&::-webkit-input-placeholder { color: #313736; font-family: "proxima_nova"; }
+			&::-moz-placeholder          { color: #313736; font-family: "proxima_nova"; }/* Firefox 19+ */
+			&:-moz-placeholder           { color: #313736; font-family: "proxima_nova"; }/* Firefox 18- */
+			&:-ms-input-placeholder      { color: #313736; font-family: "proxima_nova"; }
+		}
+
+		button[type="submit"] {
+			position: absolute;
+			right: 0;
+			top: 0;
+			height: 35rem / @hfs;
+			width: 35rem / @hfs;
+			line-height: 35rem / @hfs;
+			text-align: center;
+			border: 0 none;
+			background: transparent;
+			outline: 0 none;
+			font-family: "elements";
+			color: #7f8281;
+			font-size: .75em;
+
+			&:before {
+				content: "\e602";
+			}
+		}
 	}
 }

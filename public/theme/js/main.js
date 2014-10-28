@@ -159,6 +159,7 @@ $.fn.PopUp = function() {
 
 	function open(name) {
 		openFlag = true;
+		$('html').css('overflow', 'hidden');
 		var popup = $('.popups').find('[data-popup="' + name + '"]');
 		var popus_cont = popup.parent();
 		popus_cont.show();
@@ -171,6 +172,7 @@ $.fn.PopUp = function() {
 
 	function close() {
 		openFlag = false;
+		$('html').css('overflow', 'visible');
 		var popup = $('.popups .popup.active');
 		var popus_cont = popup.parent();
 		popus_cont.css('opacity', 0);
@@ -271,22 +273,38 @@ $.fn.news_module = function(news_array, tags_object) {
 		return false;
 	});
 
+	$(document).on('click', '.search-date', function(){
+		$(this).find('input').trigger('focus');
+	});
+
 	var news_html = {
 		getFirst: function(obj) {
 			var out_obj = this.objOut(obj);
-			var str = '<div class="grid_4 alpha">';
+			var str = '';
+			var first_part = '';
+			var second_part = '';
+			
+			second_part += 	'<div class="grid_4 omega js-news-item">';
 			if(!obj.image) {
-				str += 	'<a href="' + obj.href + '" class="news-photo photoless">';
-			} else {
-				str += 	'<a href="' + obj.href + '" class="news-photo" style="background-image: url(' + obj.image + ');">';
+				second_part += 	'<div class="news-date"><span class="day">' + out_obj.day + '</span> / ' + out_obj.month + ' / ' + out_obj.year + '</div>';
 			}
-			str += 			'<span class="news-date"><span class="day">' + out_obj.day + '</span> / ' + out_obj.month + ' / ' + out_obj.year + '</span>'+
-                        '</a>'+
-                    '</div>'+
-                    '<div class="grid_4 omega js-news-item">'+
-                        '<a href="' + obj.href + '" class="title">' + obj.title + '</a>'+
-                        '<ul class="tags-ul">' + out_obj.tag_list + '</ul>'+
-                    '</div>';
+			second_part +=		'<a href="' + obj.href + '" class="title">' + obj.title + '</a>'+
+		                        '<ul class="tags-ul">' + out_obj.tag_list + '</ul>'+
+		                    '</div>';
+
+            first_part += 	'<div class="grid_4 alpha">';
+			first_part += 	'<a href="' + obj.href + '" class="news-photo" style="background-image: url(' + obj.image + ');">';
+			first_part += 			'<span class="news-date"><span class="day">' + out_obj.day + '</span> / ' + out_obj.month + ' / ' + out_obj.year + '</span>'+
+		                        '</a>'+
+		                    '</div>';
+
+            if(obj.image) {
+            	str += first_part;
+            	str += second_part;
+            } else {
+            	str += second_part;
+            	//str += first_part;
+            }
 
             return str;
 		},
@@ -294,6 +312,13 @@ $.fn.news_module = function(news_array, tags_object) {
 		fillFirst: function(obj) {
 			var str = this.getFirst(obj);
 			$('.js-news-first').html(str);
+		},
+
+		fillNothing: function() {
+			var str = '';
+			str += '<div class="no-news">По выбранным критериям не найдено новостей. Попробуйте изменить параметры фильтра</div>';
+			$('.js-news-first').html(str);
+			$('.js-news-grid').html('');
 		},
 
 		getOther: function(obj) {
@@ -321,6 +346,7 @@ $.fn.news_module = function(news_array, tags_object) {
                             '<a href="' + obj.href + '" class="title">' + obj.title + '</a>'+
                         '</div>'+
                         '<ul class="tags-ul">' + out_obj.tag_list + '</ul>'+
+                        '<div class="clearfix"></div>'+
                     '</div>';
 
            	return str;
@@ -469,7 +495,7 @@ $.fn.news_module = function(news_array, tags_object) {
 		sortNews(settings);
 
 		if(first_news == undefined){
-			alert('Ничего не найдено');
+			news_html.fillNothing();
 			return;
 		}
 
@@ -674,6 +700,73 @@ $.fn.line_slider = function() {
 	}
 
 	init();
+}
+
+$.fn.netrika_slider = function() {
+	$(this).each(function(){
+		var parent = $(this);
+		var slides_length = parent.find('.js-slide').length;
+		var step = parent.find('.js-netrika-slider').width();
+		var slider_window = parent.find('.js-slider-window');
+		var arrows = parent.find('.js-netrika-control');
+		var dot_container = parent.find('.js-netrika-dots');
+		var dots;
+
+		arrows.on('click', function(){
+			if($(this).hasClass('disable')) return false;
+
+			if($(this).attr('data-direction') == '>') {
+				goto(active_slide + 1);
+			} else {
+				goto(active_slide - 1);
+			}
+			return false;
+		});
+
+		dot_container.on('click', '.js-netrika-dot', function(){
+			goto($(this).index());
+			$(this).addClass('active')
+				.siblings().removeClass('active');
+			return false;
+		});
+
+		var goto = function(id) {
+			slider_window.attr('style', transform('translateX(' + (id * step *(-1)) + 'px)'));
+			active_slide = id;
+			setArrows();
+		}
+
+		var setArrows = function() {
+			if(active_slide == 0) {
+				arrows.first().addClass('disable');
+			} else {
+				arrows.first().removeClass('disable');
+			}
+
+			if(active_slide+1 == slides_length) {
+				arrows.last().addClass('disable');
+			} else {
+				arrows.last().removeClass('disable');
+			}
+		}
+
+		var init = function() {
+			active_slide = 0;
+			setArrows();
+			if(slides_length <= 1) {
+				arrows.hide();
+			}
+
+			if(dot_container.length && slides_length != 1) {
+				for(var i = 0; i < slides_length; i++) {
+					dot_container.append('<li class="js-netrika-dot"></li>');
+				}
+				parent.find('.js-netrika-dot').first().addClass('active');
+			}
+		}
+
+		init();
+	});
 }
 
 //Карта
@@ -1077,6 +1170,7 @@ $('a[href]').ext_url();
 $('.js-hover').jshover('js-circle');
 $('.main-nav').header_nav();
 $('.popups').PopUp();
+$('input[name=phone]').mask('(000) 000-0000');
 
 function transform(transform_value) {
 	var prefixes = ['-webkit-', '-ms-', ''];
