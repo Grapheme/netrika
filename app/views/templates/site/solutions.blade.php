@@ -95,26 +95,22 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                             <div class="sol-comps js-netrika-slider">
                                 <div class="comps-in js-slider-window">
                                     @if (@count($array[$solution->id]))
-                                    <ul class="comps-ul js-slide">
+                                        <?
+                                        $limit = 4;
+                                        $p = 0;
+                                        ?>
                                         @foreach ($array[$solution->id] as $project)
-                                        <li>
-                                            <div class="title">
-                                                <a href="{{ URL::route('solution-one', $solution->slug) }}#solutions">{{ $project->name }}</a>
-                                            </div>
-
+                                            @if (!$p++ || $p % ($limit+1) == 0)
+                                        <ul class="comps-ul js-slide">
+                                            @endif
+                                            <li>
+                                                <div class="title">
+                                                    <a href="{{ URL::route('solution-one', $solution->slug) }}#solutions">{{ $project->name }}</a>
+                                                </div>
+                                            @if ($p % ($limit+1) == $limit)
+                                        </ul>
+                                            @endif
                                         @endforeach
-                                    </ul>
-                                    @endif
-                                    @if (@count($array[$solution->id]))
-                                    <ul class="comps-ul js-slide">
-                                        @foreach ($array[$solution->id] as $project)
-                                        <li>
-                                            <div class="title">
-                                                <a href="{{ URL::route('solution-one', $solution->slug) }}#solutions">{{ $project->name }}</a>
-                                            </div>
-
-                                        @endforeach
-                                    </ul>
                                     @endif
                                 </div>
                             </div>
