@@ -13,11 +13,11 @@
 
                                 {{ Menu::placement('main_menu') }}
 
-                            <li class="optional">
+                            <li class="optional tablet-hidden">
 
                                 {{ Menu::placement('additional_menu') }}
 
-                            <li class="menu-icon js-menu-open">
+                            <li class="menu-icon js-menu-open tablet-hidden">
                                 <span></span>
                         </ul>
                     </nav>

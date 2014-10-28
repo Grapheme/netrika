@@ -105,17 +105,6 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                                         @endforeach
                                     </ul>
                                     @endif
-                                    @if (@count($array[$solution->id]))
-                                    <ul class="comps-ul js-slide">
-                                        @foreach ($array[$solution->id] as $project)
-                                        <li>
-                                            <div class="title">
-                                                <a href="{{ URL::route('solution-one', $solution->slug) }}#solutions">{{ $project->name }}</a>
-                                            </div>
-
-                                        @endforeach
-                                    </ul>
-                                    @endif
                                 </div>
                             </div>
                             <ul class="sol-dots js-netrika-dots">
