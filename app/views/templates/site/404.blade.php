@@ -29,7 +29,7 @@
                         <div class="error-text">
                             Страница не найдена или не существует
                         </div>
-                        <div class="error-tomain"><a href="#">На главную</a></div>
+                        <div class="error-tomain"><a href="{{ URL::route('mainpage') }}">На главную</a></div>
                     </div>
                 </div>
                 <div class="clearfix"></div>
