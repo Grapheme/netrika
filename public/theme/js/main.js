@@ -985,7 +985,7 @@ $.fn.indexStatNav = function(block_class, item_class) {
 		new_width = 0,
 		left_pos = 0,
 		min_left = 0,
-		max_left = item.last().outerWidth(true) * (5 - item.length);
+		max_left = $('.stat-items').width() - $('.js-slider-parent').width();
 
 	item.each(function(){
 		new_width += $(this).outerWidth(true);
@@ -1007,38 +1007,44 @@ $.fn.indexStatNav = function(block_class, item_class) {
 				ifRight =  (direction == '>');
 
 			if( ifRight ) {
-
 				step = step * (-1);
-				if(left_pos <= max_left) {
-					return;
-				}
-				if(left_pos + step <= max_left) {
-					arrow.disable(right_arrow);
-				}
-				arrow.enable(left_arrow);
+				//arrow.enable(left_arrow);
 			}
 
 			if( ifLeft ) {
-
-				if(left_pos >= min_left) {
-					return;
-				}
-				if(left_pos + step >= min_left) {
-					arrow.disable(left_arrow);
-				}
-				arrow.enable(right_arrow);
+				//arrow.enable(right_arrow);
 			}
 
 			left_pos = left_pos + step;
 			block.css('left', left_pos);
+			slider.setArrows(left_pos, item.last().outerWidth(true), ifLeft, ifRight);
+		},
+
+		setArrows: function(left_pos, step, ifLeft, ifRight) {
+			var check_width = parseInt(parent.find('.stat-items').css('width')) - $('.js-slider-parent').width() - step;
+
+			if(left_pos == 0) {
+				arrow.disable(left_arrow);
+			} else {
+				arrow.enable(left_arrow);
+			}
+			if(check_width <= Math.abs(parseInt(parent.find('.stat-items').css('left'))) + step) {
+				arrow.disable(right_arrow);
+			}
+
+			if(ifLeft) {
+				arrow.enable(right_arrow);
+			}
 		}
 	}
 
 	right_arrow.on('click', function(){
+		if($(this).hasClass('disable')) return false;
 		slider.go('>');
 		return false;
 	});
 	left_arrow.on('click', function(){
+		if($(this).hasClass('disable')) return false;
 		slider.go('<');
 		return false;
 	});
@@ -1177,8 +1183,8 @@ function transform(transform_value) {
 	var str = '';
 
 	$.each(prefixes, function(index, value){
-			var new_str = value + 'transform: ' + transform_value + '; ';
-			str += new_str;
+		var new_str = value + 'transform: ' + transform_value + '; ';
+		str += new_str;
 	});
 
 	return str;
@@ -1195,7 +1201,6 @@ function isExternal(url) {
     if (typeof match[2] === "string" && match[2].length > 0 && match[2].replace(new RegExp(":("+{"http:":80,"https:":443}[location.protocol]+")?$"), "") !== location.host) return true;
     return false;
 }
-
 
 
 

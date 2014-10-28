@@ -2763,6 +2763,7 @@ section a:hover {
   display: inline-block;
   vertical-align: top;
   white-space: normal;
+  width: 100%;
   font-size: 1rem;
 }
 @media screen and (min-width: 1200px) {
@@ -3351,8 +3352,16 @@ Move to separate stylesheet if invalid CSS is a problem.
   .grid_t6 {
     width: 22.125rem !important;
   }
+  .js-main-links {
+    -webkit-transform: translateX(0) !important;
+        -ms-transform: translateX(0) !important;
+            transform: translateX(0) !important;
+  }
   .main-stat .canvas-cirs,
   .main-stat .stat-ul {
     margin-top: 0.625rem;
+  }
+  .stat-nav .stat-items .stat-item {
+    width: 183px;
   }
 }
