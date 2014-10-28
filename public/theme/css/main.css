@@ -3673,7 +3673,11 @@ Move to separate stylesheet if invalid CSS is a problem.
     left: 50%;
     margin-left: -180px;
   }
-  .main-stat .stat-ul {
+  .main-stat .stat-right-block {
+    margin-top: 1.25rem;
+    line-height: normal;
+  }
+  .main-stat .canvas-cirs {
     margin-top: 1.25rem;
   }
   .map-container .container_12 {
