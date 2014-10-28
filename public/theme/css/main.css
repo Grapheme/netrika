@@ -1356,11 +1356,17 @@ section a:hover {
   font-weight: 300;
   line-height: 1.875rem;
 }
+.main-stat .stat-right-block {
+  margin-top: 5.625rem;
+  line-height: 360px;
+}
 .main-stat .stat-ul {
   margin: 0;
   padding: 0;
   list-style: none;
-  margin-top: 5.625rem;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
 .main-stat .stat-ul li {
   margin-bottom: 1.875rem;
@@ -3358,7 +3364,7 @@ Move to separate stylesheet if invalid CSS is a problem.
             transform: translateX(0) !important;
   }
   .main-stat .canvas-cirs,
-  .main-stat .stat-ul {
+  .main-stat .stat-right-block {
     margin-top: 0.625rem;
   }
   .stat-nav .stat-items .stat-item {

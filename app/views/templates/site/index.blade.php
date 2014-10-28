@@ -106,7 +106,7 @@ foreach ($clients as $client) {
                     <i class="color-1"></i>
                     <i class="color-2"></i>
                 </div>
-                <div class="grid_4 grid_t6 grid_m12">
+                <div class="grid_4 grid_t6 grid_m12 stat-right-block">
 
                     @foreach ($solutions as $solution)
                     <ul class="stat-ul js-stat-tab" data-type="{{ $solution->slug }}">
