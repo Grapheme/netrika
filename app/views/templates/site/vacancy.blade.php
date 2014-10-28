@@ -109,7 +109,7 @@ $vacancies = DicVal::extracts($vacancies, true);
 
                                 --><li>
                                     <div class="aim" data-number="{{ ($t+1) }}">
-                                        <div class="text">{{ $technology }} - {{ $p }}</div>
+                                        <div class="text">{{ $technology }}</div>
                                     </div>
                                 </li><!--
 
