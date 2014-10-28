@@ -1187,9 +1187,6 @@ $.fn.statTabs = function(slider_class) {
 				min = height;
 			}
 		});
-
-
-
 		parent.css( 'min-height', min + 20 );
 	}
 
@@ -1198,6 +1195,7 @@ $.fn.statTabs = function(slider_class) {
 		go(tab_link.first().attr('data-type'));
 	}
 
+	$(window).on('resize', setMinHeight);
 	$(window).on('load', init);
 }
 
@@ -1237,6 +1235,36 @@ $.fn.ext_url = function() {
 	});
 }
 
+$.fn.mobile_menu = function() {
+	var menu = $(this);
+	var opened = false;
+
+	$('.js-menu-mobile-open').on('click', function(){
+		menuToggle();
+	});
+
+	function menuToggle() {
+		if(opened) {
+			menuClose();
+		} else {
+			menuOpen();
+		}
+	}
+
+	function menuOpen() {
+		opened = true;
+		menu.addClass('active');
+		$('.js-menu-mobile-open').addClass('active');
+	}
+
+	function menuClose() {
+		opened = false;
+		menu.removeClass('active');
+		$('.js-menu-mobile-open').removeClass('active');
+	}
+}
+
+$('.mobile-menu').mobile_menu();
 $('a[href]').ext_url();
 $('.js-hover').jshover('js-circle');
 $('.main-nav').header_nav();

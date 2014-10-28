@@ -4,9 +4,32 @@
 	/*body {
 		font-size: 12px;
 	}*/
+	.main-header {
+		z-index: 100;
+	}
+
+	.mobile-menu {
+		display: block;
+	}
 
 	.mobile-hidden {
 		display: none !important;
+	}
+
+	.main-header {
+		background: #505861;
+		height: 60rem / @hfs;
+		line-height: 70rem / @hfs;
+
+		.logo {
+			position: absolute;
+			top: 25%;
+			left: 20px;
+		}
+
+		.mobile-menu-icon {
+			display: inline-block;
+		}
 	}
 
 	.main-stat .mobile-stat-control {

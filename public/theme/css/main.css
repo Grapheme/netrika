@@ -753,7 +753,7 @@ section a:hover {
 }
 .main-header {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
   height: 5.625rem;
   line-height: 5.625rem;
@@ -906,6 +906,64 @@ section a:hover {
       -ms-transform: translateX(-150%);
           transform: translateX(-150%);
 }
+.main-header .mobile-menu-icon {
+  display: none;
+  vertical-align: top;
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 3.75rem;
+  width: 3.75rem;
+  background: #424a53;
+}
+.main-header .mobile-menu-icon span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -11px;
+  margin-top: -1px;
+  display: inline-block;
+  width: 22px;
+  height: 2px;
+  background: #fff;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
+}
+.main-header .mobile-menu-icon span:before,
+.main-header .mobile-menu-icon span:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
+}
+.main-header .mobile-menu-icon span:before {
+  -webkit-transform: translateY(-300%);
+      -ms-transform: translateY(-300%);
+          transform: translateY(-300%);
+}
+.main-header .mobile-menu-icon span:after {
+  -webkit-transform: translateY(300%);
+      -ms-transform: translateY(300%);
+          transform: translateY(300%);
+}
+.main-header .mobile-menu-icon.active span {
+  background: transparent;
+}
+.main-header .mobile-menu-icon.active span:before {
+  -webkit-transform: translateY(0) rotate(-45deg);
+      -ms-transform: translateY(0) rotate(-45deg);
+          transform: translateY(0) rotate(-45deg);
+}
+.main-header .mobile-menu-icon.active span:after {
+  -webkit-transform: translateY(0) rotate(45deg);
+      -ms-transform: translateY(0) rotate(45deg);
+          transform: translateY(0) rotate(45deg);
+}
 .title-block {
   position: relative;
   background-size: cover;
@@ -1053,6 +1111,77 @@ section a:hover {
 .head-top-info .tags-ul li {
   display: inline-block;
   margin-left: 2.5rem;
+  color: #babcbc;
+}
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #424a53;
+  z-index: 99;
+  top: 3.75rem;
+  -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%);
+  -webkit-transition: -webkit-transform .2s ease;
+          transition: transform .2s ease;
+}
+.mobile-menu.active {
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+.mobile-menu .mobile-main-menu {
+  padding-bottom: 1.5625rem;
+  border-bottom: 1px solid #3a424b;
+}
+.mobile-menu .mobile-main-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  -webkit-column-count: 2;
+     -moz-column-count: 2;
+          column-count: 2;
+  -webkit-column-gap: 2.5rem;
+     -moz-column-gap: 2.5rem;
+          column-gap: 2.5rem;
+  line-height: 2.8125rem;
+  margin-top: 1.5625rem;
+  font-size: 0.875em;
+}
+.mobile-menu .mobile-main-menu ul li {
+  -webkit-column-break-inside: avoid;
+     page-break-inside: avoid;
+          break-inside: avoid-column;
+}
+.mobile-menu .mobile-main-menu ul a {
+  color: #babcbc;
+  text-decoration: none;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
+}
+.mobile-menu .mobile-main-menu ul a:hover {
+  color: #1dcba4;
+}
+.mobile-menu .mobile-add-menu {
+  padding: 1.5625rem 0;
+}
+.mobile-menu .mobile-add-menu ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 2.8125rem;
+  font-size: 0.875em;
+}
+.mobile-menu .mobile-add-menu ul a {
+  color: #1dcba4;
+  text-decoration: none;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
+}
+.mobile-menu .mobile-add-menu ul a:hover {
   color: #babcbc;
 }
 .main-footer {
@@ -3383,6 +3512,9 @@ Move to separate stylesheet if invalid CSS is a problem.
   .stat-nav .stat-items .stat-item {
     width: 183px;
   }
+  .prj-ul {
+    font-size: 0.875em;
+  }
 }
 @media screen and (max-width: 768px) {
   /*
@@ -3675,8 +3807,27 @@ Move to separate stylesheet if invalid CSS is a problem.
   /*body {
 		font-size: 12px;
 	}*/
+  .main-header {
+    z-index: 100;
+  }
+  .mobile-menu {
+    display: block;
+  }
   .mobile-hidden {
     display: none !important;
+  }
+  .main-header {
+    background: #505861;
+    height: 3.75rem;
+    line-height: 4.375rem;
+  }
+  .main-header .logo {
+    position: absolute;
+    top: 25%;
+    left: 20px;
+  }
+  .main-header .mobile-menu-icon {
+    display: inline-block;
   }
   .main-stat .mobile-stat-control {
     display: block;
