@@ -1352,6 +1352,15 @@ section a:hover {
 .main-stat h1 {
   margin-top: 0;
 }
+.main-stat .mobile-stat-control {
+  display: none;
+}
+.main-stat .mobile-stat-control.ctr-top {
+  margin-bottom: 1.875rem;
+}
+.main-stat .mobile-stat-control.ctr-bottom {
+  margin-top: 0.625rem;
+}
 .main-stat .stat-desc p {
   color: #7f8281;
   font-size: 1.125em;
@@ -3668,6 +3677,9 @@ Move to separate stylesheet if invalid CSS is a problem.
 	}*/
   .mobile-hidden {
     display: none !important;
+  }
+  .main-stat .mobile-stat-control {
+    display: block;
   }
   .grid_m12 {
     width: 19rem !important;

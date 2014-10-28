@@ -85,6 +85,10 @@ foreach ($clients as $client) {
 
         <section class="main-stat us-section">
             <div class="container_12 js-stat-parent">
+                <div class="grid_12 mobile-stat-control ctr-top js-stat-mobile-ctr">
+                    <a href="#" class="desc-icon prev disable" data-direction="<"></a>
+                    <a href="#" class="desc-icon next" data-direction=">"></a>
+                </div>
                 <div class="grid_4 grid_t12 grid_m12 stat-desc">
 
                     @foreach ($solutions as $solution)
@@ -141,6 +145,10 @@ foreach ($clients as $client) {
 
                     @endforeach
 
+                </div>
+                <div class="grid_12 mobile-stat-control ctr-bottom js-stat-mobile-ctr">
+                    <a href="#" class="desc-icon prev disable" data-direction="<"></a>
+                    <a href="#" class="desc-icon next" data-direction=">"></a>
                 </div>
                 <div class="clearfix"></div>
             </div>
