@@ -122,6 +122,32 @@ return array(
             */
         },
 
+        /**
+         * Вызывается в методе postStore, после создания записи
+         */
+        'after_store' => function ($dic, $dicval) {
+
+            #Helper::ta($dicval->name);
+            #Helper::ta($dicval);
+            $emails = Dic::valuesBySlug('email-listeners');
+            $emails = Dic::makeLists($emails, NULL, 'name');
+            #Helper::ta($emails);
+
+            if (count($emails) || 1) {
+                $data = $dicval->toArray();
+                Mail::queue('emails.news-added', $data, function ($message) use ($emails, $dicval) {
+                    $first_email = array_shift($emails);
+                    $message->to($first_email)->subject('Netrika - добавлена новость: ' . $dicval->name . '');
+                    if (count($emails)) {
+                        foreach ($emails as $email) {
+                            $message->cc($email);
+                        }
+                    }
+                });
+            }
+
+        },
+
     ),
 
     /*

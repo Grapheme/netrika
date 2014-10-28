@@ -18,6 +18,7 @@ class PublicNetrikaController extends BaseController {
             Route::get('/search/',        array('as' => 'search',            'uses' => __CLASS__.'@showSearchResults'));
             Route::get('/feedback/{id}',      array('as' => 'feedback.view', 'uses' => __CLASS__.'@showFeedbackMessage'));
             Route::post('/get-solution-components',  array('as' => 'solution-components', 'uses' => __CLASS__.'@postSolutionComponents'));
+            Route::post('/add-email-listener',  array('as' => 'add-email-listener', 'uses' => __CLASS__.'@postAddEmailListener'));
         });
 
     }
@@ -568,6 +569,34 @@ class PublicNetrikaController extends BaseController {
         $feedback = $feedback->extract(true);
         #Helper::tad($feedback);
         return DbView::make($feedback)->field('message_text')->with([])->render();
+    }
+
+    public static function postAddEmailListener() {
+
+        if (!Request::ajax())
+            App::abort(404);
+
+        #Helper::dd(Input::all());
+        $email = Input::get('email');
+
+        $dic = Dic::firstOrNew(array('slug' => 'email-listeners'));
+        if (!$dic->id)
+            App::abort(500);
+
+        $json_request = array('status' => FALSE, 'responseText' => '');
+
+        $dicval = DicVal::firstOrNew(array('dic_id' => $dic->id, 'name' => $email, 'version_of' => NULL));
+
+        if (!$dicval->id) {
+            $dicval->save();
+            $json_request['responseText'] = 'Подписка оформлена';
+            $json_request['status'] = TRUE;
+        } else {
+            $json_request['responseText'] = 'Вы уже подписаны';
+            $json_request['status'] = TRUE;
+        }
+
+        return Response::json($json_request, 200);
     }
 
 }
