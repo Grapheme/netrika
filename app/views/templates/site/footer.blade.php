@@ -21,11 +21,11 @@ foreach ($projects as $project) {
 ?>
         <footer class="main-footer">
             <div class="container_12">
-                <div class="grid_4">
+                <div class="grid_4 grid_m12 footer-main-nav">
 
                     {{ Menu::placement('footer_menu') }}
 
-                    @if (0)
+                    @if (1)
                     <ul class="footer-list">
                         <li><a href="{{ URL::route('page', 'about') }}">О компании</a>
                         <li><a href="{{ URL::route('page', 'projects') }}">Проекты</a>
@@ -37,7 +37,7 @@ foreach ($projects as $project) {
                     @endif
 
                 </div>
-                <div class="grid_4">
+                <div class="grid_4 grid_m12 footer-adress">
                     <ul class="footer-list">
                         <li>Санкт-Петербург, пер. Фуражный, д. 3
                         <li><a class="phone-link" href="tel:+78126408070">+7 (812) 640-80-70</a>
@@ -46,7 +46,7 @@ foreach ($projects as $project) {
                         <li><a href="http://api.netrika.ru">api.netrika.ru</a>
                     </ul>
                 </div>
-                <div class="grid_4">
+                <div class="grid_4 grid_m12 footer-search-block">
                     <form class="footer-search" method="GET" action="{{ URL::route('search') }}">
                         <input type="text" class="search-input" name="q" placeholder="Поиск" value="{{ @$_GET['q'] }}">
                         <button class="search-btn" type="submit"></button>
@@ -56,8 +56,8 @@ foreach ($projects as $project) {
                         <li><a href="#" class="in-icon"></a>
                     </ul>
                 </div>
-                <div class="grid_12 footer-line"></div>
-                <div class="grid_4">
+                <div class="grid_12 footer-line mobile-hidden"></div>
+                <div class="grid_4 grid_m12 mobile-hidden">
 
                     @foreach ($solutions as $solution)
                         <div class="footer-title">{{ $solution->name }}</div>
@@ -74,8 +74,8 @@ foreach ($projects as $project) {
                     @endforeach
 
                 </div>
-                <div class="grid_12 footer-line"></div>
-                <div class="grid_12">
+                <div class="grid_12 footer-line mobile-hidden"></div>
+                <div class="grid_12 copy-block">
                     <span>Официальный сайт компании Нетрика © 2014{{ date('Y') > 2014 ? '-'.date('Y') : '' }}</span>
                     <span class="copy-right">Разработка сайта: Нетрика при участии <a href="http://funcfunc.ru">Func</a></span>
                 </div>

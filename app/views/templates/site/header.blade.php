@@ -7,7 +7,7 @@
             <div class="container_12">
                 <div class="grid_12">
                     <a href="{{ URL::route('mainpage') }}" class="logo"></a>
-                    <nav class="main-nav">
+                    <nav class="main-nav mobile-hidden">
                         <ul>
                             <li class="js-main-links">
 

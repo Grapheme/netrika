@@ -866,6 +866,10 @@ $.fn.smart_map = function(map_array) {
 
 		map_block.html(map_html);
 		map_desc.hide();
+
+		if($(window).width() <= 768) {
+			openDesc(0);
+		}
 	}
 
 	init();
