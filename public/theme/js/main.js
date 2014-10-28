@@ -580,21 +580,30 @@ $.fn.main_slider = function(dots_class) {
 		}, change_time * 2);
 	});
 
+	$(window).on('resize', function(){
+		setMinHeight();
+	});
+
 	function init() {
-		var max = 0;
+		setMinHeight();
 		slides.each(function(){
 			dots_list.append('<li>');
+		});
+		go(0);
+		setTimeout(function(){
+			auto(change_time);
+		}, change_time);
+	}
+
+	function setMinHeight() {
+		var max = 0;
+		slides.each(function(){
 			var height = $(this).outerHeight(true);
 			if(height > max) {
 				max = height;
 			}
 		});
 		parent.css('height', max);
-
-		go(0);
-		setTimeout(function(){
-			auto(change_time);
-		}, change_time);
 	}
 
 	function go(id) {
