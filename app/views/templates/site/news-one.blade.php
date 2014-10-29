@@ -97,7 +97,7 @@
                 <div class="grid_4 grid_t12 adp-no-mar js-relative-news adp-top-mar">
                     <div class="js-relative-in">
                         @if (count($related_news))
-                            <div class="grid_12">
+                            <div class="grid_t12">
                                 <h2>Похожие новости</h2>
                             </div>
                             <div class="clearfix"></div>
