@@ -1976,15 +1976,15 @@ section a:hover {
 .comps-ul li a:hover {
   color: #1dcba4;
 }
-.comps-ul li span {
+.comps-ul li .title {
+  height: 3.75rem;
+  line-height: 3.75rem;
+}
+.comps-ul li .title span {
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
   width: 80%;
-}
-.comps-ul li .title {
-  height: 3.75rem;
-  line-height: 3.75rem;
 }
 .comps-ul li .title:before {
   content: "";
