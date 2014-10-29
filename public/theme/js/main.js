@@ -1278,18 +1278,20 @@ $.fn.mobile_menu = function() {
 }
 
 $.fn.setHeightOfMax = function(block) {
-	var parent = $(this);
-	var max = 0;
-	var this_block = parent.find(block);
+	$(this).each(function(){
+		var parent = $(this);
+		var max = 0;
+		var this_block = parent.find(block);
 
-	this_block.each(function(){
-		var height = $(this).outerHeight();
-		if(height > max) {
-			max = height;
-		}
+		this_block.each(function(){
+			var height = $(this).outerHeight();
+			if(height > max) {
+				max = height;
+			}
+		});
+
+		this_block.css('height', max);
 	});
-
-	this_block.css('height', max);
 }
 
 $('.mobile-menu').mobile_menu();
