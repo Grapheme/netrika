@@ -264,9 +264,21 @@ class PublicNetrikaController extends BaseController {
         /**
         * Предыдущий проект
         */
-        $prev_project = Dic::valuesBySlug('projects', function($query) use ($project){
-            $query->where('id', '!=', $project->id);
-            $query->where('created_at', '<', $project->created_at);
+        $prev_project = Dic::valuesBySlug('projects', function($query) use ($project, $solution){
+            /**
+             * Фильтр значений (DicVal) по его доп. полю (DicFieldVal)
+             * SOLUTION_id
+             */
+            $tbl_dicval = (new DicVal())->getTable();
+            $tbl_dic_field_val = (new DicFieldVal())->getTable();
+            $rand_tbl_alias = md5(time() . rand(999999, 9999999));
+            $query->select($tbl_dicval . '.*');
+            $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
+                ->where($rand_tbl_alias . '.key', '=', 'solution_id')
+                ->where($rand_tbl_alias . '.value', '=', $solution->id);
+
+            $query->where($tbl_dicval.'.id', '!=', $project->id);
+            $query->where($tbl_dicval.'.created_at', '<=', $project->created_at);
             $query->take(1);
         });
         $prev_project = @$prev_project[0];
@@ -289,7 +301,7 @@ class PublicNetrikaController extends BaseController {
                 ->where($rand_tbl_alias . '.value', '=', $solution->id);
 
             $query->where($tbl_dicval.'.id', '!=', $project->id);
-            $query->where($tbl_dicval.'.created_at', '>', $project->created_at);
+            $query->where($tbl_dicval.'.created_at', '>=', $project->created_at);
             $query->take(1);
         });
         $next_project = @$next_project[0];
