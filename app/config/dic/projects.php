@@ -81,14 +81,17 @@ return array(
 
             'description_process' => array(
                 'title' => 'Описание процесса',
-                'type' => 'textarea_redactor',
+                'type' => 'textarea',
+                'others' => array(
+                    'maxlength' => 10,
+                ),
             ),
             'gallery' => array(
                 'title' => 'Изображения процесса',
                 'type' => 'gallery',
                 'params' => array(
                     'maxFilesize' => 1, // MB
-                    #'maxFiles' => 2,
+                    'maxFiles' => 5,
                 ),
                 'handler' => function($array, $element) {
                     return ExtForm::process('gallery', array(
@@ -98,7 +101,7 @@ return array(
                         'single'  => true,
                     ));
                 },
-                'first_note' => 'Оптимальный размер: 400x230',
+                'first_note' => 'Оптимальный размер: 800x460. Максимум 5 фотографий',
             ),
 
             /*
