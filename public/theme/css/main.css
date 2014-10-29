@@ -3630,6 +3630,12 @@ Move to separate stylesheet if invalid CSS is a problem.
   .js-relative-news .js-relative-in {
     position: relative;
   }
+  .js-relative-news .js-relative-in .grid_t6 {
+    display: inline;
+    float: left;
+    margin-left: 0.9375rem;
+    margin-right: 0.9375rem;
+  }
 }
 @media screen and (max-width: 768px) {
   /*
