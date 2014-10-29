@@ -284,6 +284,7 @@ class PublicNetrikaController extends BaseController {
         $prev_project = @$prev_project[0];
         #Helper::d($prev_project);
 
+
         /**
          * Следующий проект
          */
