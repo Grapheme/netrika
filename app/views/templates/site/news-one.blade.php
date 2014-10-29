@@ -67,7 +67,7 @@
                             </div>
                         </div>
                     @elseif ($new->image)
-                        <div class="grid_6 grid_t9 alpha">&nbsp;
+                        <div class="grid_6 grid_t9 grid_m12 alpha">&nbsp;
                             <div class="js-news-fotorama">
                                 <img src="{{ $new->image->full() }}">
                             </div>

@@ -4147,6 +4147,7 @@ Move to separate stylesheet if invalid CSS is a problem.
     margin-right: 0.9375rem;
   }
   .head-top-info .tags-ul {
+    display: block;
     margin-left: 0;
   }
 }
