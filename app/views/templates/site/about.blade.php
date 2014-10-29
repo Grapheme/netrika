@@ -45,7 +45,7 @@ foreach ($clients as $client) {
             <div class="container_12">
                 <div class="grid_12">
 
-                    {{ $page->block('visual_title') }}
+                    <span>{{ $page->block('visual_title') }}</span>
 
                 </div>
                 <div class="clearfix"></div>
@@ -81,7 +81,7 @@ foreach ($clients as $client) {
                 <div class="clearfix"></div>
             </div>
         </section>
-        <section class="map-container">
+        <section class="map-container mobile-hidden">
             <div class="container_12">
                 <div class="map-block js-map-block">
                 </div>
