@@ -4134,6 +4134,15 @@ Move to separate stylesheet if invalid CSS is a problem.
     border-width: 0px 10px 10px 10px;
     border-color: transparent transparent #fff transparent;
   }
+  .js-relative-news .js-relative-in {
+    position: relative;
+  }
+  .js-relative-news .js-relative-in .grid_m12 {
+    display: inline;
+    float: left;
+    margin-left: 0.9375rem;
+    margin-right: 0.9375rem;
+  }
 }
 @media screen and (max-width: 1200px) {
   .us-desc {

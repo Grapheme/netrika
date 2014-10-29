@@ -94,15 +94,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid_4 grid_t12 adp-no-mar js-relative-news adp-top-mar">
+                <div class="grid_4 grid_t12 grid_m12 adp-no-mar js-relative-news adp-top-mar">
                     <div class="js-relative-in">
                         @if (count($related_news))
-                            <div class="grid_t12">
+                            <div class="grid_t12 grid_m12">
                                 <h2>Похожие новости</h2>
                             </div>
                             <div class="clearfix"></div>
                             @foreach ($related_news as $related_new)
-                                <div class="news-item grid_t6 js-one-relative">
+                                <div class="news-item grid_t6 grid_m12 js-one-relative">
                                     <div class="news-preview">
                                         <span class="news-date"><span class="day">{{ $related_new->created_at->format('d') }}</span> / {{ $related_new->created_at->format('m') }} / {{ $related_new->created_at->format('Y') }}</span>
                                         <a href="{{ URL::route('news_full', $related_new->slug) }}" class="title">
