@@ -496,7 +496,10 @@ $.fn.news_module = function(news_array, tags_object) {
 
 		if(first_news == undefined){
 			news_html.fillNothing();
+			$('.js-news-all').hide();
 			return;
+		} else {
+			$('.js-news-all').show();
 		}
 
 		news_html.fillFirst(first_news);

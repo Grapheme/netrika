@@ -166,7 +166,7 @@ foreach ($newslist as $new) {
                 <div class="clearfix"></div>
             </div>
         </section>
-        <section class="gray-section non-bot-pad">
+        <section class="gray-section non-bot-pad js-news-all">
             <div class="container_12">
                 <div class="grid_4 js-news-grid"><!--
                     <div class="news-item">
