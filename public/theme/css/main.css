@@ -4062,6 +4062,11 @@ Move to separate stylesheet if invalid CSS is a problem.
   .contact-ul {
     margin-top: -0.625rem;
   }
+  .developer-group .developer-type {
+    height: auto;
+    line-height: normal;
+    margin-top: 1.25rem;
+  }
 }
 @media screen and (max-width: 1200px) {
   .us-desc {

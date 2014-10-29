@@ -91,10 +91,10 @@ unset($temp);
                     <h2>Команда разработки</h2>
                     <div class="clearfix"></div>
                     <div class="developer-group">
-                        <div class="grid_4 grid_t6 alpha">
+                        <div class="grid_4 grid_t6 grid_m12 alpha">
                             <canvas id="developers-canvas" width="320" height="320"></canvas>
                         </div>
-                        <div class="grid_2 grid_t6 omega">
+                        <div class="grid_2 grid_t6 grid_m12 omega">
                             <div class="developer-type">
                                 <ul class="developer-list">
                                     @foreach ($devteam as $dev)
@@ -106,10 +106,10 @@ unset($temp);
                     </div>
                 </div>
                 <div class="grid_6 grid_t12 grid_m12 js-netrika-parent tablet-top-lmar mobile-top-lmar">
-                    <div class="alpha grid_3 grid_t9">
+                    <div class="alpha grid_3 grid_t9 grid_m12">
                         <h2>Технологии</h2>
                     </div>
-                    <div class="omega grid_3 js-netrika-controls">
+                    <div class="omega grid_3 grid_m12 js-netrika-controls">
                         <a href="#" class="desc-icon prev js-netrika-control disable" data-direction="<"></a>
                         <a href="#" class="desc-icon next js-netrika-control" data-direction=">"></a>
                     </div>
