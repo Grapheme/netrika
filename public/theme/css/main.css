@@ -3637,6 +3637,9 @@ Move to separate stylesheet if invalid CSS is a problem.
     margin-left: 0.9375rem;
     margin-right: 0.9375rem;
   }
+  .js-relative-news .js-relative-in .grid_t6 {
+    width: 21.1rem !important;
+  }
 }
 @media screen and (max-width: 768px) {
   /*
