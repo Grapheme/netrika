@@ -109,7 +109,7 @@ unset($temp);
                     <div class="alpha grid_3 grid_t9 grid_m12">
                         <h2>Технологии</h2>
                     </div>
-                    <div class="omega grid_3 grid_m12 js-netrika-controls">
+                    <div class="omega grid_3 grid_m12 js-netrika-controls mobile-mar-nonleft">
                         <a href="#" class="desc-icon prev js-netrika-control disable" data-direction="<"></a>
                         <a href="#" class="desc-icon next js-netrika-control" data-direction=">"></a>
                     </div>
