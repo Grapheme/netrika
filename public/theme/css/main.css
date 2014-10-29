@@ -1535,7 +1535,7 @@ section a:hover {
 }
 .main-stat .canvas-cirs {
   height: 22.5rem;
-  margin-top: 5.625rem;
+  margin: 5.625rem 0 5.625rem;
 }
 .main-stat .canvas-cirs canvas {
   position: absolute;
@@ -2787,6 +2787,9 @@ section a:hover {
   font-size: 1.5em;
   color: #313736;
 }
+.error-block .error-tomain a:hover {
+  color: #1dcba4;
+}
 .ui-datepicker {
   font-family: "proxima_nova" !important;
   font-weight: 300 !important;
@@ -3524,6 +3527,7 @@ Move to separate stylesheet if invalid CSS is a problem.
   .main-stat .canvas-cirs,
   .main-stat .stat-right-block {
     margin-top: 0.625rem;
+    margin-bottom: 0;
   }
   .stat-nav .stat-items .stat-item {
     width: 183px;
@@ -3875,6 +3879,7 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .main-stat .canvas-cirs {
     margin-top: 1.25rem;
+    margin-bottom: 0;
   }
   .map-container .container_12 {
     height: auto;
