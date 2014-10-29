@@ -193,9 +193,10 @@
                 ];
 
                 function initialize() {
+                    var map_center = new google.maps.LatLng({{ $page->block('coordinates') }});
 
                     var mapOptions = {
-                        center: new google.maps.LatLng({{ $page->block('coordinates') }}),
+                        center: map_center,
                         zoom: 17,
                         mapTypeId: google.maps.MapTypeId.ROADMAP,
                         //draggable: false, zoomControl: false,
@@ -204,6 +205,14 @@
                         styles: style
                     };
                     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+                    var iconBase = '{{URL::to("theme/img/svg/")}}';
+
+                    var marker = new google.maps.Marker({
+                      position: map_center,
+                      map: map,
+                      icon: iconBase + '/marker.svg'
+                    });
 
                     //var myLatlng = new google.maps.LatLng(47.2248231, 39.7273844);
                 }
