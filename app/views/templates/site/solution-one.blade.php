@@ -432,7 +432,7 @@ $solution4form = $solution;
                     </div>
                     @endforeach
 
-                    <div class="grid_4">
+                    <div class="grid_4 grid_t6 grid_m12">
                         <div class="solution-block type-all">
                         <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}" class="project-link">
                             <span>
