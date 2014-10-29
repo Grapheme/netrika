@@ -1285,7 +1285,7 @@ $.fn.setHeightOfMax = function(block) {
 	this_block.each(function(){
 		var height = $(this).outerHeight();
 		if(height > max) {
-			max = heigth;
+			max = height;
 		}
 	});
 
