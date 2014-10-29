@@ -72,7 +72,7 @@ unset($temp);
 
         <section class="gray-section">
             <div class="container_12">
-                <div class="grid_9">
+                <div class="grid_9 grid_t12 grid_m12">
                     <div class="bold-desc min-mar">
 
                         {{ $page->block('intro') }}
