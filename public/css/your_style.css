@@ -802,3 +802,10 @@ div.redactor_dropdown {
 .note.second_note {
     margin: 6px 0 0 0;
 }
+
+.redactor_redactor_preview {
+    min-height: 80px !important;
+}
+.redactor_redactor_content {
+    min-height: 200px !important;
+}
