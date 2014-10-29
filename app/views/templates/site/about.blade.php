@@ -30,7 +30,7 @@ foreach ($clients as $client) {
         <section class="title-block title-main">
             <div class="container_12">
                 <section class="title-content max-pad">
-                    <div class="grid_8">
+                    <div class="grid_8 grid_t12 grid_m12">
 
                         {{ $page->block('mission') }}
 
@@ -45,7 +45,7 @@ foreach ($clients as $client) {
             <div class="container_12">
                 <div class="grid_12">
 
-                    {{ $page->block('visual_title') }}
+                    <span>{{ $page->block('visual_title') }}</span>
 
                 </div>
                 <div class="clearfix"></div>
@@ -67,21 +67,21 @@ foreach ($clients as $client) {
                         {{ $page->block('geo_title') }}
                     </h2>
                 </div>
-                <div class="grid_9">
+                <div class="grid_9 grid_t12 grid_m12">
                     <div class="bold-desc">
 
                         {{ $page->block('geo_description') }}
 
                     </div>
                 </div>
-                <div class="grid_3 desc-lh">
+                <div class="grid_3 grid_t12 grid_m12 adp-top-mar desc-lh">
                     <a href="{{ URL::route('page', 'projects') }}"><i class="lit-icon icon-projects"></i> Все проекты</a>
                 </div>
 
                 <div class="clearfix"></div>
             </div>
         </section>
-        <section class="map-container">
+        <section class="map-container mobile-hidden">
             <div class="container_12">
                 <div class="map-block js-map-block">
                 </div>

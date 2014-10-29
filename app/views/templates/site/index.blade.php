@@ -59,7 +59,7 @@ foreach ($clients as $client) {
             <div class="container_12">
                 <div class="grid_12">
                     <section class="title-content max-pad">
-                        <div class="grid_9 alpha">
+                        <div class="grid_9 grid_m12 alpha">
                             <div class="main-slider js-main-slider">
                                 @foreach ($slides as $slide)
                                     <?
@@ -72,7 +72,7 @@ foreach ($clients as $client) {
                             </div>
                             {{--<a href="#" class="title-btn">Скачать презентацию</a>--}}
                         </div>
-                        <div class="grid_3 omega">
+                        <div class="grid_3 omega mobile-hidden">
                             <ul class="sol-dots js-ms-dots">
                             </ul>
                         </div>
@@ -85,7 +85,11 @@ foreach ($clients as $client) {
 
         <section class="main-stat us-section">
             <div class="container_12 js-stat-parent">
-                <div class="grid_4 grid_t12 stat-desc">
+                <div class="grid_12 mobile-stat-control ctr-top js-stat-mobile-ctr">
+                    <a href="#" class="desc-icon prev disable" data-direction="<"></a>
+                    <a href="#" class="desc-icon next" data-direction=">"></a>
+                </div>
+                <div class="grid_4 grid_t12 grid_m12 stat-desc">
 
                     @foreach ($solutions as $solution)
                     <div class="js-stat-tab" data-type="{{ $solution->slug }}">
@@ -98,7 +102,7 @@ foreach ($clients as $client) {
                     @endforeach
 
                 </div>
-                <div class="grid_4 grid_t6 canvas-cirs">
+                <div class="grid_4 grid_t6 grid_m12 canvas-cirs">
                     <canvas id="canvas-cir-0" width="360" height="360"></canvas>
                     <canvas id="canvas-cir-1" width="360" height="360"></canvas>
                     <canvas id="canvas-cir-2" width="360" height="360"></canvas>
@@ -106,7 +110,7 @@ foreach ($clients as $client) {
                     <i class="color-1"></i>
                     <i class="color-2"></i>
                 </div>
-                <div class="grid_4 grid_t6">
+                <div class="grid_4 grid_t6 grid_m12 stat-right-block">
 
                     @foreach ($solutions as $solution)
                     <ul class="stat-ul js-stat-tab" data-type="{{ $solution->slug }}">
@@ -142,11 +146,15 @@ foreach ($clients as $client) {
                     @endforeach
 
                 </div>
+                <div class="grid_12 mobile-stat-control ctr-bottom js-stat-mobile-ctr">
+                    <a href="#" class="desc-icon prev disable" data-direction="<"></a>
+                    <a href="#" class="desc-icon next" data-direction=">"></a>
+                </div>
                 <div class="clearfix"></div>
             </div>
         </section>
 
-        <section class="stat-nav">
+        <section class="stat-nav mobile-hidden">
             <div class="container_12">
                 <div class="grid_1 stat-control">
                     <a href="#" class="desc-icon prev js-prev"></a>
@@ -177,7 +185,7 @@ foreach ($clients as $client) {
                 $solution = @$solutions[$project->solution_id];
                 $image = @$images[$project->mainpage_image] ?: new Photo;
                 ?>
-                <div class="grid_4 grid_t6 solution-block type-{{ $solution->slug }} js-hover">
+                <div class="grid_4 grid_t6 grid_m12 solution-block type-{{ $solution->slug }} js-hover">
                     <div class="background" style="background-image: url(
                     {{-- asset(Config::get('site.theme_path').'/img/projects/images/portals.jpg') --}}
                     {{ $image->full() }}
@@ -194,7 +202,7 @@ foreach ($clients as $client) {
 
                 @endforeach
 
-                <div class="grid_4 grid_t6 type-all">
+                <div class="grid_4 grid_t6 grid_m12 type-all">
                     <div class="solution-block type-all">
                     <a href="{{ URL::route('page', 'projects') }}" class="project-link">
                         <span>
@@ -210,7 +218,7 @@ foreach ($clients as $client) {
 
         <section class="map-container">
             <div class="container_12">
-                <div class="map-block js-map-block">
+                <div class="map-block js-map-block mobile-hidden">
                     <!-- <a href="#" class="map-dot active" style="top: 202px; left: 327px;">
                         <i class="map-rad"></i>
                     </a> -->
@@ -219,7 +227,7 @@ foreach ($clients as $client) {
                     <div class="desc-nav">
                         <a href="#" class="desc-icon prev js-map-control" data-direction="<"></a>
                         <a href="#" class="desc-icon next js-map-control" data-direction=">"></a>
-                        <a href="#" class="desc-icon close fl-r js-desc-close"></a>
+                        <a href="#" class="desc-icon close fl-r js-desc-close mobile-hidden"></a>
                     </div>
                     <div class="title js-desc-title"></div>
                     <ul class="map-items js-desc-items">
@@ -229,6 +237,7 @@ foreach ($clients as $client) {
                         <li>
                     </ul>
                 </div>
+                <div class="clearfix"></div>
             </div>
         </section>
 

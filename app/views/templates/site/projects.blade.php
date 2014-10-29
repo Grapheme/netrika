@@ -45,7 +45,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
         <section class="title-block title-main">
             <div class="container_12">
                 <section class="title-content min-pad">
-                    <div class="grid_9">
+                    <div class="grid_9 grid_m12">
                         <h1>
                             @if (isset($page->seo) && @is_object($page->seo) && $page->seo->h1 != '')
                                 {{ $page->seo->h1 }}
@@ -57,7 +57,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                     <div class="clearfix"></div>
                     <ul class="prj-ul js-filters">
 
-                        <li class="grid_3">
+                        <li class="grid_3 grid_m12">
                             <a href="#" data-filter="all"><i class="us-icon icon-prjall"></i>
                                 <span class="text">Все</span>
                                 <span class="amount js-amount"></span>
@@ -69,7 +69,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                         if (!@$array[$solution->id])
                             continue;
                         ?>
-                            <li class="grid_3">
+                            <li class="grid_3 grid_m12">
                                 <a href="#" data-filter="{{ $solution->slug }}" class="type-{{ $solution->slug }}"><i class="us-icon icon-{{ $solution->slug }}"></i>
                                     <span class="text">{{ $solution->name }}</span>
                                     <span class="amount js-amount"></span>
@@ -92,7 +92,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                 <?
                 $image = @$images[$project->mainpage_image] ?: new Photo;
                 ?>
-                    <div class="grid_4 solution-block type-{{ $solutions[$project->solution_id]->slug }} js-hover" data-filter="{{ $solutions[$project->solution_id]->slug }}">
+                    <div class="grid_4 grid_t6 grid_m12 solution-block type-{{ $solutions[$project->solution_id]->slug }} js-hover" data-filter="{{ $solutions[$project->solution_id]->slug }}">
                         <div class="background" style="background-image: url({{ $image->full() }})"></div>
                         <a href="{{ URL::route('project-one', $project->slug) }}" class="project-link"></a>
                         <div class="hover-circle js-circle"></div>

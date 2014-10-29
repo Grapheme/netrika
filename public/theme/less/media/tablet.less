@@ -1,4 +1,4 @@
-@media screen and (max-width: 1200px) {
+@media screen and (min-width: 768px) and (max-width: 1200px) {
 	@import "system/grid_tablet";
 
 	.tablet-hidden {
@@ -17,11 +17,23 @@
 		transform: translateX(0) !important;
 	}
 
-	.main-stat .canvas-cirs, .main-stat .stat-ul {
+	.main-stat .canvas-cirs, .main-stat .stat-right-block {
 		margin-top: 10rem / @hfs;
 	}
 
 	.stat-nav .stat-items .stat-item {
 		width: 183px;
+	}
+
+	.prj-ul {
+		font-size: 14em / @hfs;
+	}
+
+	.benefits .benefit-text {
+		width: 11.5rem;
+	}
+
+	.vacancy-ul li {
+		width: 50%;
 	}
 }

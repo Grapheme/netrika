@@ -1,0 +1,129 @@
+@media screen and (max-width: 768px) {
+	@import "system/grid_mobile";
+
+	/*body {
+		font-size: 12px;
+	}*/
+	.main-header {
+		z-index: 100;
+	}
+
+	.mobile-menu {
+		display: block;
+	}
+
+	.mobile-hidden {
+		display: none !important;
+	}
+
+	.main-header {
+		background: #505861;
+		height: 60rem / @hfs;
+		line-height: 70rem / @hfs;
+
+		.logo {
+			position: absolute;
+			top: 25%;
+			left: 20px;
+		}
+
+		.mobile-menu-icon {
+			display: inline-block;
+		}
+	}
+
+	.main-stat .mobile-stat-control {
+		display: block;
+	}
+
+	.grid_m12 {
+		width: 304rem / @hfs !important;
+	}
+
+	.canvas-cirs {
+		position: relative;
+		left: 50%;
+		margin-left: -180px;
+	}
+
+	.main-stat {
+		.stat-right-block {
+			margin-top: 20rem / @hfs;
+			line-height: normal;
+		}
+
+		.canvas-cirs {
+			margin-top: 20rem / @hfs;
+		}
+	}
+	.map-container {
+		.container_12 {
+			height: auto;
+		}
+		.sol-dots {
+			display: none;
+		}
+		.map-desc {
+			position: relative;
+			width: 100% !important;
+			padding: 20rem / @hfs !important;
+		}
+	}
+
+	.copy-block {
+		span {
+			display: block;
+			float: none !important;
+
+			&:last-child {
+				margin-top: 25rem / @hfs;
+			}
+		}
+	}
+
+	.footer-main-nav {
+		.columns-2;
+		border-bottom: 1px solid #3e454d;
+		padding-bottom: 20rem / @hfs;
+		margin-bottom: 20rem / @hfs;
+	}
+
+	.footer-adress {
+		border-bottom: 1px solid #3e454d;
+		margin-bottom: 20rem / @hfs;
+	}
+
+	.footer-search-block {
+		border-bottom: 1px solid #3e454d;
+		padding-bottom: 40rem / @hfs;
+		margin-bottom: 40rem / @hfs;
+	}
+
+	.benefits .benefit-text {
+		width: 8.5rem;
+	}
+
+	.columns-2 {
+	    -webkit-column-count: auto;
+	       -moz-column-count: auto;
+	            column-count: auto;
+	    -webkit-column-gap: auto;
+	       -moz-column-gap: auto;
+	            column-gap: auto;
+	}
+
+	.vacancy-ul li {
+		width: 100%;
+	}
+
+	.about-russian .grid_12 {
+		line-height: 140rem / @hfs;
+		height: 140rem / @hfs;
+
+		span {
+			display: inline-block;
+			vertical-align: middle;
+			line-height: normal;
+		}
+	}
+}
