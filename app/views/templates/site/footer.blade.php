@@ -58,7 +58,6 @@ foreach ($projects as $project) {
                 </div>
                 <div class="grid_12 footer-line mobile-hidden"></div>
                 <div class="grid_12 footer-columns mobile-hidden">
-
                     @foreach ($solutions as $solution)
                         <div class="footer-lists">
                             <div class="footer-title">{{ $solution->name }}</div>
@@ -74,7 +73,6 @@ foreach ($projects as $project) {
                             @endif
                         </div>
                     @endforeach
-
                 </div>
                 <div class="grid_12 footer-line mobile-hidden"></div>
                 <div class="grid_12 copy-block">
