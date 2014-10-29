@@ -443,6 +443,8 @@ section a:hover {
 }
 .aims li .aim {
   padding: 1.25rem;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
 }
 .aims li .aim:before {
   content: attr(data-number);
