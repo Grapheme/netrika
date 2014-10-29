@@ -286,6 +286,7 @@
 
 @section('scripts')
 <script>
-var photos = {{ json_encode($photos) }};
+    $('.aims').setHeightOfMax('.aim');
+    var photos = {{ json_encode($photos) }};
 </script>
 @stop
