@@ -991,6 +991,11 @@ section a:hover {
   position: relative;
   z-index: 2;
 }
+.title-block .title-content {
+  /*.title-btn {
+			margin-top: 30rem / @hfs;
+		}*/
+}
 .title-block .title-content h1 {
   color: inherit;
   margin: 0;
@@ -1000,9 +1005,6 @@ section a:hover {
 }
 .title-block .title-content.min-pad {
   padding: 1.25rem 0 3.75rem;
-}
-.title-block .title-content .title-btn {
-  margin-top: 1.875rem;
 }
 .title-block .title-content .sol-dots {
   margin-top: 0.9375rem;
