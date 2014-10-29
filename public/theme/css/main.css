@@ -2144,8 +2144,7 @@ section a:hover {
   border-color: transparent transparent #fff transparent;
 }
 .news-item .news-preview {
-  padding: 1.875rem 1.875rem 0 1.875rem;
-  margin-bottom: 1.875rem;
+  padding: 1.875rem;
 }
 .news-item .news-preview .title {
   display: inline-block;
