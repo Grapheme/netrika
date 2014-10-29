@@ -4026,6 +4026,9 @@ Move to separate stylesheet if invalid CSS is a problem.
   .mobile-top-lmar {
     margin-top: 2.5rem !important;
   }
+  .mobile-mar-nonleft {
+    margin-left: 0 !important;
+  }
   .download-block .fl-r {
     display: block;
     float: none;

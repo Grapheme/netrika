@@ -119,7 +119,7 @@ unset($temp);
                     $limit = 4;
                     $list = array_chunk($technologies, $limit, 1);
                     ?>
-                    <div class="grid_6 grid_t12 grid_m12 alpha omega js-netrika-slider">
+                    <div class="grid_6 grid_t12 grid_m12 alpha omega js-netrika-slider mobile-top-mar">
                         <div class="js-slider-window">
                             @foreach ($list as $lst)
                             <ul class="aims aims-light aims-small js-slide"><!--
