@@ -109,7 +109,7 @@ foreach ($newslist as $new) {
                         </h1>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="grid_4 grid_t6 head-form">
+                    <div class="grid_4 grid_t6 grid_m12 head-form">
                         <div class="head-desc">Получайте последние новости</div>
                         <form id="subscribe" method="POST" action="{{ URL::route('add-email-listener') }}">
                             <input name="email" class="head-input" type="email" placeholder="email@email.com" required>
@@ -125,29 +125,35 @@ foreach ($newslist as $new) {
 
         <section class="us-section">
             <div class="container_12">
-                <div class="grid_2 grid_t6 news-search">
-                    <form>
-                        <div class="title">По тегам</div>
-                        <ul class="tags-ul tags-hover js-tags">
-                            <!-- <li class="tag-all" data-filter="all">Все
-                            <li class="tag-auto" data-filter="auto">Автоматизация
-                            <li class="tag-stat" data-filter="stat">Статистика
-                            <li class="tag-event" data-filter="event">Выставки
-                            <li class="tag-int" data-filter="int">Интеграция -->
-                        </ul>
+                <div class="grid_4 grid_t12 grid_m12 news-adp-filters">
+                    <div class="grid_2 grid_t6 grid_m12 alpha news-search">
+                        <form>
+                            <div class="title">По тегам</div>
+                            <ul class="tags-ul tags-hover js-tags">
+                                <!-- <li class="tag-all" data-filter="all">Все
+                                <li class="tag-auto" data-filter="auto">Автоматизация
+                                <li class="tag-stat" data-filter="stat">Статистика
+                                <li class="tag-event" data-filter="event">Выставки
+                                <li class="tag-int" data-filter="int">Интеграция -->
+                            </ul>
+                            
+                        </form>
+                    </div>
+                    <div class="grid_2 grid_t6 grid_m12 omega news-search js-date-range mobile-top-mar">
+                        <div class="title">По дате</div>
+                        <div class="search-date">
+                            <input type="text" class="date-input js-date-from">
+                        </div>
+                        <div class="search-date">
+                            <input type="text" class="date-input js-date-to">
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="grid_2 alpha mobile-top-mar">
                         <button class="title-btn js-apply-filter">Применить</button>
-                    </form>
-                </div>
-                <div class="grid_2 grid_t6 news-search js-date-range">
-                    <div class="title">По дате</div>
-                    <div class="search-date">
-                        <input type="text" class="date-input js-date-from">
-                    </div>
-                    <div class="search-date">
-                        <input type="text" class="date-input js-date-to">
                     </div>
                 </div>
-                <div class="grid_8 grid_t12 news-first js-news-first adp-top-mar">
+                <div class="grid_8 grid_t12 grid_m12 news-first js-news-first adp-top-mar">
                     <!-- <div class="grid_4 alpha">
                         <a href="news-one.html" class="news-photo" style="background-image: url(img/projects/images/news-photo.jpg);">
                             <span class="news-date"><span class="day">27</span> / 04 / 2014</span>
