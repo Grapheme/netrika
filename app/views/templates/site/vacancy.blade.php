@@ -87,14 +87,14 @@ unset($temp);
         </section>
         <section class="us-section">
             <div class="container_12">
-                <div class="grid_6">
+                <div class="grid_6 grid_t12">
                     <h2>Команда разработки</h2>
                     <div class="clearfix"></div>
                     <div class="developer-group">
-                        <div class="grid_4 alpha">
+                        <div class="grid_4 grid_t6 alpha">
                             <canvas id="developers-canvas" width="320" height="320"></canvas>
                         </div>
-                        <div class="grid_2 omega">
+                        <div class="grid_2 grid_t6 omega">
                             <div class="developer-type">
                                 <ul class="developer-list">
                                     @foreach ($devteam as $dev)
@@ -105,7 +105,7 @@ unset($temp);
                         </div>
                     </div>
                 </div>
-                <div class="grid_6 js-netrika-parent">
+                <div class="grid_6 grid_t12 grid_m12 js-netrika-parent">
                     <div class="alpha grid_3">
                         <h2>Технологии</h2>
                     </div>
