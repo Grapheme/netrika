@@ -18,12 +18,12 @@
             <section class="title-block title-main">
                 <div class="container_12">
                     <section class="title-content max-pad">
-                        <div class="grid_8">
+                        <div class="grid_8 grid_m12">
                             <h1>
                                 {{ $project->name }}
                             </h1>
                         </div>
-                        <div class="grid_3 prefix_1 head-nav">
+                        <div class="grid_3 grid_m12 prefix_1 head-nav">
                             <div class="prj-arrows">
                                 @if (isset($prev_project) && is_object($prev_project) && $prev_project->id)
                                 <a href="{{ URL::route('project-one', $prev_project->slug) }}" class="desc-icon prev"></a>
