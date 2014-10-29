@@ -21,7 +21,9 @@
   column-gap: 2.5rem;
 }
 .columns-2 li {
-  break-inside: avoid-column;
+  -webkit-column-break-inside: avoid;
+     page-break-inside: avoid;
+          break-inside: avoid-column;
 }
 .svg-font {
   speak: none;
@@ -145,15 +147,32 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-@keyframes mappulse {
+@-webkit-keyframes mappulse {
   0% {
-    transform: scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
   }
   100% {
-    transform: scale(1);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes mappulse {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
   }
 }
 h1 {
@@ -181,7 +200,8 @@ p {
 section a {
   color: #313736;
   text-decoration: none;
-  transition: color .2s ease;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
 }
 section a:hover {
   color: #1dcba4;
@@ -198,7 +218,8 @@ section a:hover {
   text-transform: uppercase;
   font-size: 0.75em;
   font-weight: 500;
-  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
   background: transparent;
   outline: 0 none;
 }
@@ -286,7 +307,8 @@ section a:hover {
   width: 1.875rem;
   height: 1.875rem;
   color: #1dcba4;
-  transition: color .2s ease;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
   margin-right: 1.25rem;
   text-decoration: none;
   font-size: 1.875rem;
@@ -331,7 +353,8 @@ section a:hover {
 }
 .sol-dots li:before {
   content: "";
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -409,7 +432,8 @@ section a:hover {
   list-style: none;
 }
 .aims li {
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   display: inline-block;
   vertical-align: top;
   width: 25%;
@@ -745,7 +769,8 @@ section a:hover {
   display: inline-block;
   float: right;
   opacity: 0;
-  transition: opacity .5s ease;
+  -webkit-transition: opacity .5s ease;
+          transition: opacity .5s ease;
 }
 .main-header .main-nav.loaded {
   opacity: 1;
@@ -765,17 +790,20 @@ section a:hover {
 .main-header .main-nav ul li a {
   text-decoration: none;
   color: #babcbc;
-  transition: color .2s ease;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
 }
 .main-header .main-nav ul li a:hover,
 .main-header .main-nav ul li a.active {
   color: #1dcba4;
 }
 .main-header .main-nav ul li.js-main-links.animate {
-  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+          transition: all .5s ease;
 }
 .main-header .main-nav ul li.js-main-links.animate.active {
-  transition: all 0.5s ease-in-out 0.25s;
+  -webkit-transition: all 0.5s ease-in-out 0.25s;
+          transition: all 0.5s ease-in-out 0.25s;
 }
 .main-header .main-nav ul li.optional {
   position: relative;
@@ -790,10 +818,12 @@ section a:hover {
   color: #babcbc;
 }
 .main-header .main-nav ul li.optional.animate {
-  transition: all .5s ease 0s;
+  -webkit-transition: all .5s ease 0s;
+          transition: all .5s ease 0s;
 }
 .main-header .main-nav ul li.optional.animate.active {
-  transition: all .5s ease .35s;
+  -webkit-transition: all .5s ease .35s;
+          transition: all .5s ease .35s;
 }
 .main-header .main-nav ul li.optional.active {
   opacity: 1;
@@ -812,7 +842,8 @@ section a:hover {
   height: 4px;
   border-radius: 4px;
   border: 1px solid #fff;
-  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
 }
 .main-header .main-nav ul li.menu-icon span:before,
 .main-header .main-nav ul li.menu-icon span:after {
@@ -824,13 +855,18 @@ section a:hover {
   height: 4px;
   border-radius: 4px;
   border: 1px solid #fff;
-  transition: inherit;
+  -webkit-transition: inherit;
+          transition: inherit;
 }
 .main-header .main-nav ul li.menu-icon span:before {
-  transform: translateX(-150%);
+  -webkit-transform: translateX(-150%);
+      -ms-transform: translateX(-150%);
+          transform: translateX(-150%);
 }
 .main-header .main-nav ul li.menu-icon span:after {
-  transform: translateX(150%);
+  -webkit-transform: translateX(150%);
+      -ms-transform: translateX(150%);
+          transform: translateX(150%);
 }
 .main-header .main-nav ul li.menu-icon:hover span {
   background: #fff;
@@ -842,10 +878,14 @@ section a:hover {
   border-color: #fff;
 }
 .main-header .main-nav ul li.menu-icon:hover span:before {
-  transform: translateX(150%);
+  -webkit-transform: translateX(150%);
+      -ms-transform: translateX(150%);
+          transform: translateX(150%);
 }
 .main-header .main-nav ul li.menu-icon:hover span:after {
-  transform: translateX(-150%);
+  -webkit-transform: translateX(-150%);
+      -ms-transform: translateX(-150%);
+          transform: translateX(-150%);
 }
 .main-header .main-nav ul li.menu-icon.active span {
   background: #1dcba4;
@@ -857,10 +897,14 @@ section a:hover {
   border-color: #1dcba4;
 }
 .main-header .main-nav ul li.menu-icon.active span:before {
-  transform: translateX(150%);
+  -webkit-transform: translateX(150%);
+      -ms-transform: translateX(150%);
+          transform: translateX(150%);
 }
 .main-header .main-nav ul li.menu-icon.active span:after {
-  transform: translateX(-150%);
+  -webkit-transform: translateX(-150%);
+      -ms-transform: translateX(-150%);
+          transform: translateX(-150%);
 }
 .main-header .mobile-menu-icon {
   display: none;
@@ -882,7 +926,8 @@ section a:hover {
   width: 22px;
   height: 2px;
   background: #fff;
-  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
 }
 .main-header .mobile-menu-icon span:before,
 .main-header .mobile-menu-icon span:after {
@@ -893,22 +938,31 @@ section a:hover {
   width: 100%;
   height: 100%;
   background: #fff;
-  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
 }
 .main-header .mobile-menu-icon span:before {
-  transform: translateY(-300%);
+  -webkit-transform: translateY(-300%);
+      -ms-transform: translateY(-300%);
+          transform: translateY(-300%);
 }
 .main-header .mobile-menu-icon span:after {
-  transform: translateY(300%);
+  -webkit-transform: translateY(300%);
+      -ms-transform: translateY(300%);
+          transform: translateY(300%);
 }
 .main-header .mobile-menu-icon.active span {
   background: transparent;
 }
 .main-header .mobile-menu-icon.active span:before {
-  transform: translateY(0) rotate(-45deg);
+  -webkit-transform: translateY(0) rotate(-45deg);
+      -ms-transform: translateY(0) rotate(-45deg);
+          transform: translateY(0) rotate(-45deg);
 }
 .main-header .mobile-menu-icon.active span:after {
-  transform: translateY(0) rotate(45deg);
+  -webkit-transform: translateY(0) rotate(45deg);
+      -ms-transform: translateY(0) rotate(45deg);
+          transform: translateY(0) rotate(45deg);
 }
 .title-block {
   position: relative;
@@ -961,8 +1015,11 @@ section a:hover {
   opacity: 0;
   font-size: 2.25em;
   font-weight: 300;
-  transition: all .5s ease 0s;
-  transform: translateY(-10px);
+  -webkit-transition: all .5s ease 0s;
+          transition: all .5s ease 0s;
+  -webkit-transform: translateY(-10px);
+      -ms-transform: translateY(-10px);
+          transform: translateY(-10px);
 }
 .title-block .title-content .main-slider .js-main-slide p {
   margin: 0;
@@ -971,9 +1028,12 @@ section a:hover {
   font-size: 0.33333333em;
 }
 .title-block .title-content .main-slider .js-main-slide.active {
-  transition: all .5s ease .25s;
+  -webkit-transition: all .5s ease .25s;
+          transition: all .5s ease .25s;
   opacity: 1;
-  transform: translateX(0);
+  -webkit-transform: translateX(0);
+      -ms-transform: translateX(0);
+          transform: translateX(0);
 }
 .head-nav {
   margin-top: 0.625rem;
@@ -985,7 +1045,8 @@ section a:hover {
 .head-nav a:not(.desc-icon) {
   color: #fff;
   margin-left: 0.625rem;
-  transition: color .2s ease;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
 }
 .head-nav.nav-dark a:not(.desc-icon) {
   color: #313736;
@@ -1061,11 +1122,16 @@ section a:hover {
   background: #424a53;
   z-index: 99;
   top: 3.75rem;
-  transform: translateY(-100%);
-  transition: transform .2s ease;
+  -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%);
+  -webkit-transition: -webkit-transform .2s ease;
+          transition: transform .2s ease;
 }
 .mobile-menu.active {
-  transform: translateY(0);
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
 }
 .mobile-menu .mobile-main-menu {
   padding-bottom: 1.5625rem;
@@ -1086,12 +1152,15 @@ section a:hover {
   font-size: 0.875em;
 }
 .mobile-menu .mobile-main-menu ul li {
-  break-inside: avoid-column;
+  -webkit-column-break-inside: avoid;
+     page-break-inside: avoid;
+          break-inside: avoid-column;
 }
 .mobile-menu .mobile-main-menu ul a {
   color: #babcbc;
   text-decoration: none;
-  transition: color .2s ease;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
 }
 .mobile-menu .mobile-main-menu ul a:hover {
   color: #1dcba4;
@@ -1109,7 +1178,8 @@ section a:hover {
 .mobile-menu .mobile-add-menu ul a {
   color: #1dcba4;
   text-decoration: none;
-  transition: color .2s ease;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
 }
 .mobile-menu .mobile-add-menu ul a:hover {
   color: #babcbc;
@@ -1137,7 +1207,8 @@ section a:hover {
 .main-footer .footer-list li a {
   color: #babcbc;
   text-decoration: none;
-  transition: color .2s ease;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
 }
 .main-footer .footer-list li a:hover {
   color: #1dcba4;
@@ -1197,7 +1268,8 @@ section a:hover {
   margin-right: 2.5rem;
 }
 .main-footer .footer-soc a {
-  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
   text-decoration: none;
   color: #787e80;
 }
@@ -1222,7 +1294,8 @@ section a:hover {
 .main-footer .copy-right a {
   color: #fff;
   text-decoration: none;
-  transition: color .2s ease;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
 }
 .main-footer .copy-right a:hover {
   color: #1dcba4;
@@ -1265,7 +1338,9 @@ section a:hover {
 }
 .solution-block .hover-circle {
   position: absolute;
-  transform: scale(1);
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
   z-index: 3;
   opacity: 0;
   top: 50%;
@@ -1275,10 +1350,14 @@ section a:hover {
   margin-left: -5.625rem;
   margin-top: -5.625rem;
   border-radius: 11.25rem;
-  transition-property: transform, opacity;
-  transition-duration: 0s;
-  transition-timing-function: ease;
-  transition-delay: 0s;
+  -webkit-transition-property: -webkit-transform, opacity;
+          transition-property: transform, opacity;
+  -webkit-transition-duration: 0s;
+          transition-duration: 0s;
+  -webkit-transition-timing-function: ease;
+          transition-timing-function: ease;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 .audience {
   background: #f5f5f5;
@@ -1297,7 +1376,8 @@ section a:hover {
   font-size: 1rem;
   display: inline-block;
   vertical-align: top;
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   padding: 0.125rem 0.0625rem 0;
   width: 18.75rem;
 }
@@ -1309,7 +1389,8 @@ section a:hover {
 }
 .audience .aud-container .aud-slide .aud-block .aud-text:before {
   content: "";
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   display: inline-block;
   width: 2.5rem;
   height: 2.5rem;
@@ -1334,7 +1415,8 @@ section a:hover {
 .tags-ul li:before {
   content: "";
   position: absolute;
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   left: 0;
   top: 50%;
   width: 0.5rem;
@@ -1464,7 +1546,8 @@ section a:hover {
 }
 .stat-nav .stat-items {
   position: relative;
-  transition: left .5s ease;
+  -webkit-transition: left .5s ease;
+          transition: left .5s ease;
   height: 100%;
 }
 .stat-nav .stat-items .stat-item {
@@ -1476,7 +1559,8 @@ section a:hover {
   font-size: 0.875em;
   color: #454f52;
   padding-top: 2.5rem;
-  transition: color .1s ease;
+  -webkit-transition: color .1s ease;
+          transition: color .1s ease;
 }
 .stat-nav .stat-items .stat-item:first-child {
   margin-left: 0;
@@ -1508,7 +1592,8 @@ section a:hover {
 }
 .projects .solution-block {
   position: relative;
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   height: 16.875rem;
   margin-bottom: 2.5rem;
   overflow: hidden;
@@ -1562,16 +1647,22 @@ section a:hover {
   width: 5.625rem;
   height: 5.625rem;
   border-radius: 5.625rem;
-  transition: all .2s ease 0s;
+  -webkit-transition: all .2s ease 0s;
+          transition: all .2s ease 0s;
 }
 .projects .solution-block:hover .hover-circle {
   opacity: .9;
-  transform: scale(5);
-  transition-duration: .5s;
-  transition-delay: 0s, .05s;
+  -webkit-transform: scale(5);
+      -ms-transform: scale(5);
+          transform: scale(5);
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+  -webkit-transition-delay: 0s, .05s;
+          transition-delay: 0s, .05s;
 }
 .projects .solution-block:hover:after {
-  transition: all .2s ease .25s;
+  -webkit-transition: all .2s ease .25s;
+          transition: all .2s ease .25s;
   opacity: 1;
 }
 .projects .solution-block.type-all {
@@ -1608,17 +1699,20 @@ section a:hover {
   color: #babcbc;
   font-size: 0.875em;
   text-transform: uppercase;
-  transition: color .2s ease;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
 }
 .prj-ul li a .us-icon {
   margin-right: 0.625em;
   color: inherit;
-  transition: color .2s ease;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
 }
 .prj-ul li a .amount {
   margin-left: 0.3125rem;
   opacity: 0;
-  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
 }
 .prj-ul li a:hover .text,
 .prj-ul li a.active .text {
@@ -1634,7 +1728,8 @@ section a:hover {
 .progress-slider .ps-block {
   position: relative;
   display: inline-block;
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   vertical-align: top;
   width: 33.33333333%;
   height: 14.375rem;
@@ -1684,7 +1779,8 @@ section a:hover {
   height: 36.4375rem;
   background: url(../img/svg/map.svg) no-repeat center center;
   background-size: 1081px auto;
-  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+          transition: all 1s ease;
 }
 .map-container .map-dot {
   position: absolute;
@@ -1709,12 +1805,15 @@ section a:hover {
   background: #1dcba4;
 }
 .map-container .map-dot:hover .map-rad {
-  transition: all .75s ease;
-  animation: mappulse .75s infinite;
+  -webkit-transition: all .75s ease;
+          transition: all .75s ease;
+  -webkit-animation: mappulse .75s infinite;
+          animation: mappulse .75s infinite;
 }
 .map-container .map-desc {
   position: absolute;
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   top: 0;
   right: 0;
   width: 50%;
@@ -1832,13 +1931,18 @@ section a:hover {
 }
 .solutions .solution:hover .hover-circle {
   opacity: .9;
-  transform: scale(5);
-  transition-duration: .5s;
-  transition-delay: 0s, .05s;
+  -webkit-transform: scale(5);
+      -ms-transform: scale(5);
+          transform: scale(5);
+  -webkit-transition-duration: .5s;
+          transition-duration: .5s;
+  -webkit-transition-delay: 0s, .05s;
+          transition-delay: 0s, .05s;
 }
 .solutions .solution:hover .solution-hover {
   opacity: 1;
-  transition: opacity .25s ease .1s;
+  -webkit-transition: opacity .25s ease .1s;
+          transition: opacity .25s ease .1s;
 }
 .comps-ul {
   margin: 0;
@@ -1858,7 +1962,8 @@ section a:hover {
 }
 .comps-ul li .title:before {
   content: "";
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   display: inline-block;
   vertical-align: middle;
   height: 2.5rem;
@@ -1901,7 +2006,8 @@ section a:hover {
   font-weight: 500;
   color: #313736;
   cursor: pointer;
-  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
 }
 .sol-tabs li:before {
   content: "";
@@ -1914,7 +2020,8 @@ section a:hover {
   border-style: solid;
   border-width: 5px 5px 0 5px;
   border-color: transparent transparent transparent transparent;
-  transition: border-color 0.2s ease;
+  -webkit-transition: border-color 0.2s ease;
+          transition: border-color 0.2s ease;
 }
 .sol-tabs li:last-child {
   margin-right: 0;
@@ -2137,7 +2244,8 @@ section a:hover {
 .vacancy-ul li {
   display: inline-block;
   vertical-align: top;
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   width: 25%;
   padding: 0 1px;
   margin-top: 2px;
@@ -2412,7 +2520,8 @@ section a:hover {
   text-align: center;
   display: none;
   opacity: 0;
-  transition: opacity .2s ease;
+  -webkit-transition: opacity .2s ease;
+          transition: opacity .2s ease;
 }
 .popups .popup {
   display: none;
@@ -2455,12 +2564,14 @@ section a:hover {
 .popups .popup.order-present .popup-body .input-wrp input,
 .popups .popup.order-present .popup-body .input-wrp textarea {
   font-family: "proxima_nova";
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   background: #fff;
   width: 100%;
   outline: 0 none;
   border: 0 none;
-  transition: background .2s ease;
+  -webkit-transition: background .2s ease;
+          transition: background .2s ease;
 }
 .popups .popup.order-present .popup-body .input-wrp input:focus,
 .popups .popup.order-present .popup-body .input-wrp textarea:focus {
@@ -2485,9 +2596,12 @@ section a:hover {
   font-family: "elements";
   right: 2.5rem;
   top: 1.09375rem;
-  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+      -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
   cursor: pointer;
-  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
 }
 .popups .popup.order-present .popup-body .input-wrp .select-btn:before {
   content: "\e60e";
@@ -2504,7 +2618,8 @@ section a:hover {
   cursor: pointer;
 }
 .popups .popup.order-present .popup-body .input-wrp .multiple-select .select-line {
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   width: 100%;
 }
 .popups .popup.order-present .popup-body .input-wrp .multiple-select .select-list {
@@ -2555,7 +2670,9 @@ section a:hover {
   display: block;
 }
 .popups .popup.order-present .popup-body .input-wrp .multiple-select.open .select-btn {
-  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
   color: #1dcba4;
 }
 .popups .popup.order-present .popup-body .input-wrp .multiple-select.selected .selected-list {
@@ -2706,7 +2823,8 @@ section a:hover {
   font-size: 22px;
   font-weight: 400 !important;
   cursor: pointer;
-  transition: color .2s ease;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
 }
 .ui-datepicker .ui-datepicker-next span,
 .ui-datepicker .ui-datepicker-prev span {
@@ -2764,7 +2882,8 @@ section a:hover {
   content: "";
   position: absolute;
   display: inline-block;
-  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
   width: 30px;
   height: 30px;
   border-radius: 30px;
@@ -2785,7 +2904,8 @@ section a:hover {
   font-size: 0;
 }
 .js-netrika-slider .js-slider-window {
-  transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+          transition: all .2s ease;
 }
 .js-netrika-slider .js-slide {
   display: inline-block;
@@ -3381,7 +3501,9 @@ Move to separate stylesheet if invalid CSS is a problem.
     width: 22.125rem !important;
   }
   .js-main-links {
-    transform: translateX(0) !important;
+    -webkit-transform: translateX(0) !important;
+        -ms-transform: translateX(0) !important;
+            transform: translateX(0) !important;
   }
   .main-stat .canvas-cirs,
   .main-stat .stat-right-block {
@@ -3758,7 +3880,9 @@ Move to separate stylesheet if invalid CSS is a problem.
     margin-bottom: 1.25rem;
   }
   .footer-main-nav li {
-    break-inside: avoid-column;
+    -webkit-column-break-inside: avoid;
+       page-break-inside: avoid;
+            break-inside: avoid-column;
   }
   .footer-adress {
     border-bottom: 1px solid #3e454d;
