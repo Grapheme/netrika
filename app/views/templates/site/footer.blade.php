@@ -96,7 +96,7 @@ foreach ($projects as $project) {
                     {{ Form::hidden('solution_id', '') }}
 
                     <div class="input-wrp">
-                        <input type="text" name="name" placeholder="Имя">
+                        <input type="text" name="name" placeholder="Имя *">
                     </div>
                     <div class="input-wrp">
                         <input type="text" name="org" placeholder="Организация">
@@ -105,7 +105,7 @@ foreach ($projects as $project) {
                         <input type="text" name="role" placeholder="Должность">
                     </div>
                     <div class="input-wrp">
-                        <input type="text" name="email" placeholder="E-mail">
+                        <input type="text" name="email" placeholder="E-mail *">
                     </div>
                     <div class="input-wrp">
                         <input type="text" name="phone" placeholder="Номер телефона">
