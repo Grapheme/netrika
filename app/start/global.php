@@ -174,3 +174,10 @@ require app_path().'/filters.php';
 #*/
 
 #Event::listen('illuminate.query', function($query){ echo $query . "<br/>\n"; });
+
+
+/**
+ * If developer is logined - debug mode is ON
+ */
+if (Allow::superuser())
+    Config::set('app.debug', TRUE);

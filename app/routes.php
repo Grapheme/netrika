@@ -1,11 +1,5 @@
 <?php
 
-/**
- * If developer is logined - debug mode is ON
- */
-if (Allow::superuser())
-    Config::set('app.debug', TRUE);
-
 $prefix = Auth::check() ? AuthAccount::getStartPage() : 'guest';
 
 /*
