@@ -105,7 +105,7 @@ unset($temp);
                         </div>
                     </div>
                 </div>
-                <div class="grid_6 grid_t12 grid_m12 js-netrika-parent">
+                <div class="grid_6 grid_t12 grid_m12 js-netrika-parent tablet-top-lmar mobile-top-lmar">
                     <div class="alpha grid_3 grid_t9">
                         <h2>Технологии</h2>
                     </div>
@@ -119,7 +119,7 @@ unset($temp);
                     $limit = 4;
                     $list = array_chunk($technologies, $limit, 1);
                     ?>
-                    <div class="grid_6 grid_t12 grid_m12 alpha omega js-netrika-slider tablet-top-lmar mobile-top-lmar">
+                    <div class="grid_6 grid_t12 grid_m12 alpha omega js-netrika-slider">
                         <div class="js-slider-window">
                             @foreach ($list as $lst)
                             <ul class="aims aims-light aims-small js-slide"><!--
