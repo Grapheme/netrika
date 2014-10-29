@@ -116,7 +116,7 @@
 	            column-gap: auto;
 	}
 
-	.vacancy-ul li {
+	.vacancy-ul li, .aims li, .progress-slider .ps-block {
 		width: 100%;
 	}
 
@@ -161,7 +161,7 @@
 	}
 
 	.mobile-top-mar {
-		margin-top: 20rem / @hfs;
+		margin-top: 20rem / @hfs !important;
 	}
 
 	.mobile-top-lmar {
@@ -187,5 +187,30 @@
 		h2 {
 			margin-top: 40rem / @hfs;
 		}
+	}
+
+	.head-nav {
+		padding-left: 0 !important;
+
+		a:last-child {
+			margin-left: 0;
+		}
+	}
+
+	.head-info {
+		a {
+			display: inline-block;
+			margin: 10rem / @hfs 0;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.prj-arrows {
+		display: block;
+		margin-bottom: 25rem / @hfs;
+		margin-top: 20rem / @hfs;
 	}
 }
