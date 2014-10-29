@@ -3598,6 +3598,9 @@ Move to separate stylesheet if invalid CSS is a problem.
     display: block;
     margin: 0 0 1.5625rem 0.625rem;
   }
+  .js-news-all .js-news-grid:nth-of-type(3) {
+    display: none;
+  }
 }
 @media screen and (max-width: 768px) {
   /*
@@ -4069,6 +4072,10 @@ Move to separate stylesheet if invalid CSS is a problem.
     height: auto;
     line-height: normal;
     margin-top: 1.25rem;
+  }
+  .js-news-all .js-news-grid:nth-of-type(3),
+  .js-news-all .js-news-grid:nth-of-type(2) {
+    display: none;
   }
 }
 @media screen and (max-width: 1200px) {
