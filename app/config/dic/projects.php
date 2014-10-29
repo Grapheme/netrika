@@ -88,7 +88,7 @@ return array(
                 'type' => 'gallery',
                 'params' => array(
                     'maxFilesize' => 1, // MB
-                    'maxFiles' => 2,
+                    #'maxFiles' => 2,
                 ),
                 'handler' => function($array, $element) {
                     return ExtForm::process('gallery', array(

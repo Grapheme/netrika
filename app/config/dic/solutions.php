@@ -135,6 +135,7 @@ if (len > 0) {
                     }
                     return ExtForm::process('upload', $value);
                 },
+                'first_note' => 'В формате PDF, максимальный размер - 10 Mb',
             ),
             /*
             'tags_id' => array(
@@ -253,10 +254,12 @@ JS
     var validation_rules = {
 		'name': { required: true },
 		'fields[describes_purpose_decision]': { required: true },
+		'fields[link_to_file_presentation][file]': { accept: "pdf", filesize: 10485760 },
 	};
 	var validation_messages = {
 		'name': { required: "Укажите название" },
 		'fields[describes_purpose_decision]': { required: "Заполните обязательное поле" },
+		'fields[link_to_file_presentation][file]': { accept: "Только файлы PDF", filesize: "Максимальный размер файла - 10 Mb" },
 	};
 JS
     ,

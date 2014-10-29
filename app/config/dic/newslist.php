@@ -73,7 +73,7 @@ return array(
                         'gallery' => $array,
                         'single'  => true,
                     ));
-                }
+                },
                 'first_note' => 'Оптимальный размер: 400x300',
             ),
 
