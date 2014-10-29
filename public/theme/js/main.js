@@ -711,11 +711,20 @@ $.fn.line_slider = function() {
 	init();
 }
 
+$.fn.solutions_touch = function() {
+	var parent = $(this);
+	if (Modernizr.touch) {
+		parent.on('click', function(){
+			var url = parent.find('.hover-content .title-btn').attr('href');
+			window.location.href = url;
+		});
+	}
+}
+
 $.fn.netrika_slider = function() {
 	$(this).each(function(){
 		var parent = $(this);
 		var slides_length = parent.find('.js-slide').length;
-		var step = parent.find('.js-netrika-slider').width();
 		var slider_window = parent.find('.js-slider-window');
 		var arrows = parent.find('.js-netrika-control');
 		var dot_container = parent.find('.js-netrika-dots');
@@ -740,6 +749,7 @@ $.fn.netrika_slider = function() {
 		});
 
 		var goto = function(id) {
+			var step = parent.find('.js-netrika-slider').width();
 			slider_window.attr('style', transform('translateX(' + (id * step *(-1)) + 'px)'));
 			active_slide = id;
 			setArrows();

@@ -49,7 +49,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
             <div class="container_12">
                 <div class="grid_12">
                     <section class="title-content min-pad">
-                        <div class="grid_9 alpha">
+                        <div class="grid_9 grid_t12 grid_m12 alpha">
                             <h1>
                                 @if (isset($page->seo) && @is_object($page->seo) && $page->seo->h1 != '')
                                     {{ $page->seo->h1 }}
@@ -73,7 +73,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                 <?
                 $image = @$images[$solution->mainpage_image] ?: new Photo;
                 ?>
-                    <div class="solution type-{{ $solution->slug }}">
+                    <div class="solution type-{{ $solution->slug }} grid_m12">
                         <div class="solution-left solution-block" style="background-image: url({{ $image->full() }});">
                             <div class="hover-circle"></div>
                             <div class="solution-hover">
@@ -135,6 +135,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
 
 @section('scripts')
     <script>
+        $('.solution').solutions_touch();
         $('.js-netrika-parent').netrika_slider();
     </script>
 @stop
