@@ -4033,6 +4033,13 @@ Move to separate stylesheet if invalid CSS is a problem.
   .only-mobile h2 {
     margin-top: 2.5rem;
   }
+  .head-nav {
+    padding-left: 0;
+  }
+  .prj-arrows {
+    display: block;
+    margin-bottom: 1.5625rem;
+  }
 }
 @media screen and (max-width: 1200px) {
   .us-desc {
