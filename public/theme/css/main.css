@@ -3515,6 +3515,9 @@ Move to separate stylesheet if invalid CSS is a problem.
   .prj-ul {
     font-size: 0.875em;
   }
+  .benefits .benefit-text {
+    width: 11.5rem;
+  }
 }
 @media screen and (max-width: 768px) {
   /*
