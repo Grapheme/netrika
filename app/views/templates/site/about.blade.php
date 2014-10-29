@@ -30,7 +30,7 @@ foreach ($clients as $client) {
         <section class="title-block title-main">
             <div class="container_12">
                 <section class="title-content max-pad">
-                    <div class="grid_8">
+                    <div class="grid_8 grid_t12 grid_m12">
 
                         {{ $page->block('mission') }}
 
