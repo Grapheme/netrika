@@ -4146,5 +4146,6 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .adp-no-mar {
     margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }
