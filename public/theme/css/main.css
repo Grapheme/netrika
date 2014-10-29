@@ -2759,6 +2759,11 @@ section a:hover {
   line-height: 3.125rem;
   background: #fff;
   cursor: pointer;
+  -webkit-transition: background .2s ease;
+          transition: background .2s ease;
+}
+.popups .popup.order-present .popup-body .input-wrp .solution-select .solution-line.inp-error {
+  background: #ffe5e5;
 }
 .popups .popup.order-present .popup-body .input-wrp .solution-select .solution-list {
   margin: 0;
