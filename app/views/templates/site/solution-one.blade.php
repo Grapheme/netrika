@@ -42,12 +42,12 @@ $solution4form = $solution;
         <div class="type-{{ $solution->slug }}">
             <section class="main-stat">
                 <div class="container_12">
-                    <div class="grid_4 grid_t12 gird_m12 stat-desc">
+                    <div class="grid_4 grid_t12 grid_m12 stat-desc">
                         <p>
                             {{ $solution->describes_purpose_decision }}
                         </p>
                     </div>
-                    <div class="grid_4 grid_t6 canvas-cirs">
+                    <div class="grid_4 grid_t6 grid_m12 canvas-cirs">
                         <canvas id="canvas-cir-0" width="360" height="360"></canvas>
                         <canvas id="canvas-cir-1" width="360" height="360"></canvas>
                         <canvas id="canvas-cir-2" width="360" height="360"></canvas>
@@ -55,7 +55,7 @@ $solution4form = $solution;
                         <i class="color-1"></i>
                         <i class="color-2"></i>
                     </div>
-                    <div class="grid_4 grid_t6 stat-right-block">
+                    <div class="grid_4 grid_t6 grid_m12 stat-right-block">
                         <ul class="stat-ul">
                         {{-- $solution->performance_indicators --}}
                         <?
@@ -96,10 +96,10 @@ $solution4form = $solution;
             @if (count($target_audience) > 0)
             <section class="audience">
                 <div class="container_12 js-netrika-parent">
-                    <div class="grid_9">
+                    <div class="grid_9 grid_m12">
                         <h2>Целевая аудитория</h2>
                     </div>
-                    <div class="grid_3  js-netrika-controls">
+                    <div class="grid_3 grid_m12 js-netrika-controls">
                         <a href="#" class="desc-icon prev js-netrika-control disable" data-direction="<"></a>
                         <a href="#" class="desc-icon next js-netrika-control" data-direction=">"></a>
                     </div>
@@ -154,7 +154,7 @@ $solution4form = $solution;
                     </div>
                     @endif
 
-                    <div class="aud-container js-netrika-slider">
+                    <div class="aud-container js-netrika-slider mobile-top-mar">
                         <div class="js-slider-window">
                             <?
                             $limit = count($target_audience) > 8 ? 8 : 4;
@@ -206,9 +206,9 @@ $solution4form = $solution;
                         ?>
 
                         @if ($scheme->name != '')
-                        <h2>Схема работы</h2>
+                        <h2 class="mobile-top-lmar">Схема работы</h2>
 
-                        <div style="text-align:center">
+                        <div class="scheme-image">
                             <img src="{{ $scheme->full() }}" alt="">
                         </div>
                         @endif
@@ -220,7 +220,7 @@ $solution4form = $solution;
             @endif
 
             @if ($solution->assignment_solution || $solution->description_advantages_solution || $solution->application_solution)
-            <section class="gray-section">
+            <section class="gray-section mobile-hidden">
                 <div class="container_12">
                     <div class="grid_12 js-st-parent">
                         <ul class="sol-tabs">
@@ -288,6 +288,76 @@ $solution4form = $solution;
                             @endif
 
                         </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </section>
+            @endif
+
+            @if ($solution->assignment_solution || $solution->description_advantages_solution || $solution->application_solution)
+            <section class="gray-section only-mobile">
+                <div class="container_12">
+                    <div class="grid_12">
+
+                            @if ($solution->assignment_solution)
+                            <h2>Назначение решения</h2>
+                            @endif
+
+                            @if ($solution->assignment_solution)
+                            <ul class="bul-ul columns-2">
+                                <?
+                                $lines = explode("\n", $solution->assignment_solution);
+                                ?>
+                                @foreach ($lines as $line)
+                                <?
+                                if (!trim($line))
+                                    continue;
+                                ?>
+                                <li>
+                                    {{ $line }}
+                                @endforeach
+                            </ul>
+                            @endif
+
+                            @if ($solution->description_advantages_solution)
+                            <h2>Преимущества решения</h2>
+                            @endif
+
+                            @if ($solution->description_advantages_solution)
+                            <ul class="bul-ul columns-2">
+                                <?
+                                $lines = explode("\n", $solution->description_advantages_solution);
+                                ?>
+                                @foreach ($lines as $line)
+                                <?
+                                if (!trim($line))
+                                    continue;
+                                ?>
+                                <li>
+                                    {{ $line }}
+                                @endforeach
+                            </ul>
+                            @endif
+
+                            @if ($solution->application_solution)
+                            <h2>Применение решения</h2>
+                            @endif
+
+                            @if ($solution->application_solution)
+                            <ul class="bul-ul columns-2">
+                                <?
+                                $lines = explode("\n", $solution->application_solution);
+                                ?>
+                                @foreach ($lines as $line)
+                                <?
+                                if (!trim($line))
+                                    continue;
+                                ?>
+                                <li>
+                                    {{ $line }}
+                                @endforeach
+                            </ul>
+                            @endif
                     </div>
                     <div class="clearfix"></div>
                 </div>
