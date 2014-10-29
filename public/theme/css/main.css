@@ -3879,7 +3879,7 @@ Move to separate stylesheet if invalid CSS is a problem.
   .canvas-cirs {
     position: relative;
     left: 50%;
-    margin-left: -180px;
+    margin-left: -180px !important;
   }
   .main-stat .stat-right-block {
     margin-top: 1.25rem;
