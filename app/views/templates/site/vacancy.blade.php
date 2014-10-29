@@ -117,25 +117,20 @@ unset($temp);
                     $technologies = $page->block('technologies');
                     $technologies = explode("\n", $technologies);
                     $limit = 4;
-                    $count = count($technologies);
-                    $p = 0;
+                    $list = array_chunk($technologies, $limit, 1);
                     ?>
                     <div class="grid_6 alpha omega js-netrika-slider">
                         <div class="js-slider-window">
-                            @foreach ($technologies as $t => $technology)
-                                @if (!$p++ || $p % $limit == 1)
+                            @foreach ($list as $lst)
                             <ul class="aims aims-light aims-small js-slide"><!--
-                                @endif
-
+                            @foreach ($lst as $t => $technology)
                                 --><li>
                                     <div class="aim" data-number="{{ ($t+1) }}">
                                         <div class="text">{{ $technology }}</div>
                                     </div>
                                 </li><!--
-
-                                @if ($p % ($limit) == 0 || $p >= $count)
+                            @endforeach
                             --></ul>
-                                @endif
                             @endforeach
                         </div>
                     </div>
