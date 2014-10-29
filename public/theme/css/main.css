@@ -4037,6 +4037,7 @@ Move to separate stylesheet if invalid CSS is a problem.
     padding-left: 0 !important;
   }
   .head-info a {
+    display: inline-block;
     margin: 0.625rem 0;
   }
   .head-info a:last-child {
