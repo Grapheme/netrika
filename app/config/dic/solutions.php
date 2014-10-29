@@ -281,6 +281,7 @@ JS
         <p>Туризм - tourism</p>
         <p>Суды - law</p>
         <p>Порталы - portals</p>
+        <p>Автоматизация - auto</p>
 HTML
 ,
 
