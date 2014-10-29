@@ -278,7 +278,7 @@ class PublicNetrikaController extends BaseController {
                 ->where($rand_tbl_alias . '.value', '=', $solution->id);
 
             $query->where($tbl_dicval.'.id', '!=', $project->id);
-            $query->where($tbl_dicval.'.created_at', '<=', $project->created_at);
+            $query->where($tbl_dicval.'.id', '<', $project->created_at);
             $query->take(1);
         });
         $prev_project = @$prev_project[0];
@@ -301,7 +301,7 @@ class PublicNetrikaController extends BaseController {
                 ->where($rand_tbl_alias . '.value', '=', $solution->id);
 
             $query->where($tbl_dicval.'.id', '!=', $project->id);
-            $query->where($tbl_dicval.'.created_at', '>=', $project->created_at);
+            $query->where($tbl_dicval.'.id', '>', $project->created_at);
             $query->take(1);
         });
         $next_project = @$next_project[0];
