@@ -508,6 +508,9 @@ section a:hover {
 .scheme-image img {
   max-width: 100%;
 }
+.only-mobile {
+  display: none;
+}
 .type-health.stat-item.active,
 .type-health.stat-item:hover,
 .type-health:hover .us-icon,
@@ -4008,6 +4011,12 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .download-block .fl-r a {
     display: block;
+  }
+  .only-mobile {
+    display: block;
+  }
+  .only-mobile h2 {
+    margin-top: 2.5rem;
   }
 }
 @media screen and (max-width: 1200px) {

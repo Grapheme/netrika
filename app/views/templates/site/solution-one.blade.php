@@ -220,7 +220,7 @@ $solution4form = $solution;
             @endif
 
             @if ($solution->assignment_solution || $solution->description_advantages_solution || $solution->application_solution)
-            <section class="gray-section">
+            <section class="gray-section mobile-hidden">
                 <div class="container_12">
                     <div class="grid_12 js-st-parent">
                         <ul class="sol-tabs">
@@ -288,6 +288,76 @@ $solution4form = $solution;
                             @endif
 
                         </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </section>
+            @endif
+
+            @if ($solution->assignment_solution || $solution->description_advantages_solution || $solution->application_solution)
+            <section class="gray-section only-mobile">
+                <div class="container_12">
+                    <div class="grid_12">
+
+                            @if ($solution->assignment_solution)
+                            <h2>Назначение решения</h2>
+                            @endif
+
+                            @if ($solution->assignment_solution)
+                            <ul class="bul-ul columns-2">
+                                <?
+                                $lines = explode("\n", $solution->assignment_solution);
+                                ?>
+                                @foreach ($lines as $line)
+                                <?
+                                if (!trim($line))
+                                    continue;
+                                ?>
+                                <li>
+                                    {{ $line }}
+                                @endforeach
+                            </ul>
+                            @endif
+
+                            @if ($solution->description_advantages_solution)
+                            <h2>Преимущества решения</h2>
+                            @endif
+
+                            @if ($solution->description_advantages_solution)
+                            <ul class="bul-ul columns-2">
+                                <?
+                                $lines = explode("\n", $solution->description_advantages_solution);
+                                ?>
+                                @foreach ($lines as $line)
+                                <?
+                                if (!trim($line))
+                                    continue;
+                                ?>
+                                <li>
+                                    {{ $line }}
+                                @endforeach
+                            </ul>
+                            @endif
+
+                            @if ($solution->application_solution)
+                            <h2>Применение решения</h2>
+                            @endif
+
+                            @if ($solution->application_solution)
+                            <ul class="bul-ul columns-2">
+                                <?
+                                $lines = explode("\n", $solution->application_solution);
+                                ?>
+                                @foreach ($lines as $line)
+                                <?
+                                if (!trim($line))
+                                    continue;
+                                ?>
+                                <li>
+                                    {{ $line }}
+                                @endforeach
+                            </ul>
+                            @endif
                     </div>
                     <div class="clearfix"></div>
                 </div>
