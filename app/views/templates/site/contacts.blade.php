@@ -45,7 +45,7 @@
                 <div class="clearfix"></div>
             </div>
         </section>
-        <section class="us-section">
+        <section class="us-section over-hidden">
             <div class="container_12 contact-block">
                 <div class="grid_12 grid_m12">
 
