@@ -303,7 +303,7 @@ $solution4form = $solution;
                         <ul class="comps-ul columns-2">
 
                         @foreach ($components as $component)
-                            <li><div class="title">{{ $component->name }}</div>
+                            <li><div class="title"><span>{{ $component->name }}</span></div>
                                 <p class="text">
                                     {{ $component->description }}
                                 </p>
