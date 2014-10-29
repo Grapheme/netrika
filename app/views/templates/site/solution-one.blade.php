@@ -22,7 +22,7 @@ $solution4form = $solution;
             <div class="container_12">
                 <div class="grid_12">
                     <section class="title-content min-pad">
-                        <div class="grid_9 alpha">
+                        <div class="grid_9 grid_t12 grid_m12 alpha">
                             <h1>
                                 {{ $solution->name }}
                             </h1>
@@ -30,9 +30,6 @@ $solution4form = $solution;
                             @if ($solution->availability_demonstrate)
                             <a href="#" class="title-btn js-popup-open" data-popup="order-present">Заказать демонстрацию</a>
                             @endif
-
-                        </div>
-                        <div class="grid_3 omega">
 
                         </div>
                         <div class="clearfix"></div>
@@ -45,12 +42,12 @@ $solution4form = $solution;
         <div class="type-{{ $solution->slug }}">
             <section class="main-stat">
                 <div class="container_12">
-                    <div class="grid_4 stat-desc">
+                    <div class="grid_4 grid_t12 gird_m12 stat-desc">
                         <p>
                             {{ $solution->describes_purpose_decision }}
                         </p>
                     </div>
-                    <div class="grid_4 canvas-cirs">
+                    <div class="grid_4 grid_t6 canvas-cirs">
                         <canvas id="canvas-cir-0" width="360" height="360"></canvas>
                         <canvas id="canvas-cir-1" width="360" height="360"></canvas>
                         <canvas id="canvas-cir-2" width="360" height="360"></canvas>
@@ -58,7 +55,7 @@ $solution4form = $solution;
                         <i class="color-1"></i>
                         <i class="color-2"></i>
                     </div>
-                    <div class="grid_4 stat-right-block">
+                    <div class="grid_4 grid_t6 stat-right-block">
                         <ul class="stat-ul">
                         {{-- $solution->performance_indicators --}}
                         <?
@@ -306,7 +303,7 @@ $solution4form = $solution;
                         <ul class="comps-ul columns-2">
 
                         @foreach ($components as $component)
-                            <li><div class="title">{{ $component->name }}</div>
+                            <li><div class="title"><span>{{ $component->name }}</span></div>
                                 <p class="text">
                                     {{ $component->description }}
                                 </p>
@@ -422,7 +419,7 @@ $solution4form = $solution;
                     <?
                     $image = @$images[$project->mainpage_image] ?: new Photo;
                     ?>
-                    <div class="grid_4 solution-block js-hover">
+                    <div class="grid_4 grid_t6 grid_m12 solution-block js-hover">
                         <div class="background" style="background-image: url('{{ $image->full() }}')"></div>
                         <a href="{{ URL::route('project-one', $project->slug) }}" class="project-link"></a>
                         <div class="hover-circle js-circle"></div>
@@ -435,7 +432,7 @@ $solution4form = $solution;
                     </div>
                     @endforeach
 
-                    <div class="grid_4">
+                    <div class="grid_4 grid_t6 grid_m12">
                         <div class="solution-block type-all">
                         <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}" class="project-link">
                             <span>
