@@ -2217,6 +2217,9 @@ section a:hover {
 .news-content .news-text .head-nav {
   margin-top: 2.5rem;
 }
+.news-content .news-text img {
+  max-width: 100%;
+}
 .news-content .news-desc {
   color: #7f8281;
   height: 4.375rem;
