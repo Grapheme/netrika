@@ -97,7 +97,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                                     @if (@count($array[$solution->id]))
                                         <?
                                         $limit = 4;
-                                        $list = array_chunk($array[$solution->id], $limit);
+                                        $list = array_chunk($array[$solution->id], $limit, 1);
                                         ?>
                                         @foreach ($list as $lst)
                                         <ul class="comps-ul js-slide">
