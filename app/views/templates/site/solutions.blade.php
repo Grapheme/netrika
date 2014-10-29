@@ -97,20 +97,17 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                                     @if (@count($array[$solution->id]))
                                         <?
                                         $limit = 4;
-                                        $count = count($array[$solution->id]);
-                                        $p = 0;
+                                        $list = array_chunk($array[$solution->id], $limit);
                                         ?>
-                                        @foreach ($array[$solution->id] as $project)
-                                            @if (!$p++ || $p % ($limit+1) == 0)
+                                        @foreach ($list as $lst)
                                         <ul class="comps-ul js-slide">
-                                            @endif
+                                        @foreach ($lst as $project)
                                             <li>
                                                 <div class="title">
                                                     <a href="{{ URL::route('solution-one', $solution->slug) }}#solutions">{{ $project->name }}</a>
                                                 </div>
-                                            @if ($p % ($limit+1) == $limit || $p >= $count)
+                                        @endforeach
                                         </ul>
-                                            @endif
                                         @endforeach
                                     @endif
                                 </div>
