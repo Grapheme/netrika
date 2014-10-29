@@ -4036,9 +4036,16 @@ Move to separate stylesheet if invalid CSS is a problem.
   .head-nav {
     padding-left: 0 !important;
   }
+  .head-info a {
+    margin: 0.625rem 0;
+  }
+  .head-info a:last-child {
+    margin-bottom: 0;
+  }
   .prj-arrows {
     display: block;
     margin-bottom: 1.5625rem;
+    margin-top: 1.25rem;
   }
 }
 @media screen and (max-width: 1200px) {
