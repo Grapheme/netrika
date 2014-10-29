@@ -179,6 +179,12 @@ class AdminDicvalsController extends BaseController {
                 break;
         }
 
+        /**
+         * Кол-во элементов, подпадающих под условия, но без учета пагинации
+         */
+        $total_elements_current_selection = $elements->count();
+        #echo $total_elements_current_selection;
+
         ## Pagination
         if ($dic->pagination > 0)
             $elements = $elements->paginate($dic->pagination);
@@ -208,7 +214,7 @@ class AdminDicvalsController extends BaseController {
         $this->callHook('before_index_view', $dic, $elements);
 
         #return View::make(Helper::acclayout());
-        return View::make($this->module['tpl'].'index', compact('elements', 'dic', 'dic_id', 'sortable', 'dic_settings', 'actions_column', 'total_elements'));
+        return View::make($this->module['tpl'].'index', compact('elements', 'dic', 'dic_id', 'sortable', 'dic_settings', 'actions_column', 'total_elements', 'total_elements_current_selection'));
 	}
 
     /************************************************************************************/
