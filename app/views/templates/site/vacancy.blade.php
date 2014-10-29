@@ -87,7 +87,7 @@ unset($temp);
         </section>
         <section class="us-section">
             <div class="container_12">
-                <div class="grid_6 grid_t12">
+                <div class="grid_6 grid_t12 grid_m12">
                     <h2>Команда разработки</h2>
                     <div class="clearfix"></div>
                     <div class="developer-group">
