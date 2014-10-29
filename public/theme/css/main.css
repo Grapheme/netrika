@@ -3567,9 +3567,9 @@ Increase this if your layout is wider.
 
 Note: IE6 works fine without this fix.
 */
-  /*body {
-	min-width: 324rem / @hfs;
-}*/
+  body {
+    min-width: 20.25rem;
+  }
   /* =Containers
 --------------------------------------------------------------------------------*/
   .container_12 {
