@@ -15,7 +15,7 @@
         <section class="title-block title-main">
             <div class="container_12">
                 <section class="title-content min-pad">
-                    <div class="grid_8">
+                    <div class="grid_8 grid_t12 grid_m12">
                         <h1>
                             @if (isset($page->seo) && @is_object($page->seo) && $page->seo->h1 != '')
                                 {{ $page->seo->h1 }}
@@ -32,12 +32,12 @@
 
         <section class="gray-section">
             <div class="container_12">
-                <div class="grid_6">
+                <div class="grid_6 grid_m12">
 
                     {{ $page->block('top_left') }}
 
                 </div>
-                <div class="grid_6">
+                <div class="grid_6 grid_m12 mobile-top-lmar">
 
                     {{ $page->block('top_right') }}
 
@@ -47,7 +47,7 @@
         </section>
         <section class="us-section">
             <div class="container_12 contact-block">
-                <div class="grid_12">
+                <div class="grid_12 grid_m12">
 
                     {{ $page->block('address') }}
 
