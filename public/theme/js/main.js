@@ -711,6 +711,16 @@ $.fn.line_slider = function() {
 	init();
 }
 
+$.fn.solutions_touch = function() {
+	var parent = $(this);
+	if (Modernizr.touch) {
+		parent.on('click', function(){
+			var url = parent.find('.hover-content .title-btn').attr('href');
+			window.location.href = url;
+		});
+	}
+}
+
 $.fn.netrika_slider = function() {
 	$(this).each(function(){
 		var parent = $(this);

@@ -135,6 +135,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
 
 @section('scripts')
     <script>
+        $('.solution').solutions_touch();
         $('.js-netrika-parent').netrika_slider();
     </script>
 @stop
