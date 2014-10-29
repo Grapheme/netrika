@@ -3937,7 +3937,7 @@ Move to separate stylesheet if invalid CSS is a problem.
     padding: 1.25rem;
   }
   .solutions .solution .solution-right .sol-comps .comps-in .comps-ul li {
-    width: 105%;
+    width: 100%;
   }
   .solutions .solution .solution-right .sol-comps .comps-in .comps-ul li .title:before {
     width: 2rem;
