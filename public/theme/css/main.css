@@ -3922,6 +3922,17 @@ Move to separate stylesheet if invalid CSS is a problem.
     vertical-align: middle;
     line-height: normal;
   }
+  .solutions .solution {
+    position: relative;
+    height: auto;
+    min-height: 18.75rem;
+  }
+  .solutions .solution .solution-left {
+    height: 18.75rem;
+  }
+  .solutions .solution .solution-right {
+    padding: 1.25rem;
+  }
 }
 @media screen and (max-width: 1200px) {
   .us-desc {
