@@ -19,7 +19,7 @@ return array(
             ),
             #*/
 
-            #/*
+            /*
             'image_slide' => array(
                 'title' => 'Фоновое изображение',
                 'type' => 'image',
