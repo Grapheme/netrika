@@ -125,7 +125,7 @@ foreach ($newslist as $new) {
 
         <section class="us-section">
             <div class="container_12">
-                <div class="grid_2 news-search">
+                <div class="grid_2 grid_t6 news-search">
                     <form>
                         <div class="title">По тегам</div>
                         <ul class="tags-ul tags-hover js-tags">
@@ -138,7 +138,7 @@ foreach ($newslist as $new) {
                         <button class="title-btn js-apply-filter">Применить</button>
                     </form>
                 </div>
-                <div class="grid_2 news-search js-date-range">
+                <div class="grid_2 grid_t6 news-search js-date-range">
                     <div class="title">По дате</div>
                     <div class="search-date">
                         <input type="text" class="date-input js-date-from">
@@ -147,7 +147,7 @@ foreach ($newslist as $new) {
                         <input type="text" class="date-input js-date-to">
                     </div>
                 </div>
-                <div class="grid_8 news-first js-news-first">
+                <div class="grid_8 grid_t12 news-first js-news-first">
                     <!-- <div class="grid_4 alpha">
                         <a href="news-one.html" class="news-photo" style="background-image: url(img/projects/images/news-photo.jpg);">
                             <span class="news-date"><span class="day">27</span> / 04 / 2014</span>
