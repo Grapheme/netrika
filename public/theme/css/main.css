@@ -1956,9 +1956,14 @@ section a:hover {
   vertical-align: middle;
   line-height: normal;
   color: #000;
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: none;
   width: 80%;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
+}
+.comps-ul li a:hover {
+  color: #1dcba4;
 }
 .comps-ul li .title {
   height: 3.75rem;
@@ -2130,6 +2135,9 @@ section a:hover {
   font-size: 1.5em;
   color: #313736;
 }
+.news-first .title:hover {
+  color: #1dcba4;
+}
 .news-first .tags-ul {
   padding: 1.25rem 0 1.25rem;
 }
@@ -2144,8 +2152,7 @@ section a:hover {
   border-color: transparent transparent #fff transparent;
 }
 .news-item .news-preview {
-  padding: 1.875rem 1.875rem 0 1.875rem;
-  margin-bottom: 1.875rem;
+  padding: 1.875rem;
 }
 .news-item .news-preview .title {
   display: inline-block;
@@ -2154,6 +2161,9 @@ section a:hover {
   font-weight: 600;
   color: #313736;
   line-height: 1.875rem;
+}
+.news-item .news-preview .title:hover {
+  color: #1dcba4;
 }
 .news-item .news-preview .news-date {
   display: block;
