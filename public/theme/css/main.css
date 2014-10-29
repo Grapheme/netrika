@@ -3590,6 +3590,9 @@ Move to separate stylesheet if invalid CSS is a problem.
   .sol-tabs li {
     margin: 0;
   }
+  .tablet-top-lmar {
+    margin-top: 2.5rem !important;
+  }
   .prj-arrows {
     display: block;
     margin: 0 0 1.5625rem 0.625rem;
