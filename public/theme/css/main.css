@@ -52,6 +52,9 @@
 .dark-section {
   background: #4c5865;
 }
+.dark-section a {
+  color: #fff;
+}
 .dark-section h1,
 .dark-section h2,
 .dark-section .us-desc {
@@ -3566,7 +3569,9 @@ Move to separate stylesheet if invalid CSS is a problem.
   .benefits .benefit-text {
     width: 11.5rem;
   }
-  .vacancy-ul li {
+  .vacancy-ul li,
+  .aims li,
+  .progress-slider .ps-block {
     width: 50%;
   }
   .solutions .solution {
@@ -3581,6 +3586,10 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .sol-tabs li {
     margin: 0;
+  }
+  .prj-arrows {
+    display: block;
+    margin: 0 0 1.5625rem 0.625rem;
   }
 }
 @media screen and (max-width: 768px) {
@@ -3966,7 +3975,9 @@ Move to separate stylesheet if invalid CSS is a problem.
     -moz-column-gap: auto;
     column-gap: auto;
   }
-  .vacancy-ul li {
+  .vacancy-ul li,
+  .aims li,
+  .progress-slider .ps-block {
     width: 100%;
   }
   .about-russian .grid_12 {

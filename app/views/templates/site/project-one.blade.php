@@ -135,7 +135,7 @@
                     $i = 0;
                     ?>
                     @if (count($lines))
-                    <div class="grid_6">
+                    <div class="grid_6 grid_m12">
                         <h2>Преимущества</h2>
                         <ul class="bul-ul">
                             @foreach ($lines as $line)
@@ -153,7 +153,7 @@
 
 
                     @if ($project->description_features)
-                    <div class="grid_6">
+                    <div class="grid_6 grid_m12">
                         <h2>Особенности</h2>
 
                         {{ $project->description_features }}
@@ -248,7 +248,7 @@
                     <?
                     $image = @$images[$project->mainpage_image] ?: new Photo;
                     ?>
-                    <div class="grid_4 solution-block js-hover">
+                    <div class="grid_4 grid_t6 grid_m12 solution-block js-hover">
                         <div class="background" style="background-image: url('{{ $image->full() }}')"></div>
                         <a href="{{ URL::route('project-one', $project->slug) }}" class="project-link"></a>
                         <div class="hover-circle js-circle"></div>
@@ -261,7 +261,7 @@
                     </div>
                     @endforeach
 
-                    <div class="grid_4 type-all">
+                    <div class="grid_4 grid_t6 grid_m12 type-all">
                         <div class="solution-block type-all">
                             <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}" class="project-link">
                                 <span>
