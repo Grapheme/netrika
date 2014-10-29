@@ -424,6 +424,9 @@ section a:hover {
 .icons-ul li a {
   color: inherit;
 }
+.icons-ul li a:hover {
+  color: #1dcba4;
+}
 .icons-ul li.li-file:before {
   content: "\e609";
 }
