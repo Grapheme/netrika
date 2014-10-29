@@ -4034,7 +4034,7 @@ Move to separate stylesheet if invalid CSS is a problem.
     margin-top: 2.5rem;
   }
   .head-nav {
-    padding-left: 0;
+    padding-left: 0 !important;
   }
   .prj-arrows {
     display: block;
