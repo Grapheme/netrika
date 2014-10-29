@@ -4036,6 +4036,9 @@ Move to separate stylesheet if invalid CSS is a problem.
   .head-nav {
     padding-left: 0 !important;
   }
+  .head-nav a:last-child {
+    margin-left: 0;
+  }
   .head-info a {
     display: inline-block;
     margin: 0.625rem 0;
