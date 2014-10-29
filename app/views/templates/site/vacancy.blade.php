@@ -55,7 +55,7 @@ unset($temp);
         <section class="title-block title-main">
             <div class="container_12">
                 <section class="title-content min-pad">
-                    <div class="grid_8">
+                    <div class="grid_8 grid_t12 grid_m12">
                         <h1>
                             @if (isset($page->seo) && @is_object($page->seo) && $page->seo->h1 != '')
                                 {{ $page->seo->h1 }}
@@ -87,14 +87,14 @@ unset($temp);
         </section>
         <section class="us-section">
             <div class="container_12">
-                <div class="grid_6">
+                <div class="grid_6 grid_t12">
                     <h2>Команда разработки</h2>
                     <div class="clearfix"></div>
                     <div class="developer-group">
-                        <div class="grid_4 alpha">
+                        <div class="grid_4 grid_t6 alpha">
                             <canvas id="developers-canvas" width="320" height="320"></canvas>
                         </div>
-                        <div class="grid_2 omega">
+                        <div class="grid_2 grid_t6 omega">
                             <div class="developer-type">
                                 <ul class="developer-list">
                                     @foreach ($devteam as $dev)
@@ -105,8 +105,8 @@ unset($temp);
                         </div>
                     </div>
                 </div>
-                <div class="grid_6 js-netrika-parent">
-                    <div class="alpha grid_3">
+                <div class="grid_6 grid_t12 grid_m12 js-netrika-parent">
+                    <div class="alpha grid_3 grid_t9">
                         <h2>Технологии</h2>
                     </div>
                     <div class="omega grid_3 js-netrika-controls">

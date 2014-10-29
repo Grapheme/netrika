@@ -2358,7 +2358,7 @@ section a:hover {
   line-height: 2.6875rem;
 }
 .contact-link {
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 .contact-block {
   position: relative;
@@ -3547,6 +3547,9 @@ Move to separate stylesheet if invalid CSS is a problem.
   .grid_t12 {
     width: 46.125rem !important;
   }
+  .grid_t9 {
+    width: 34.125rem !important;
+  }
   .grid_t6 {
     width: 22.125rem !important;
   }
@@ -4016,7 +4019,7 @@ Move to separate stylesheet if invalid CSS is a problem.
     margin-top: 1.25rem !important;
   }
   .mobile-top-lmar {
-    margin-top: 2.5rem;
+    margin-top: 2.5rem !important;
   }
   .download-block .fl-r {
     display: block;
@@ -4050,6 +4053,9 @@ Move to separate stylesheet if invalid CSS is a problem.
     display: block;
     margin-bottom: 1.5625rem;
     margin-top: 1.25rem;
+  }
+  .contact-ul {
+    margin-top: -0.625rem;
   }
 }
 @media screen and (max-width: 1200px) {
