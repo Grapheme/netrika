@@ -3960,6 +3960,9 @@ Move to separate stylesheet if invalid CSS is a problem.
   .grid_m12 {
     width: 19rem !important;
   }
+  .grid_m6 {
+    width: 8.875rem !important;
+  }
   .canvas-cirs {
     position: relative;
     left: 50%;
@@ -4142,6 +4145,9 @@ Move to separate stylesheet if invalid CSS is a problem.
     float: left;
     margin-left: 0.9375rem;
     margin-right: 0.9375rem;
+  }
+  .head-top-info .tags-ul {
+    margin-left: 0;
   }
 }
 @media screen and (max-width: 1200px) {

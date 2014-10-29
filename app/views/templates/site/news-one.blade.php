@@ -16,7 +16,7 @@
         <section class="title-block title-main">
             <div class="container_12">
                 <section class="title-content min-pad">
-                    <div class="grid_9">
+                    <div class="grid_9 grid_m12">
                         <div class="head-top-info">
                             <span class="news-date"><span class="day">{{ $new->created_at->format('d') }}</span> / {{ $new->created_at->format('m') }} / {{ $new->created_at->format('Y') }}</span>
                             @if (count($new->related_dicvals))
@@ -27,8 +27,11 @@
                             </ul>
                             @endif
                         </div>
+                        <h1>
+                            {{ $new->name }}
+                        </h1>
                     </div>
-                    <div class="grid_3 head-nav">
+                    <div class="grid_3 grid_m12 head-nav">
                         <div class="prj-arrows">
                             @if (isset($prev_new) && is_object($prev_new) && $prev_new->id)
                             <a href="{{ URL::route('news_full', $prev_new->slug) }}" class="desc-icon prev"></a>
@@ -38,11 +41,6 @@
                             @endif
                         </div>
                         <a href="{{ URL::route('page', 'newslist') }}"><i class="lit-icon icon-projects"></i> Все новости</a>
-                    </div>
-                    <div class="grid_8">
-                        <h1>
-                            {{ $new->name }}
-                        </h1>
                     </div>
                     <div class="clearfix"></div>
                 </section>
@@ -55,14 +53,14 @@
                 <div class="grid_8 grid_t12 grid_m12 news-content">
 
                     @if ($new->gallery)
-                        <div class="grid_6 grid_t9 alpha">&nbsp;
+                        <div class="grid_6 grid_t9 grid_m12 alpha">&nbsp;
                             <div class="js-news-fotorama">
                                 @foreach ($new->gallery->photos as $photo)
                                 <img src="{{ $photo->full() }}">
                                 @endforeach
                             </div>
                         </div>
-                        <div class="grid_2 grid_t3 omega">
+                        <div class="grid_2 grid_t3 grid_m6 omega">
                             <div class="head-nav">
                                 <a href="#" class="desc-icon prev js-fotorama-control" data-direction="<"></a>
                                 <a href="#" class="desc-icon next js-fotorama-control" data-direction=">"></a>
