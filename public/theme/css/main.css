@@ -3518,6 +3518,9 @@ Move to separate stylesheet if invalid CSS is a problem.
   .benefits .benefit-text {
     width: 11.5rem;
   }
+  .vacancy-ul li {
+    width: 50%;
+  }
 }
 @media screen and (max-width: 768px) {
   /*
@@ -3898,6 +3901,9 @@ Move to separate stylesheet if invalid CSS is a problem.
     -webkit-column-gap: auto;
     -moz-column-gap: auto;
     column-gap: auto;
+  }
+  .vacancy-ul li {
+    width: 100%;
   }
 }
 @media screen and (max-width: 1200px) {
