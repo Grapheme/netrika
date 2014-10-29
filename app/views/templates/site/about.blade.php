@@ -67,14 +67,14 @@ foreach ($clients as $client) {
                         {{ $page->block('geo_title') }}
                     </h2>
                 </div>
-                <div class="grid_9">
+                <div class="grid_9 grid_t12 grid_m12">
                     <div class="bold-desc">
 
                         {{ $page->block('geo_description') }}
 
                     </div>
                 </div>
-                <div class="grid_3 desc-lh">
+                <div class="grid_3 grid_t12 grid_m12 adp-top-mar desc-lh">
                     <a href="{{ URL::route('page', 'projects') }}"><i class="lit-icon icon-projects"></i> Все проекты</a>
                 </div>
 
