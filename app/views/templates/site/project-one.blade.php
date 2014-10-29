@@ -22,6 +22,19 @@
                             <h1>
                                 {{ $project->name }}
                             </h1>
+                            <div class="head-info">
+                                <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}">
+                                    <span class="head-type">
+                                        <i class="us-icon icon-{{ $solution->slug }}"></i> <span>{{ $solution->name }}</span>
+                                    </span>
+                                </a>
+                                @if ($project->link_to_project)
+                                <?
+                                $domain = parse_url($project->link_to_project);
+                                ?>
+                                <a href="{{ $project->link_to_project }}">{{ $domain['host'] }}</a>
+                                @endif
+                            </div>
                         </div>
                         <div class="grid_3 grid_m12 prefix_1 head-nav">
                             <div class="prj-arrows">
@@ -34,19 +47,6 @@
                             </div>
 
                             <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}"><i class="lit-icon icon-projects"></i> Все проекты</a>
-                        </div>
-                        <div class="grid_12 head-info">
-                            <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}">
-                                <span class="head-type">
-                                    <i class="us-icon icon-{{ $solution->slug }}"></i> <span>{{ $solution->name }}</span>
-                                </span>
-                            </a>
-                            @if ($project->link_to_project)
-                            <?
-                            $domain = parse_url($project->link_to_project);
-                            ?>
-                            <a href="{{ $project->link_to_project }}">{{ $domain['host'] }}</a>
-                            @endif
                         </div>
                         <div class="clearfix"></div>
                     </section>
