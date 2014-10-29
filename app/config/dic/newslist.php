@@ -41,6 +41,7 @@ return array(
             ),
             #*/
 
+            /*
             'preview' => array(
                 'title' => 'Анонс',
                 'type' => 'textarea_redactor',
@@ -48,6 +49,7 @@ return array(
                     'class' => 'redactor_preview'
                 ),
             ),
+            */
 
             'content' => array(
                 'title' => 'Содержание',
