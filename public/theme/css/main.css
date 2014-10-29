@@ -3574,7 +3574,8 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .vacancy-ul li,
   .aims li,
-  .progress-slider .ps-block {
+  .progress-slider .ps-block,
+  .vacancy-list li {
     width: 50%;
   }
   .solutions .solution {
@@ -3983,7 +3984,8 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .vacancy-ul li,
   .aims li,
-  .progress-slider .ps-block {
+  .progress-slider .ps-block,
+  .vacancy-list li {
     width: 100%;
   }
   .about-russian .grid_12 {
