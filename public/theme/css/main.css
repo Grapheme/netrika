@@ -1078,9 +1078,6 @@ section a:hover {
 .head-nav a:not(.desc-icon):hover {
   color: #babcbc;
 }
-.head-nav .desc-icon:last-child {
-  margin-right: 0;
-}
 .head-info {
   margin-top: 1.25rem;
   font-size: 0.875em;
@@ -1798,7 +1795,7 @@ section a:hover {
 }
 .prj-arrows {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
 }
 .map-container {
   overflow: hidden;
@@ -4160,5 +4157,8 @@ Move to separate stylesheet if invalid CSS is a problem.
   .adp-no-mar {
     margin-left: 0 !important;
     margin-right: 0 !important;
+  }
+  .desc-icon:last-child {
+    margin-right: 0;
   }
 }
