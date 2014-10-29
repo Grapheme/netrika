@@ -419,7 +419,7 @@ $solution4form = $solution;
                     <?
                     $image = @$images[$project->mainpage_image] ?: new Photo;
                     ?>
-                    <div class="grid_4 solution-block js-hover">
+                    <div class="grid_4 grid_t6 grid_m12 solution-block js-hover">
                         <div class="background" style="background-image: url('{{ $image->full() }}')"></div>
                         <a href="{{ URL::route('project-one', $project->slug) }}" class="project-link"></a>
                         <div class="hover-circle js-circle"></div>
