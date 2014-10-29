@@ -4051,6 +4051,9 @@ Move to separate stylesheet if invalid CSS is a problem.
     margin-bottom: 1.5625rem;
     margin-top: 1.25rem;
   }
+  .contact-ul {
+    margin-top: -0.625rem;
+  }
 }
 @media screen and (max-width: 1200px) {
   .us-desc {
