@@ -147,7 +147,7 @@ foreach ($newslist as $new) {
                         <input type="text" class="date-input js-date-to">
                     </div>
                 </div>
-                <div class="grid_8 grid_t12 news-first js-news-first">
+                <div class="grid_8 grid_t12 news-first js-news-first adp-top-mar">
                     <!-- <div class="grid_4 alpha">
                         <a href="news-one.html" class="news-photo" style="background-image: url(img/projects/images/news-photo.jpg);">
                             <span class="news-date"><span class="day">27</span> / 04 / 2014</span>

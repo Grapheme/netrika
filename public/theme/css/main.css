@@ -3614,6 +3614,9 @@ Move to separate stylesheet if invalid CSS is a problem.
        page-break-inside: avoid;
             break-inside: avoid-column;
   }
+  .news-first .grid_4 {
+    width: 22.125rem !important;
+  }
 }
 @media screen and (max-width: 768px) {
   /*
@@ -4099,6 +4102,6 @@ Move to separate stylesheet if invalid CSS is a problem.
     text-align: left;
   }
   .adp-top-mar {
-    margin-top: 2.5rem;
+    margin-top: 2.5rem !important;
   }
 }
