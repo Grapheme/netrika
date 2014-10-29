@@ -72,7 +72,7 @@ unset($temp);
 
         <section class="gray-section">
             <div class="container_12">
-                <div class="grid_9">
+                <div class="grid_9 grid_t12 grid_m12">
                     <div class="bold-desc min-mar">
 
                         {{ $page->block('intro') }}
@@ -87,14 +87,14 @@ unset($temp);
         </section>
         <section class="us-section">
             <div class="container_12">
-                <div class="grid_6 grid_t12">
+                <div class="grid_6 grid_t12 grid_m12">
                     <h2>Команда разработки</h2>
                     <div class="clearfix"></div>
                     <div class="developer-group">
-                        <div class="grid_4 grid_t6 alpha">
+                        <div class="grid_4 grid_t6 grid_m12 alpha">
                             <canvas id="developers-canvas" width="320" height="320"></canvas>
                         </div>
-                        <div class="grid_2 grid_t6 omega">
+                        <div class="grid_2 grid_t6 grid_m12 omega">
                             <div class="developer-type">
                                 <ul class="developer-list">
                                     @foreach ($devteam as $dev)
@@ -105,11 +105,11 @@ unset($temp);
                         </div>
                     </div>
                 </div>
-                <div class="grid_6 grid_t12 grid_m12 js-netrika-parent">
-                    <div class="alpha grid_3 grid_t9">
+                <div class="grid_6 grid_t12 grid_m12 js-netrika-parent tablet-top-lmar mobile-top-lmar">
+                    <div class="alpha grid_3 grid_t9 grid_m12">
                         <h2>Технологии</h2>
                     </div>
-                    <div class="omega grid_3 js-netrika-controls">
+                    <div class="omega grid_3 grid_m12 js-netrika-controls mobile-mar-nonleft">
                         <a href="#" class="desc-icon prev js-netrika-control disable" data-direction="<"></a>
                         <a href="#" class="desc-icon next js-netrika-control" data-direction=">"></a>
                     </div>
@@ -119,7 +119,7 @@ unset($temp);
                     $limit = 4;
                     $list = array_chunk($technologies, $limit, 1);
                     ?>
-                    <div class="grid_6 alpha omega js-netrika-slider">
+                    <div class="grid_6 grid_t12 grid_m12 alpha omega js-netrika-slider mobile-top-mar">
                         <div class="js-slider-window">
                             @foreach ($list as $lst)
                             <ul class="aims aims-light aims-small js-slide"><!--

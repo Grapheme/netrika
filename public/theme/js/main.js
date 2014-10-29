@@ -260,6 +260,8 @@ $.fn.news_module = function(news_array, tags_object) {
 
 	var step = 0;
 
+	var grids_length = $('.js-news-grid:visible').length;
+
 	$(document).on('news::update', function(){
 		newsUpdate();
 	});
@@ -275,6 +277,10 @@ $.fn.news_module = function(news_array, tags_object) {
 
 	$(document).on('click', '.search-date', function(){
 		$(this).find('input').trigger('focus');
+	});
+
+	$(window).on('resize', function(){
+		news_html.updateGrids();
 	});
 
 	var news_html = {
@@ -359,17 +365,25 @@ $.fn.news_module = function(news_array, tags_object) {
 			$.each(allObj, function(index, value){
 				grids[step] += parent.getOther(value);
 				step++;
-				if(step == 3) step = 0;
+				if(step == grids_length) step = 0;
 			});
 
+			console.log(grids);
 			return grids;
 		},
 
 		fillGrids: function(obj) {
 			var toGrids = this.getAllOthers(obj);
 			var i = 0;
-			for(i; i < 3; i++) {
+			for(i; i < grids_length; i++) {
 				$('.js-news-grid').eq(i).html(toGrids[i]);
+			}
+		},
+
+		updateGrids: function() {
+			if(grids_length != $('.js-news-grid:visible').length) {
+				grids_length = $('.js-news-grid:visible').length;
+				this.fillGrids(other_news);
 			}
 		},
 

@@ -38,7 +38,7 @@
 		width: 11.5rem;
 	}
 
-	.vacancy-ul li, .aims li, .progress-slider .ps-block {
+	.vacancy-ul li, .aims li, .progress-slider .ps-block, .vacancy-list li {
 		width: 50%;
 	}
 
@@ -59,8 +59,30 @@
 		margin: 0;
 	}
 
+	.tablet-top-lmar {
+		margin-top: 40rem / @hfs !important;
+	}
+
 	.prj-arrows {
 		display: block;
 		margin: 0 0 25rem / @hfs 10rem / @hfs;
+	}
+
+	.js-news-all {
+		.js-news-grid:nth-of-type(3) {
+			display: none;
+		}
+	}
+
+	.news-search {
+		.tags-ul {
+			.columns-2;
+		}
+	}
+
+	.news-first {
+		.grid_4 {
+			.grid_t6;
+		}
 	}
 }
