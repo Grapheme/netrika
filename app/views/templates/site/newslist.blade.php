@@ -99,7 +99,7 @@ foreach ($newslist as $new) {
         <section class="title-block title-main">
             <div class="container_12">
                 <section class="title-content min-pad">
-                    <div class="grid_8">
+                    <div class="grid_8 grid_t12 grid_m12">
                         <h1>
                             @if (isset($page->seo) && @is_object($page->seo) && $page->seo->h1 != '')
                                 {{ $page->seo->h1 }}
@@ -109,7 +109,7 @@ foreach ($newslist as $new) {
                         </h1>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="grid_4 head-form">
+                    <div class="grid_4 grid_t6 head-form">
                         <div class="head-desc">Получайте последние новости</div>
                         <form id="subscribe" method="POST" action="{{ URL::route('add-email-listener') }}">
                             <input name="email" class="head-input" type="email" placeholder="email@email.com" required>
@@ -168,7 +168,7 @@ foreach ($newslist as $new) {
         </section>
         <section class="gray-section non-bot-pad js-news-all">
             <div class="container_12">
-                <div class="grid_4 js-news-grid"><!--
+                <div class="grid_4 grid_t6 grid_m12 js-news-grid"><!--
                     <div class="news-item">
                         <a href="news-one.html" class="news-photo" style="background-image: url(img/projects/images/news-photo.jpg);">
                             <span class="news-date"><span class="day">27</span> / 04 / 2014</span>
@@ -198,9 +198,9 @@ foreach ($newslist as $new) {
                         </ul>
                     </div> -->
                 </div>
-                <div class="grid_4 js-news-grid">
+                <div class="grid_4 grid_t6 grid_m12 js-news-grid">
                 </div>
-                <div class="grid_4 js-news-grid">
+                <div class="grid_4 grid_t6 grid_m12 js-news-grid">
                 </div>
                 <div class="clearfix"></div>
             </div>
