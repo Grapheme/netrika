@@ -1078,6 +1078,9 @@ section a:hover {
 .head-nav a:not(.desc-icon):hover {
   color: #babcbc;
 }
+.head-nav .desc-icon:last-child {
+  margin-right: 0;
+}
 .head-info {
   margin-top: 1.25rem;
   font-size: 0.875em;
@@ -1134,8 +1137,11 @@ section a:hover {
 }
 .head-top-info .tags-ul li {
   display: inline-block;
-  margin-left: 2.5rem;
+  margin-right: 2.5rem;
   color: #babcbc;
+}
+.head-top-info .tags-ul li:last-child {
+  margin-right: 0;
 }
 .mobile-menu {
   display: none;
@@ -3617,6 +3623,13 @@ Move to separate stylesheet if invalid CSS is a problem.
   .news-first .grid_4 {
     width: 22.125rem !important;
   }
+  .head-top-info .tags-ul {
+    display: block;
+    margin-left: 0;
+  }
+  .js-relative-news .js-relative-in {
+    position: relative;
+  }
 }
 @media screen and (max-width: 768px) {
   /*
@@ -4121,5 +4134,11 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .adp-top-mar {
     margin-top: 2.5rem !important;
+  }
+  .adp-top-smar {
+    margin-top: 1.25rem !important;
+  }
+  .adp-no-mar {
+    margin-left: 0 !important;
   }
 }
