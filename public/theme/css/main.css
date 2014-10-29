@@ -502,6 +502,12 @@ section a:hover {
   background-repeat: no-repeat;
   background-position: center;
 }
+.scheme-image {
+  text-align: center;
+}
+.scheme-image img {
+  max-width: 100%;
+}
 .type-health.stat-item.active,
 .type-health.stat-item:hover,
 .type-health:hover .us-icon,
@@ -3984,6 +3990,24 @@ Move to separate stylesheet if invalid CSS is a problem.
     width: 2rem;
     height: 2rem;
     margin-right: 1rem;
+  }
+  .audience .aud-container .aud-slide .aud-block {
+    width: 100%;
+  }
+  .mobile-top-mar {
+    margin-top: 1.25rem;
+  }
+  .mobile-top-lmar {
+    margin-top: 2.5rem;
+  }
+  .download-block .fl-r {
+    display: block;
+    float: none;
+    margin-top: 1.25rem;
+    margin-bottom: -1.25rem;
+  }
+  .download-block .fl-r a {
+    display: block;
   }
 }
 @media screen and (max-width: 1200px) {
