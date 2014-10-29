@@ -1787,6 +1787,10 @@ section a:hover {
   line-height: 14.375rem;
   text-align: center;
 }
+.prj-arrows {
+  display: inline-block;
+  vertical-align: top;
+}
 .map-container {
   overflow: hidden;
 }

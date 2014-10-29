@@ -24,12 +24,14 @@
                             </h1>
                         </div>
                         <div class="grid_3 prefix_1 head-nav">
-                            @if (isset($prev_project) && is_object($prev_project) && $prev_project->id)
-                            <a href="{{ URL::route('project-one', $prev_project->slug) }}" class="desc-icon prev"></a>
-                            @endif
-                            @if (isset($next_project) && is_object($next_project) && $next_project->id)
-                            <a href="{{ URL::route('project-one', $next_project->slug) }}" class="desc-icon next"></a>
-                            @endif
+                            <div class="prj-arrows">
+                                @if (isset($prev_project) && is_object($prev_project) && $prev_project->id)
+                                <a href="{{ URL::route('project-one', $prev_project->slug) }}" class="desc-icon prev"></a>
+                                @endif
+                                @if (isset($next_project) && is_object($next_project) && $next_project->id)
+                                <a href="{{ URL::route('project-one', $next_project->slug) }}" class="desc-icon next"></a>
+                                @endif
+                            </div>
 
                             <a href="{{ URL::route('page', 'projects') }}#{{ $solution->slug }}"><i class="lit-icon icon-projects"></i> Все проекты</a>
                         </div>
