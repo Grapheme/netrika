@@ -154,7 +154,7 @@
 
                     @if ($project->description_features)
                     <div class="grid_6 grid_m12">
-                        <h2>Особенности</h2>
+                        <h2 class="mobile-top-mar">Особенности</h2>
 
                         {{ $project->description_features }}
                     </div>
