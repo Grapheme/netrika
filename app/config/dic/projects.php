@@ -83,7 +83,7 @@ return array(
                 'title' => 'Описание процесса',
                 'type' => 'textarea',
                 'others' => array(
-                    'maxlength' => 10,
+                    'maxlength' => 150,
                 ),
             ),
             'gallery' => array(
