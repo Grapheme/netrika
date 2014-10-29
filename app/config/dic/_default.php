@@ -120,6 +120,7 @@ return array(
             'photo' => array(
                 'title' => 'Поле для загрузки изображения',
                 'type' => 'image',
+                'first_note' => 'Оптимальный размер: 360x270',
             ),
 
             'gallery' => array(

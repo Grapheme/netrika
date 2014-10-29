@@ -60,6 +60,7 @@ return array(
             'image_id' => array(
                 'title' => 'Изображение',
                 'type' => 'image',
+                'first_note' => 'Оптимальный размер: 360x270',
             ),
 
             'gallery_id' => array(
@@ -73,6 +74,7 @@ return array(
                         'single'  => true,
                     ));
                 }
+                'first_note' => 'Оптимальный размер: 400x300',
             ),
 
             'tags_ids' => array(

@@ -26,6 +26,7 @@ return array(
                 'params' => array(
                     'maxFilesize' => 1, // MB
                 ),
+                'first_note' => 'Оптимальный размер: 1600x640',
             ),
             #*/
         );

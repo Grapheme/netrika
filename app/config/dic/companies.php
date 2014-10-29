@@ -23,7 +23,7 @@ return array(
                 },
             ),
             'gallery' => array(
-                'title' => 'Инфогрфика',
+                'title' => 'Инфографика',
                 'type' => 'gallery',
                 'handler' => function($array, $element) {
                     return ExtForm::process('gallery', array(
@@ -33,6 +33,7 @@ return array(
                         'single'  => true,
                     ));
                 }
+                #'first_note' => 'Оптимальный размер: 360x270',
             ),
             'text_geography' => array(
                 'title' => 'Текст о географии',

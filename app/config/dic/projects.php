@@ -67,6 +67,7 @@ return array(
                 'params' => array(
                     'maxFilesize' => 1, // MB
                 ),
+                'first_note' => 'Оптимальный размер: 360x270',
             ),
 
             'description_advantages' => array(
@@ -97,6 +98,7 @@ return array(
                         'single'  => true,
                     ));
                 }
+                'first_note' => 'Оптимальный размер: 400x230',
             ),
 
             /*

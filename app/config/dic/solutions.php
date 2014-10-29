@@ -72,6 +72,7 @@ if (len > 0) {
                     'maxfilesize' => 1, // MB
                     #'acceptedfiles' => 'image/*',
                 ),
+                'first_note' => 'Оптимальный размер: 400x300',
             ),
             'image_schemes_work' => array(
                 'title' => 'Изображение схемы работы',
