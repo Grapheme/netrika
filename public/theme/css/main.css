@@ -4013,7 +4013,7 @@ Move to separate stylesheet if invalid CSS is a problem.
     width: 100%;
   }
   .mobile-top-mar {
-    margin-top: 1.25rem;
+    margin-top: 1.25rem !important;
   }
   .mobile-top-lmar {
     margin-top: 2.5rem;
