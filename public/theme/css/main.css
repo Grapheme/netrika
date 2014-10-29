@@ -1025,7 +1025,13 @@ section a:hover {
           transform: translateY(-10px);
 }
 .title-block .title-content .main-slider .js-main-slide p {
-  margin: 0;
+  margin: 0 0 1em;
+}
+.title-block .title-content .main-slider .js-main-slide a {
+  color: #1dcba4;
+}
+.title-block .title-content .main-slider .js-main-slide a:hover {
+  color: #fff;
 }
 .title-block .title-content .main-slider .js-main-slide .title-btn {
   font-size: 0.33333333em;
