@@ -2135,6 +2135,9 @@ section a:hover {
   font-size: 1.5em;
   color: #313736;
 }
+.news-first .title:hover {
+  color: #1dcba4;
+}
 .news-first .tags-ul {
   padding: 1.25rem 0 1.25rem;
 }
@@ -2158,6 +2161,9 @@ section a:hover {
   font-weight: 600;
   color: #313736;
   line-height: 1.875rem;
+}
+.news-item .news-preview .title:hover {
+  color: #1dcba4;
 }
 .news-item .news-preview .news-date {
   display: block;
