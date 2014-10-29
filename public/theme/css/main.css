@@ -1027,7 +1027,7 @@ section a:hover {
           transform: translateY(-10px);
 }
 .title-block .title-content .main-slider .js-main-slide p {
-  margin: 0 0 1em;
+  margin: 0 0 .5em;
 }
 .title-block .title-content .main-slider .js-main-slide a {
   color: #1dcba4;
