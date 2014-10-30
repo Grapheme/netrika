@@ -76,6 +76,10 @@ $.fn.mSelect = function(json) {
 	$(document).on('click', '.selected-list li', function(){
 		removeElement($(this).attr('data-value'));
 	});
+	$(document).on('submit', '[data-popup="order-present"]', function(){
+		alert(1);
+		return false;
+	});
 
 	function gainOptions() {
 		if(json) {
@@ -1342,6 +1346,17 @@ function isExternal(url) {
 
 
 $(document).ready(function() {
+
+	//Kostyl'
+	$(".popup.order-present .title-btn").on('click', function(){
+		if($(".popup.order-present [name=solution_id]").val() == '') {
+			$(".popup.order-present .solution-select .solution-line").addClass('inp-error');
+		}
+	});
+	$(".popup.order-present .solution-select .solution-list").on('click', function(){
+		$(".popup.order-present .solution-line").removeClass('inp-error');
+	});
+	
 
     $(".popup.order-present form").validate({
         rules: {

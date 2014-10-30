@@ -384,8 +384,12 @@
 
 		li {
 			display: inline-block;
-			margin-left: 40rem / @hfs;
+			margin-right: 40rem / @hfs;
 			color: @gray-link;
+
+			&:last-child {
+				margin-right: 0;
+			}
 		}
 	}
 }

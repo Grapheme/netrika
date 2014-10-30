@@ -424,6 +424,9 @@ section a:hover {
 .icons-ul li a {
   color: inherit;
 }
+.icons-ul li a:hover {
+  color: #1dcba4 !important;
+}
 .icons-ul li.li-file:before {
   content: "\e609";
 }
@@ -1134,8 +1137,11 @@ section a:hover {
 }
 .head-top-info .tags-ul li {
   display: inline-block;
-  margin-left: 2.5rem;
+  margin-right: 2.5rem;
   color: #babcbc;
+}
+.head-top-info .tags-ul li:last-child {
+  margin-right: 0;
 }
 .mobile-menu {
   display: none;
@@ -1305,6 +1311,19 @@ section a:hover {
 }
 .main-footer .footer-soc .in-icon:before {
   content: "\e601";
+}
+.main-footer .footer-columns {
+  -webkit-column-count: 3;
+     -moz-column-count: 3;
+          column-count: 3;
+  -webkit-column-gap: 1.875rem;
+     -moz-column-gap: 1.875rem;
+          column-gap: 1.875rem;
+}
+.main-footer .footer-columns .footer-lists {
+  -webkit-column-break-inside: avoid;
+     page-break-inside: avoid;
+          break-inside: avoid-column;
 }
 .main-footer .footer-line {
   height: 1px;
@@ -1792,7 +1811,7 @@ section a:hover {
 }
 .prj-arrows {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
 }
 .map-container {
   overflow: hidden;
@@ -2213,6 +2232,9 @@ section a:hover {
 }
 .news-content .news-text .head-nav {
   margin-top: 2.5rem;
+}
+.news-content .news-text img {
+  max-width: 100%;
 }
 .news-content .news-desc {
   color: #7f8281;
@@ -2737,6 +2759,11 @@ section a:hover {
   line-height: 3.125rem;
   background: #fff;
   cursor: pointer;
+  -webkit-transition: background .2s ease;
+          transition: background .2s ease;
+}
+.popups .popup.order-present .popup-body .input-wrp .solution-select .solution-line.inp-error {
+  background: #ffe5e5;
 }
 .popups .popup.order-present .popup-body .input-wrp .solution-select .solution-list {
   margin: 0;
@@ -3617,6 +3644,23 @@ Move to separate stylesheet if invalid CSS is a problem.
   .news-first .grid_4 {
     width: 22.125rem !important;
   }
+  .head-top-info .tags-ul {
+    display: block;
+    margin-left: 0;
+  }
+  .js-relative-news .js-relative-in {
+    position: relative;
+  }
+  .js-relative-news .js-relative-in .grid_t6,
+  .js-relative-news .js-relative-in .grid_t12 {
+    display: inline;
+    float: left;
+    margin-left: 0.9375rem;
+    margin-right: 0.9375rem;
+  }
+  .js-relative-news .js-relative-in .grid_t6 {
+    width: 21.1rem !important;
+  }
 }
 @media screen and (max-width: 768px) {
   /*
@@ -3937,6 +3981,9 @@ Move to separate stylesheet if invalid CSS is a problem.
   .grid_m12 {
     width: 19rem !important;
   }
+  .grid_m6 {
+    width: 8.875rem !important;
+  }
   .canvas-cirs {
     position: relative;
     left: 50%;
@@ -4111,6 +4158,25 @@ Move to separate stylesheet if invalid CSS is a problem.
     border-width: 0px 10px 10px 10px;
     border-color: transparent transparent #fff transparent;
   }
+  .js-relative-news .js-relative-in {
+    position: relative;
+  }
+  .js-relative-news .js-relative-in .grid_m12 {
+    display: inline;
+    float: left;
+    margin-left: 0.9375rem;
+    margin-right: 0.9375rem;
+  }
+  .head-top-info .tags-ul {
+    display: block;
+    margin-left: 0;
+  }
+  .footer-main-nav .footer-list {
+    -webkit-column-count: 2;
+       -moz-column-count: 2;
+            column-count: 2;
+    colum-gap: 1.875rem;
+  }
 }
 @media screen and (max-width: 1200px) {
   .us-desc {
@@ -4121,5 +4187,15 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .adp-top-mar {
     margin-top: 2.5rem !important;
+  }
+  .adp-top-smar {
+    margin-top: 1.25rem !important;
+  }
+  .adp-no-mar {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .desc-icon:last-child {
+    margin-right: 0;
   }
 }

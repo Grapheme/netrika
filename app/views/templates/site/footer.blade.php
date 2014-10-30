@@ -57,22 +57,22 @@ foreach ($projects as $project) {
                     </ul>
                 </div>
                 <div class="grid_12 footer-line mobile-hidden"></div>
-                <div class="grid_4 grid_m12 mobile-hidden">
-
+                <div class="grid_12 footer-columns mobile-hidden">
                     @foreach ($solutions as $solution)
-                        <div class="footer-title">{{ $solution->name }}</div>
-                        <?
-                        $solution_projects = @$array[$solution->id];
-                        ?>
-                        @if (count($solution_projects))
-                            <ul class="footer-list">
-                            @foreach ($solution_projects as $project)
-                                <li><a href="{{ URL::route('project-one', $project->slug) }}">{{ $project->name }}</a>
-                            @endforeach
-                            </ul>
-                        @endif
+                        <div class="footer-lists">
+                            <div class="footer-title">{{ $solution->name }}</div>
+                            <?
+                            $solution_projects = @$array[$solution->id];
+                            ?>
+                            @if (count($solution_projects))
+                                <ul class="footer-list">
+                                @foreach ($solution_projects as $project)
+                                    <li><a href="{{ URL::route('project-one', $project->slug) }}">{{ $project->name }}</a>
+                                @endforeach
+                                </ul>
+                            @endif
+                        </div>
                     @endforeach
-
                 </div>
                 <div class="grid_12 footer-line mobile-hidden"></div>
                 <div class="grid_12 copy-block">
@@ -96,7 +96,7 @@ foreach ($projects as $project) {
                     {{ Form::hidden('solution_id', '') }}
 
                     <div class="input-wrp">
-                        <input type="text" name="name" placeholder="Имя">
+                        <input type="text" name="name" placeholder="Имя *">
                     </div>
                     <div class="input-wrp">
                         <input type="text" name="org" placeholder="Организация">
@@ -105,7 +105,7 @@ foreach ($projects as $project) {
                         <input type="text" name="role" placeholder="Должность">
                     </div>
                     <div class="input-wrp">
-                        <input type="text" name="email" placeholder="E-mail">
+                        <input type="text" name="email" placeholder="E-mail *">
                     </div>
                     <div class="input-wrp">
                         <input type="text" name="phone" placeholder="Номер телефона">
