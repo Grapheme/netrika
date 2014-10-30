@@ -1356,6 +1356,7 @@ $(document).ready(function() {
 	$(".popup.order-present .solution-select .solution-list").on('click', function(){
 		$(".popup.order-present .solution-line").removeClass('inp-error');
 	});
+	
 
     $(".popup.order-present form").validate({
         rules: {
