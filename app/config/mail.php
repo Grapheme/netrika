@@ -13,11 +13,12 @@ return array(
     'host' => 'in.mailjet.com',
     'port' => 587,
     'from' => array(
-        'address' => 'support@grapheme.ru',
+        #'address' => 'support@grapheme.ru',
+        'address' => 'edkh@funcfunc.ru',
         'name' => 'Netrika'
     ),
-    'username' => '0d8dd8623bd38b41c43683c41c0558eb',
-    'password' => '465c500abd5f680f0b20405deb967b36',
+    'username' => '16b6231ee39f29d2b9df28e422037884',
+    'password' => '648e2fd2af3e71d714ccf5e702f0782b',
 
     'sendmail' => '/usr/sbin/sendmail -bs',
     'encryption' => 'tls',

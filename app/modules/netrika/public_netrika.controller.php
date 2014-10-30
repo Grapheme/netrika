@@ -346,8 +346,18 @@ class PublicNetrikaController extends BaseController {
         ## Send confirmation to user - with password
         $data = Input::all();
         $data['solution'] = $solution;
+
+        #echo Dic::valueBySlugs('options', 'from_email') . ' / ' . Dic::valueBySlugs('options', 'from_name');
+
         Mail::send('emails.request-demo', $data, function ($message) use ($data) {
-            $message->from(Config::get('mail.from.address'), Config::get('mail.from.name'));
+            #$message->from(Config::get('mail.from.address'), Config::get('mail.from.name'));
+
+            $from_email = Dic::valueBySlugs('options', 'from_email');
+            $from_email = is_object($from_email) ? $from_email->name : 'no@reply.ru';
+            $from_name = Dic::valueBySlugs('options', 'from_name');
+            $from_name = is_object($from_name) ? $from_name->name : 'No-reply';
+
+            $message->from($from_email, $from_name);
             $message->subject('Заказ на демонстрацию решения: ' . $data['solution']->name);
 
             #$email = Config::get('mail.feedback.address');
