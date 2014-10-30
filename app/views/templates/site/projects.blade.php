@@ -11,7 +11,7 @@ $solutions = DicVal::extracts($solutions, true);
 #Helper::ta($solutions);
 
 $projects = Dic::valuesBySlug('projects', function($query){
-    #$query->orderBy('order', 'asc');
+    $query->orderBy('order', 'asc');
     $query->orderBy('updated_at', 'desc');
     $query->orderBy('created_at', 'desc');
 });
