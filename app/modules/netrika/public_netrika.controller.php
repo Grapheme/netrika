@@ -274,8 +274,9 @@ class PublicNetrikaController extends BaseController {
             $query->select($tbl_dicval . '.*');
             $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')->where($rand_tbl_alias . '.key', '=', 'solution_id')->where($rand_tbl_alias . '.value', '=', $solution->id);
 
-            $query->where($tbl_dicval . '.id', '!=', $project->id);
-            $query->where($tbl_dicval . '.id', '<', $project->id);
+            #$query->where($tbl_dicval . '.id', '!=', (int)$project->id);
+            $query->where($tbl_dicval . '.id', '<', (int)$project->id);
+            $query->orderBy($tbl_dicval . '.id', 'DESC');
             $query->take(1);
         });
         $prev_project = @$prev_project[0];
@@ -296,8 +297,9 @@ class PublicNetrikaController extends BaseController {
             $query->select($tbl_dicval . '.*');
             $query->join($tbl_dic_field_val . ' AS ' . $rand_tbl_alias, $rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')->where($rand_tbl_alias . '.key', '=', 'solution_id')->where($rand_tbl_alias . '.value', '=', $solution->id);
 
-            $query->where($tbl_dicval . '.id', '!=', $project->id);
-            $query->where($tbl_dicval . '.id', '>', $project->id);
+            #$query->where($tbl_dicval . '.id', '!=', (int)$project->id);
+            $query->where($tbl_dicval . '.id', '>', (int)$project->id);
+            $query->orderBy($tbl_dicval . '.id', 'ASC');
             $query->take(1);
         });
         $next_project = @$next_project[0];
@@ -614,3 +616,4 @@ class PublicNetrikaController extends BaseController {
     }
 
 }
+
