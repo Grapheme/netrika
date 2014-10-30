@@ -177,21 +177,14 @@
                             {{ $project->description_process }}
 
                         </div><!--
+                        @if (count($photos))
+                        @foreach ($photos as $photo)
                         --><div class="ps-block">
-                            <div class="ps-big" style="background-image: url(http://www.outputmagazine.com/_photos/620-2022-03-28-GC-Futurefashion.jpg)"></div>
+                            <div class="ps-big" style="background-image: url({{ $photo }})"></div>
                         </div><!--
-                        --><div class="ps-block">
-                            <div class="ps-big" style="background-image: url(http://www.outputmagazine.com/_photos/620-2022-03-28-GC-Futurefashion.jpg)"></div>
-                        </div><!--
-                        --><div class="ps-block">
-                            <div class="ps-big" style="background-image: url(http://www.outputmagazine.com/_photos/620-2022-03-28-GC-Futurefashion.jpg)"></div>
-                        </div><!--
-                        --><div class="ps-block">
-                            <div class="ps-big" style="background-image: url(http://www.outputmagazine.com/_photos/620-2022-03-28-GC-Futurefashion.jpg)"></div>
-                        </div><!--
-                        --><div class="ps-block">
-                            <div class="ps-big" style="background-image: url(http://www.outputmagazine.com/_photos/620-2022-03-28-GC-Futurefashion.jpg)"></div>
-                        </div>
+                        @endforeach
+                        @endif
+                        -->
 
                         <!--<div class="ps-block">
                             <div class="ps-small">
