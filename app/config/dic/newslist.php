@@ -57,6 +57,7 @@ return array(
                 'others' => array(
                     'class' => 'redactor_content'
                 ),
+                'first_note' => 'Рекомендуемая щирина изображения: 800px',
             ),
 
             'image_id' => array(

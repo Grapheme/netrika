@@ -141,6 +141,16 @@ class AdminDicvalsController extends BaseController {
 
         ## Ordering
         $sort_order = $dic->sort_order_reverse ? 'DESC' : 'ASC';
+
+        #Helper::dd($dic->sort_by);
+
+        /**
+         * Кол-во элементов, подпадающих под условия, но без учета пагинации
+         */
+        $total_elements_current_selection = clone $elements;
+        $total_elements_current_selection = (int)$total_elements_current_selection->count();
+        #Helper::ta($total_elements_current_selection);
+
         switch ($dic->sort_by) {
             case '':
                 $elements = $elements->orderBy($tbl_dicval.'.order', $sort_order)->orderBy($tbl_dicval.'.name', $sort_order);
@@ -174,17 +184,10 @@ class AdminDicvalsController extends BaseController {
                         ;
                     })
                     ->addSelect($rand_tbl_alias . '.value AS ' . $dic->sort_by)
-                    ->orderBy($tbl_dicval.'.'.$dic->sort_by, $sort_order)
+                    ->orderBy($dic->sort_by, $sort_order)
                     ->orderBy($tbl_dicval.'.created_at', 'DESC'); /* default */
                 break;
         }
-
-        /**
-         * Кол-во элементов, подпадающих под условия, но без учета пагинации
-         */
-        $total_elements_current_selection = clone $elements;
-        $total_elements_current_selection = (int)$total_elements_current_selection->count();
-        #Helper::ta($total_elements_current_selection);
 
         ## Pagination
         if ($dic->pagination > 0)
