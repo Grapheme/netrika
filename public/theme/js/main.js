@@ -1,3 +1,34 @@
+var adp = {
+	points: ['768', '1200'],
+
+	mode: function() {
+		if($(window).width() <= this.points[0]) {
+			var mode = 'mobile';
+		} else if($(window).width() <= this.points[1]) {
+			var mode = 'tablet';
+		} else {
+			var mode = 'desktop';
+		}
+
+		return mode;
+	},
+
+	whatch: function() {
+		var parent = this;
+		var start_mode = this.mode();
+
+		$(window).on('resize', function(){
+			var new_mode = parent.mode();
+			if(start_mode != new_mode) {
+				start_mode = new_mode;
+				$(document).trigger('adp::change', [new_mode]);
+			}
+		});
+	},
+};
+
+adp.whatch();
+
 $.fn.solutionSelect = function(auto_select) {
 	var parent = $(this);
 
@@ -1069,13 +1100,12 @@ $.fn.indexStatNav = function(block_class, item_class) {
 		item = $(this).find(item_class),
 		left_arrow = parent.find('.stat-control .js-prev'),
 		right_arrow = parent.find('.stat-control .js-next'),
-		new_width = 0,
 		left_pos = 0,
 		min_left = 0,
 		max_left = $('.stat-items').width() - $('.js-slider-parent').width();
 
-	item.each(function(){
-		new_width += $(this).outerWidth(true);
+	$(document).on('adp::change', function(e, mode){
+		setIt();
 	});
 
 	var arrow = {
@@ -1188,18 +1218,33 @@ $.fn.indexStatNav = function(block_class, item_class) {
 		return false;
 	});
 
+	function setIt() {
+		var new_width = 0;
+		item.each(function(){
+			new_width += $(this).outerWidth(true);
+		});
+		block.css({
+			'width': new_width
+		});
+
+		var items_line = 5;
+		if(adp.mode() == 'tablet') {
+			items_line = 3;
+		}
+		if(item.length <= items_line) {
+			left_arrow.css('opacity', 0);
+			right_arrow.css('opacity', 0);
+		}
+	}
+
 	function init() {
 		slider_block.css('overflow', 'hidden');
 		block.css({
-			'width': new_width,
 			'left': 0
 		});
 		arrow.disable(left_arrow);
 
-		if(item.length <= 5) {
-			left_arrow.css('opacity', 0);
-			right_arrow.css('opacity', 0);
-		}
+		setIt();
 	}
 
 	init();
