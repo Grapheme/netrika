@@ -533,7 +533,8 @@ $solution4form = $solution;
         <script>
             $('.js-netrika-parent').netrika_slider();
             $('.js-st-parent').simple_tabs();
-            $(document).canvas_draw(false);
+            $(document).canvas_draw();
+            $(document).canvas_redraw();
 
             //$('.js-ls-parent').line_slider();
         </script>
