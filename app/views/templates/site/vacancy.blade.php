@@ -22,7 +22,7 @@ foreach ($clients as $client) {
 }
 */
 
-$color = '#1dcba4';
+#$color = '#1dcba4';
 
 $vacancies = Dic::valuesBySlug('vacancies');
 $vacancies = DicVal::extracts($vacancies, true);
@@ -35,7 +35,7 @@ foreach ($devteam as $dev) {
     $dev = trim($dev);
     if (!$dev || !strpos($dev, ' '))
         continue;
-    list($percent, $lang) = explode(' ', $dev);
+    list($percent, $color, $lang) = explode(' ', $dev);
     $temp[] = array(
         'value' => (int)$percent,
         'color' => $color,
