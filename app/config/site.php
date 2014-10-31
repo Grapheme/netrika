@@ -16,9 +16,13 @@ return array(
 
     'upload_dir' => '/uploads',
 
+    'uploads_photo_dir' => public_path('uploads'),
+    'uploads_thumb_dir' => public_path('uploads/thumbs'),
+    'uploads_photo_public_dir' => '/uploads',
+    'uploads_thumb_public_dir' => '/uploads/thumbs',
+
     'galleries_photo_dir' => public_path('uploads/galleries'),
     'galleries_thumb_dir' => public_path('uploads/galleries/thumbs'),
-
     'galleries_photo_public_dir' => '/uploads/galleries',
     'galleries_thumb_public_dir' => '/uploads/galleries/thumbs',
 
