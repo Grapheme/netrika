@@ -3986,10 +3986,12 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .canvas-cirs {
     position: relative;
-    left: 50%;
-    margin-left: -180px !important;
     width: 342px !important;
     overflow: hidden;
+  }
+  .canvas-cirs canvas {
+    left: 50%;
+    margin-left: -160px;
   }
   .main-stat .stat-right-block {
     margin-top: 1.25rem;
