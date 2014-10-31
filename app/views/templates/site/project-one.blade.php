@@ -180,7 +180,7 @@
                         @if (count($photos))
                         @foreach ($photos as $photo)
                         --><div class="ps-block">
-                            <div class="ps-big" style="background-image: url({{ $photo }})"></div>
+                            <div class="ps-big fancybox" rel="netrika_progress" href="{{ $photo }}" style="background-image: url({{ $photo }})"></div>
                         </div><!--
                         @endforeach
                         @endif
