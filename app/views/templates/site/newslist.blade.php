@@ -113,7 +113,7 @@ foreach ($newslist as $new) {
                         <div class="head-desc">Получайте последние новости</div>
                         <form id="subscribe" method="POST" action="{{ URL::route('add-email-listener') }}">
                             <input name="email" class="head-input" type="email" placeholder="email@email.com" required autocomplete="off">
-                            <button type="submit" class="title-btn success">Подписаться</button>
+                            <button type="submit" class="title-btn">Подписаться</button>
                             <span class="succeed-text"><!--Подписка оформлена--></span>
                         </form>
                     </div>
@@ -301,6 +301,7 @@ foreach ($newslist as $new) {
 
                         //$('.form-success').addClass('active');
                         $('.succeed-text').text(response.responseText);
+                        $(form).find('button').removeClass('loading').addClass('success');
 
                         /*
                         setTimeout( function(){
