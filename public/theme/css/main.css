@@ -2486,6 +2486,7 @@ section a:hover {
   margin-right: 1.25rem;
   background-size: contain;
   background-position: left center;
+  background-repeat: no-repeat;
 }
 .comps-ul li .title:after {
   content: "";
