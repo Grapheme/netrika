@@ -2483,24 +2483,15 @@ section a:hover {
   position: relative;
   padding-left: 30px;
 }
-.developer-group .developer-type .developer-list li:before {
-  content: "";
+.developer-group .developer-type .developer-list li span {
   position: absolute;
+  display: inline-block;
   left: 0;
   top: 50%;
   margin-top: -4px;
   width: 8px;
   height: 8px;
   border-radius: 8px;
-}
-.developer-group .developer-type .developer-list li:nth-of-type(1):before {
-  background: #1dcba4;
-}
-.developer-group .developer-type .developer-list li:nth-of-type(2):before {
-  background: #60dabf;
-}
-.developer-group .developer-type .developer-list li:nth-of-type(3):before {
-  background: #8ee5d1;
 }
 .contact-ul {
   margin: 0;
