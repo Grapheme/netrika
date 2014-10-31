@@ -4564,7 +4564,7 @@ Move to separate stylesheet if invalid CSS is a problem.
   .solutions .solution .solution-right .sol-comps .comps-in .comps-ul li {
     width: 100%;
   }
-  .solutions .solution .solution-right .sol-comps .comps-in .comps-ul li .title:before {
+  .solutions .solution .solution-right .sol-comps .comps-in .comps-ul li .title .comp-svg-icon {
     width: 2rem;
     height: 2rem;
     margin-right: 1rem;
