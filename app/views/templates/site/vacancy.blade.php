@@ -35,11 +35,12 @@ foreach ($devteam as $dev) {
     $dev = trim($dev);
     if (!$dev || !strpos($dev, ' '))
         continue;
-    list($percent, $color, $lang) = explode(' ', $dev);
+    #list($percent, $color, $lang) = explode(' ', $dev);
+    $list = explode(' ', $dev);
     $temp[] = array(
-        'value' => (int)$percent,
-        'color' => $color,
-        'label' => $lang
+        'value' => (int)@$list[0],
+        'color' => @$list[1],
+        'label' => @$list[2],
     );
 }
 $devteam = $temp;
