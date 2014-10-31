@@ -965,6 +965,45 @@ $.fn.header_nav = function() {
 	});
 }
 
+$.fn.canvas_redraw = function() {
+	var start_mode;
+	if($(window).width() < 768) {
+		start_mode = 'mobile';
+		setCanvas(320);
+	} else {
+		start_mode = 'desktop';
+	}
+
+	$(window).on('resize', reDraw);
+
+	function reDraw() {
+		if($(window).width() < 768) {
+			var mode = 'mobile';
+		} else {
+			var mode = 'desktop';
+		}
+
+		if(mode != start_mode) {
+			start_mode = mode;
+			$(document).canvas_draw();
+			if(mode == 'mobile') {
+				setCanvas(320);
+			} else {
+				setCanvas(360);
+			}
+		}
+	}
+
+	function setCanvas(value) {
+		for(var i = 0; i < 3; i++) {
+			$('#canvas-cir-' + i).attr({
+				'width': value,
+				'height': value
+			});
+		}
+	}
+}
+
 $.fn.canvas_draw = function(array) {
 
 	if(!array) {
@@ -981,7 +1020,11 @@ $.fn.canvas_draw = function(array) {
 		return;
 	}
 
-	var radiuses = [160, 120, 80];
+	if($(window).width() < 768) {
+		var radiuses = [150, 110, 70];
+	} else {
+		var radiuses = [160, 120, 80];
+	}
 
 	function draw_animate(i, perc, max_perc) {
 		var canvas = document.getElementById('canvas-cir-' + i);

@@ -17,7 +17,7 @@
 
         <!-- Yandex.Metrika counter -->
 		<script type="text/javascript">
-		  (function (d, w, c) {
+		  /*(function (d, w, c) {
 		    (w[c] = w[c] || []).push(function() {
 		      try {
 		        w.yaCounter22991605 = new Ya.Metrika({id:22991605,
@@ -38,13 +38,13 @@
 		    if (w.opera == "[object Opera]") {
 		      d.addEventListener("DOMContentLoaded", f, false);
 		    } else { f(); }
-		  })(document, window, "yandex_metrika_callbacks");
+		  })(document, window, "yandex_metrika_callbacks");*/
 		</script>
 		<noscript><div><img src="//mc.yandex.ru/watch/22991605" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 		<!-- /Yandex.Metrika counter -->
 		<script type="text/javascript">
 
-		  var _gaq = _gaq || [];
+		  /*var _gaq = _gaq || [];
 		  _gaq.push(['_setAccount', 'UA-33007056-1']);
 		  _gaq.push(['_trackPageview']);
 
@@ -55,5 +55,5 @@
 		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 		    var s = document.getElementsByTagName('script')[0];
 		    s.parentNode.insertBefore(ga, s);
-		  })();
+		  })();*/
 		</script>

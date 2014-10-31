@@ -257,6 +257,7 @@ foreach ($clients as $client) {
         $('.js-stat-parent').statTabs('.js-slider-parent');
         $('.stat-nav').indexStatNav('.stat-items', '.stat-item');
         $('.js-main-slider').main_slider('.js-ms-dots');
+        $(document).canvas_redraw();
 
     </script>
 @stop
