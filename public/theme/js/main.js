@@ -967,19 +967,17 @@ $.fn.header_nav = function() {
 
 $.fn.canvas_redraw = function() {
 	var start_mode;
-	if($(window).width() < 768) {
+	if($(window).width() <= 768) {
 		start_mode = 'mobile';
 		setCanvas(320);
-		alert('Рисуем канвас шириной 320');
 	} else {
 		start_mode = 'desktop';
-		alert($(window).width());
 	}
 
 	$(window).on('resize', reDraw);
 
 	function reDraw() {
-		if($(window).width() < 768) {
+		if($(window).width() <= 768) {
 			var mode = 'mobile';
 		} else {
 			var mode = 'desktop';
@@ -1022,7 +1020,7 @@ $.fn.canvas_draw = function(array) {
 		return;
 	}
 
-	if($(window).width() < 768) {
+	if($(window).width() <= 768) {
 		var radiuses = [150, 110, 70];
 	} else {
 		var radiuses = [160, 120, 80];
