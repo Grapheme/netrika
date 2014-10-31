@@ -3953,9 +3953,6 @@ Move to separate stylesheet if invalid CSS is a problem.
   body {
     font-size: 14px;
   }
-  .main-header {
-    z-index: 100;
-  }
   .mobile-menu {
     display: block;
   }
@@ -3963,9 +3960,11 @@ Move to separate stylesheet if invalid CSS is a problem.
     display: none !important;
   }
   .main-header {
+    z-index: 100;
     background: #505861;
     height: 3.75rem;
     line-height: 4.375rem;
+    min-width: 20.25rem;
   }
   .main-header .logo {
     position: absolute;
