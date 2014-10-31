@@ -116,7 +116,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                                             <li>
                                                 <div class="title">
                                                     @if (isset($images_svg[$project->image_id]))
-                                                    <img src="{{ @$images_svg[$project->image_id] }}" />
+                                                    <div class="comp-svg-icon" style="background-image: url({{ @$images_svg[$project->image_id] }});" /></div>
                                                     @endif
                                                     <a href="{{ URL::route('solution-one', $solution->slug) }}#solutions">{{ $project->name }}</a>
                                                 </div>
