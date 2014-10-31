@@ -113,7 +113,7 @@ foreach ($projects as $project) {
                     <div class="input-wrp">
                         <div class="solution-select">
                             <span class="select-btn"></span>
-                            <div class="solution-line">Выберите решение</div>
+                            <div class="solution-line"><span>Выберите решение<span></div>
                             <ul class="solution-list">
                                 @foreach ($solutions as $solution)
                                     <?
@@ -146,7 +146,9 @@ foreach ($projects as $project) {
                 </div>
                 <footer class="popup-footer">
                     <button class="title-btn">Заказать</button>
-                    <span class="error-msg"></span>
+                    <div class="error-msg-cont">
+                        <span class="error-msg"></span>
+                    </div>
                 </footer>
 
                 {{ Form::close() }}

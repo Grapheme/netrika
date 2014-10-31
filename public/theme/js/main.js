@@ -132,12 +132,12 @@ $.fn.mSelect = function(json) {
 
 		var options_str = '';
 		$.each(options, function(index, value){
-			options_str += '<li data-value="' + index + '"><div>' + value + '</div>';
+			options_str += '<li data-value="' + index + '"><div><span>' + value + '</span></div>';
 		});
 
 		var str = '';
 		str += '<div class="multiple-select"><span class="select-btn"></span>';
-			str += '<div class="select-line">' + select_text + '</div>';
+			str += '<div class="select-line"><span>' + select_text + '</span></div>';
 	        str += '<ul class="select-list">';
 	        	str += options_str;
 	        str += '</ul>';

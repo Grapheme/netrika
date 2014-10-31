@@ -116,6 +116,12 @@
 						.select-line {
 							box-sizing: border-box;
 							width: 100%;
+
+							span {
+								display: inline-block;
+								vertical-align: middle;
+								line-height: normal;
+							}
 						}
 
 						.select-list {
@@ -135,6 +141,12 @@
 								div {
 									height: 49rem / @hfs;
 									border-bottom: 1px solid #d7eae6;
+
+									span {
+										display: inline-block;
+										vertical-align: middle;
+										line-height: normal;
+									}
 								}
 
 								&:last-child div {
@@ -151,7 +163,6 @@
 							li {
 								display: inline-block;
 								vertical-align: top;
-								height: 25rem / @hfs;
 								line-height: 25rem / @hfs;
 								border-radius: 25rem / @hfs;
 								font-size: 14em / @hfs;
@@ -200,6 +211,12 @@
 							&.inp-error {
 								background: #ffe5e5;
 							}
+
+							span {
+								display: inline-block;
+								vertical-align: middle;
+								line-height: normal;
+							}
 						}
 
 						.solution-list {
@@ -243,12 +260,21 @@
 			}
 
 			.popup-footer {
+				position: relative;
 				height: 100rem / @hfs;
 				line-height: 100rem / @hfs;
 				padding: 0 40rem / @hfs;
 
+				.error-msg-cont {
+					display: inline-block;
+					width: 75%;
+				}
+
 				.error-msg {
 					margin-left: 20rem / @hfs;
+					display: inline-block;
+					vertical-align: middle;
+					line-height: normal;
 				}
 
 				.title-btn.success {
