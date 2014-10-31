@@ -1516,9 +1516,6 @@ section a:hover {
 .tags-ul.tags-hover li {
   cursor: pointer;
 }
-#ui-datepicker-div {
-  z-index: 5 !important;
-}
 .main-stat {
   padding: 2.5rem 0 2.5rem;
 }
@@ -2691,6 +2688,11 @@ section a:hover {
        box-sizing: border-box;
   width: 100%;
 }
+.popups .popup.order-present .popup-body .input-wrp .multiple-select .select-line span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
 .popups .popup.order-present .popup-body .input-wrp .multiple-select .select-list {
   margin: 0;
   padding: 0;
@@ -2711,6 +2713,11 @@ section a:hover {
   height: 3.0625rem;
   border-bottom: 1px solid #d7eae6;
 }
+.popups .popup.order-present .popup-body .input-wrp .multiple-select .select-list li div span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
 .popups .popup.order-present .popup-body .input-wrp .multiple-select .select-list li:last-child div {
   border-bottom: 0 none;
 }
@@ -2724,7 +2731,6 @@ section a:hover {
 .popups .popup.order-present .popup-body .input-wrp .multiple-select .selected-list li {
   display: inline-block;
   vertical-align: top;
-  height: 1.5625rem;
   line-height: 1.5625rem;
   border-radius: 1.5625rem;
   font-size: 0.875em;
@@ -2765,6 +2771,11 @@ section a:hover {
 .popups .popup.order-present .popup-body .input-wrp .solution-select .solution-line.inp-error {
   background: #ffe5e5;
 }
+.popups .popup.order-present .popup-body .input-wrp .solution-select .solution-line span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
 .popups .popup.order-present .popup-body .input-wrp .solution-select .solution-list {
   margin: 0;
   padding: 0;
@@ -2798,12 +2809,20 @@ section a:hover {
   display: block;
 }
 .popups .popup.order-present .popup-footer {
+  position: relative;
   height: 6.25rem;
   line-height: 6.25rem;
   padding: 0 2.5rem;
 }
+.popups .popup.order-present .popup-footer .error-msg-cont {
+  display: inline-block;
+  width: 75%;
+}
 .popups .popup.order-present .popup-footer .error-msg {
   margin-left: 1.25rem;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
 }
 .popups .popup.order-present .popup-footer .title-btn.success {
   color: #fff !important;
@@ -2855,6 +2874,7 @@ section a:hover {
   border-radius: 0 !important;
   margin: 1.5625rem 0 0 -5.3125rem;
   padding: 20px !important;
+  z-index: 5 !important;
 }
 .ui-datepicker:before {
   content: "";
@@ -3953,19 +3973,19 @@ Move to separate stylesheet if invalid CSS is a problem.
   body {
     font-size: 14px;
   }
-  .main-header {
-    z-index: 100;
-  }
   .mobile-menu {
     display: block;
+    min-width: 20.25rem;
   }
   .mobile-hidden {
     display: none !important;
   }
   .main-header {
+    z-index: 100;
     background: #505861;
     height: 3.75rem;
     line-height: 4.375rem;
+    min-width: 20.25rem;
   }
   .main-header .logo {
     position: absolute;
@@ -3980,6 +4000,10 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .grid_m12 {
     width: 19rem !important;
+    display: inline;
+    float: left;
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
   }
   .grid_m6 {
     width: 8.875rem !important;
@@ -4152,6 +4176,10 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .news-first .grid_4 {
     width: 19rem !important;
+    display: inline;
+    float: left;
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
   }
   .news-first .news-photo:after {
     top: auto;
@@ -4178,6 +4206,25 @@ Move to separate stylesheet if invalid CSS is a problem.
        -moz-column-count: 2;
             column-count: 2;
     colum-gap: 1.875rem;
+  }
+  .ui-datepicker {
+    margin: 0;
+  }
+  .ui-datepicker:before {
+    display: none;
+  }
+  .popups .popup.order-present {
+    width: 20rem;
+  }
+  .popups .popup.order-present .popup-footer .error-msg-cont {
+    position: absolute;
+    top: 0;
+    left: 155px;
+    right: 10px;
+    width: auto;
+  }
+  .popups .popup.order-present .popup-footer .error-msg-cont .error-msg {
+    margin-left: 0;
   }
 }
 @media screen and (max-width: 1200px) {

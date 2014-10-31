@@ -1,3 +1,33 @@
+var adp = {
+	points: ['768', '1200'],
+
+	mode: function() {
+		if($(window).width() <= this.points[0]) {
+			var mode = 'mobile';
+		} else if($(window).width() <= this.points[1]) {
+			var mode = 'tablet';
+		} else {
+			var mode = 'desktop';
+		}
+
+		return mode;
+	},
+
+	whatch: function() {
+		var parent = this;
+		var start_mode = this.mode();
+
+		$(window).on('resize', function(){
+			var new_mode = parent.mode();
+			if(start_mode != new_mode) {
+				start_mode = new_mode;
+				$(document).trigger('adp::change', [new_mode]);
+			}
+		});
+	},
+};
+adp.whatch();
+
 $.fn.solutionSelect = function(auto_select) {
 	var parent = $(this);
 
@@ -102,12 +132,12 @@ $.fn.mSelect = function(json) {
 
 		var options_str = '';
 		$.each(options, function(index, value){
-			options_str += '<li data-value="' + index + '"><div>' + value + '</div>';
+			options_str += '<li data-value="' + index + '"><div><span>' + value + '</span></div>';
 		});
 
 		var str = '';
 		str += '<div class="multiple-select"><span class="select-btn"></span>';
-			str += '<div class="select-line">' + select_text + '</div>';
+			str += '<div class="select-line"><span>' + select_text + '</span></div>';
 	        str += '<ul class="select-list">';
 	        	str += options_str;
 	        str += '</ul>';
@@ -735,7 +765,7 @@ $.fn.line_slider = function() {
 $.fn.solutions_touch = function() {
 	var parent = $(this);
 	if (Modernizr.touch) {
-		parent.on('click', function(){
+		parent.find('.solution-left').on('click', function(){
 			var url = parent.find('.hover-content .title-btn').attr('href');
 			window.location.href = url;
 		});
@@ -1069,13 +1099,11 @@ $.fn.indexStatNav = function(block_class, item_class) {
 		item = $(this).find(item_class),
 		left_arrow = parent.find('.stat-control .js-prev'),
 		right_arrow = parent.find('.stat-control .js-next'),
-		new_width = 0,
 		left_pos = 0,
-		min_left = 0,
-		max_left = $('.stat-items').width() - $('.js-slider-parent').width();
+		min_left = 0;
 
-	item.each(function(){
-		new_width += $(this).outerWidth(true);
+	$(document).on('adp::change', function(e, mode){
+		setIt();
 	});
 
 	var arrow = {
@@ -1095,11 +1123,10 @@ $.fn.indexStatNav = function(block_class, item_class) {
 
 			if( ifRight ) {
 				step = step * (-1);
-				//arrow.enable(left_arrow);
 			}
 
-			if( ifLeft ) {
-				//arrow.enable(right_arrow);
+			if(ifRight && (left_pos - slider_block.width() + step) * (-1) > slider_block.find('.stat-items').width()) {
+				return;
 			}
 
 			left_pos = left_pos + step;
@@ -1188,18 +1215,32 @@ $.fn.indexStatNav = function(block_class, item_class) {
 		return false;
 	});
 
-	function init() {
-		slider_block.css('overflow', 'hidden');
+	function setIt() {
+		left_pos = 0;
+		var new_width = 0;
+		item.each(function(){
+			new_width += $(this).outerWidth(true);
+		});
 		block.css({
 			'width': new_width,
 			'left': 0
 		});
 		arrow.disable(left_arrow);
+		arrow.enable(right_arrow);
 
-		if(item.length <= 5) {
+		var items_line = 5;
+		if(adp.mode() == 'tablet') {
+			items_line = 3;
+		}
+		if(item.length <= items_line) {
 			left_arrow.css('opacity', 0);
 			right_arrow.css('opacity', 0);
 		}
+	}
+
+	function init() {
+		slider_block.css('overflow', 'hidden');
+		setIt();
 	}
 
 	init();
