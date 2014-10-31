@@ -92,7 +92,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid_4 grid_t12 grid_m12 adp-no-mar js-relative-news adp-top-mar">
+                <div class="grid_4 grid_t12 grid_m12 js-relative-news adp-top-mar">
                     <div class="js-relative-in">
                         @if (count($related_news))
                             <div class="grid_t12 grid_m12">

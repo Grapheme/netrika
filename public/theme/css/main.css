@@ -3600,6 +3600,12 @@ Move to separate stylesheet if invalid CSS is a problem.
   .grid_t6 {
     width: 22.125rem !important;
   }
+  .alpha {
+    margin-left: 0;
+  }
+  .omega {
+    margin-right: 0;
+  }
   .js-main-links {
     -webkit-transform: translateX(0) !important;
         -ms-transform: translateX(0) !important;
@@ -4008,6 +4014,12 @@ Move to separate stylesheet if invalid CSS is a problem.
   .grid_m6 {
     width: 8.875rem !important;
   }
+  .alpha {
+    margin-left: 0;
+  }
+  .omega {
+    margin-right: 0;
+  }
   .canvas-cirs {
     position: relative;
     width: 324px !important;
@@ -4180,6 +4192,7 @@ Move to separate stylesheet if invalid CSS is a problem.
     float: left;
     margin-left: 0.625rem;
     margin-right: 0.625rem;
+    margin-left: 0 !important;
   }
   .news-first .news-photo:after {
     top: auto;
@@ -4194,8 +4207,8 @@ Move to separate stylesheet if invalid CSS is a problem.
   .js-relative-news .js-relative-in .grid_m12 {
     display: inline;
     float: left;
-    margin-left: 0.9375rem;
-    margin-right: 0.9375rem;
+    margin-left: 0;
+    margin-right: 0;
   }
   .head-top-info .tags-ul {
     display: block;
@@ -4214,6 +4227,7 @@ Move to separate stylesheet if invalid CSS is a problem.
     display: none;
   }
   .popups .popup.order-present {
+    margin: 0.625rem 0;
     width: 20rem;
   }
   .popups .popup.order-present .popup-footer .error-msg-cont {
