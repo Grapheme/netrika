@@ -896,6 +896,9 @@ $.fn.smart_map = function(map_array) {
 		});
 		map_desc.find('.js-desc-title').text(city);
 		map_desc.find('.js-desc-items').html(items_str);
+		setTimeout(function(){
+			map_desc.find('.js-desc-items').customScrollbar();
+		}, 1);
 
 		var map_block_x = map_block.width()/4 - posX;
 		var map_block_y = map_block.height()/2 - posY;

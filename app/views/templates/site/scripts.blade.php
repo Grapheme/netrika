@@ -8,6 +8,7 @@
 
         {{ HTML::script("theme/js/vendor/jquery.mask.js") }}
         {{ HTML::script("theme/js/main.js") }}
+        {{ HTML::script("theme/js/plugins.js") }}
         {{ HTML::script("js/vendor/jquery.validate.min.js") }}
         {{ HTML::script("js/vendor/jquery-form.min.js") }}
 
