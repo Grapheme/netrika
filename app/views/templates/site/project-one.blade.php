@@ -180,7 +180,7 @@
                         @if (count($photos))
                         @foreach ($photos as $photo)
                         --><div class="ps-block">
-                            <div class="ps-big" style="background-image: url({{ $photo }})"></div>
+                            <a class="ps-big fancybox" rel="gallery1" href="{{ $photo }}" style="background-image: url({{ $photo }})"></a>
                         </div><!--
                         @endforeach
                         @endif
@@ -281,7 +281,10 @@
 
 @section('scripts')
 <script>
-    $('.aims').setHeightOfMax('.aim');
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
+        $('.aims').setHeightOfMax('.aim');
+    });
     var photos = {{ json_encode($photos) }};
 </script>
 @stop
