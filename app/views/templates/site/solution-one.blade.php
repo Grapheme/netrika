@@ -9,6 +9,18 @@
 
 <?
 $solution4form = $solution;
+
+$images_ids = array();
+$images_svg = array();
+foreach ($solution_components as $solution_component) {
+    $images_ids[] = $solution_component->image_id;
+}
+if (count($images_ids)) {
+    $images_svg = Upload::whereIn('id', $images_ids)->get();
+    $images_svg = Dic::modifyKeys($images_svg, 'id');
+    $images_svg = Dic::makeLists($images_svg, false, 'path', 'id');
+}
+
 ?>
 
 
@@ -373,7 +385,7 @@ $solution4form = $solution;
                         <ul class="comps-ul columns-2">
 
                         @foreach ($components as $component)
-                            <li><div class="title"><div class="comp-svg-icon" style="background-image: url({{ $component->image_id }});"></div><span>{{ $component->name }}</span></div>
+                            <li><div class="title"><div class="comp-svg-icon" style="background-image: url({{ @$images_svg[$component->image_id] }});"></div><span>{{ $component->name }}</span></div>
                                 <p class="text">
                                     {{ $component->description }}
                                 </p>
