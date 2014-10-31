@@ -10,9 +10,10 @@
 
             <a href="{{ URL::route('page', 'newslist') }}">{{ $name }}</a>
 
+            @if (isset($preview))
             <hr/>
-
-            {{ $preview }}
+            {{ @$preview }}
+            @endif
 
 		</p>
 	</div>
