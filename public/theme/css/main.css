@@ -1738,12 +1738,16 @@ section a:hover {
 .fancybox-close {
   position: absolute;
   top: -25px;
-  right: -12px;
+  right: 8px;
   width: 36px;
   height: 36px;
   cursor: pointer;
   z-index: 8040;
   background: transparent !important;
+  color: #1dcba4;
+}
+.fancybox-close:hover {
+  color: #babcbc;
 }
 .fancybox-close:before {
   content: "\e603";
@@ -1751,15 +1755,11 @@ section a:hover {
   display: inline-block;
   width: 1.875rem;
   height: 1.875rem;
-  color: #1dcba4;
   -webkit-transition: color .2s ease;
           transition: color .2s ease;
   margin-right: 1.25rem;
   text-decoration: none;
   font-size: 1.875rem;
-}
-.fancybox-close:before:hover {
-  color: #babcbc;
 }
 .fancybox-nav {
   position: absolute;
@@ -1781,13 +1781,12 @@ section a:hover {
 }
 .fancybox-nav span {
   position: absolute;
-  top: 50%;
+  top: 100%;
   width: 36px;
   height: 34px;
-  margin-top: -18px;
+  margin-top: 10px;
   cursor: pointer;
   z-index: 8040;
-  visibility: hidden;
 }
 .fancybox-prev span {
   left: 10px;
@@ -1796,9 +1795,6 @@ section a:hover {
 .fancybox-next span {
   right: 10px;
   background-position: 0 -72px;
-}
-.fancybox-nav:hover span {
-  visibility: visible;
 }
 .fancybox-tmp {
   position: absolute;

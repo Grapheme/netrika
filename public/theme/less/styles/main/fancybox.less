@@ -100,12 +100,17 @@
 .fancybox-close {
 	position: absolute;
 	top: -25px;
-	right: -12px;
+	right: 8px;
 	width: 36px;
 	height: 36px;
 	cursor: pointer;
 	z-index: 8040;
 	background: transparent !important;
+	color: @green-link;
+
+	&:hover {
+		color: @gray-link;
+	}
 
 	&:before {
 		content: "\e603";
@@ -113,15 +118,10 @@
 		display: inline-block;
 		width: 30rem / @hfs;
 		height: 30rem / @hfs;
-		color: @green-link;
 		transition: color .2s ease;
 		margin-right: 20rem / @hfs;
 		text-decoration: none;
 		font-size: 30rem / @hfs;
-
-		&:hover {
-			color: @gray-link;
-		}
 	}
 }
 
@@ -147,13 +147,12 @@
 
 .fancybox-nav span {
 	position: absolute;
-	top: 50%;
+	top: 100%;
 	width: 36px;
 	height: 34px;
-	margin-top: -18px;
+	margin-top: 10px;
 	cursor: pointer;
 	z-index: 8040;
-	visibility: hidden;
 }
 
 .fancybox-prev span {
@@ -164,10 +163,6 @@
 .fancybox-next span {
 	right: 10px;
 	background-position: 0 -72px;
-}
-
-.fancybox-nav:hover span {
-	visibility: visible;
 }
 
 .fancybox-tmp {
