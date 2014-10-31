@@ -2485,7 +2485,7 @@ section a:hover {
   width: 2.5rem;
   margin-right: 1.25rem;
   background-size: contain;
-  background-position: left center;
+  background-position: center center;
   background-repeat: no-repeat;
 }
 .comps-ul li .title:after {
