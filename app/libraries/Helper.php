@@ -608,6 +608,20 @@ HTML;
         return $line;
     }
 
+    public static function arrayToUrlAttributes($array) {
+        if (!@is_array($array) || !@count($array)) {
+            return false;
+        }
+
+        $line = array();
+        foreach ($array as $key => $value) {
+            $line[] = $key . '=' . $value;
+        }
+        $line = implode('&', $line);
+        $line = trim($line);
+        return $line;
+    }
+
     public static function arrayFieldToKey(&$array, $field = 'slug') {
         #$return = $this;
         #Helper::tad($array);
