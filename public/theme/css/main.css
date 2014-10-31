@@ -1774,7 +1774,7 @@ section a:hover {
   z-index: 8040;
 }
 .fancybox-prev {
-  right: 20px;
+  right: 90px;
 }
 .fancybox-next {
   right: 0;
@@ -1782,8 +1782,8 @@ section a:hover {
 .fancybox-nav span {
   position: absolute;
   top: 100%;
-  width: 36px;
-  height: 34px;
+  width: 31px;
+  height: 31px;
   margin-top: 10px;
   cursor: pointer;
   z-index: 8040;
