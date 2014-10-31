@@ -176,7 +176,8 @@
 			}
 
 			&:after {
-				content: "";
+				font-family: "elements";
+				content: "\e60c";
 				position: absolute;
 				top: 50%;
 				left: 50%;
@@ -185,8 +186,11 @@
 				width: 90rem / @hfs;
 				height: 90rem / @hfs;
 				border-radius: 90rem / @hfs;
+				line-height: 92rem / @hfs;
+				text-align: center;
 				background: rgba(255, 255, 255, .2);
-				transition: opacity .2s ease .1s;
+				color: #fff;
+				transition: opacity .2s ease 0s;
 				opacity: 0;
 			}
 
@@ -196,6 +200,7 @@
 				}
 
 				&:after {
+					transition: opacity .2s ease .1s;
 					opacity: 1;
 				}
 			}

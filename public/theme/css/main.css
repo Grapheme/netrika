@@ -2221,7 +2221,8 @@ section a:hover {
   opacity: 0;
 }
 .progress-slider .ps-block .ps-big:after {
-  content: "";
+  font-family: "elements";
+  content: "\e60c";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -2230,15 +2231,20 @@ section a:hover {
   width: 5.625rem;
   height: 5.625rem;
   border-radius: 5.625rem;
+  line-height: 5.75rem;
+  text-align: center;
   background: rgba(255, 255, 255, 0.2);
-  -webkit-transition: opacity .2s ease .1s;
-          transition: opacity .2s ease .1s;
+  color: #fff;
+  -webkit-transition: opacity .2s ease 0s;
+          transition: opacity .2s ease 0s;
   opacity: 0;
 }
 .progress-slider .ps-block .ps-big:hover:before {
   opacity: .9;
 }
 .progress-slider .ps-block .ps-big:hover:after {
+  -webkit-transition: opacity .2s ease .1s;
+          transition: opacity .2s ease .1s;
   opacity: 1;
 }
 .progress-slider .ps-block .ps-small {
