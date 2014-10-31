@@ -2220,8 +2220,26 @@ section a:hover {
           transition: opacity .2s ease;
   opacity: 0;
 }
+.progress-slider .ps-block .ps-big:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -2.8125rem;
+  margin-top: -2.8125rem;
+  width: 5.625rem;
+  height: 5.625rem;
+  border-radius: 5.625rem;
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-transition: opacity .2s ease .1s;
+          transition: opacity .2s ease .1s;
+  opacity: 0;
+}
 .progress-slider .ps-block .ps-big:hover:before {
   opacity: .9;
+}
+.progress-slider .ps-block .ps-big:hover:after {
+  opacity: 1;
 }
 .progress-slider .ps-block .ps-small {
   display: inline-block;

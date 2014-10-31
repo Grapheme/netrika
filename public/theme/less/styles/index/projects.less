@@ -175,9 +175,28 @@
 				opacity: 0;
 			}
 
+			&:after {
+				content: "";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -45rem / @hfs;
+				margin-top: -45rem / @hfs;
+				width: 90rem / @hfs;
+				height: 90rem / @hfs;
+				border-radius: 90rem / @hfs;
+				background: rgba(255, 255, 255, .2);
+				transition: opacity .2s ease .1s;
+				opacity: 0;
+			}
+
 			&:hover {
 				&:before {
 					opacity: .9;
+				}
+
+				&:after {
+					opacity: 1;
 				}
 			}
 		}
