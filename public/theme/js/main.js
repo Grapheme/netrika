@@ -970,8 +970,10 @@ $.fn.canvas_redraw = function() {
 	if($(window).width() < 768) {
 		start_mode = 'mobile';
 		setCanvas(320);
+		alert('Рисуем канвас шириной 320');
 	} else {
 		start_mode = 'desktop';
+		alert('низуя не работае');
 	}
 
 	$(window).on('resize', reDraw);
