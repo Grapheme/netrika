@@ -1743,6 +1743,7 @@ section a:hover {
   height: 36px;
   cursor: pointer;
   z-index: 8040;
+  background: transparent !important;
 }
 .fancybox-close:before {
   content: "\e603";
