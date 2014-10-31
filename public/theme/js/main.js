@@ -765,7 +765,7 @@ $.fn.line_slider = function() {
 $.fn.solutions_touch = function() {
 	var parent = $(this);
 	if (Modernizr.touch) {
-		parent.on('click', function(){
+		parent.find('.solution-left').on('click', function(){
 			var url = parent.find('.hover-content .title-btn').attr('href');
 			window.location.href = url;
 		});

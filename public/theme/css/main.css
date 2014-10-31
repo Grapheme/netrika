@@ -3980,6 +3980,10 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .grid_m12 {
     width: 19rem !important;
+    display: inline;
+    float: left;
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
   }
   .grid_m6 {
     width: 8.875rem !important;
@@ -4152,6 +4156,10 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .news-first .grid_4 {
     width: 19rem !important;
+    display: inline;
+    float: left;
+    margin-left: 0.625rem;
+    margin-right: 0.625rem;
   }
   .news-first .news-photo:after {
     top: auto;

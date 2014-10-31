@@ -118,7 +118,7 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                     </div>
                 @endforeach
                 @endif
-
+                <div class="clearfix"></div>
             </div>
         </section>
 
