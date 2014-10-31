@@ -2484,6 +2484,8 @@ section a:hover {
   height: 2.5rem;
   width: 2.5rem;
   margin-right: 1.25rem;
+  background-size: contain;
+  background-position: left center;
 }
 .comps-ul li .title:after {
   content: "";

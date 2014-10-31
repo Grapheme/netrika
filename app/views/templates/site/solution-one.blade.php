@@ -376,6 +376,7 @@ $solution4form = $solution;
                             <li><div class="title"><span>{{ $component->name }}</span></div>
                                 <p class="text">
                                     {{ $component->description }}
+                                    <? print_r($component); ?>
                                 </p>
                         @endforeach
 
