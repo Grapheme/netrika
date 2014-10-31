@@ -3986,7 +3986,7 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .canvas-cirs {
     position: relative;
-    width: 342px !important;
+    width: 324px !important;
     overflow: hidden;
   }
   .canvas-cirs canvas {
