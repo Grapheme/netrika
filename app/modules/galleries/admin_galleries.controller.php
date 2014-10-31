@@ -371,7 +371,8 @@ class AdminGalleriesController extends BaseController {
 
         $rules = array(
         	'file' => 'image'
-	    );	 
+	    );
+        #Helper::dd($file);
 	    $validation = Validator::make(array('file' => $file), $rules);
 	    if ($validation->fails()){
 	    	$result['desc'] = 'This extension is not allowed.';
@@ -411,6 +412,9 @@ class AdminGalleriesController extends BaseController {
             $thumb_resize_w = ($w > $h) ? null : $thumb_size;
             $thumb_resize_h = ($w > $h) ? $thumb_size : null;
         }
+
+        #Helper::dd($thumb_resize_w . ' / ' . $thumb_resize_h);
+
         ## Resize thumb image
         $thumb_upload_success = ImageManipulation::make($file->getRealPath())
                                                 ->resize($thumb_resize_w, $thumb_resize_h, function($constraint){
@@ -455,7 +459,7 @@ class AdminGalleriesController extends BaseController {
 		$id = (int)Input::get('id');
         if ($id)
             $model = Photo::find($id);
-        if (!is_null($model))
+        if (isset($model) && !is_null($model))
 		    $db_delete = $model->delete();
 
 		if(@$db_delete) {

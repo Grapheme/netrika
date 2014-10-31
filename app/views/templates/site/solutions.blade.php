@@ -19,7 +19,18 @@ $solution_components = Dic::valuesBySlug('solution_components', function($query)
     $query->orderBy('created_at', 'desc');
 });
 $solution_components = DicVal::extracts($solution_components, true);
-#Helper::ta($projects);
+$images_ids = array();
+$images_svg = array();
+foreach ($solution_components as $solution_component) {
+    $images_ids[] = $solution_component->image_id;
+}
+if (count($images_ids)) {
+    $images_svg = Upload::whereIn('id', $images_ids)->get();
+    $images_svg = Dic::modifyKeys($images_svg, 'id');
+    $images_svg = Dic::makeLists($images_svg, false, 'path', 'id');
+}
+#Helper::tad($solution_components);
+#Helper::tad($images_svg);
 
 $array = array();
 foreach ($solution_components as $solution_component) {
@@ -104,6 +115,9 @@ if (isset($images_ids) && is_array($images_ids) && count($images_ids)) {
                                         @foreach ($lst as $project)
                                             <li>
                                                 <div class="title">
+                                                    @if (isset($images_svg[$project->image_id]))
+                                                    <img src="{{ @$images_svg[$project->image_id] }}" />
+                                                    @endif
                                                     <a href="{{ URL::route('solution-one', $solution->slug) }}#solutions">{{ $project->name }}</a>
                                                 </div>
                                         @endforeach

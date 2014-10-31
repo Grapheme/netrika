@@ -24,6 +24,21 @@ return array(
                 'title' => 'Описание решения',
                 'type' => 'textarea',
             ),
+            'image_id' => array(
+                'title' => 'Изображение (иконка) в формате SVG',
+                'type' => 'upload',
+                'label_class' => 'input-file',
+                'others' => [
+                    'accept' => 'application/svg', # *,.exe,application/pdf,image/*,video/*,audio/*
+                ],
+                'handler' => function($value, $element = false) {
+                    if (@is_object($element) && @is_array($value)) {
+                        $value['module'] = 'dicval';
+                        $value['unit_id'] = $element->id;
+                    }
+                    return ExtForm::process('upload', $value);
+                },
+            ),
         );
 
     },
