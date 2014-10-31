@@ -2200,12 +2200,28 @@ section a:hover {
   font-size: 1.125em;
 }
 .progress-slider .ps-block .ps-big {
+  position: relative;
   display: inline-block;
   vertical-align: top;
   height: 100%;
   width: 100%;
   background-size: cover;
   background-position: center center;
+}
+.progress-slider .ps-block .ps-big:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #819ef3;
+  -webkit-transition: opacity .2s ease;
+          transition: opacity .2s ease;
+  opacity: 0;
+}
+.progress-slider .ps-block .ps-big:hover:before {
+  opacity: .9;
 }
 .progress-slider .ps-block .ps-small {
   display: inline-block;
