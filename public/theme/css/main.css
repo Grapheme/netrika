@@ -2476,14 +2476,13 @@ section a:hover {
   line-height: normal;
   width: 80%;
 }
-.comps-ul li .title:before {
+.comps-ul li .title img {
   content: "";
   -moz-box-sizing: border-box;
        box-sizing: border-box;
   display: inline-block;
   vertical-align: middle;
   height: 2.5rem;
-  width: 2.5rem;
   border-width: 2px;
   border-style: solid;
   margin-right: 1.25rem;
