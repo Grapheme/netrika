@@ -373,7 +373,7 @@ $solution4form = $solution;
                         <ul class="comps-ul columns-2">
 
                         @foreach ($components as $component)
-                            <li><div class="title"><div class="comp-svg-icon" style="background-image: url({{ @$images_svg[$component->image_id] }});"></div><span>{{ $component->name }}</span></div>
+                            <li><div class="title"><div class="comp-svg-icon" style="background-image: url({{ $component->image_id }});"></div><span>{{ $component->name }}</span></div>
                                 <p class="text">
                                     {{ $component->description }}
                                 </p>
