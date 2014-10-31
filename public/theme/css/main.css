@@ -1673,7 +1673,7 @@ section a:hover {
 }
 .fancybox-skin {
   position: relative;
-  background: #f9f9f9;
+  background: transparent;
   color: #444;
   text-shadow: none;
   border-radius: 4px;
@@ -1682,7 +1682,9 @@ section a:hover {
   z-index: 8030;
 }
 .fancybox-opened .fancybox-skin {
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  /*-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	   -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);*/
 }
 .fancybox-outer,
 .fancybox-inner {
@@ -1735,12 +1737,28 @@ section a:hover {
 }
 .fancybox-close {
   position: absolute;
-  top: -18px;
-  right: -18px;
+  top: -25px;
+  right: -12px;
   width: 36px;
   height: 36px;
   cursor: pointer;
   z-index: 8040;
+}
+.fancybox-close:before {
+  content: "\e603";
+  font-family: 'elements';
+  display: inline-block;
+  width: 1.875rem;
+  height: 1.875rem;
+  color: #1dcba4;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
+  margin-right: 1.25rem;
+  text-decoration: none;
+  font-size: 1.875rem;
+}
+.fancybox-close:before:hover {
+  color: #babcbc;
 }
 .fancybox-nav {
   position: absolute;
