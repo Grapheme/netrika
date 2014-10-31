@@ -99,8 +99,7 @@ unset($temp);
                             <div class="developer-type">
                                 <ul class="developer-list">
                                     @foreach ($devteam as $dev)
-                                    <li><span></span>{{ $dev['label'] }}
-                                        <?php print_r($dev); ?>
+                                    <li><span style="background-color: {{ $dev['color'] }};"></span>{{ $dev['label'] }}
                                     @endforeach
                                 </ul>
                             </div>
