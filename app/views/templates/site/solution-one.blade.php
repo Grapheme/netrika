@@ -10,6 +10,12 @@
 <?
 $solution4form = $solution;
 
+$solution_components = Dic::valuesBySlug('solution_components', function($query){
+    #$query->orderBy('order', 'asc');
+    $query->orderBy('updated_at', 'desc');
+    $query->orderBy('created_at', 'desc');
+});
+$solution_components = DicVal::extracts($solution_components, true);
 $images_ids = array();
 $images_svg = array();
 foreach ($solution_components as $solution_component) {
