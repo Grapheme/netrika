@@ -1774,7 +1774,7 @@ section a:hover {
   z-index: 8040;
 }
 .fancybox-prev {
-  left: 0;
+  right: 20px;
 }
 .fancybox-next {
   right: 0;
@@ -1791,10 +1791,44 @@ section a:hover {
 .fancybox-prev span {
   left: 10px;
   background-position: 0 -36px;
+  background: transparent !important;
+  color: #1dcba4;
+}
+.fancybox-prev span:hover {
+  color: #babcbc;
+}
+.fancybox-prev span:before {
+  content: "\e605";
+  font-family: 'elements';
+  display: inline-block;
+  width: 1.875rem;
+  height: 1.875rem;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
+  margin-right: 1.25rem;
+  text-decoration: none;
+  font-size: 1.875rem;
 }
 .fancybox-next span {
   right: 0;
   background-position: 0 -72px;
+  background: transparent !important;
+  color: #1dcba4;
+}
+.fancybox-next span:hover {
+  color: #babcbc;
+}
+.fancybox-next span:before {
+  content: "\e604";
+  font-family: 'elements';
+  display: inline-block;
+  width: 1.875rem;
+  height: 1.875rem;
+  -webkit-transition: color .2s ease;
+          transition: color .2s ease;
+  margin-right: 1.25rem;
+  text-decoration: none;
+  font-size: 1.875rem;
 }
 .fancybox-tmp {
   position: absolute;
