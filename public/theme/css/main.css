@@ -3955,6 +3955,7 @@ Move to separate stylesheet if invalid CSS is a problem.
   }
   .mobile-menu {
     display: block;
+    min-width: 20.25rem;
   }
   .mobile-hidden {
     display: none !important;
