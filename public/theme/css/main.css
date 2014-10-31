@@ -1516,9 +1516,6 @@ section a:hover {
 .tags-ul.tags-hover li {
   cursor: pointer;
 }
-#ui-datepicker-div {
-  z-index: 5 !important;
-}
 .main-stat {
   padding: 2.5rem 0 2.5rem;
 }
@@ -2855,6 +2852,7 @@ section a:hover {
   border-radius: 0 !important;
   margin: 1.5625rem 0 0 -5.3125rem;
   padding: 20px !important;
+  z-index: 5 !important;
 }
 .ui-datepicker:before {
   content: "";
@@ -4186,6 +4184,12 @@ Move to separate stylesheet if invalid CSS is a problem.
        -moz-column-count: 2;
             column-count: 2;
     colum-gap: 1.875rem;
+  }
+  .ui-datepicker {
+    margin: 0;
+  }
+  .ui-datepicker:before {
+    display: none;
   }
 }
 @media screen and (max-width: 1200px) {
