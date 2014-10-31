@@ -2200,12 +2200,52 @@ section a:hover {
   font-size: 1.125em;
 }
 .progress-slider .ps-block .ps-big {
+  position: relative;
   display: inline-block;
   vertical-align: top;
   height: 100%;
   width: 100%;
   background-size: cover;
   background-position: center center;
+}
+.progress-slider .ps-block .ps-big:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #819ef3;
+  -webkit-transition: opacity .2s ease;
+          transition: opacity .2s ease;
+  opacity: 0;
+}
+.progress-slider .ps-block .ps-big:after {
+  font-family: "elements";
+  content: "\e60c";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -2.8125rem;
+  margin-top: -2.8125rem;
+  width: 5.625rem;
+  height: 5.625rem;
+  border-radius: 5.625rem;
+  line-height: 5.75rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  -webkit-transition: opacity .2s ease 0s;
+          transition: opacity .2s ease 0s;
+  opacity: 0;
+}
+.progress-slider .ps-block .ps-big:hover:before {
+  opacity: .9;
+}
+.progress-slider .ps-block .ps-big:hover:after {
+  -webkit-transition: opacity .2s ease .1s;
+          transition: opacity .2s ease .1s;
+  opacity: 1;
 }
 .progress-slider .ps-block .ps-small {
   display: inline-block;
