@@ -26,7 +26,6 @@ var adp = {
 		});
 	},
 };
-
 adp.whatch();
 
 $.fn.solutionSelect = function(auto_select) {
@@ -1101,8 +1100,7 @@ $.fn.indexStatNav = function(block_class, item_class) {
 		left_arrow = parent.find('.stat-control .js-prev'),
 		right_arrow = parent.find('.stat-control .js-next'),
 		left_pos = 0,
-		min_left = 0,
-		max_left = $('.stat-items').width() - $('.js-slider-parent').width();
+		min_left = 0;
 
 	$(document).on('adp::change', function(e, mode){
 		setIt();
@@ -1125,11 +1123,10 @@ $.fn.indexStatNav = function(block_class, item_class) {
 
 			if( ifRight ) {
 				step = step * (-1);
-				//arrow.enable(left_arrow);
 			}
 
-			if( ifLeft ) {
-				//arrow.enable(right_arrow);
+			if(ifRight && (left_pos - slider_block.width() + step) * (-1) > slider_block.find('.stat-items').width()) {
+				return;
 			}
 
 			left_pos = left_pos + step;
@@ -1219,13 +1216,17 @@ $.fn.indexStatNav = function(block_class, item_class) {
 	});
 
 	function setIt() {
+		left_pos = 0;
 		var new_width = 0;
 		item.each(function(){
 			new_width += $(this).outerWidth(true);
 		});
 		block.css({
-			'width': new_width
+			'width': new_width,
+			'left': 0
 		});
+		arrow.disable(left_arrow);
+		arrow.enable(right_arrow);
 
 		var items_line = 5;
 		if(adp.mode() == 'tablet') {
@@ -1239,11 +1240,6 @@ $.fn.indexStatNav = function(block_class, item_class) {
 
 	function init() {
 		slider_block.css('overflow', 'hidden');
-		block.css({
-			'left': 0
-		});
-		arrow.disable(left_arrow);
-
 		setIt();
 	}
 
