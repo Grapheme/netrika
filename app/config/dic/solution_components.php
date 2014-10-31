@@ -29,7 +29,7 @@ return array(
                 'type' => 'upload',
                 'label_class' => 'input-file',
                 'others' => [
-                    'accept' => '*.svg', # *,.exe,application/pdf,image/*,video/*,audio/*
+                    #'accept' => '*.svg', # *,.exe,application/pdf,image/*,video/*,audio/*
                 ],
                 'handler' => function($value, $element = false) {
                     if (@is_object($element) && @is_array($value)) {
