@@ -1763,9 +1763,9 @@ section a:hover {
 }
 .fancybox-nav {
   position: absolute;
-  top: 0;
-  width: 40%;
-  height: 100%;
+  bottom: 0;
+  width: 1px;
+  height: 0;
   cursor: pointer;
   text-decoration: none;
   background: transparent url('blank.gif');
@@ -1793,7 +1793,7 @@ section a:hover {
   background-position: 0 -36px;
 }
 .fancybox-next span {
-  right: 10px;
+  right: 0;
   background-position: 0 -72px;
 }
 .fancybox-tmp {
