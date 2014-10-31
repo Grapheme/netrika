@@ -281,7 +281,10 @@
 
 @section('scripts')
 <script>
-    $('.aims').setHeightOfMax('.aim');
+    $(document).ready(function() {
+        $(".fancybox").fancybox();
+        $('.aims').setHeightOfMax('.aim');
+    });
     var photos = {{ json_encode($photos) }};
 </script>
 @stop
