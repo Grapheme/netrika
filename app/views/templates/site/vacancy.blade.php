@@ -189,7 +189,6 @@ unset($temp);
         $('.js-netrika-parent').netrika_slider();
         var ctx = document.getElementById("developers-canvas").getContext("2d");
         var data = {{ json_encode($devteam) }};
-        setDeveloperColors(data);
         var options = {
             //Boolean - Whether we should show a stroke on each segment
             segmentShowStroke : true,
