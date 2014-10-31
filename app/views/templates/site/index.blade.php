@@ -232,10 +232,10 @@ foreach ($clients as $client) {
                     <div class="title js-desc-title"></div>
                     <ul class="map-items js-desc-items">
                     </ul>
-                    <ul class="sol-dots js-list-dots">
+                    <!-- <ul class="sol-dots js-list-dots">
                         <li class="active">
                         <li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <div class="clearfix"></div>
             </div>
