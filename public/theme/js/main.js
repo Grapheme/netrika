@@ -973,7 +973,7 @@ $.fn.canvas_redraw = function() {
 		alert('Рисуем канвас шириной 320');
 	} else {
 		start_mode = 'desktop';
-		alert('низуя не работае');
+		alert($(window).width());
 	}
 
 	$(window).on('resize', reDraw);
