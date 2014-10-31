@@ -333,6 +333,9 @@ section a:hover {
 .desc-icon.close:before {
   content: "\e603";
 }
+.ext-link {
+  margin-right: 0.625rem;
+}
 .ext-link:after {
   content: "\e607";
   position: relative;
