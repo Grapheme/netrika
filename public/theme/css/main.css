@@ -1439,7 +1439,6 @@ section a:hover {
   background: #fff;
   padding: 1.25rem;
   height: 6.25rem;
-  line-height: 6.25rem;
   overflow: hidden;
 }
 .audience .aud-container .aud-slide .aud-block .aud-text:before {
@@ -1457,10 +1456,8 @@ section a:hover {
   font-weight: 500;
 }
 .audience .aud-container .aud-slide .aud-block .aud-text span {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-  color: #7f8281;
+  display: block;
+  margin-top: 1.25rem;
 }
 .tags-ul {
   margin: 0;
