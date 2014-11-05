@@ -841,111 +841,187 @@ $.fn.netrika_slider = function() {
 
 //Карта
 $.fn.smart_map = function(map_array) {
-	var parent = $(this),
-		map_block = parent.find('.js-map-block'),
-		map_desc = parent.find('.js-map-desc'),
-		active_id = false;
+	$(this).each(function(){
+		var parent = $(this),
+			map_block = parent.find('.js-map-block'),
+			map_desc = parent.find('.js-map-desc'),
+			active_id = false;
 
-	$(document).on('click', '.js-map-dot', function(){
-		var id = $(this).attr('data-id');
-		openDesc(id);
+		if(parent.hasClass('js-admin-map')){
+			$(document).on('click', '.js-map-dot', function(){
+				return false;
+			});
 
-		return false;
-	});
+			$(document).on('click', '.js-map-block', function(e){
+				admin_click(e);
+			});
 
-	$(document).on('click', '.js-desc-close', function(){
-		closeDesc();
-		return false;
-	});
+			$(document).on('input', '.js-admin-map-x, .js-admin-map-y', function(){
+				admin_pos();
+			});
 
-	$(document).on('click', '.js-map-control', function(){
-		goDesc($(this).attr('data-direction'));
-		return false;
-	});
+			$(document).on('change', '.js-admin-map-radius', function(){
+				admin_rad();
+			});
 
-	function goDesc(d) {
-		var dir;
-		if(d == '<') {
-			dir = -1;
 		} else {
-			dir = 1;
+			$(document).on('click', '.js-map-dot', function(){
+				var id = $(this).attr('data-id');
+				openDesc(id);
+
+				return false;
+			});
+
+			$(document).on('click', '.js-desc-close', function(){
+				closeDesc();
+				return false;
+			});
+
+			$(document).on('click', '.js-map-control', function(){
+				goDesc($(this).attr('data-direction'));
+				return false;
+			});
 		}
 
-		var new_id = active_id + dir;
+		function admin_click(e) {
+			var x = e.pageX - map_block.offset().left;
+			var y = e.pageY - map_block.offset().top;
+			if(parent.find('.js-admin-dot').length) {
+				parent.find('.js-admin-dot').css({
+					'left': x,
+					'top': y
+				});
+			} else {
+				var dot_default = { radius: $('.js-admin-map-radius').val(),
+									posY: y,
+									posX: x };
 
-		if(new_id == -1) {
-			new_id = map_array.length - 1;
+				var str = dotStr(0, dot_default, true);
+				parent.find('.js-map-block').append(str);
+			}
+
+			$('.js-admin-map-x').val(x);
+			$('.js-admin-map-y').val(y);
 		}
-		if(new_id == map_array.length) {
-			new_id = 0;
+
+		function admin_pos() {
+			var x = parseInt($('.js-admin-map-x').val());
+			var y = parseInt($('.js-admin-map-y').val());
+
+			parent.find('.js-admin-dot').css({
+				'left': x,
+				'top': y
+			});
 		}
 
-		openDesc(new_id);
-	}
+		function admin_rad() {
+			var x = parseInt($('.js-admin-map-x').val());
+			var y = parseInt($('.js-admin-map-y').val());
+			var radius = parseInt($('.js-admin-map-radius').val());
 
-	function openDesc(id) {
-		var id_array = map_array[id];
-		var items = id_array.items;
-		var city = id_array.name;
-		var posX = id_array.posX;
-		var posY = id_array.posY;
+			parent.find('.js-admin-dot').remove();
+			var dot_settings = { radius: parseInt($('.js-admin-map-radius').val()),
+								posY: y,
+								posX: x };
 
-		var items_str = '';
-		$.each(items, function(index, value){
-			items_str += '<li>' + value;
-		});
-		map_desc.find('.js-desc-title').text(city);
-		map_desc.find('.js-desc-items').html(items_str);
-		setTimeout(function(){
-			map_desc.find('.js-desc-items').customScrollbar();
-		}, 1);
+			var str = dotStr(0, dot_settings, true);
+			parent.find('.js-map-block').append(str);
+		}
 
-		var map_block_x = map_block.width()/4 - posX;
-		var map_block_y = map_block.height()/2 - posY;
-		var transform_str = transform('translateX(' + map_block_x + 'px) translateY(' + map_block_y + 'px)');
+		function goDesc(d) {
+			var dir;
+			if(d == '<') {
+				dir = -1;
+			} else {
+				dir = 1;
+			}
 
-		map_block.attr('style', transform_str);
+			var new_id = active_id + dir;
 
-		$('.js-map-dot[data-id=' + id + ']').addClass('active')
-			.siblings().removeClass('active');
+			if(new_id == -1) {
+				new_id = map_array.length - 1;
+			}
+			if(new_id == map_array.length) {
+				new_id = 0;
+			}
 
-		map_desc.show();
-		active_id = parseInt(id);
-	}
+			openDesc(new_id);
+		}
 
-	function closeDesc() {
-		map_block.attr('style', transform('translateX(0px) translateY(0px)'));
-		$('.js-map-dot').removeClass('active');
-		map_desc.hide();
-	}
+		function openDesc(id) {
+			var id_array = map_array[id];
+			var items = id_array.items;
+			var city = id_array.name;
+			var posX = id_array.posX;
+			var posY = id_array.posY;
 
-	function init() {
-		var map_html = '';
+			var items_str = '';
+			$.each(items, function(index, value){
+				items_str += '<li>' + value;
+			});
+			map_desc.find('.js-desc-title').text(city);
+			map_desc.find('.js-desc-items').html(items_str);
+			setTimeout(function(){
+				map_desc.find('.js-desc-items').customScrollbar();
+			}, 1);
 
-		$.each(map_array, function(index, value){
+			var map_block_x = map_block.width()/4 - posX;
+			var map_block_y = map_block.height()/2 - posY;
+			var transform_str = transform('translateX(' + map_block_x + 'px) translateY(' + map_block_y + 'px)');
+
+			map_block.attr('style', transform_str);
+
+			$('.js-map-dot[data-id=' + id + ']').addClass('active')
+				.siblings().removeClass('active');
+
+			map_desc.show();
+			active_id = parseInt(id);
+		}
+
+		function closeDesc() {
+			map_block.attr('style', transform('translateX(0px) translateY(0px)'));
+			$('.js-map-dot').removeClass('active');
+			map_desc.hide();
+		}
+
+		function dotStr(index, value, admin_dot) {
 			var rad_width = value.radius * 11;
 			var style_str = 	'margin-top: -' + rad_width/2 + 'px; '+
 								'margin-left: -' + rad_width/2 + 'px; '+
 								'width: ' + rad_width + 'px; '+
 								'height: ' + rad_width + 'px; '+
 								'border-radius: ' + rad_width + 'px; ';
-
-			var str = 	'<a href="#" class="map-dot js-map-dot" style="top: ' + value.posY + 'px; left: ' + value.posX + 'px;" data-id="' + index + '">'+
+			if(admin_dot) {
+				var admin_class = ' js-admin-dot';
+			} else {
+				var admin_class = '';
+			}
+			
+			var str = 	'<a href="#" class="map-dot js-map-dot' + admin_class + '" style="top: ' + value.posY + 'px; left: ' + value.posX + 'px;" data-id="' + index + '">'+
 	                        '<i class="map-rad" style="' + style_str + '"></i>'+
 	                    '</a>';
 
-	  		map_html += str;
-		});
-
-		map_block.html(map_html);
-		map_desc.hide();
-
-		if($(window).width() <= 768) {
-			openDesc(0);
+	        return str;
 		}
-	}
 
-	init();
+		function init() {
+			var map_html = '';
+
+			$.each(map_array, function(index, value){
+				var str = dotStr(index, value);
+		  		map_html += str;
+			});
+
+			map_block.html(map_html);
+			map_desc.hide();
+
+			if($(window).width() <= 768) {
+				openDesc(0);
+			}
+		}
+
+		init();
+	});
 }
 
 //Дополнительное меню в хидере
@@ -1404,7 +1480,7 @@ $('a[href]').ext_url();
 $('.js-hover').jshover('js-circle');
 $('.main-nav').header_nav();
 $('.popups').PopUp();
-$('input[name=phone]').mask('(000) 000-0000');
+//$('input[name=phone]').mask('(000) 000-0000');
 
 function transform(transform_value) {
 	var prefixes = ['-webkit-', '-ms-', ''];
@@ -1445,7 +1521,7 @@ $(document).ready(function() {
 	});
 	
 
-    $(".popup.order-present form").validate({
+    /*$(".popup.order-present form").validate({
         rules: {
             'solution_id': "required",
             'name': "required",
@@ -1464,7 +1540,7 @@ $(document).ready(function() {
             sendOrderForm(form);
             return false;
         }
-    });
+    });*/
 
     function sendOrderForm(form) {
 
