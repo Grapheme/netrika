@@ -1480,7 +1480,7 @@ $('a[href]').ext_url();
 $('.js-hover').jshover('js-circle');
 $('.main-nav').header_nav();
 $('.popups').PopUp();
-//$('input[name=phone]').mask('(000) 000-0000');
+$('input[name=phone]').mask('(000) 000-0000');
 
 function transform(transform_value) {
 	var prefixes = ['-webkit-', '-ms-', ''];
@@ -1521,7 +1521,7 @@ $(document).ready(function() {
 	});
 	
 
-    /*$(".popup.order-present form").validate({
+    $(".popup.order-present form").validate({
         rules: {
             'solution_id': "required",
             'name': "required",
@@ -1540,7 +1540,7 @@ $(document).ready(function() {
             sendOrderForm(form);
             return false;
         }
-    });*/
+    });
 
     function sendOrderForm(form) {
 
