@@ -20,7 +20,7 @@ return array(
                 </button>
             </div>
     </section>
-</div>
+</div><!-- /.modal -->
 ',
 
             ),
