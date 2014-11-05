@@ -28,7 +28,7 @@
 					overflow: hidden;
 
 					&:before {
-						//content: "";
+						content: attr(data-number);
 						box-sizing: border-box;
 						display: inline-block;
 						width: 40rem / @hfs;
@@ -36,6 +36,9 @@
 						border-radius: 40rem / @hfs;
 						border-width: 2px;
 						border-style: solid;
+						text-align: center;
+						line-height: 40rem / @hfs;
+						font-weight: 500;
 					}
 
 					span {
