@@ -395,6 +395,7 @@ class AdminDicvalsController extends BaseController {
         $json_request['responseText'] = "<pre>" . print_r(Input::all(), 1) . "</pre>";
         #return Response::json($json_request,200);
         #dd(Input::all());
+        #Helper::dd(Input::all());
 
         $json_request = array('status' => FALSE, 'responseText' => '', 'responseErrorText' => '', 'redirect' => FALSE);
 		$validator = Validator::make($input, array());
@@ -452,6 +453,7 @@ class AdminDicvalsController extends BaseController {
             $element_fields = Config::get('dic/' . $dic->slug . '.fields');
             if (isset($element_fields) && is_callable($element_fields))
                 $element_fields = $element_fields();
+
             #Helper::dd($element_fields);
 
             ## FIELDS
@@ -460,8 +462,8 @@ class AdminDicvalsController extends BaseController {
                 #Helper::d($fields);
                 foreach ($element_fields as $key => $_value) {
 
-                    #if (is_numeric($key) || !isset($fields[$key]))
-                    #    continue;
+                    if (is_numeric($key))
+                        continue;
 
                     #Helper::d($key);
 
@@ -476,7 +478,7 @@ class AdminDicvalsController extends BaseController {
                         $value = $handler($value, $element);
                     }
 
-                    #Helper::d($key . ' => ' . $value);
+                    #Helper::d($key . ' => ' . print_r($value, 1));
 
                     if ($value === false)
                         continue;

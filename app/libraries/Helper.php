@@ -519,6 +519,7 @@ HTML;
         }
         $others = ' ' . implode(' ', $others);
         #$others_string = self::arrayToAttributes($others_array);
+        #Helper::dd($others_array);
         switch (@$array['type']) {
             case 'text':
                 $return = Form::text($name, $value, $others_array);
@@ -588,6 +589,12 @@ HTML;
                     $return .= $el;
                 }
                 #Helper::d(htmlspecialchars($return));
+                break;
+            case 'hidden':
+                $return = Form::hidden($name, $value, $others_array);
+                break;
+            case 'custom':
+                $return = @$array['content'];
                 break;
         }
         return $return;

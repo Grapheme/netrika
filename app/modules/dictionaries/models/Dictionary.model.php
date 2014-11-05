@@ -37,6 +37,11 @@ class Dictionary extends BaseModel {
         return $this->hasMany('DicVal', 'dic_id', 'id')
             ->where('version_of', NULL)
             ->with('meta', 'fields')
+            /*
+            ->with('meta', array('fields' => function($query){
+                #$query->whereIn('name', array_keys((array)Config::get('dic.dic_name.fields')));
+            }))
+            */
             ->orderBy('order', 'ASC')
             ->orderBy('slug', 'ASC')
             ->orderBy('name', 'ASC')
@@ -145,6 +150,65 @@ class Dictionary extends BaseModel {
         #Helper::dd($lists);
         return $lists;
     }
+
+
+    /**
+     * "Ленивая загрузка" данных без использования связи
+     *
+     * @param $collection
+     * @param $key
+     * @param $relation_array
+     * @return mixed
+     */
+    public static function custom_load_hasOne($collection, $key, $relation_array, Closure $additional_rules = NULL) {
+
+        $model = $relation_array[0];
+        $local_id = $relation_array[1];
+        $remote_id = $relation_array[2];
+
+        $list = self::makeLists($collection, null, $local_id);
+        #Helper::d($list);
+
+        $values = new Collection;
+        if (count($list)) {
+            $values = $model::whereIn($remote_id, $list);
+            if (is_callable($additional_rules)) {
+                #$values = $additional_rules($values);
+                /**
+                 * Правильный способ применения доп. условий через функцию-замыкание
+                 */
+                call_user_func($additional_rules, $values);
+            }
+            $values = $values->get();
+
+            $values = Dic::modifyKeys($values, 'id');
+            #Helper::tad($values);
+        }
+
+        foreach($collection as $e => $element) {
+
+            if (isset($element->$local_id) && isset($values[$element->$local_id])) {
+
+                /**
+                 * Правильная кастомная установка поля.
+                 * Доп. поле должно устанавливаться как связь (relation)
+                 */
+                $element->relations[$key] = @$values[$element->$local_id] ?: NULL;
+
+                /**
+                 * Правильное обновление значения элемента коллекции
+                 */
+                $collection->put($e, $element);
+            }
+        }
+
+        unset($list);
+        unset($values);
+
+        return $collection;
+    }
+
+
 
 
     ## Need to check
