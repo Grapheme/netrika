@@ -190,7 +190,7 @@ if (count($images_ids)) {
                             <div class="js-slide aud-slide">
                                 @endif
                                 <div class="aud-block">
-                                    <div class="aud-text">
+                                    <div class="aud-text" data-number="{{$p}}">
                                         <span>{{ $target}}</span>
                                     </div>
                                 </div>

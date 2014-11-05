@@ -527,6 +527,7 @@ section a:hover {
 .type-health .aim:before {
   color: #74ce76 !important;
 }
+.type-health .aud-text:before,
 .type-health .stat-ul .title,
 .type-health .icons-ul li:before,
 .type-health .us-icon {
@@ -563,6 +564,7 @@ section a:hover {
 .type-education .aim:before {
   color: #fbb84f !important;
 }
+.type-education .aud-text:before,
 .type-education .stat-ul .title,
 .type-education .icons-ul li:before,
 .type-education .us-icon {
@@ -599,6 +601,7 @@ section a:hover {
 .type-auto .aim:before {
   color: #5ac8f6 !important;
 }
+.type-auto .aud-text:before,
 .type-auto .stat-ul .title,
 .type-auto .icons-ul li:before,
 .type-auto .us-icon {
@@ -635,6 +638,7 @@ section a:hover {
 .type-goverment .aim:before {
   color: #f55959 !important;
 }
+.type-goverment .aud-text:before,
 .type-goverment .stat-ul .title,
 .type-goverment .icons-ul li:before,
 .type-goverment .us-icon {
@@ -671,6 +675,7 @@ section a:hover {
 .type-law .aim:before {
   color: #809cf6 !important;
 }
+.type-law .aud-text:before,
 .type-law .stat-ul .title,
 .type-law .icons-ul li:before,
 .type-law .us-icon {
@@ -707,6 +712,7 @@ section a:hover {
 .type-tourism .aim:before {
   color: #fb8b63 !important;
 }
+.type-tourism .aud-text:before,
 .type-tourism .stat-ul .title,
 .type-tourism .icons-ul li:before,
 .type-tourism .us-icon {
@@ -743,6 +749,7 @@ section a:hover {
 .type-portals .aim:before {
   color: #2ca0fa !important;
 }
+.type-portals .aud-text:before,
 .type-portals .stat-ul .title,
 .type-portals .icons-ul li:before,
 .type-portals .us-icon {
@@ -1432,10 +1439,10 @@ section a:hover {
   background: #fff;
   padding: 1.25rem;
   height: 6.25rem;
-  line-height: 6.25rem;
   overflow: hidden;
 }
 .audience .aud-container .aud-slide .aud-block .aud-text:before {
+  content: attr(data-number);
   -moz-box-sizing: border-box;
        box-sizing: border-box;
   display: inline-block;
@@ -1444,12 +1451,13 @@ section a:hover {
   border-radius: 2.5rem;
   border-width: 2px;
   border-style: solid;
+  text-align: center;
+  line-height: 2.5rem;
+  font-weight: 500;
 }
 .audience .aud-container .aud-slide .aud-block .aud-text span {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-  color: #7f8281;
+  display: block;
+  margin-top: 1.25rem;
 }
 .tags-ul {
   margin: 0;
@@ -3125,6 +3133,7 @@ section a:hover {
 .popups .popup.order-present .popup-body .input-wrp .multiple-select {
   position: relative;
   background: #fff;
+  z-index: 1;
 }
 .popups .popup.order-present .popup-body .input-wrp .multiple-select .select-line,
 .popups .popup.order-present .popup-body .input-wrp .multiple-select .select-list li {

@@ -24,11 +24,11 @@
 					background: #fff;
 					padding: 20rem / @hfs;
 					height: 100rem / @hfs;
-					line-height: 100rem / @hfs;
+					//line-height: 100rem / @hfs;
 					overflow: hidden;
 
 					&:before {
-						//content: "";
+						content: attr(data-number);
 						box-sizing: border-box;
 						display: inline-block;
 						width: 40rem / @hfs;
@@ -36,13 +36,14 @@
 						border-radius: 40rem / @hfs;
 						border-width: 2px;
 						border-style: solid;
+						text-align: center;
+						line-height: 40rem / @hfs;
+						font-weight: 500;
 					}
 
 					span {
-						display: inline-block;
-						vertical-align: middle;
-						line-height: normal;
-						color: #7f8281;
+						display: block;
+						margin-top: 20rem / @hfs;
 					}
 				}
 			}
