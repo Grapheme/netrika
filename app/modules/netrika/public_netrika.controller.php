@@ -95,27 +95,79 @@ class PublicNetrikaController extends BaseController {
             #Helper::tad($related_news);
         }
 
+        #Helper::ta($new);
+
         /**
          * Предыдущая новость
          */
         $prev_new = Dic::valuesBySlug('newslist', function($query) use ($new){
-            $query->where('id', '!=', $new->id);
-            $query->where('created_at', '<', $new->created_at);
+
+            $table = $new->getTable();
+            $query->where($table.'.id', '!=', $new->id);
+
+            /**
+             * Подключаем доп. поле с помощью JOIN (т.е. неподходящие под условия записи не будут добавлены к выборке)
+             */
+            $tbl_alias_published_at = $query->join_field('published_at', 'published_at', function($join, $value) use ($new) {
+                /*
+                 * Подключаем только новости, у которых дата публикации меньше или совпадает с текущей датой,
+                 * и дата публикации которых меньше или совпадает с датой текущей новости.
+                 */
+                $join->where($value, '<=', date('Y-m-d'));
+                $join->where($value, '<=', $new->published_at);
+            });
+
+            /**
+             * Упорядочиваем новости в порядке убывания: сначала по дате публикации, потом по id
+             */
+            $query
+                ->orderBy($tbl_alias_published_at.'.value', 'DESC')
+                ->orderBy($table.'.id', 'DESC');
+
+            /**
+             * Получаем только одну новость
+             */
             $query->take(1);
         });
         $prev_new = @$prev_new[0];
-        #Helper::d($prev_new);
+        #Helper::ta($prev_new);
+        #return '';
 
         /**
          * Следующая новость
          */
         $next_new = Dic::valuesBySlug('newslist', function($query) use ($new){
-            $query->where('id', '!=', $new->id);
-            $query->where('created_at', '>', $new->created_at);
+
+            $table = $new->getTable();
+            $query->where($table.'.id', '!=', $new->id);
+
+            /**
+             * Подключаем доп. поле с помощью JOIN (т.е. неподходящие под условия записи не будут добавлены к выборке)
+             */
+            $tbl_alias_published_at = $query->join_field('published_at', 'published_at', function($join, $value) use ($new) {
+                /*
+                 * Подключаем только новости, у которых дата публикации меньше или совпадает с текущей датой,
+                 * и дата публикации которых меньше или совпадает с датой текущей новости.
+                 */
+                $join->where($value, '<=', date('Y-m-d'));
+                $join->where($value, '>=', $new->published_at);
+            });
+
+            /**
+             * Упорядочиваем новости в порядке возрастания: сначала по дате публикации, потом по id
+             */
+            $query
+                ->orderBy($tbl_alias_published_at.'.value', 'ASC')
+                ->orderBy($table.'.id', 'ASC');
+
+            /**
+             * Получаем только одну новость
+             */
             $query->take(1);
         });
         $next_new = @$next_new[0];
-        #Helper::dd($next_new);
+        #Helper::ta($next_new);
+        #return '';
 
 
         return View::make(Helper::layout('news-one'), compact('new', 'related_news', 'prev_new', 'next_new'));
