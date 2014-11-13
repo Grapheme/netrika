@@ -407,7 +407,7 @@ $.fn.news_module = function(news_array, tags_object) {
 				if(step == grids_length) step = 0;
 			});
 
-			console.log(grids);
+			//console.log(grids);
 			return grids;
 		},
 
