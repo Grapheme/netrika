@@ -512,11 +512,15 @@ $.fn.news_module = function(news_array, tags_object) {
 			}
 			if(news_date > date.min && news_date < date.max) {
 				var toArray = false;
-				$.each(settings.tags, function(tag_index, tag){
-					if(inArray(tag, value.tags)) {
-						toArray = true;
-					}
-				});
+				if(settings.tags.length) {
+					$.each(settings.tags, function(tag_index, tag){
+						if(inArray(tag, value.tags)) {
+							toArray = true;
+						}
+					});
+				} else {
+					toArray = true;
+				}
 				
 				if(toArray) {
 					ready_array.push(value);
