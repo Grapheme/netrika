@@ -356,11 +356,11 @@ $.fn.news_module = function(news_array, tags_object) {
 
 		fillNothing: function() {
 			var str = '';
-			if($('.js-tags li').hasClass('active')) {
-				str += '<div class="no-news">По выбранным критериям не найдено новостей. Попробуйте изменить параметры фильтра</div>';
-			} else {
-				str += '<div class="no-news">Вы не выбрали ни одного тега</div>';
-			}
+			//if($('.js-tags li').hasClass('active')) {
+			str += '<div class="no-news">По выбранным критериям не найдено новостей. Попробуйте изменить параметры фильтра</div>';
+			//} else {
+			//	str += '<div class="no-news">Вы не выбрали ни одного тега</div>';
+			//}
 			
 			$('.js-news-first').html(str);
 			$('.js-news-grid').html('');
@@ -457,12 +457,36 @@ $.fn.news_module = function(news_array, tags_object) {
 		});
 		$('.js-tags').html(tags_str);
 
+		setInitDates();
 		var init_settings = {
 			tags: tags_array, 
 			date: [default_min_date, default_max_date]
 		}
 
 		setNews(init_settings);
+	}
+
+	function setInitDates() {
+		var today = new Date();
+		var today_time = today.getTime();
+		var prev_month_time = time - 2 629 743 830;
+
+		console.log(timeToDate(today_time));
+		console.log(timeToDate(prev_month_time));
+	}
+
+	function timeToDate(sec) {
+		var today = new Date(sec);
+		var today_dd = today.getDate();
+		var today_mm = today.getMonth()+1; //January is 0!
+		var today_yyyy = today.getFullYear();
+		if(today_dd<10) {
+		    today_dd='0'+today_dd
+		} 
+		if(today_mm<10) {
+		    today_mm='0'+today_mm
+		} 
+		return today_string = today_yyyy + '-' + today_mm + '-' + today_dd;
 	}
 
 	function tagsClick(type) {
