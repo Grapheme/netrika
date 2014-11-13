@@ -470,11 +470,11 @@ $.fn.news_module = function(news_array, tags_object) {
 				}
 			});
 
-			if(all_active) {
+			/*if(all_active) {
 				$('.js-tags li[data-filter=all]').addClass('active');
 			} else {
 				$('.js-tags li[data-filter=all]').removeClass('active');
-			}
+			}*/
 		} else {
 			if($('.js-tags li').hasClass('active')) {
 				$('.js-tags li').removeClass('active');
