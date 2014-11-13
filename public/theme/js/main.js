@@ -471,8 +471,11 @@ $.fn.news_module = function(news_array, tags_object) {
 		var today_time = today.getTime();
 		var prev_month_time = today_time - 2629743830;
 
-		console.log(timeToDate(today_time));
-		console.log(timeToDate(prev_month_time));
+		default_min_date = timeToDate(prev_month_time);
+		default_max_date = timeToDate(today_time);
+		
+		$('.js-date-from').val(default_min_date);
+		$('.js-date-to').val(default_max_date);
 	}
 
 	function timeToDate(sec) {
