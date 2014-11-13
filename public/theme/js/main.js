@@ -445,8 +445,10 @@ $.fn.news_module = function(news_array, tags_object) {
 
 	function init() {
 		var tags_str = '<li class="tag-all" data-filter="all">Все';
+		var tags_array = [];
 		$.each(tags_object, function(index, value){
-			tags_str += '<li class="tag-' + index + '" data-filter="' + index + '">' + value;
+			tags_str += '<li class="active tag-' + index + '" data-filter="' + index + '">' + value;
+			tags_array.push(index);
 		});
 		$('.js-tags').html(tags_str);
 
@@ -512,15 +514,11 @@ $.fn.news_module = function(news_array, tags_object) {
 			}
 			if(news_date > date.min && news_date < date.max) {
 				var toArray = false;
-				if(settings.tags.length) {
-					$.each(settings.tags, function(tag_index, tag){
-						if(inArray(tag, value.tags)) {
-							toArray = true;
-						}
-					});
-				} else {
-					toArray = true;
-				}
+				$.each(settings.tags, function(tag_index, tag){
+					if(inArray(tag, value.tags)) {
+						toArray = true;
+					}
+				});
 				
 				if(toArray) {
 					ready_array.push(value);
