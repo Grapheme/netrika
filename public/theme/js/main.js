@@ -600,6 +600,7 @@ $.fn.news_module = function(news_array, tags_object) {
 		});
 	}
 
+	console.log(news_array);
 	init();
 }
 
