@@ -1736,6 +1736,7 @@ section a:hover {
 .fancybox-prev span,
 .fancybox-next span {
   background-image: url('fancybox_sprite.png');
+  text-decoration: none;
 }
 #fancybox-loading {
   position: fixed;
