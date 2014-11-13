@@ -356,7 +356,12 @@ $.fn.news_module = function(news_array, tags_object) {
 
 		fillNothing: function() {
 			var str = '';
+			//if($('.js-tags li').hasClass('active')) {
 			str += '<div class="no-news">По выбранным критериям не найдено новостей. Попробуйте изменить параметры фильтра</div>';
+			//} else {
+			//	str += '<div class="no-news">Вы не выбрали ни одного тега</div>';
+			//}
+			
 			$('.js-news-first').html(str);
 			$('.js-news-grid').html('');
 		},
@@ -402,7 +407,7 @@ $.fn.news_module = function(news_array, tags_object) {
 				if(step == grids_length) step = 0;
 			});
 
-			console.log(grids);
+			//console.log(grids);
 			return grids;
 		},
 
@@ -444,18 +449,47 @@ $.fn.news_module = function(news_array, tags_object) {
 	}
 
 	function init() {
-		var tags_str = '<li class="tag-all" data-filter="all">Все';
+		var tags_str = '<li class="tag-all active" data-filter="all">Все';
+		var tags_array = [];
 		$.each(tags_object, function(index, value){
-			tags_str += '<li class="tag-' + index + '" data-filter="' + index + '">' + value;
+			tags_str += '<li class="active tag-' + index + '" data-filter="' + index + '">' + value;
+			tags_array.push(index);
 		});
 		$('.js-tags').html(tags_str);
 
+		setInitDates();
 		var init_settings = {
-			tags: [], 
+			tags: tags_array, 
 			date: [default_min_date, default_max_date]
 		}
 
 		setNews(init_settings);
+	}
+
+	function setInitDates() {
+		var today = new Date();
+		var today_time = today.getTime();
+		var prev_month_time = today_time - 2629743830;
+
+		default_min_date = timeToDate(prev_month_time);
+		default_max_date = timeToDate(today_time);
+		
+		$('.js-date-from').val(default_min_date);
+		$('.js-date-to').val(default_max_date);
+	}
+
+	function timeToDate(sec) {
+		var today = new Date(sec);
+		var today_dd = today.getDate();
+		var today_mm = today.getMonth()+1; //January is 0!
+		var today_yyyy = today.getFullYear();
+		if(today_dd<10) {
+		    today_dd='0'+today_dd
+		} 
+		if(today_mm<10) {
+		    today_mm='0'+today_mm
+		} 
+		return today_string = today_yyyy + '-' + today_mm + '-' + today_dd;
 	}
 
 	function tagsClick(type) {
@@ -468,13 +502,17 @@ $.fn.news_module = function(news_array, tags_object) {
 				}
 			});
 
-			if(all_active) {
-				$('.js-tags li[data-filter=all]').addClass('active');
-			} else {
+			if(!all_active) {
 				$('.js-tags li[data-filter=all]').removeClass('active');
-			}
+			}/* else {
+				$('.js-tags li[data-filter=all]').addClass('active');
+			}*/
 		} else {
-			$('.js-tags li').addClass('active');
+			if($('.js-tags li[data-filter="all"]').hasClass('active')) {
+				$('.js-tags li').removeClass('active');
+			} else {
+				$('.js-tags li').addClass('active');
+			}
 		}
 	}
 
@@ -512,14 +550,14 @@ $.fn.news_module = function(news_array, tags_object) {
 			}
 			if(news_date > date.min && news_date < date.max) {
 				var toArray = false;
-				if(settings.tags.length) {
+				if($('.js-tags li[data-filter="all"]').hasClass('active')) {
+					toArray = true;
+				} else {
 					$.each(settings.tags, function(tag_index, tag){
 						if(inArray(tag, value.tags)) {
 							toArray = true;
 						}
 					});
-				} else {
-					toArray = true;
 				}
 				
 				if(toArray) {
@@ -562,6 +600,7 @@ $.fn.news_module = function(news_array, tags_object) {
 		});
 	}
 
+	console.log(news_array);
 	init();
 }
 
