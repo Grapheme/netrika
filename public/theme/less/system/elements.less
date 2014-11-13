@@ -302,6 +302,7 @@ section a {
 			&:before {
 				content: attr(data-number);
 				display: inline-block;
+				vertical-align: middle;
 				width: 30rem / @hfs;
 				height: 30rem / @hfs;
 				border-radius: 30rem / @hfs;
@@ -373,6 +374,12 @@ section a {
 		background: url(../img/svg/netrika_white.svg);
 		background-repeat: no-repeat;
 		background-position: center;
+		z-index: 0;
+	}
+
+	.grid_12 {
+		position: relative;
+		z-index: 1;
 	}
 }
 

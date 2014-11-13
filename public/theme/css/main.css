@@ -458,6 +458,7 @@ section a:hover {
 .aims li .aim:before {
   content: attr(data-number);
   display: inline-block;
+  vertical-align: middle;
   width: 1.875rem;
   height: 1.875rem;
   border-radius: 1.875rem;
@@ -510,6 +511,11 @@ section a:hover {
   background: url(../img/svg/netrika_white.svg);
   background-repeat: no-repeat;
   background-position: center;
+  z-index: 0;
+}
+.netrika-block .grid_12 {
+  position: relative;
+  z-index: 1;
 }
 .scheme-image {
   text-align: center;
