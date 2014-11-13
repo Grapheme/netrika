@@ -52,7 +52,7 @@
             <div class="container_12">
                 <div class="grid_8 grid_t12 grid_m12 news-content">
 
-                    @if ($new->gallery)
+                    @if ($new->gallery && isset($new->gallery->photos) && count($new->gallery->photos))
                         <div class="grid_6 grid_t9 grid_m12 alpha">&nbsp;
                             <div class="js-news-fotorama">
                                 @foreach ($new->gallery->photos as $photo)

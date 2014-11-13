@@ -182,6 +182,8 @@ class AdminDicvalsController extends BaseController {
                             ->on($rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
                         ;
                     })
+                    /* !!! WHERE должно быть именно здесь, а не внутри JOIN-а !!! */
+                    /* !!! Иначе происходит неведомая хрень: dic_id = 'field' !!! */
                     ->where($rand_tbl_alias . '.key', '=', $dic->sort_by)
                     ->addSelect($rand_tbl_alias . '.value AS ' . $dic->sort_by)
                     ->orderBy($dic->sort_by, $sort_order)
