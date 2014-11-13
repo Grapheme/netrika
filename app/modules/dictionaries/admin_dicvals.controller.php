@@ -1177,7 +1177,7 @@ class AdminDicvalsController extends BaseController {
         #Helper::ta($dicval);
 
         if (is_object($dicval)) {
-            $json_request['responseText'] = 'Запись с таким системным именем уже существует!';
+            $json_request['responseText'] = 'Запись с таким системным именем уже существует';
             $json_request['also_exists'] = $dicval->id;
         } else {
             $json_request['status'] = TRUE;
