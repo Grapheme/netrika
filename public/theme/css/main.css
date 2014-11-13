@@ -454,14 +454,15 @@ section a:hover {
   padding: 1.25rem;
   -moz-box-sizing: border-box;
        box-sizing: border-box;
+  line-height: 1.875rem;
 }
 .aims li .aim:before {
   content: attr(data-number);
   display: inline-block;
+  vertical-align: middle;
   width: 1.875rem;
   height: 1.875rem;
   border-radius: 1.875rem;
-  line-height: 1.875rem;
   text-align: center;
   font-weight: 500;
   border-width: 1px;
@@ -469,6 +470,9 @@ section a:hover {
   border-color: #1dcba4;
   color: #1dcba4;
   margin-bottom: 1.25rem;
+}
+.aims li .aim .text {
+  line-height: normal;
 }
 .aims.aims-light li .aim {
   background: #f5f5f5;
@@ -510,6 +514,11 @@ section a:hover {
   background: url(../img/svg/netrika_white.svg);
   background-repeat: no-repeat;
   background-position: center;
+  z-index: 0;
+}
+.netrika-block .grid_12 {
+  position: relative;
+  z-index: 1;
 }
 .scheme-image {
   text-align: center;
@@ -1365,6 +1374,7 @@ section a:hover {
   left: 1.875rem;
   right: 1.875rem;
   bottom: 1.875rem;
+  line-height: normal;
 }
 .solution-block .prj-content .title {
   font-size: 0.875em;
@@ -1439,6 +1449,7 @@ section a:hover {
   background: #fff;
   padding: 1.25rem;
   height: 6.25rem;
+  line-height: 2.5rem;
   overflow: hidden;
 }
 .audience .aud-container .aud-slide .aud-block .aud-text:before {
@@ -1457,6 +1468,7 @@ section a:hover {
 }
 .audience .aud-container .aud-slide .aud-block .aud-text span {
   display: block;
+  line-height: normal;
   margin-top: 1.25rem;
 }
 .tags-ul {
@@ -1727,6 +1739,7 @@ section a:hover {
 .fancybox-prev span,
 .fancybox-next span {
   background-image: url('fancybox_sprite.png');
+  text-decoration: none;
 }
 #fancybox-loading {
   position: fixed;
@@ -2065,6 +2078,7 @@ section a:hover {
   height: 16.875rem;
   margin-bottom: 2.5rem;
   overflow: hidden;
+  line-height: 5.625rem;
 }
 .projects .solution-block .background {
   position: absolute;
@@ -2216,6 +2230,7 @@ section a:hover {
   width: 100%;
   background-size: cover;
   background-position: center center;
+  line-height: 5.625rem;
 }
 .progress-slider .ps-block .ps-big:before {
   content: "";

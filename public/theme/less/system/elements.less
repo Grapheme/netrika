@@ -298,14 +298,15 @@ section a {
 		.aim {
 			padding: 20rem / @hfs;
 			box-sizing: border-box;
+			line-height: 30rem / @hfs;
 
 			&:before {
 				content: attr(data-number);
 				display: inline-block;
+				vertical-align: middle;
 				width: 30rem / @hfs;
 				height: 30rem / @hfs;
 				border-radius: 30rem / @hfs;
-				line-height: 30rem / @hfs;
 				text-align: center;
 				font-weight: 500;
 				border-width: 1px;
@@ -313,6 +314,10 @@ section a {
 				border-color: @green-link;
 				color: @green-link;
 				margin-bottom: 20rem / @hfs;
+			}
+
+			.text {
+				line-height: normal;
 			}
 		}
 	}
@@ -373,6 +378,12 @@ section a {
 		background: url(../img/svg/netrika_white.svg);
 		background-repeat: no-repeat;
 		background-position: center;
+		z-index: 0;
+	}
+
+	.grid_12 {
+		position: relative;
+		z-index: 1;
 	}
 }
 
