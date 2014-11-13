@@ -454,6 +454,7 @@ section a:hover {
   padding: 1.25rem;
   -moz-box-sizing: border-box;
        box-sizing: border-box;
+  line-height: 1.875rem;
 }
 .aims li .aim:before {
   content: attr(data-number);
@@ -462,7 +463,6 @@ section a:hover {
   width: 1.875rem;
   height: 1.875rem;
   border-radius: 1.875rem;
-  line-height: 1.875rem;
   text-align: center;
   font-weight: 500;
   border-width: 1px;
@@ -470,6 +470,9 @@ section a:hover {
   border-color: #1dcba4;
   color: #1dcba4;
   margin-bottom: 1.25rem;
+}
+.aims li .aim .text {
+  line-height: normal;
 }
 .aims.aims-light li .aim {
   background: #f5f5f5;
