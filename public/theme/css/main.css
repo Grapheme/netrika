@@ -20,7 +20,8 @@
   -moz-column-gap: 2.5rem;
   column-gap: 2.5rem;
 }
-.columns-2 li {
+.columns-2 li,
+.columns-2 p {
   -webkit-column-break-inside: avoid;
      page-break-inside: avoid;
           break-inside: avoid-column;
@@ -1201,7 +1202,8 @@ section a:hover {
   margin-top: 1.5625rem;
   font-size: 0.875em;
 }
-.mobile-menu .mobile-main-menu ul li {
+.mobile-menu .mobile-main-menu ul li,
+.mobile-menu .mobile-main-menu ul p {
   -webkit-column-break-inside: avoid;
      page-break-inside: avoid;
           break-inside: avoid-column;
@@ -4134,7 +4136,8 @@ Move to separate stylesheet if invalid CSS is a problem.
     -moz-column-gap: 2.5rem;
     column-gap: 2.5rem;
   }
-  .news-search .tags-ul li {
+  .news-search .tags-ul li,
+  .news-search .tags-ul p {
     -webkit-column-break-inside: avoid;
        page-break-inside: avoid;
             break-inside: avoid-column;
