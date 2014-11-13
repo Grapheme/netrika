@@ -453,7 +453,7 @@ $.fn.news_module = function(news_array, tags_object) {
 		$('.js-tags').html(tags_str);
 
 		var init_settings = {
-			tags: [], 
+			tags: tags_array, 
 			date: [default_min_date, default_max_date]
 		}
 
