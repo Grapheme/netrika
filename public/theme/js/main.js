@@ -356,7 +356,12 @@ $.fn.news_module = function(news_array, tags_object) {
 
 		fillNothing: function() {
 			var str = '';
-			str += '<div class="no-news">По выбранным критериям не найдено новостей. Попробуйте изменить параметры фильтра</div>';
+			if($('.js-tags li').hasClass('active')) {
+				str += '<div class="no-news">По выбранным критериям не найдено новостей. Попробуйте изменить параметры фильтра</div>';
+			} else {
+				str += '<div class="no-news">Вы не выбрали ни одного тега</div>';
+			}
+			
 			$('.js-news-first').html(str);
 			$('.js-news-grid').html('');
 		},
@@ -444,7 +449,7 @@ $.fn.news_module = function(news_array, tags_object) {
 	}
 
 	function init() {
-		var tags_str = '<li class="tag-all" data-filter="all">Все';
+		var tags_str = '<li class="tag-all active" data-filter="all">Все';
 		var tags_array = [];
 		$.each(tags_object, function(index, value){
 			tags_str += '<li class="active tag-' + index + '" data-filter="' + index + '">' + value;
@@ -476,7 +481,7 @@ $.fn.news_module = function(news_array, tags_object) {
 				$('.js-tags li[data-filter=all]').removeClass('active');
 			}*/
 		} else {
-			if($('.js-tags li').hasClass('active')) {
+			if($('.js-tags li[data-filter="all"]').hasClass('active')) {
 				$('.js-tags li').removeClass('active');
 			} else {
 				$('.js-tags li').addClass('active');
@@ -518,11 +523,15 @@ $.fn.news_module = function(news_array, tags_object) {
 			}
 			if(news_date > date.min && news_date < date.max) {
 				var toArray = false;
-				$.each(settings.tags, function(tag_index, tag){
-					if(inArray(tag, value.tags)) {
-						toArray = true;
-					}
-				});
+				if($('.js-tags li[data-filter="all"]').hasClass('active')) {
+					toArray = true;
+				} else {
+					$.each(settings.tags, function(tag_index, tag){
+						if(inArray(tag, value.tags)) {
+							toArray = true;
+						}
+					});
+				}
 				
 				if(toArray) {
 					ready_array.push(value);
