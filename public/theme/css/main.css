@@ -2215,6 +2215,7 @@ section a:hover {
   vertical-align: top;
   width: 33.33333333%;
   height: 14.375rem;
+  line-height: 5.75rem;
 }
 .progress-slider .ps-block.ps-info {
   padding: 1.25rem;
@@ -2230,7 +2231,6 @@ section a:hover {
   width: 100%;
   background-size: cover;
   background-position: center center;
-  line-height: 5.625rem;
 }
 .progress-slider .ps-block .ps-big:before {
   content: "";
