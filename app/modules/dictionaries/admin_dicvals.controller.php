@@ -180,9 +180,9 @@ class AdminDicvalsController extends BaseController {
                     ->leftJoin($tbl_fields . ' AS ' . $rand_tbl_alias, function ($join) use ($tbl_dicval, $tbl_fields, $rand_tbl_alias, $dic, $sort_order) {
                         $join
                             ->on($rand_tbl_alias . '.dicval_id', '=', $tbl_dicval . '.id')
-                            ->where($rand_tbl_alias . '.key', '=', $dic->sort_by)
                         ;
                     })
+                    ->where($rand_tbl_alias . '.key', '=', $dic->sort_by)
                     ->addSelect($rand_tbl_alias . '.value AS ' . $dic->sort_by)
                     ->orderBy($dic->sort_by, $sort_order)
                     ->orderBy($tbl_dicval.'.created_at', 'DESC'); /* default */
@@ -197,7 +197,7 @@ class AdminDicvalsController extends BaseController {
 
         $sortable = ($dic->sortable && $dic->pagination == 0 && $dic->sort_by == NULL) ? true : false;
 
-        #Helper::smartQueries(1);
+        #Helper::smartQueries(1); die;
 
         DicVal::extracts($elements, true);
 
