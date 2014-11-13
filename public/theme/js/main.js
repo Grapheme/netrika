@@ -511,12 +511,16 @@ $.fn.news_module = function(news_array, tags_object) {
 				max: new Date(settings.date[1]).getTime() + 1
 			}
 			if(news_date > date.min && news_date < date.max) {
-				var toArray = true;
-				$.each(settings.tags, function(tag_index, tag){
-					if(!inArray(tag, value.tags)) {
-						toArray = false;
-					}
-				});
+				var toArray = false;
+				if(settings.tags.length) {
+					$.each(settings.tags, function(tag_index, tag){
+						if(inArray(tag, value.tags)) {
+							toArray = true;
+						}
+					});
+				} else {
+					toArray = true;
+				}
 				
 				if(toArray) {
 					ready_array.push(value);
