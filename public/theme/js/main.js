@@ -436,7 +436,7 @@ $.fn.news_module = function(news_array, tags_object) {
 
 			var tag_list = '';
 			$.each(obj.tags, function(index, value){
-				tag_list += '<li class="tag-' + value + ' active">' + tags_object[value];
+				tag_list += '<li class="tag-' + value + '">' + tags_object[value];
 			});
 
 			return {
