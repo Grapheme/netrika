@@ -69,7 +69,7 @@
                                         )
                                 )
                                 <form method="POST" action="{{ action(is_numeric($dic_id) ? 'dicval.destroy' : 'entity.destroy', array('dic_id' => $dic_id, 'id' => $element->id)) }}" style="display:inline-block">
-                                    <button type="submit" class="btn btn-danger remove-record">
+                                    <button type="submit" class="btn btn-danger remove-dicval-list">
                                         Удалить
                                     </button>
                                 </form>
@@ -119,12 +119,10 @@
 	};
     </script>
 
-	{{ HTML::script('js/modules/standard.js') }}
-
 	<script type="text/javascript">
 		if(typeof pageSetUp === 'function'){pageSetUp();}
-		if(typeof runFormValidation === 'function'){
-			loadScript("{{ asset('js/vendor/jquery-form.min.js'); }}", runFormValidation);
+		if(typeof runDicValFormValidation === 'function'){
+			loadScript("{{ asset('js/vendor/jquery-form.min.js'); }}", runDicValFormValidation);
 		}else{
 			loadScript("{{ asset('js/vendor/jquery-form.min.js'); }}");
 		}

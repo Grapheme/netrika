@@ -40,7 +40,7 @@ $newslist = Dic::valuesBySlug('newslist', function($query) use ($rel_dics_ids){
         })
         ->addSelect($rand_tbl_alias . '.value AS ' . 'published_at')
         ->orderBy('published_at', 'DESC')
-        ->where($rand_tbl_alias . '.value', '<', date('Y-m-d')) /* в данный момент еще не сработал алиас AS published_at, поэтому приходится писать полное наименование поля, с префиксом таблицы */
+        ->where($rand_tbl_alias . '.value', '<=', date('Y-m-d')) /* в данный момент еще не сработал алиас AS published_at, поэтому приходится писать полное наименование поля, с префиксом таблицы */
         #->orderBy('created_at', 'DESC') /* default */
         ;
     #*/
