@@ -1,7 +1,7 @@
 <?php
 /**
  * An helper file for Laravel 4, to provide autocomplete information to your IDE
- * Generated for Laravel 4.2.11 on 2014-10-27.
+ * Generated for Laravel 4.2.8 on 2014-11-07.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -3857,6 +3857,16 @@ namespace {
         }
         
         /**
+         * Run the default delete function on the builder.
+         *
+         * @return mixed 
+         * @static 
+         */
+        public static function forceDelete(){
+            return \Illuminate\Database\Eloquent\Builder::forceDelete();
+        }
+        
+        /**
          * Register a replacement for the default delete function.
          *
          * @param \Closure $callback
@@ -5201,16 +5211,6 @@ namespace {
             \Illuminate\Events\Dispatcher::forget($event);
         }
         
-        /**
-         * Forget all of the queued listeners.
-         *
-         * @return void 
-         * @static 
-         */
-        public static function forgetQueued(){
-            \Illuminate\Events\Dispatcher::forgetQueued();
-        }
-        
     }
 
 
@@ -5680,18 +5680,6 @@ namespace {
          */
         public static function textarea($name, $value = null, $options = array()){
             return \Illuminate\Html\FormBuilder::textarea($name, $value, $options);
-        }
-        
-        /**
-         * Create a number input field.
-         *
-         * @param string $name
-         * @param array $options
-         * @return string 
-         * @static 
-         */
-        public static function number($name, $value = null, $options = array()){
-            return \Illuminate\Html\FormBuilder::number($name, $value, $options);
         }
         
         /**
@@ -7151,9 +7139,9 @@ namespace {
         }
         
         /**
-         * Returns the requested URI (path and query string).
+         * Returns the requested URI.
          *
-         * @return string The raw URI (i.e. not URI decoded)
+         * @return string The raw URI (i.e. not urldecoded)
          * @api 
          * @static 
          */
@@ -7177,9 +7165,9 @@ namespace {
         }
         
         /**
-         * Generates a normalized URI (URL) for the Request.
+         * Generates a normalized URI for the Request.
          *
-         * @return string A normalized URI (URL) for the Request
+         * @return string A normalized URI for the Request
          * @see getQueryString()
          * @api 
          * @static 
@@ -9783,9 +9771,9 @@ namespace {
         }
         
         /**
-         * Returns the requested URI (path and query string).
+         * Returns the requested URI.
          *
-         * @return string The raw URI (i.e. not URI decoded)
+         * @return string The raw URI (i.e. not urldecoded)
          * @api 
          * @static 
          */
@@ -9809,9 +9797,9 @@ namespace {
         }
         
         /**
-         * Generates a normalized URI (URL) for the Request.
+         * Generates a normalized URI for the Request.
          *
-         * @return string A normalized URI (URL) for the Request
+         * @return string A normalized URI for the Request
          * @see getQueryString()
          * @api 
          * @static 
@@ -11800,7 +11788,7 @@ namespace {
          *
          * @param string $path
          * @param mixed $extra
-         * @param bool|null $secure
+         * @param bool $secure
          * @return string 
          * @static 
          */
@@ -11826,7 +11814,7 @@ namespace {
          * Generate a URL to an application asset.
          *
          * @param string $path
-         * @param bool|null $secure
+         * @param bool $secure
          * @return string 
          * @static 
          */
@@ -12927,16 +12915,6 @@ namespace {
          */
         public static function setNotifier($notifier){
             return \Bugsnag_Client::setNotifier($notifier);
-        }
-        
-        /**
-         * Sets whether Bugsnag should send $_ENV with each error.
-         *
-         * @param Boolean $sendEnvironment whether to send the environment
-         * @static 
-         */
-        public static function setSendEnvironment($sendEnvironment){
-            return \Bugsnag_Client::setSendEnvironment($sendEnvironment);
         }
         
         /**

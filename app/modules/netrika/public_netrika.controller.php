@@ -71,27 +71,29 @@ class PublicNetrikaController extends BaseController {
         $tags_ids = Dic::makeLists($new->related_dicvals, false, 'id');
         #Helper::dd($tags_ids);
 
-        /**
-         * Получаем IDs новостей, у которых есть такие же теги, как у текущей
-         */
-        $related_news_ids_obj = DicValRel::whereIn('dicval_child_id', $tags_ids)->get();
-        #Helper::tad($related_news_ids_obj);
-        $related_news_ids = Dic::makeLists($related_news_ids_obj, false, 'dicval_parent_id');
-        $related_news_ids = array_unique($related_news_ids);
-        #Helper::dd($related_news_ids);
+        $related_news = array();
+        if (count($tags_ids)) {
+            /**
+             * Получаем IDs новостей, у которых есть такие же теги, как у текущей
+             */
+            $related_news_ids_obj = DicValRel::whereIn('dicval_child_id', $tags_ids)->get();
+            #Helper::tad($related_news_ids_obj);
+            $related_news_ids = Dic::makeLists($related_news_ids_obj, false, 'dicval_parent_id');
+            $related_news_ids = array_unique($related_news_ids);
+            #Helper::dd($related_news_ids);
 
-        /**
-         * Получаем "похожие" новости, с учетом условий
-         */
-        $related_news = Dic::valuesBySlug('newslist', function($query) use ($new, $related_news_ids){
-            $query->where('id', '!=', $new->id);
-            $query->whereIn('id', $related_news_ids);
-            $query->orderBy('created_at', 'DESC');
-            $query->with('related_dicvals');
-            $query->take(3);
-        });
-        #Helper::tad($related_news);
-
+            /**
+             * Получаем "похожие" новости, с учетом условий
+             */
+            $related_news = Dic::valuesBySlug('newslist', function($query) use ($new, $related_news_ids){
+                $query->where('id', '!=', $new->id);
+                $query->whereIn('id', $related_news_ids);
+                $query->orderBy('created_at', 'DESC');
+                $query->with('related_dicvals');
+                $query->take(3);
+            });
+            #Helper::tad($related_news);
+        }
 
         /**
          * Предыдущая новость
@@ -200,6 +202,10 @@ class PublicNetrikaController extends BaseController {
 
     public function showProject($slug) {
         $project = Dic::valueBySlugs('projects', $slug);
+
+        if (!is_object($project))
+            App::abort(404);
+
         $project->extract(1);
         #Helper::tad($project);
 
