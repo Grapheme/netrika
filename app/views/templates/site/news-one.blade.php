@@ -60,7 +60,7 @@
                                 @endforeach
                             </div>
                         </div>
-                        @if (count($new->gallery->photos) > 2)
+                        @if (count($new->gallery->photos) > 1)
                         <div class="grid_2 grid_t3 grid_m6 omega">
                             <div class="head-nav">
                                 <a href="#" class="desc-icon prev js-fotorama-control" data-direction="<"></a>
