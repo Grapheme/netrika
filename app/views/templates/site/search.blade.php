@@ -162,7 +162,9 @@
                     <div class="clearfix"></div>
                 </div>
             </div>
-            @else
+            @endif
+
+            @if (!@count($results['pages']['matches']) && !@count($results['solutions']['matches']) && !@count($results['news']['matches']) && !@count($results['projects']['matches']))
             <div class="container_12">
                 <div class="grid_12">
                     <div class="no-found">
@@ -176,6 +178,7 @@
                 <div class="clearfix"></div>
             </div>
             @endif
+
 
         </section>
 
