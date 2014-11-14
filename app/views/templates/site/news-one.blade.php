@@ -60,12 +60,14 @@
                                 @endforeach
                             </div>
                         </div>
+                        @if (count($new->gallery->photos) > 2)
                         <div class="grid_2 grid_t3 grid_m6 omega">
                             <div class="head-nav">
                                 <a href="#" class="desc-icon prev js-fotorama-control" data-direction="<"></a>
                                 <a href="#" class="desc-icon next js-fotorama-control" data-direction=">"></a>
                             </div>
                         </div>
+                        @endif
                     @elseif ($new->image)
                         <div class="grid_6 grid_t9 grid_m12 alpha">&nbsp;
                             <div class="js-news-fotorama">
