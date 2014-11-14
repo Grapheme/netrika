@@ -469,7 +469,7 @@ $.fn.news_module = function(news_array, tags_object) {
 	function setInitDates() {
 		var today = new Date();
 		var today_time = today.getTime();
-		var prev_month_time = today_time - 2629743830;
+		var prev_month_time = today_time - 2629743830*3;
 
 		default_min_date = timeToDate(prev_month_time);
 		default_max_date = timeToDate(today_time);
