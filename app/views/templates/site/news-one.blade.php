@@ -18,7 +18,7 @@
                 <section class="title-content min-pad">
                     <div class="grid_9 grid_m12">
                         <div class="head-top-info">
-                            <span class="news-date"><span class="day">{{ $new->created_at->format('d') }}</span> / {{ $new->created_at->format('m') }} / {{ $new->created_at->format('Y') }}</span>
+                            <span class="news-date"><span class="day">{{ $new->published_at->format('d') }}</span> / {{ $new->published_at->format('m') }} / {{ $new->published_at->format('Y') }}</span>
                             @if (count($new->related_dicvals))
                             <ul class="tags-ul adp-top-smar">
                                 @foreach ($new->related_dicvals as $tag)
