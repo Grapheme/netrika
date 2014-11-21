@@ -2061,6 +2061,7 @@ section a:hover {
   padding-top: 2.5rem;
   -webkit-transition: color .1s ease;
           transition: color .1s ease;
+  outline: 0 none;
 }
 .stat-nav .stat-items .stat-item:first-child {
   margin-left: 0;
