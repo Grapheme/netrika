@@ -169,6 +169,13 @@ class PublicNetrikaController extends BaseController {
         #Helper::ta($next_new);
         #return '';
 
+        /**
+         * Переводим дату публикации из string в Carbon
+         */
+        $new->published_at = (new Carbon())->createFromFormat('Y-m-d', $new->published_at);
+
+        #Helper::tad($new);
+        #dd($new->published_at);
 
         return View::make(Helper::layout('news-one'), compact('new', 'related_news', 'prev_new', 'next_new'));
     }
