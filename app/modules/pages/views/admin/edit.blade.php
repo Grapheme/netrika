@@ -137,6 +137,10 @@
                     </section>
 
                 </fieldset>
+                @else
+
+                    {{ Form::hidden('start_page', 1) }}
+
                 @endif
 
                 <fieldset class="clearfix">
