@@ -32,7 +32,9 @@
                                 <?
                                 $domain = parse_url($project->link_to_project);
                                 ?>
-                                <a href="{{ $project->link_to_project }}">{{ $domain['host'] }}</a>
+                                    @if (@$domain['host'])
+                                    <a href="{{ $project->link_to_project }}">{{ $domain['host'] }}</a>
+                                    @endif
                                 @endif
                             </div>
                         </div>
