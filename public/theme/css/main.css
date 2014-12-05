@@ -1062,6 +1062,7 @@ section a:hover {
   -webkit-transform: translateY(-10px);
       -ms-transform: translateY(-10px);
           transform: translateY(-10px);
+  z-index: 1;
 }
 .title-block .title-content .main-slider .js-main-slide p {
   margin: 0 0 .5em;
@@ -1082,6 +1083,7 @@ section a:hover {
   -webkit-transform: translateX(0);
       -ms-transform: translateX(0);
           transform: translateX(0);
+  z-index: 2;
 }
 .head-nav {
   margin-top: 0.625rem;
