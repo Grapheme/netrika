@@ -29,9 +29,9 @@
                                     </span>
                                 </a>
                                 @if ($project->link_to_project)
-                                <?
-                                $domain = parse_url($project->link_to_project);
-                                ?>
+                                    <?
+                                    $domain = parse_url($project->link_to_project);
+                                    ?>
                                     @if (@$domain['host'])
                                     <a href="{{ $project->link_to_project }}">{{ $domain['host'] }}</a>
                                     @endif

@@ -139,7 +139,7 @@
                 </fieldset>
                 @else
 
-                    {{ Form::hidden('start_page', 1) }}
+                    {{ Form::hidden('start_page') }}
 
                 @endif
 
