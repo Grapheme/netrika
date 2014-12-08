@@ -1,6 +1,7 @@
 <?
 /**
  * TITLE: * Простая страница
+ * AVAILABLE_IN_SIMPLE_MODE
  */
 ?>
 @extends(Helper::layout())

@@ -88,7 +88,8 @@ class BaseController extends Controller {
             #echo "<hr/>";
             if (
                 @$properties['TEMPLATE_IS_NOT_SETTABLE']
-                || (@$properties['AVAILABLE_ONLY_IN_ADVANCED_MODE'] && !Allow::action('pages', 'advanced'))
+                #|| (@$properties['AVAILABLE_ONLY_IN_ADVANCED_MODE'] && !Allow::action('pages', 'advanced'))
+                || (!Allow::action('pages', 'advanced') && !@$properties['AVAILABLE_IN_SIMPLE_MODE'])
             )
                 continue;
 
