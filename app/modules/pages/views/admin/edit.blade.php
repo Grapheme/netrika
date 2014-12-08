@@ -87,7 +87,7 @@
 
                     @if (
                         Allow::action('pages', 'advanced')
-                        || @$templates[$element->template]
+                        || isset($templates[$element->template])
                     )
                         <section class="col col-lg-6 col-sm-12">
                             <label class="label">Шаблон</label>
