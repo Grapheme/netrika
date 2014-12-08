@@ -18,7 +18,7 @@ $array = array();
 foreach ($projects as $project) {
     @$array[$project->solution_id][$project->id] = $project;
 }
-Helper::tad($array);
+#Helper::tad($array);
 ?>
         <footer class="main-footer">
             <div class="container_12">
@@ -57,6 +57,11 @@ Helper::tad($array);
                         <li><a href="#" class="in-icon"></a>
                     </ul>
                 </div>
+
+                <?
+                echo "debug..."; die;
+                ?>
+
                 <div class="grid_12 footer-line mobile-hidden"></div>
                 <div class="grid_12 footer-columns mobile-hidden">
                     @foreach ($solutions as $solution)
