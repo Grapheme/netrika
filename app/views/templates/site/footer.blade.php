@@ -28,9 +28,6 @@ foreach ($projects as $project) {
                 ?>
 
                     {{ Menu::placement('footer_menu') }}
-                <?
-                echo "debug... " . rand(99999, 999999); die;
-                ?>
 
                     @if (0)
                     <ul class="footer-list">

@@ -188,7 +188,7 @@ class MenuConstructor {
         /**
          * Получаем данные об элементе меню
          */
-        $data = $this->items[$element_id];
+        $data = @$this->items[$element_id];
 
         #Helper::d($data);
         if (@$data['hidden'])
