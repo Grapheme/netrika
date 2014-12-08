@@ -154,20 +154,22 @@ class AdminPagesPageController extends BaseController {
         $locales = $this->locales;
         #Helper::dd($locales);
 
-        foreach ($this->templates(__DIR__) as $template)
-            @$templates_module[$template] = $template;
+        $templates = array();
 
         foreach ($this->templates(Helper::theme_dir(), '') as $key => $template)
             @$templates_theme[$key] = $template;
-
-        $templates = array();
         if (@count($templates_theme)) {
             natsort($templates_theme);
             $templates['Тема оформления'] = $templates_theme;
         }
-        if (@count($templates_module)) {
-            natsort($templates_module);
-            $templates['Модуль'] = $templates_module;
+
+        if (Allow::action('pages', 'advanced')) {
+            foreach ($this->templates(__DIR__) as $template)
+                @$templates_module[$template] = $template;
+            if (@count($templates_module)) {
+                natsort($templates_module);
+                $templates['Модуль'] = $templates_module;
+            }
         }
         #Helper::dd($templates);
 
