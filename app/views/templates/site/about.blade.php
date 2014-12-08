@@ -1,6 +1,7 @@
 <?
 /**
  * TITLE: О компании
+ * AVAILABLE_ONLY_IN_ADVANCED_MODE
  */
 ?>
 @extends(Helper::layout())

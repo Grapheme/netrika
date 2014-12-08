@@ -1,6 +1,7 @@
 <?
 /**
  * TITLE: Страница контактов
+ * AVAILABLE_ONLY_IN_ADVANCED_MODE
  */
 ?>
 @extends(Helper::layout())
