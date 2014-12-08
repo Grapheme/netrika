@@ -38,6 +38,11 @@ foreach ($projects as $project) {
                     @endif
 
                 </div>
+
+                                <?
+                                echo "debug... " . rand(99999, 999999); die;
+                                ?>
+
                 <div class="grid_4 grid_m12 footer-adress">
                     <ul class="footer-list">
                         <li>Санкт-Петербург, пер. Фуражный, д. 3
@@ -57,11 +62,6 @@ foreach ($projects as $project) {
                         <li><a href="#" class="in-icon"></a>
                     </ul>
                 </div>
-
-                <?
-                echo "debug..."; die;
-                ?>
-
                 <div class="grid_12 footer-line mobile-hidden"></div>
                 <div class="grid_12 footer-columns mobile-hidden">
                     @foreach ($solutions as $solution)
