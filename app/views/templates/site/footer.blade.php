@@ -24,7 +24,7 @@ foreach ($projects as $project) {
             <div class="container_12">
                 <div class="grid_4 grid_m12 footer-main-nav">
                 <?
-                echo "debug... " . rand(99999, 999999);
+                echo "debug... " . rand(99999, 999999); die;
                 ?>
 
                     {{ Menu::placement('footer_menu') }}
