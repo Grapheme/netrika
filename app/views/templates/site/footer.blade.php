@@ -23,8 +23,14 @@ foreach ($projects as $project) {
         <footer class="main-footer">
             <div class="container_12">
                 <div class="grid_4 grid_m12 footer-main-nav">
+                <?
+                echo "debug... " . rand(99999, 999999);
+                ?>
 
                     {{ Menu::placement('footer_menu') }}
+                <?
+                echo "debug... " . rand(99999, 999999); die;
+                ?>
 
                     @if (0)
                     <ul class="footer-list">
@@ -38,11 +44,6 @@ foreach ($projects as $project) {
                     @endif
 
                 </div>
-
-                                <?
-                                echo "debug... " . rand(99999, 999999); die;
-                                ?>
-
                 <div class="grid_4 grid_m12 footer-adress">
                     <ul class="footer-list">
                         <li>Санкт-Петербург, пер. Фуражный, д. 3
