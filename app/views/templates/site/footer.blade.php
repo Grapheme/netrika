@@ -24,7 +24,7 @@ foreach ($projects as $project) {
             <div class="container_12">
                 <div class="grid_4 grid_m12 footer-main-nav">
 
-                    {{ Menu::placement('footer_menu') }}
+                    {{-- Menu::placement('footer_menu') --}}
 
                     @if (0)
                     <ul class="footer-list">
