@@ -344,22 +344,27 @@ class Dictionary extends BaseModel {
      * @param bool $extract
      * @return mixed|static
      */
-    public static function valuesBySlugAndIds($dic_slug, $val_ids, $extract = false) {
+    public static function valuesBySlugAndIds($dic_slug, array $val_ids, $extract = false) {
 
-        $data = self::where('slug', $dic_slug)->with(array('values_no_conditions' => function($query) use ($val_ids){
+        $data = NULL;
+
+        if (count($val_ids)) {
+
+            $data = self::where('slug', $dic_slug)->with(array('values_no_conditions' => function($query) use ($val_ids){
                 $query->where('version_of', NULL);
                 $query->whereIn('id', $val_ids);
                 $query->with('meta', 'fields', 'seo', 'related_dicvals');
             }))
-            ->first()
-        ;
-        #Helper::tad($data);
-
-        if (is_object($data)) {
-            $data = $data->values_no_conditions;
-            if ($extract)
-                $data = DicVal::extracts($data);
+                ->first()
+            ;
             #Helper::tad($data);
+
+            if (is_object($data)) {
+                $data = $data->values_no_conditions;
+                if ($extract)
+                    $data = DicVal::extracts($data);
+                #Helper::tad($data);
+            }
         }
 
         return is_object($data) ? $data : self::firstOrNew(array('id' => 0));
