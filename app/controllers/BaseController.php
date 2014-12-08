@@ -86,7 +86,10 @@ class BaseController extends Controller {
             #var_dump($properties);
             #echo (int)(in_array('TEMPLATE_IS_NOT_SETTABLE', $properties));
             #echo "<hr/>";
-            if (@$properties['TEMPLATE_IS_NOT_SETTABLE'])
+            if (
+                @$properties['TEMPLATE_IS_NOT_SETTABLE']
+                || (@$properties['AVAILABLE_ONLY_IN_ADVANCED_MODE'] && !Allow::action('pages', 'advanced'))
+            )
                 continue;
 
             $name = basename($tmp);
