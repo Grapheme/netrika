@@ -5,7 +5,7 @@
     $menus = array();
 
     /*
-    if (Allow::action($module['group'], 'permissions')) {
+    if (Allow::action($module['group'], 'users')) {
         $menus[] = array(
             'link' => mb_substr(action($module['class'] . '@getIndex'), 0, -6),
             'title' => 'Все пользователи',
