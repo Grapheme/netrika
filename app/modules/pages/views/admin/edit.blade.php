@@ -87,7 +87,7 @@
 
                     @if (
                         Allow::action('pages', 'advanced')
-                        || (!isset($templates[$element->template]) || @$templates[$element->template])
+                        || (!isset($templates[$element->template]) || @$templates['Тема оформления'][$element->template] || @$templates['Модуль'][$element->template])
                     )
                         <section class="col col-lg-6 col-sm-12">
                             <label class="label">Шаблон</label>
