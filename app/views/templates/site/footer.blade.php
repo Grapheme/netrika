@@ -16,8 +16,9 @@ $projects = DicVal::extracts($projects, true);
 
 $array = array();
 foreach ($projects as $project) {
-    #@$array[$project->solution_id][$project->id] = $project;
+    @$array[$project->solution_id][$project->id] = $project;
 }
+Helper::tad($array);
 ?>
         <footer class="main-footer">
             <div class="container_12">
