@@ -202,7 +202,7 @@ class AdminDicvalsController extends BaseController {
 
         $sortable = ($dic->sortable && $dic->pagination == 0 && $dic->sort_by == NULL) ? true : false;
 
-        #Helper::smartQueries(1); die;
+        Helper::smartQueries(1); die;
 
         DicVal::extracts($elements, true);
 
