@@ -50,7 +50,7 @@
     }
 
 
-    if (Allow::action($module['group'], 'permissions')) {
+    if (Allow::action($module['group'], 'groups')) {
         $menus[] = array(
             'link' => action($module['class'] . '@getCreate'),
             'title' => 'Добавить',

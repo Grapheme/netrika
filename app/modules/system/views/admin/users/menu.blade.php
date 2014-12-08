@@ -40,7 +40,7 @@
     $menus[] = $def_arr;
 
 
-    if (Allow::action($module['group'], 'permissions')) {
+    if (Allow::action($module['group'], 'users')) {
         $menus[] = array(
             'link' => action($module['class'] . '@getCreate'),
             'title' => 'Добавить',
