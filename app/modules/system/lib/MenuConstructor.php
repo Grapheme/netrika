@@ -114,6 +114,7 @@ class MenuConstructor {
          * Перебираем все элементы меню текущего уровня
          */
         foreach ($order as $element_array) {
+
             $id = $element_array['id'];
 
             /**
@@ -182,7 +183,7 @@ class MenuConstructor {
     private function get_element($element_id) {
 
 
-        if (!isset($this->items[$element_id]))
+        if (!@isset($this->items[$element_id]))
             return false;
 
         /**
@@ -313,7 +314,7 @@ class MenuConstructor {
         switch($element['type']) {
 
             case 'page':
-                return $this->isRoute('page', $this->pages[$element['page_id']]->slug);
+                return $this->isRoute('page', @$this->pages[$element['page_id']]->slug);
                 break;
 
             case 'link':
