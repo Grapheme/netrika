@@ -71,15 +71,18 @@ var menu_editor = {
             menu_item = $this.get_menu_list_item(items[val.id], inner_list);
             //console.log(menu_item);
 
-            menu_list += menu_item;
+            if (menu_item)
+                menu_list += menu_item;
         });
 
         return menu_list;
     },
 
     'get_menu_list_item': function(params, inner_list) {
-        var type = params.type;
+        if (typeof params == 'undefined')
+            return false;
         //console.log(params);
+        var type = params.type;
         var main_block = $('#templates .main').html();
         var block = $('#templates .' + type).html();
         if (!N)
