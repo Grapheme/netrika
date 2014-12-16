@@ -2900,6 +2900,7 @@ section a:hover {
 }
 .vacancy-block .container_12 {
   position: relative;
+  z-index: 1;
 }
 .vacancy-block .container_12:before {
   content: "";
