@@ -94,7 +94,7 @@ var menu_editor = {
                 if (tmp > 0 && tmp > temp)
                     temp = tmp;
             });
-            var N = temp + 1;
+            var N = temp;
         }
         //alert(N);
         switch (type) {
