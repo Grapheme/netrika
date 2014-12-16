@@ -85,8 +85,17 @@ var menu_editor = {
         var type = params.type;
         var main_block = $('#templates .main').html();
         var block = $('#templates .' + type).html();
-        if (!N)
-            var N = $(menu_items).find('.dd-item').length;
+        if (!N) {
+
+            //var N = $(menu_items).find('.dd-item').length;
+            var temp = 0;
+            $(menu_items).find('.dd-item').each(function(){
+                var tmp = $(this).attr('data-id');
+                if (tmp > 0 && tmp > temp)
+                    temp = tmp;
+            });
+            var N = temp+1;
+        }
         //alert(N);
         switch (type) {
             case 'page':
