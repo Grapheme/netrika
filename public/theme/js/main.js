@@ -1518,12 +1518,15 @@ $.fn.setHeightOfMax = function(block) {
 	});
 }
 
-$('.mobile-menu').mobile_menu();
-$('a[href]').ext_url();
-$('.js-hover').jshover('js-circle');
-$('.main-nav').header_nav();
-$('.popups').PopUp();
-$('input[name=phone]').mask('(000) 000-0000');
+$(function(){
+	$('.mobile-menu').mobile_menu();
+	$('a[href]').ext_url();
+	$('.js-hover').jshover('js-circle');
+	$('.main-nav').header_nav();
+	$('.popups').PopUp();
+	$('input[name=phone]').mask('(000) 000-0000');
+	$('.aims').setHeightOfMax('.aim');
+});
 
 function transform(transform_value) {
 	var prefixes = ['-webkit-', '-ms-', ''];
