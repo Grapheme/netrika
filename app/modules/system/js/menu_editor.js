@@ -90,11 +90,11 @@ var menu_editor = {
             //var N = $(menu_items).find('.dd-item').length;
             var temp = 0;
             $(menu_items).find('.dd-item').each(function(){
-                var tmp = $(this).attr('data-id');
+                var tmp = parseInt($(this).attr('data-id'), 10);
                 if (tmp > 0 && tmp > temp)
                     temp = tmp;
             });
-            var N = temp+1;
+            var N = temp + 1;
         }
         //alert(N);
         switch (type) {
