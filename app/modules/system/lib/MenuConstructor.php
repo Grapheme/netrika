@@ -192,7 +192,7 @@ class MenuConstructor {
         $data = @$this->items[$element_id];
 
         #Helper::d($data);
-        if (@$data['hidden'])
+        if (!@$data || @$data['hidden'])
             return;
 
         /**
