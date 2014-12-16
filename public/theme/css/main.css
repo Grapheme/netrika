@@ -2904,7 +2904,6 @@ section a:hover {
 .vacancy-block .container_12:before {
   content: "";
   position: absolute;
-  z-index: 0;
   left: 35.625rem;
   top: -11.25rem;
   width: 65.3125rem;
@@ -2912,9 +2911,6 @@ section a:hover {
   background: url(../img/svg/netrica-white.svg);
   background-repeat: no-repeat;
   background-position: center;
-}
-.vacancy-block .container_12 .grid_12 {
-  z-index: 1;
 }
 .vacancy-list {
   margin: 0;
