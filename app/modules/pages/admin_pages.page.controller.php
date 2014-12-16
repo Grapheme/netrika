@@ -161,7 +161,8 @@ class AdminPagesPageController extends BaseController {
 
         if (!isset($element) || !is_object($element) || !$element->id) {
             #App::abort(404);
-            return Redirect::route(__CLASS__::$entity . '.index');
+            $class = __CLASS__;
+            return Redirect::route($class::$entity . '.index');
         }
 
         $element->extract(false);
