@@ -193,7 +193,7 @@ class MenuConstructor {
 
         #Helper::d($data);
         if (!@$data || @$data['hidden'])
-            return;
+            return false;
 
         /**
          * Определяем атрибуты ссылки (class, title, target и т.д.)
@@ -214,6 +214,8 @@ class MenuConstructor {
          * Получаем URL ссылки
          */
         $url = $this->get_url($data);
+        if ($url === false)
+            return false;
 
         /**
          * Отрисовываем элемент меню
