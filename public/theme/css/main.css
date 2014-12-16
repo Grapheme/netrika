@@ -2911,7 +2911,6 @@ section a:hover {
   background: url(../img/svg/netrica-white.svg);
   background-repeat: no-repeat;
   background-position: center;
-  z-index: 1;
 }
 .vacancy-block .grid_12 {
   z-index: 2;
