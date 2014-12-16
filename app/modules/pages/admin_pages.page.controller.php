@@ -159,6 +159,10 @@ class AdminPagesPageController extends BaseController {
             ->with('versions', 'original_version.versions')
             ->first();
 
+        if (!isset($element) || !is_object($element) || !$element->id) {
+            App::abort(404);
+        }
+
         $element->extract(false);
 
         ##
