@@ -145,7 +145,7 @@
 html {
   font-size: 16px;
   font-family: "proxima_nova";
-  color: #7f8281;
+  color: #696b6a;
 }
 * {
   -webkit-font-smoothing: antialiased;
@@ -191,7 +191,7 @@ h2 {
   margin: 1.25rem 0;
 }
 h2 .h2-desc {
-  color: #7f8281;
+  color: #696b6a;
   text-transform: none;
 }
 h1,
@@ -239,7 +239,7 @@ section a:hover {
 .us-desc {
   font-size: 1.125em;
   font-weight: 500;
-  color: #7f8281;
+  color: #696b6a;
   line-height: 2.1875rem;
   width: 75%;
   margin: 1.875rem 0;
@@ -250,7 +250,7 @@ section a:hover {
 .bold-desc {
   line-height: 1.875rem;
   font-size: 1.125em;
-  color: #7f8281;
+  color: #696b6a;
   font-weight: 500;
 }
 .bold-desc p {
@@ -1993,7 +1993,7 @@ section a:hover {
   margin-top: 0.625rem;
 }
 .main-stat .stat-desc p {
-  color: #7f8281;
+  color: #696b6a;
   font-size: 1.125em;
   font-weight: 300;
   line-height: 1.875rem;
@@ -2217,6 +2217,10 @@ section a:hover {
   -webkit-transition: all .2s ease;
           transition: all .2s ease;
 }
+.prj-ul li a .icon-prjall:hover,
+.prj-ul li a .icon-prjall.active {
+  color: #fff;
+}
 .prj-ul li a:hover .text,
 .prj-ul li a.active .text {
   color: #fff;
@@ -2224,6 +2228,12 @@ section a:hover {
 .prj-ul li a:hover .amount,
 .prj-ul li a.active .amount {
   opacity: 1;
+}
+.prj-ul li a.active .icon-prjall {
+  font-family: "elements";
+}
+.prj-ul li a.active .icon-prjall:before {
+  content: "\e610";
 }
 .prj-ul li:first-child a {
   text-transform: none;
@@ -2389,7 +2399,7 @@ section a:hover {
 .map-container .map-desc .map-items li {
   margin-bottom: 0.625rem;
   padding-right: 3.125rem;
-  color: #7f8281;
+  color: #696b6a;
 }
 .map-container .map-desc .sol-dots {
   position: absolute;
@@ -2619,7 +2629,7 @@ section a:hover {
   outline: 0 none;
   border: 0 none;
   border-bottom: 1px solid #dcdddd;
-  color: #7f8281;
+  color: #696b6a;
   font-weight: 300;
 }
 .news-photo {
@@ -2718,7 +2728,7 @@ section a:hover {
 }
 .news-item .news-preview .news-date {
   display: block;
-  color: #7f8281;
+  color: #696b6a;
   margin-bottom: 1.25rem;
 }
 .news-item .tags-ul {
@@ -2727,7 +2737,7 @@ section a:hover {
 }
 .news-content .news-text {
   margin-top: 2.5rem;
-  color: #7f8281;
+  color: #696b6a;
 }
 .news-content .news-text .head-nav {
   margin-top: 2.5rem;
@@ -2736,7 +2746,7 @@ section a:hover {
   max-width: 100%;
 }
 .news-content .news-desc {
-  color: #7f8281;
+  color: #696b6a;
   height: 4.375rem;
   margin: 0.9375rem 0 1.875rem;
 }
@@ -2799,7 +2809,7 @@ section a:hover {
   width: 12.5rem;
   font-size: 1.4375em;
   font-weight: 300;
-  color: #7f8281;
+  color: #696b6a;
   line-height: 1.25em;
 }
 .vacancy-ul {
@@ -3068,7 +3078,7 @@ section a:hover {
   background: transparent;
   outline: 0 none;
   font-family: "elements";
-  color: #7f8281;
+  color: #696b6a;
   font-size: .75em;
 }
 .no-found .no-found-input button[type="submit"]:before {

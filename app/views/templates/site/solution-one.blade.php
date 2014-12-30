@@ -418,6 +418,31 @@ if (count($images_ids)) {
             </section>
             @endif
 
+            <section class="us-section download-block">
+                <div class="container_12">
+                    <div class="grid_12">
+
+                        @if ($solution->availability_demonstrate)
+                        <a href="#" class="title-btn js-popup-open" data-popup="order-present">Заказать демонстрацию</a>
+                        @endif
+
+                        <span class="fl-r">
+                            @if ($solution->link_to_file_presentation)
+                            <?
+                            $file = Upload::firstOrNew(array('id' => $solution->link_to_file_presentation));
+                            ?>
+                                @if ($file->path)
+                                <a href="{{ $file->path }}" target="_blank"><i class="lit-icon icon-download"></i> Скачать презентацию</a>
+                                @endif
+                            @endif
+
+                            <a href="{{ URL::route('page', 'solutions') }}"><i class="lit-icon icon-projects"></i> Все решения</a>
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </section>
+
             @if ($solution->additional_features)
             <section class="us-section">
                 <div class="container_12">
@@ -473,31 +498,6 @@ if (count($images_ids)) {
                 </div>
             </section>
             @endif
-
-            <section class="us-section download-block">
-                <div class="container_12">
-                    <div class="grid_12">
-
-                        @if ($solution->availability_demonstrate)
-                        <a href="#" class="title-btn js-popup-open" data-popup="order-present">Заказать демонстрацию</a>
-                        @endif
-
-                        <span class="fl-r">
-                            @if ($solution->link_to_file_presentation)
-                            <?
-                            $file = Upload::firstOrNew(array('id' => $solution->link_to_file_presentation));
-                            ?>
-                                @if ($file->path)
-                                <a href="{{ $file->path }}" target="_blank"><i class="lit-icon icon-download"></i> Скачать презентацию</a>
-                                @endif
-                            @endif
-
-                            <a href="{{ URL::route('page', 'solutions') }}"><i class="lit-icon icon-projects"></i> Все решения</a>
-                        </span>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </section>
 
             @if (isset($projects) && count($projects))
             <section class="projects">
