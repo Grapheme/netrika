@@ -233,7 +233,7 @@ foreach ($newslist as $new) {
             $(document).news_module(news_array, tags_object);
 
             var date_picker = (function(){
-                var date_format = 'yy-mm-dd';
+                var date_format = 'dd/mm/yy';
 
                 $( ".js-date-from" ).datepicker({
                   defaultDate: "+1w",

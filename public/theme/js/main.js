@@ -289,8 +289,8 @@ $.fn.news_module = function(news_array, tags_object) {
 	var first_news = {},
 		other_news = [];
 
-	var default_min_date = '1999-12-31',
-		default_max_date = '2999-12-31';
+	var default_min_date = '31/12/1999',
+		default_max_date = '31/12/2999';
 
 	var step = 0;
 
@@ -489,7 +489,7 @@ $.fn.news_module = function(news_array, tags_object) {
 		if(today_mm<10) {
 		    today_mm='0'+today_mm
 		} 
-		return today_string = today_yyyy + '-' + today_mm + '-' + today_dd;
+		return today_string = today_dd + '/' + today_mm + '/' + today_yyyy;
 	}
 
 	function tagsClick(type) {
