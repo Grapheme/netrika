@@ -1496,6 +1496,10 @@ section a:hover {
   border-radius: 0.5rem;
   border-width: 1px;
   border-style: solid;
+  border-color: #8C8C8C;
+}
+.tags-ul li.active:before {
+  background: #8C8C8C;
 }
 .tags-ul li.tag-all:before {
   width: 0.875rem;
@@ -1521,6 +1525,7 @@ section a:hover {
   font-family: "elements";
   color: #1dcba4;
   border: 0 none;
+  background: transparent;
 }
 .tags-ul li.tag-auto:before {
   border-color: #7fe898;
