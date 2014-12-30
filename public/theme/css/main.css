@@ -2217,10 +2217,6 @@ section a:hover {
   -webkit-transition: all .2s ease;
           transition: all .2s ease;
 }
-.prj-ul li a .icon-prjall:hover,
-.prj-ul li a .icon-prjall.active {
-  color: #fff;
-}
 .prj-ul li a:hover .text,
 .prj-ul li a.active .text {
   color: #fff;
@@ -2228,6 +2224,10 @@ section a:hover {
 .prj-ul li a:hover .amount,
 .prj-ul li a.active .amount {
   opacity: 1;
+}
+.prj-ul li a:hover .icon-prjall,
+.prj-ul li a.active .icon-prjall {
+  color: #fff;
 }
 .prj-ul li a.active .icon-prjall {
   font-family: "elements";
