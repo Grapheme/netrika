@@ -538,6 +538,11 @@ $.fn.news_module = function(news_array, tags_object) {
 		});
 	}
 
+	function parseOurDate(string) {
+		var splited = string.split('/');
+		return splited[2] + '-' + splited[1] + '-' + splited[0];
+	}
+
 	function getNews(settings) {
 		var ready_array = [];
 
@@ -545,8 +550,8 @@ $.fn.news_module = function(news_array, tags_object) {
             value.date = new Date(value.date);
 			var news_date = value.date.getTime();
 			var date = {
-				min: new Date(settings.date[0]).getTime() - 1,
-				max: new Date(settings.date[1]).getTime() + 1
+				min: new Date(parseOurDate(settings.date[0])).getTime() - 1,
+				max: new Date(parseOurDate(settings.date[1])).getTime() + 1
 			}
 			if(news_date > date.min && news_date < date.max) {
 				var toArray = false;
