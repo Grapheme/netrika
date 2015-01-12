@@ -1,5 +1,5 @@
 
-var menu_items = $('.dd');
+var menu_items = $('.dd.menu-list');
 
 var menu_editor = {
 
@@ -12,7 +12,7 @@ var menu_editor = {
     },
 
     'update_output': function() {
-        updateOutput($('.dd'));
+        updateOutput($(menu_items));
         menu_editor.show_hide_info();
     },
 
@@ -27,6 +27,7 @@ var menu_editor = {
         //$('.dd').append(menu);
         $(menu_items).find('ol:first').append(menu);
         $this.update_output();
+        showHideAllActiveRegExp();
     },
 
 
@@ -136,6 +137,8 @@ var menu_editor = {
         main_block = str_replace('%attr_title%', params.title || '', main_block);
 
         main_block = str_replace('%target_blank%', params.target == '_blank' ? 'checked' : '', main_block);
+        main_block = str_replace('%use_active_regexp%', params.use_active_regexp == '1' ? 'checked' : '', main_block);
+        main_block = str_replace('%active_regexp%', params.active_regexp, main_block);
         main_block = str_replace('%is_hidden%', params.hidden == '1' ? 'checked' : '', main_block);
 
         var inner_list_block = '';
@@ -254,6 +257,7 @@ $(document).on("click", ".delete_menu_item", function(e) {
     return false;
 });
 
+
 var nestable_output = $('#nestable-output');
 var updateOutput = function(e) {
 
@@ -278,25 +282,76 @@ var updateOutput = function(e) {
 };
 
 //init_sortable(false, '.menu_items');
-if ($('.dd').length) {
-    loadScript(base_url + '/private/js/plugin/jquery-nestable/jquery.nestable.js', function() {
+//if ($(menu_items).length) {
 
-        //alert(nesting_level);
+    /*
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = base_url + '/private/js/plugin/jquery-nestable/jquery.nestable.js';
+    document.getElementsByTagName('head')[0].appendChild(script);
+    //*/
 
-        if (typeof nesting_level == 'undefined' || !nesting_level) {
-            var nesting_level = 5;
+    //loadScript(base_url + '/private/js/plugin/jquery-nestable/jquery.nestable.js', function() {
+
+        //console.log($.nestable);
+
+        if ($(menu_items).length) {
+
+            //alert(nesting_level);
+
+            if (typeof nesting_level == 'undefined' || !nesting_level) {
+                var nesting_level = 5;
+            }
+
+            $(menu_items).nestable({
+                //group : 1
+                maxDepth: nesting_level || 5,
+                expandBtnHTML: '',
+                collapseBtnHTML: ''
+            }).on('change', updateOutput);
+
+            updateOutput($(menu_items).data('output', $(nestable_output)));
         }
+    //});
+//}
 
-        $('.dd').nestable({
-            //group : 1
-            maxDepth: nesting_level || 5,
-            expandBtnHTML: '',
-            collapseBtnHTML: ''
-        }).on('change', updateOutput);
 
-        updateOutput($('.dd').data('output', $(nestable_output)));
+function showHideActiveRexExp(_this) {
+    //var checked = $(this).is(':checked');
+    var checked = $(_this).attr('checked');
+    checked = (typeof checked !== typeof undefined && checked !== false);
+    var element = $(_this).parent().parent().find(".active_regexp").parent();
+
+    if (checked) {
+        //console.log(checked);
+        //console.log($(_this));
+        $(element).show();
+    } else
+        $(element).hide();
+
+}
+
+function showHideAllActiveRegExp() {
+    $(".use_active_regexp").each(function(e) {
+        showHideActiveRexExp($(this));
     });
 }
+
+$(document).on("click", ".use_active_regexp", function(e) {
+    var _this = $(this);
+    var checked = $(_this).is(':checked');
+    //var checked = $(_this).attr('checked');
+    //checked = (typeof checked !== typeof undefined && checked !== false);
+    var element = $(_this).parent().parent().find(".active_regexp").parent();
+
+    if (checked) {
+        //console.log(checked);
+        //console.log($(_this));
+        $(element).show();
+    } else
+        $(element).hide();
+
+});
 
 function str_replace(search, replace, subject) {
     return subject.split(search).join(replace);

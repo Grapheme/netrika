@@ -17,6 +17,7 @@
 	{{HTML::script('js/vendor/smartclick.js');}}
 	{{HTML::script('js/system/app.js');}}
 	{{HTML::script('js/system/messages.js');}}
+	{{ HTML::script('js/plugin/jquery-nestable/jquery.nestable.js') }}
 
     <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
     {{ HTML::script('js/plugin/pace/pace.min.js', array('data-pace-options' => '{ "restartOnRequestAfter": true }')) }}
