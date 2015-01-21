@@ -5,6 +5,9 @@
  */
 ?>
 @extends(Helper::layout())
+<?
+$seo = $project->seo;
+?>
 
 
 @section('style')

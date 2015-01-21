@@ -5,7 +5,9 @@
  */
 ?>
 @extends(Helper::layout())
-
+<?
+$seo = $new->seo;
+?>
 
 @section('style')
 @stop

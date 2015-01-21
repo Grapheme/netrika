@@ -412,6 +412,10 @@ class MenuConstructor {
         switch(@$element['type']) {
 
             case 'page':
+                #Helper::tad($this->pages[$element['page_id']]);
+                if ($this->pages[$element['page_id']]->start_page) {
+                    return $this->isRoute('mainpage', $this->pages[$element['page_id']]->slug);
+                }
                 return $this->isRoute('page', $this->pages[$element['page_id']]->slug);
                 break;
 

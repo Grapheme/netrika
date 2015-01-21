@@ -5,6 +5,9 @@
  */
 ?>
 @extends(Helper::layout())
+<?
+$seo = $solution->seo;
+?>
 
 
 <?
