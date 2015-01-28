@@ -239,9 +239,11 @@ $seo = $project->seo;
 
 
             @if (isset($projects) && count($projects))
-            <section class="projects">
+            <section class="projects dark-section">
                 <div class="container_12">
-
+                    <div class="grid_12">
+                        <h2>Проекты в этом решении</h2>
+                    </div>
                     @foreach ($projects as $project)
                     <?
                     $image = @$images[$project->mainpage_image] ?: new Photo;
