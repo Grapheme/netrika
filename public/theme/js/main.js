@@ -688,6 +688,9 @@ $.fn.main_slider = function(dots_class) {
 		slides.each(function(){
 			dots_list.append('<li>');
 		});
+		setTimeout(function(){
+			$('.slider-cont .slider-image').addClass('wtransition');
+		}, 100);
 		go(0);
 		setTimeout(function(){
 			auto(change_time);
@@ -710,6 +713,9 @@ $.fn.main_slider = function(dots_class) {
 			.siblings().removeClass('active');
 
 		dots_list.find('li').eq(id).addClass('active')
+			.siblings().removeClass('active');
+
+		$('.slider-cont .slider-image').eq(id).addClass('active')
 			.siblings().removeClass('active');
 
 		active_id = id;

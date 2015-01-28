@@ -3527,6 +3527,30 @@ section a:hover {
   width: 100%;
   font-size: 1rem;
 }
+.slider-cont {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+.slider-cont .slider-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  opacity: 0;
+}
+.slider-cont .slider-image.active {
+  opacity: 1;
+}
+.slider-cont .slider-image.wtransition {
+  -webkit-transition: all .5s ease;
+          transition: all .5s ease;
+}
 @media screen and (min-width: 1200px) {
   /*
 	Variable Grid System.
@@ -4674,9 +4698,13 @@ Move to separate stylesheet if invalid CSS is a problem.
   .head-info a {
     display: inline-block;
     margin: 0.625rem 0;
+    color: #1dcba4;
   }
   .head-info a:last-child {
     margin-bottom: 0;
+  }
+  .head-info a:hover {
+    color: #fff;
   }
   .prj-arrows {
     display: block;
