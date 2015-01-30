@@ -57,7 +57,7 @@ foreach ($clients as $client) {
 
 @section('content')
 
-        @if (isset($slides) && is_object($slides) && $slides->count()))
+        @if (isset($slides) && is_object($slides) && $slides->count())
         <section class="title-block title-main">
             <div class="slider-cont">
                 @foreach ($slides as $slide)
