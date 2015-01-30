@@ -1215,8 +1215,10 @@ class AdminDicvalsController extends BaseController {
         $json_request = array('status' => FALSE, 'responseText' => '');
 
         $dic_id = Input::get('_dic_id');
+        #Helper::tad($dic_id);
 
-        $dic = Dic::find($dic_id);
+        $dic = is_numeric($dic_id) ? Dic::find($dic_id) : Dic::where('slug', $dic_id)->first();
+        #Helper::tad($dic);
 
         /**
          * Если словарь не найден - сообщаем об ошибке

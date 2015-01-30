@@ -31,7 +31,7 @@ var imperavi_config_no_filter = {
 	convertVideoLinks: false,
 
 	lang: 'ru',
-	plugins: ['fontsize','fullscreen'],
+	plugins: ['fontsize','fullscreen','cleanformat'],
 	imageUpload: ImperaviRedactor.getBaseURL('redactor/upload'),
 	imageGetJson: ImperaviRedactor.getBaseURL('redactor/get-uploaded-images'),
 	imageUploadErrorCallback: function(response){alert(response.error);},
@@ -44,9 +44,11 @@ var imperavi_config_no_filter = {
     cleanStripTags: false,
     deniedTags: ['html', 'head', 'body', 'meta', 'script', 'applet'],
     removeEmptyTags: false,
-    cleanSpaces: false,
-    cleanup: false
+    cleanSpaces: true,
+    cleanup: false,
 
+	pastePlainText: true,
+	cleanOnPaste: true
 };
 
 var imperavi_config = {
@@ -61,7 +63,7 @@ var imperavi_config = {
 	convertVideoLinks: false,
 
 	lang: 'ru',
-	plugins: ['fontsize','fullscreen'],
+	plugins: ['fontsize','fullscreen','cleanformat'],
 	imageUpload: ImperaviRedactor.getBaseURL('redactor/upload'),
 	imageGetJson: ImperaviRedactor.getBaseURL('redactor/get-uploaded-images'),
 	imageUploadErrorCallback: function(response){alert(response.error);},
@@ -69,6 +71,9 @@ var imperavi_config = {
 	blurCallback: function(e){
 		$(this.$element[0]).html(this.get());
 	},
+
+	pastePlainText: true,
+	cleanOnPaste: true
 };
 
 /********************************************************/
@@ -94,6 +99,45 @@ RedactorPlugins.fontsize = {
 		this.inlineRemoveStyle('font-size');
 	}
 };
+
+RedactorPlugins.cleanformat = {
+	init: function(){
+		//var button = this.button.add('fontsize', 'Очистить формат');
+		//this.button.addCallback(button, this.cleanformat.cleanFormat);
+
+		this.fullscreen = false;
+		this.buttonAdd('cleanformat', 'Очистить формат', $.proxy(this.cleanFormat, this));
+		//if(this.opts.fullscreen) this.toggleFullscreen();
+	},
+	cleanFormat: function(html){
+		//this.inlineSetStyle('font-size',size+'px');
+		this.bufferSet();
+		alert(html);
+		this.getPlainText(html);
+	},
+
+
+	getTextFromHtml: function(html) {
+		html = html.replace(/<br\s?\/?>|<\/H[1-6]>|<\/p>|<\/div>|<\/li>|<\/td>/gi, '\n');
+
+		var tmp = document.createElement('div');
+		tmp.innerHTML = html;
+		html = tmp.textContent || tmp.innerText;
+
+		return $.trim(html);
+	},
+	getPlainText: function(html, paragraphize) {
+		html = this.getTextFromHtml(html);
+		html = html.replace(/\n/g, '<br />');
+		/*
+		if (this.opts.paragraphize && typeof paragraphize == 'undefined'){
+			html = this.paragraphize.load(html);
+		}
+		*/
+		return html;
+	}
+};
+
 RedactorPlugins.fullscreen = {
 	init: function(){
 		this.fullscreen = false;
