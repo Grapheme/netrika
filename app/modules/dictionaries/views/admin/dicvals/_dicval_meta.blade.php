@@ -3,10 +3,6 @@
 #Helper::tad($element->metas->where('language', $locale_sign)->first());
 #Helper::ta($element);
 #Helper::dd($dic_settings);
-/*{{--
-if (@is_callable($dic_settings['fields_i18n']))
-    $fields_i18n = $dic_settings['fields_i18n']();
-#--}}*/
 
 $element_meta = new DicValMeta;
 if (@is_object($element->metas) && $element->metas->count())
@@ -19,30 +15,50 @@ if (@is_object($element->metas) && $element->metas->count())
     }
 ?>
 
-@if (count($locales) > 1)
-{{-- @if (count($fields_i18n)) --}}
+@if (count($locales) > 1 && 0)
     <section>
-        <label class="label">Название</label>
+        <label class="label">{{ $dic->name_title ?: 'Название' }}</label>
         <label class="input select input-select2">
             {{ Form::text('locales[' . $locale_sign . '][name]', $element_meta->name, array()) }}
+            @if (isset($dic_settings['name_note']))
+                {{ $dic_settings['name_note'] }}
+            @endif
         </label>
     </section>
 @endif
 
-{{-- @if (count($locales) > 1) --}}
 @if (count($fields_i18n))
 
 <?
+
+    #Helper::ta($fields_i18n);
+
     $element_fields = array();
     if (isset($element->allfields) && is_object($element->allfields) && count($element->allfields)) {
         $element_fields = $element->allfields;
-        foreach ($element_fields as $f => $field) {
-            if (!$field->language)
-                unset($element_fields[$f]);
-        }
+        if (count($element_fields))
+            foreach ($element_fields as $f => $field) {
+                if (!$field->language)
+                    unset($element_fields[$f]);
+            }
         #$element_fields = $element_fields->lists('value', 'key');
         #Helper::ta($element_fields);
     }
+    $element_textfields = array();
+    if (isset($element->alltextfields) && is_object($element->alltextfields) && count($element->alltextfields)) {
+        $element_textfields = $element->alltextfields;
+        if (count($element_textfields))
+            foreach ($element_textfields as $f => $field) {
+                if (!$field->language)
+                    unset($element_textfields[$f]);
+                else
+                    $element_fields[$f] = $field;
+            }
+        #$element_fields = $element_fields->lists('value', 'key');
+        #Helper::ta($element_fields);
+    }
+    #Helper::ta($element_fields);
+    #Helper::ta($element_textfields);
 ?>
 
     @foreach ($fields_i18n as $field_name => $field)

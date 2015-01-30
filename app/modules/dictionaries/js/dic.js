@@ -45,6 +45,7 @@ $(function(){
                             //showMessage.smallSuccess();
                             //$($this).parents('tr').fadeOut(500,function(){$(this).remove();});
                             location.href = $($this).attr('data-goto');
+                            return false;
                         } else {
                             $($this).elementDisabled(false);
                             showMessage.constructor('Удаление', 'Возникла ошибка. Обновите страницу и повторите снова.');
@@ -65,22 +66,25 @@ $(function(){
 
 
 
-
-
-
 /** 
  * Функционал для кнопки удаления записи (в списке)
  */
 $(function(){
 	
-	$(".remove-dicval-list").click(function() {
+	$(".remove-dicval-list").click(function(e) {
+
+        e.preventDefault();
+
 		var $this = this;
-		$.SmartMessageBox({
+
+        $.SmartMessageBox({
 			title : "Удалить запись?",
 			content : "",
 			buttons : '[Нет][Да]'
-		},function(ButtonPressed) {
+		}, function(ButtonPressed) {
+
 			if(ButtonPressed == "Да") {
+
 				$.ajax({
 					url: $($this).parent('form').attr('action'),
 					type: 'DELETE',
@@ -88,21 +92,25 @@ $(function(){
 					beforeSend: function(){$($this).elementDisabled(true);},
 					success: function(response, textStatus, xhr){
 						if(response.status == true){
-							showMessage.constructor('Удалить ' + essence_name, response.responseText);
+							showMessage.constructor('Удалить запись', response.responseText);
 							showMessage.smallSuccess();
-							$($this).parents('tr').fadeOut(500,function(){$(this).remove();});
+
+							//$($this).parents('tr').fadeOut(500,function(){$(this).remove();});
+                            $('.dd-item[data-id=' + $($this).parents('.dd-item').attr('data-id') + ']').slideUp();
+
 						} else {
 							$($this).elementDisabled(false);
-							showMessage.constructor('Удалить ' + essence_name, 'Возникла ошибка. Обновите страницу и повторите снова.');
+							showMessage.constructor('Удалить запись', 'Возникла ошибка. Обновите страницу и повторите снова.');
 							showMessage.smallError();
 						}
 					},
 					error: function(xhr, textStatus, errorThrown){
 						$($this).elementDisabled(false);
-						showMessage.constructor('Удалить ' + essence_name, 'Возникла ошибка. Повторите снова.');
+						showMessage.constructor('Удалить запись', 'Возникла ошибка. Повторите снова.');
 						showMessage.smallError();
 					}
 				});
+
 			}
 		});
 		return false;

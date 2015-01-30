@@ -22,6 +22,7 @@
     ) {
         $menus[] = array(
             'link' => action(is_numeric($dic_id) ? 'dicval.destroy' : 'entity.destroy', array('dic_id' => $dic_id, $element->id)),
+            #'link' => '#',
             'title' => '<i class="fa fa-trash-o"></i>',
             'class' => 'btn btn-danger remove-dicval-record',
             'others' => [

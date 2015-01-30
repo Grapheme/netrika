@@ -1,6 +1,6 @@
 <?php
 
-class Dictionary extends BaseModel {
+class Dic extends BaseModel {
 
 	protected $guarded = array();
 
@@ -29,6 +29,8 @@ class Dictionary extends BaseModel {
 		'name' => 'required',
 	);
 
+    #public $all_dicval_relations = ['meta', 'fields', 'textfields', 'seo', 'related_dicvals'];
+
 
     /**
      * Связь возвращает все записи словаря со всеми полями; с сортировкой.
@@ -38,13 +40,14 @@ class Dictionary extends BaseModel {
     public function values() {
         return $this->hasMany('DicVal', 'dic_id', 'id')
             ->where('version_of', NULL)
-            ->with('meta', 'fields', 'textfields')
+            ->with('meta', 'fields', 'textfields', 'seo', 'related_dicvals')
             /*
             ->with('meta', array('fields' => function($query){
                 #$query->whereIn('name', array_keys((array)Config::get('dic.dic_name.fields')));
             }))
             */
-            ->orderBy('order', 'ASC')
+            #->orderBy('order', 'ASC')
+            ->orderBy(DB::raw('-lft'), 'DESC')
             ->orderBy('slug', 'ASC')
             ->orderBy('name', 'ASC')
             ->orderBy('id', 'ASC')
@@ -64,7 +67,7 @@ class Dictionary extends BaseModel {
         return $this->hasMany('DicVal', 'dic_id', 'id')
             ->select($tbl_dicval.'.*')
             ->where('version_of', NULL)
-            ->with('meta', 'fields', 'textfields')
+            ->with('meta', 'fields', 'textfields', 'seo', 'related_dicvals')
             ;
     }
 
@@ -145,11 +148,15 @@ class Dictionary extends BaseModel {
      *
      * @author Alexander Zelensky
      */
-    public static function makeLists($collection, $listed_key = 'values', $value, $key = '') {
+    public static function makeLists($collection, $listed_key = 'values', $value, $key = '', $hasOne = false) {
+
         #Helper::ta($collection);
+
         #$lists = new Collection;
         $lists = array();
+
         foreach ($collection as $c => $col) {
+
             if (!$listed_key) {
 
                 #Helper::d((int)$col->$value);
@@ -162,18 +169,40 @@ class Dictionary extends BaseModel {
 
             } else {
 
-                $list = array();
-                if (isset($col->$listed_key) && count($col->$listed_key))
-                    #Helper::ta($col->$listed_key);
-                    foreach ($col->$listed_key as $e => $el) {
-                        #Helper::d("$e => $el");
-                        if ($key != '')
-                            $list[$el->$key] = $el->$value;
-                        else
-                            $list[] = $el->$value;
+
+                if (!$hasOne) {
+
+                    /**
+                     * Если использовалась связь hasMany
+                     */
+                    $list = array();
+                    if (isset($col->$listed_key) && count($col->$listed_key)) {
+                        foreach ($col->$listed_key as $e => $el) {
+                            if ($key != '') {
+                                $list[$el->$key] = $el->$value;
+                            } else {
+                                $list[] = $el->$value;
+                            }
+                        }
                     }
-                    #Helper::dd($list);
-                $lists[$c] = $list;
+                    $lists[$c] = $list;
+
+                } else {
+
+                    /**
+                     * Если использовалась связь hasOne
+                     */
+                    if (isset($col->$listed_key) && is_object($col->$listed_key)) {
+                        #Helper::d($col->$listed_key);
+                        #Helper::d($key . ' => ' . $value);
+                        #$col->$listed_key->attributes[$key]
+                        if ($key != '') {
+                            $lists[$col->$listed_key->attributes[$key]] = @$col->$listed_key->attributes[$value];
+                        } else {
+                            $lists[] = @$col->$listed_key->attributes[$value];
+                        }
+                    }
+                }
             }
             #Helper::ta($col);
         }
@@ -239,35 +268,86 @@ class Dictionary extends BaseModel {
     }
 
 
+
+
+
     /**
-     * Возвращает все записи в словаре, по его системному имени.
-     * Вторым параметром передается функция-замыкание с доп. условиями выборки,
-     * аналогичная по синтаксису доп. условия при вызове связи.
+     * Возвращает записи в словаре по его системному имени, имеет множество настроек.
+     * Вторым параметром передается функция-замыкание с доп. условиями выборки, аналогичная по синтаксису доп. условия при вызове связи.
      *
      * @param $slug
      * @param callable $conditions
-     * @return mixed
+     * @param string $with - array with relations which will be loaded
+     * @param bool $extract - extract or not extract?
+     * @param bool $unset - unset old data of the extracted fields
+     * @param bool $paginate - false / (int)10
+     * @return $this|Collection|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Collection|\Illuminate\Pagination\Paginator|static|static[]
      */
-    public static function valuesBySlug($slug, Closure $conditions = NULL) {
+    public static function valuesBySlug($slug, Closure $conditions = NULL, $with = 'all', $extract = true, $unset = true, $extract_ids = false, $paginate = false) {
 
-        #Helper::dd($slug);
-        $return = Dic::where('slug', $slug);
-        #dd($conditions);
+        $return = new Collection();
+
+        $dic = Dic::where('slug', $slug)->first();
+        if (!is_object($dic))
+            return $return;
+
+        $values = (new DicVal);
+        $tbl_dicval = $values->getTable();
+        $values = $values
+            ->where('dic_id', $dic->id)
+            ->where('version_of', NULL)
+            ->select($tbl_dicval.'.*')
+        ;
+
+        /**
+         * Дополнительные условия в функции-замыкании
+         */
         if (is_callable($conditions))
-            $return = $return->with(array('values_no_conditions' => $conditions));
+            call_user_func($conditions, $values);
+
+        if ($with == 'all')
+            $with = ['meta', 'fields', 'textfields', 'seo', 'related_dicvals'];
         else
-            $return = $return->with('values');
+            $with = (array)$with;
 
-        $return = $return->first();
+        if (count($with))
+            $values = $values->with($with);
 
-        #Helper::tad($return);
+        $values = $paginate ? $values->paginate((int)$paginate) : $values->get();
 
-        if (is_object($return))
-            $return = isset($return->values_no_conditions) ? $return->values_no_conditions : $return->values;
-        else
-            $return = Dic::firstOrNew(array('slug' => $slug))->with('values')->first()->values;
-        #return self::firstOrNew(array('slug' => $slug))->values;
-        return $return;
+        if (count($values) && $extract)
+            $values = DicLib::extracts($values, null, $unset, $extract_ids);
+
+        return $values;
+    }
+
+
+    /**
+     * Возвращает количество записей в словаре
+     *
+     * @param $slug
+     * @param callable $conditions
+     * @return bool|int
+     */
+    public static function valuesBySlugCount($slug, Closure $conditions = NULL) {
+
+        /**
+         * Словарь
+         */
+        $dic = Dic::where('slug', $slug)->first();
+        if (!is_object($dic))
+            return false;
+
+        $values = DicVal::where('dic_id', $dic->id)->where('version_of', NULL);
+
+        /**
+         * Дополнительные условия в функции-замыкании
+         */
+        if (is_callable($conditions))
+            call_user_func($conditions, $values);
+
+        $count = $values->count();
+        return $count;
     }
 
 
@@ -275,32 +355,40 @@ class Dictionary extends BaseModel {
      * Возвращает значение записи из словаря по системному имени словаря и системному имени записи.
      * Третьим параметром можно передать метку, указывающую на необходимость сделать экстракт записи.
      *
-     * @param $dic_slug
+     * @param $slug
      * @param $val_slug
+     * @param string $with
      * @param bool $extract
-     * @return mixed|static
+     * @param bool $unset
+     * @return $this|Collection|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|static
      */
-    public static function valueBySlugs($dic_slug, $val_slug, $extract = false) {
+    public static function valueBySlugs($slug, $val_slug, $with = 'all', $extract = true, $unset = true) {
 
-        #Helper::d("$dic_slug, $val_slug");
+        $return = new Collection();
 
-        $data = self::where('slug', $dic_slug)->with(array('value' => function($query) use ($val_slug){
-                $query->where('version_of', NULL);
-                $query->where('slug', $val_slug);
-                $query->with('meta', 'fields', 'seo', 'related_dicvals');
-            }))->first();
+        $dic = Dic::where('slug', $slug)->first();
+        if (!is_object($dic))
+            return $return;
 
-        if (is_object($data)) {
-            $data = $data->value;
+        $value = DicVal::where('dic_id', $dic->id)
+            ->where('version_of', NULL)
+            ->where('slug', $val_slug)
+        ;
 
-            if ($extract) {
-                $data->extract(0);
-            }
-        }
+        if ($with == 'all')
+            $with = ['meta', 'fields', 'textfields', 'seo', 'related_dicvals'];
+        else
+            $with = (array)$with;
 
-        #Helper::tad($data);
+        if (count($with))
+            $value = $value->with($with);
 
-        return is_object($data) ? $data : self::firstOrNew(array('id' => 0));
+        $value = $value->first();
+
+        if ($extract)
+            $value->extract($unset);
+
+        return $value;
     }
 
 
@@ -308,68 +396,86 @@ class Dictionary extends BaseModel {
      * Возвращает значение записи из словаря по системному имени словаря и ID записи.
      * Третьим параметром можно передать метку, указывающую на необходимость сделать экстракт записи.
      *
-     * @param $dic_slug
+     * @param $slug
      * @param $val_id
+     * @param string $with
      * @param bool $extract
-     * @return mixed|static
+     * @param bool $unset
+     * @return $this|Collection|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|static
      */
-    public static function valueBySlugAndId($dic_slug, $val_id, $extract = false) {
+    public static function valueBySlugAndId($slug, $val_id, $with = 'all', $extract = true, $unset = true) {
 
-        $data = self::where('slug', $dic_slug)->with(array('value' => function($query) use ($val_id){
-            $query->where('version_of', NULL);
-            $query->where('id', $val_id);
-            $query->with('meta', 'fields', 'textfields', 'seo', 'related_dicvals');
-        }))
-            ->first()
+        $return = new Collection();
+
+        $dic = Dic::where('slug', $slug)->first();
+        if (!is_object($dic))
+            return $return;
+
+        $value = DicVal::where('dic_id', $dic->id)
+            ->where('version_of', NULL)
+            ->where('id', $val_id)
         ;
 
-        if (is_object($data)) {
+        if ($with == 'all')
+            $with = ['meta', 'fields', 'textfields', 'seo', 'related_dicvals'];
+        else
+            $with = (array)$with;
 
-            $data = $data->value;
-            #Helper::tad($data);
-            if ($extract)
-                $data->extract(0);
-            #Helper::tad($data);
-        }
+        if (count($with))
+            $value = $value->with($with);
 
-        return is_object($data) ? $data : self::firstOrNew(array('id' => 0));
+        $value = $value->first();
+
+        if ($extract)
+            $value->extract($unset);
+
+        return $value;
     }
+
 
     /**
      * Возвращает записи из словаря по системному имени словаря и набору IDs нужных записей.
      * Третьим параметром можно передать метку, указывающую на необходимость сделать экстракт каждой записи.
      *
-     * @param $dic_slug
+     * @param $slug
      * @param $val_ids
+     * @param string $with
      * @param bool $extract
-     * @return mixed|static
+     * @param bool $unset
+     * @return $this|Collection|\Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|null|static
      */
-    public static function valuesBySlugAndIds($dic_slug, array $val_ids, $extract = false) {
+    public static function valuesBySlugAndIds($slug, $val_ids, $with = 'all', $extract = true, $unset = true, $extract_ids = false) {
 
-        $data = NULL;
+        $return = new Collection();
 
-        if (count($val_ids)) {
+        $dic = Dic::where('slug', $slug)->first();
+        if (!is_object($dic) || !is_array($val_ids) || !count($val_ids))
+            return $return;
 
-            $data = self::where('slug', $dic_slug)->with(array('values_no_conditions' => function($query) use ($val_ids){
-                $query->where('version_of', NULL);
-                $query->whereIn('id', $val_ids);
-                $query->with('meta', 'fields', 'seo', 'related_dicvals');
-            }))
-                ->first()
-            ;
-            #Helper::tad($data);
+        $values = DicVal::where('dic_id', $dic->id)
+            ->where('version_of', NULL)
+            ->whereIn('id', $val_ids)
+        ;
 
-            if (is_object($data)) {
-                $data = $data->values_no_conditions;
-                if ($extract)
-                    $data = DicVal::extracts($data);
-                #Helper::tad($data);
-            }
-        }
+        if ($with == 'all')
+            $with = ['meta', 'fields', 'textfields', 'seo', 'related_dicvals'];
+        else
+            $with = (array)$with;
 
-        return is_object($data) ? $data : self::firstOrNew(array('id' => 0));
+        if (count($with))
+            $values = $values->with($with);
+
+        $values = $values->get();
+
+        #Helper::tad($values);
+
+        if ($extract)
+            $values = DicLib::extracts($values, null, $unset, $extract_ids);
+
+        #Helper::tad($values);
+
+        return $values;
     }
-
 
 
 
@@ -384,6 +490,6 @@ class Dictionary extends BaseModel {
 
 }
 
-class Dic extends Dictionary {
+class Dictionary extends Dic {
     ## Alias
 }

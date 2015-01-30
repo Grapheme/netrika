@@ -83,7 +83,7 @@ return array(
                 'title' => 'Описание процесса',
                 'type' => 'textarea',
                 'others' => array(
-                    'maxlength' => 150,
+                    #'maxlength' => 150,
                 ),
             ),
             'gallery' => array(
@@ -185,6 +185,8 @@ return array(
         },
 
         'before_index_view' => function ($dic, $dicvals) {
+            $dicvals = DicLib::extracts($dicvals, null, false, true);
+
             $dics_slugs = array(
                 'solutions',
                 'project-documents',
@@ -201,8 +203,8 @@ return array(
 
             $solutions_ids = Dic::makeLists($dicvals, false, 'solution_id');
             #Helper::ta($solutions_ids);
-            $solutions = Dic::valuesBySlugAndIds('solutions', $solutions_ids);
-            $solutions = Dic::modifyKeys($solutions, 'id');
+            $solutions = Dic::valuesBySlugAndIds('solutions', $solutions_ids, [], true, true, true);
+            #$solutions = Dic::modifyKeys($solutions, 'id');
             #Helper::tad($solutions);
             Config::set('temp.solutions', $solutions);
 
