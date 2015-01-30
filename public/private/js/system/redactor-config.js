@@ -100,6 +100,7 @@ RedactorPlugins.fontsize = {
 	}
 };
 
+
 RedactorPlugins.cleanformat = {
 	init: function(){
 		//var button = this.button.add('fontsize', 'Очистить формат');
@@ -110,12 +111,11 @@ RedactorPlugins.cleanformat = {
 		//if(this.opts.fullscreen) this.toggleFullscreen();
 	},
 	cleanFormat: function(html){
-		//this.inlineSetStyle('font-size',size+'px');
-		this.bufferSet();
-		alert(html);
-		this.getPlainText(html);
+		//alert(this.$editor.html());
+		html = this.$editor.html();
+		html = this.getPlainText(html, true);
+		this.$editor.html(html);
 	},
-
 
 	getTextFromHtml: function(html) {
 		html = html.replace(/<br\s?\/?>|<\/H[1-6]>|<\/p>|<\/div>|<\/li>|<\/td>/gi, '\n');
@@ -129,11 +129,136 @@ RedactorPlugins.cleanformat = {
 	getPlainText: function(html, paragraphize) {
 		html = this.getTextFromHtml(html);
 		html = html.replace(/\n/g, '<br />');
-		/*
-		if (this.opts.paragraphize && typeof paragraphize == 'undefined'){
-			html = this.paragraphize.load(html);
+		html = this.paragraphize_load(html);
+		return html;
+	},
+
+	paragraphize_load: function(html) {
+		if (this.opts.linebreaks) return html;
+		if (html === '' || html === '<p></p>') return this.opts.emptyHtml;
+
+		this.paragraphize_blocks = ['table', 'div', 'pre', 'form', 'ul', 'ol', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'dl', 'blockquote', 'figcaption',
+			'address', 'section', 'header', 'footer', 'aside', 'article', 'object', 'style', 'script', 'iframe', 'select', 'input', 'textarea',
+			'button', 'option', 'map', 'area', 'math', 'hr', 'fieldset', 'legend', 'hgroup', 'nav', 'figure', 'details', 'menu', 'summary', 'p'];
+
+		html = html + "\n";
+
+		this.paragraphize_safes = [];
+		this.paragraphize_z = 0;
+
+		html = html.replace(/(<br\s?\/?>){1,}\n?<\/blockquote>/gi, '</blockquote>');
+
+		html = this.paragraphize_getSafes(html);
+		html = this.paragraphize_getSafesComments(html);
+		html = this.paragraphize_replaceBreaksToNewLines(html);
+		html = this.paragraphize_replaceBreaksToParagraphs(html);
+		html = this.paragraphize_clear(html);
+		html = this.paragraphize_restoreSafes(html);
+
+		html = html.replace(new RegExp('<br\\s?/?>\n?<(' + this.paragraphize_blocks.join('|') + ')(.*?[^>])>', 'gi'), '<p><br /></p>\n<$1$2>');
+
+		return $.trim(html);
+	},
+	paragraphize_getSafes: function(html)
+	{
+		var $div = $('<div />').append(html);
+
+		// remove paragraphs in blockquotes
+		$div.find('blockquote p').replaceWith(function()
+		{
+			return $(this).append('<br />').contents();
+		});
+
+		html = $div.html();
+
+		$div.find(this.paragraphize_blocks.join(', ')).each($.proxy(function(i,s)
+		{
+			this.paragraphize_z++;
+			this.paragraphize_safes[this.paragraphize.z] = s.outerHTML;
+			html = html.replace(s.outerHTML, '\n{replace' + this.paragraphize_z + '}');
+
+		}, this));
+
+		return html;
+	},
+	paragraphize_getSafesComments: function(html)
+	{
+		var commentsMatches = html.match(/<!--([\w\W]*?)-->/gi);
+
+		if (!commentsMatches) return html;
+
+		$.each(commentsMatches, $.proxy(function(i,s)
+		{
+			this.paragraphize_z++;
+			this.paragraphize_safes[this.paragraphize_z] = s;
+			html = html.replace(s, '\n{replace' + this.paragraphize_z + '}');
+		}, this));
+
+		return html;
+	},
+	paragraphize_restoreSafes: function(html)
+	{
+		$.each(this.paragraphize_safes, function(i,s)
+		{
+			html = html.replace('{replace' + i + '}', s);
+		});
+
+		return html;
+	},
+	paragraphize_replaceBreaksToParagraphs: function(html)
+	{
+		var htmls = html.split(new RegExp('\n', 'g'), -1);
+
+		html = '';
+		if (htmls)
+		{
+			var len = htmls.length;
+			for (var i = 0; i < len; i++)
+			{
+				if (!htmls.hasOwnProperty(i)) return;
+
+				if (htmls[i].search('{replace') == -1)
+				{
+					htmls[i] = htmls[i].replace(/<p>\n\t?<\/p>/gi, '');
+					htmls[i] = htmls[i].replace(/<p><\/p>/gi, '');
+
+					if (htmls[i] !== '')
+					{
+						html += '<p>' +  htmls[i].replace(/^\n+|\n+$/g, "") + "</p>";
+					}
+				}
+				else html += htmls[i];
+			}
 		}
-		*/
+
+		return html;
+	},
+	paragraphize_replaceBreaksToNewLines: function(html)
+	{
+		html = html.replace(/<br \/>\s*<br \/>/gi, "\n\n");
+		html = html.replace(/<br\s?\/?>\n?<br\s?\/?>/gi, "\n<br /><br />");
+
+		html = html.replace(new RegExp("\r\n", 'g'), "\n");
+		html = html.replace(new RegExp("\r", 'g'), "\n");
+		html = html.replace(new RegExp("/\n\n+/"), 'g', "\n\n");
+
+		return html;
+	},
+	paragraphize_clear: function(html)
+	{
+		html = html.replace(new RegExp('</blockquote></p>', 'gi'), '</blockquote>');
+		html = html.replace(new RegExp('<p></blockquote>', 'gi'), '</blockquote>');
+		html = html.replace(new RegExp('<p><blockquote>', 'gi'), '<blockquote>');
+		html = html.replace(new RegExp('<blockquote></p>', 'gi'), '<blockquote>');
+
+		html = html.replace(new RegExp('<p><p ', 'gi'), '<p ');
+		html = html.replace(new RegExp('<p><p>', 'gi'), '<p>');
+		html = html.replace(new RegExp('</p></p>', 'gi'), '</p>');
+		html = html.replace(new RegExp('<p>\\s?</p>', 'gi'), '');
+		html = html.replace(new RegExp("\n</p>", 'gi'), '</p>');
+		html = html.replace(new RegExp('<p>\t?\t?\n?<p>', 'gi'), '<p>');
+		html = html.replace(new RegExp('<p>\t*</p>', 'gi'), '');
+
 		return html;
 	}
 };
