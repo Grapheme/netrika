@@ -9,6 +9,7 @@
 <?
 $slides = Dic::valuesBySlug('sliders');
 $slides = DicVal::extracts($slides, true);
+$slides = DicLib::loadImages($slides, 'image_slide');
 #Helper::tad($slides);
 
 $solutions = Dic::valuesBySlug('solutions');
@@ -56,7 +57,13 @@ foreach ($clients as $client) {
 
 @section('content')
 
+        @if (isset($slides) && is_object($slides) && $slides->count()))
         <section class="title-block title-main">
+            <div class="slider-cont">
+                @foreach ($slides as $slide)
+                    <div class="slider-image" style="background-image: url({{ isset($slide->image_slide) && is_object($slide->image_slide) ? $slide->image_slide->full() : '' }})"></div>
+                @endforeach
+            </div>
             <div class="container_12">
                 <div class="grid_12">
                     <section class="title-content max-pad">
@@ -83,6 +90,7 @@ foreach ($clients as $client) {
                 <div class="clearfix"></div>
             </div>
         </section>
+        @endif
 
         <section class="main-stat us-section">
             <div class="container_12 js-stat-parent">

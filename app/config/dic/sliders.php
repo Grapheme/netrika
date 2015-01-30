@@ -19,16 +19,14 @@ return array(
             ),
             #*/
 
-            /*
             'image_slide' => array(
                 'title' => 'Фоновое изображение',
                 'type' => 'image',
                 'params' => array(
-                    'maxFilesize' => 1, // MB
+                    'maxFilesize' => 2, // MB
                 ),
                 'first_note' => 'Оптимальный размер: 1600x640',
             ),
-            #*/
         );
 
     },
