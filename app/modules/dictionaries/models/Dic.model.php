@@ -155,6 +155,9 @@ class Dic extends BaseModel {
         #$lists = new Collection;
         $lists = array();
 
+        if (!isset($collection) || (!is_array($collection) && !is_object($collection)))
+            return $lists;
+
         foreach ($collection as $c => $col) {
 
             if (!$listed_key) {
