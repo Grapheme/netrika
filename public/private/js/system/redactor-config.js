@@ -107,7 +107,7 @@ RedactorPlugins.cleanformat = {
 		//this.button.addCallback(button, this.cleanformat.cleanFormat);
 
 		this.fullscreen = false;
-		this.buttonAdd('cleanformat', 'Очистить формат', $.proxy(this.cleanFormat, this));
+		this.buttonAdd('clips', 'Очистить формат', $.proxy(this.cleanFormat, this));
 		//if(this.opts.fullscreen) this.toggleFullscreen();
 	},
 	cleanFormat: function(html){
