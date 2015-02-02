@@ -50,9 +50,10 @@ class PublicNetrikaController extends BaseController {
         /**
          * Получаем текущую новость
          */
-        $new = Dic::valueBySlugs('newslist', $url);
-        $new->extract(1);
+        $new = Dic::valueBySlugs('newslist', $url, 'all', true);
+        #$new->extract(1);
         #Helper::tad($new);
+
         /**
          * Изображение и галерея у текущей новости
          */
@@ -68,7 +69,7 @@ class PublicNetrikaController extends BaseController {
         /**
          * IDs тегов текущей новости
          */
-        $tags_ids = Dic::makeLists($new->related_dicvals, false, 'id');
+        $tags_ids = Dic::makeLists($new->tags_ids, false, 'id');
         #Helper::dd($tags_ids);
 
         $related_news = array();
@@ -92,10 +93,8 @@ class PublicNetrikaController extends BaseController {
                 $query->with('related_dicvals');
                 $query->take(3);
             });
-            #Helper::tad($related_news);
         }
-
-        #Helper::ta($new);
+        #Helper::tad($related_news);
 
         /**
          * Предыдущая новость
@@ -168,6 +167,8 @@ class PublicNetrikaController extends BaseController {
         $next_new = @$next_new[0];
         #Helper::ta($next_new);
         #return '';
+
+        #Helper::tad($new);
 
         /**
          * Переводим дату публикации из string в Carbon

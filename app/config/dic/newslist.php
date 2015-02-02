@@ -20,6 +20,7 @@ return array(
         $dics = Dic::whereIn('slug', $dics_slugs)->with('values')->get();
         $dics = Dic::modifyKeys($dics, 'slug');
         $lists = Dic::makeLists($dics, 'values', 'name', 'id');
+        $lists_ids = Dic::makeLists($dics, null, 'id', 'slug');
         #Helper::dd($lists);
 
         return array(
@@ -85,8 +86,9 @@ return array(
                 'type' => 'checkboxes',
                 'columns' => 2, ## Количество колонок
                 'values' => $lists['tags'],
-                'handler' => function ($value, $element) {
-                    $value = (array)$value;
+                'handler' => function ($value, $element) use ($lists_ids) {
+                    #$value = (array)$value;
+                    $value = DicLib::formatDicValRel($value, 'tags_ids', $element->dic_id, $lists_ids['tags']);
                     $element->related_dicvals()->sync($value);
                     return @count($value);
                 },
