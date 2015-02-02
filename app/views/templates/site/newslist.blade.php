@@ -24,6 +24,7 @@ $tags = Dic::valuesBySlug('tags');
 #Helper::tad($tags);
 $tags_slug_name = $tags->lists('name', 'slug');
 natsort($tags_slug_name);
+#Helper::tad($tags_slug_name);
 
 $newslist = Dic::valuesBySlug('newslist', function($query) use ($rel_dics_ids){
 
@@ -47,16 +48,17 @@ $newslist = Dic::valuesBySlug('newslist', function($query) use ($rel_dics_ids){
     #*/
 
     #$query->orderBy('created_at', 'desc');
-    #/*
+    /*
     $query->with(
         array('related_dicvals' => function($query) use ($rel_dics_ids){
             $query->whereIn('dic_id', $rel_dics_ids);
         })
     );
     #*/
-});
+}, 'all', false);
+#Helper::smartQueries(1);
 #Helper::tad($newslist);
-$newslist = DicVal::extracts($newslist, true);
+$newslist = DicVal::extracts($newslist, null, true, true);
 #$newslist = DicVal::extracts_related($newslist, $rel_dics_id_slug, false);
 #Helper::tad($newslist);
 
@@ -79,9 +81,9 @@ foreach ($newslist as $new) {
         #'date' => $new->created_at->format('Y-m-d'),
         'date' => $new->published_at,
         'title' => $new->name,
-        'image' => @$images[$new->image_id] ? $images[$new->image_id]->full() : false,
+        'image' => isset($images[$new->image_id]) ? $images[$new->image_id]->full() : false,
         'href' => '/news/'.$new->slug,
-        'tags' => $new->related_dicvals->lists('slug'),
+        'tags' => is_object($new->tags_ids) ? $new->tags_ids->lists('slug') : [],
     );
 }
 #Helper::tad($news);
