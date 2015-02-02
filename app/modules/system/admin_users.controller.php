@@ -39,7 +39,7 @@ class AdminUsersController extends BaseController {
         $this->module = array(
             'name' => self::$name,
             'group' => self::$group,
-            'rest' => self::$name,
+            'rest' => 'system/' . self::$name,
             'tpl'  => static::returnTpl('admin/' . self::$name),
             'gtpl' => static::returnTpl(),
 
