@@ -179,9 +179,9 @@ $seo = $project->seo;
                     </div>
                     <div class="progress-slider">
                         <div class="ps-block ps-info">
-
-                            {{ $project->description_process }}
-
+                            <div class="ps-clip">
+                                {{ $project->description_process }}
+                            </div>
                         </div><!--
                         @if (count($photos))
                         @foreach ($photos as $photo)

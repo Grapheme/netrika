@@ -2259,6 +2259,10 @@ section a:hover {
   color: #fff;
   font-size: 1.125em;
 }
+.progress-slider .ps-block .ps-clip {
+  max-height: 100%;
+  overflow: hidden;
+}
 .progress-slider .ps-block .ps-big {
   position: relative;
   display: inline-block;
