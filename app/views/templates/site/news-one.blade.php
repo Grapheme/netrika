@@ -6,6 +6,7 @@
 ?>
 @extends(Helper::layout())
 <?
+$page_title = $new->name;
 $seo = $new->seo;
 ?>
 

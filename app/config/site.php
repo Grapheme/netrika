@@ -35,4 +35,10 @@ return array(
 
     ## Directory for module UPLOADS
     'uploads_dir' => public_path('uploads/files'),
+
+    'seo' => [
+        'default_title'       => 'default title',
+        'default_description' => '',
+        'default_keywords'    => '',
+    ],
 );
