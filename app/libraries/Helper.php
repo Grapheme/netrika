@@ -378,6 +378,11 @@ HTML;
 
                 #$return .= "\n<!--\n" . $_SERVER['REQUEST_URI'] . "\n" . $menu['link'] . "\n-->\n";
 
+                #if (isset($menu['others'])) {
+                #    Helper::d(@$menu['others']);
+                #    Helper::dd(self::arrayToAttributes($menu['others']));
+                #}
+
                 $additional = isset($menu['others']) ? self::arrayToAttributes($menu['others']) : '';
 
                 $return .= '<a class="' . @$menu['class'] . ($child_exists ? '' : ' margin-bottom-5') . '" href="' . $menu['link'] . '" ' . $additional . '>'
@@ -588,6 +593,7 @@ HTML;
                         . '</label>' . "\n\n";
                     $return .= $el;
                 }
+                $return = '<div class="clearfix">' . $return . '</div>';
                 #Helper::d(htmlspecialchars($return));
                 break;
             case 'hidden':
@@ -607,8 +613,13 @@ HTML;
 
         $line = '';
         foreach ($array as $key => $value) {
-            if (is_string($key) && (is_string($value) || is_int($value))) {
-                $line = $key . '="' . $value . '" ';
+            if (
+                is_string($key)
+                && (
+                    is_string($value) || is_int($value)
+                )
+            ) {
+                $line .= $key . '="' . $value . '" ';
             }
         }
         $line = trim($line);
@@ -1104,21 +1115,58 @@ HTML;
 
                     $buffer = trim($buffer, " \r\n\t*");
                     $buffer = explode(':', $buffer);
+
+                    #Helper::d('<hr/>');
                     #Helper::d($buffer);
+                    #Helper::d('<hr/><hr/>');
+
+                    $key = @trim($buffer[0]);
+                    if (!$key)
+                        continue;
 
                     $value = @trim($buffer[1]) ?: true;
-                    if ($value !== true && is_string($value) && mb_strlen($value) && mb_strpos($value, '|')) {
-                        $temp = explode('|', $value);
-                        $value = array();
-                        foreach ($temp as $tmp) {
-                            $tmp = trim($tmp);
-                            if (mb_strpos($tmp, '=')) {
-                                $keyval = explode('=', $tmp, 2);
-                                $value[trim($keyval[0])] = trim($keyval[1]);
-                            } else {
-                                $value[$tmp] = true;
-                            }
+
+                    #Helper::d($buffer[0] . ' ================> ' . @trim($buffer[1]));
+
+                    #if ($key == 'TITLE') {
+                    #    Helper::d($key . ' ================> ' . @trim($buffer[1]));
+                    #}
+
+                    if ($value !== true && is_string($value) && mb_strlen($value)) {
+
+                        if (!mb_strpos($value, '|')) {
+                            $value .= '|';
                         }
+
+                        #if (mb_strpos($value, '|')) {
+
+                            $temp = explode('|', $value);
+                            $value = array();
+
+                            foreach ($temp as $t => $tmp) {
+                                $tmp = trim($tmp);
+                                if (!$tmp)
+                                    unset($temp[$t]);
+                            }
+
+                            foreach ($temp as $tmp) {
+                                $tmp = trim($tmp);
+                                if (!$tmp)
+                                    continue;
+                                #Helper::d($tmp);
+                                if (mb_strpos($tmp, '=')) {
+                                    $keyval = explode('=', $tmp, 2);
+                                    $value[trim($keyval[0])] = trim($keyval[1]);
+                                    #Helper::dd(trim($keyval[0]) . ' === ' . trim($keyval[1]));
+                                } else {
+                                    #Helper::dd($tmp);
+                                    if (count($temp) == 1)
+                                        $value = $tmp;
+                                    else
+                                    $value[$tmp] = true;
+                                }
+                            }
+                        #}
                     }
 
                     $properties[@trim($buffer[0])] = $value;
@@ -1130,6 +1178,10 @@ HTML;
             }
             fclose($handle);
         }
+
+        #Helper::d("PROPERTIES:");
+        #Helper::d($properties);
+
         return $properties;
     }
 
